@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tosafix - Chrome Extensions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@600;700;800&family=Heebo:wght@400&family=Rubik:wght@500;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#79C9E8',
+              'primary-hover': '#9ED2F5',
+              secondary: '#B18BE8',
+              accent: '#65E6CB',
+              'text-dark': '#2E2E2E',
+              'text-light': '#FAFAFA',
+              'bg-light': '#F8FAFC',
+              'bg-dark': '#181820',
+            },
+            fontFamily: {
+              sans: ['Heebo', 'sans-serif'],
+              assistant: ['Assistant', 'sans-serif'],
+              rubik: ['Rubik', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F8FAFC;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #B18BE8;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #79C9E8;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.552.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

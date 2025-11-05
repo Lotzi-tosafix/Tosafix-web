@@ -1,0 +1,5 @@
+{
+  "name": "Tosafix - Chrome Extensions Showcase",
+  "description": "A dynamic, multi-language website built with React and Tailwind CSS to showcase a collection of useful Chrome extensions. Features detailed pages for each extension, a contact form, and seamless language switching between English and Hebrew.",
+  "requestFramePermissions": []
+}
