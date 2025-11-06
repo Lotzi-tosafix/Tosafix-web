@@ -8,7 +8,7 @@ const YaminaHowItWorksSection = () => {
     const { language } = useLanguage();
     const t = translations[language];
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-bg-dark">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ const YaminaHowItWorksSection = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
                         <span className="bg-gradient-to-l from-primary to-secondary bg-clip-text text-transparent">
                             {t.yaminaHowItWorksTitle}
                         </span>

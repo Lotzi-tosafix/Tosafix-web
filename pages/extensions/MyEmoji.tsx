@@ -9,7 +9,7 @@ const MyEmojiBonusSection = () => {
     const { language } = useLanguage();
     const t = translations[language];
     return (
-        <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+        <section className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-bg-dark">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -18,7 +18,7 @@ const MyEmojiBonusSection = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
                         <span className="bg-gradient-to-l from-rose-600 to-pink-800 bg-clip-text text-transparent flex items-center justify-center gap-3">
                             <Gift className="w-8 h-8 text-rose-600" />
                             {t.myEmojiBonusSectionTitle}
@@ -31,16 +31,16 @@ const MyEmojiBonusSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-gradient-to-l from-rose-50 to-pink-50 border-rose-200 hover:shadow-xl transition-all duration-300">
+                    <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-gradient-to-l from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20 border-rose-200 dark:border-rose-900/50 hover:shadow-xl transition-all duration-300">
                         <div className="flex flex-col space-y-1.5 p-6 text-center">
-                            <h3 className="font-semibold tracking-tight text-2xl text-slate-900 mb-2">{t.myEmojiBonusCardTitle}</h3>
-                            <p className="text-slate-700 text-base leading-relaxed">
+                            <h3 className="font-semibold tracking-tight text-2xl text-slate-900 dark:text-slate-100 mb-2">{t.myEmojiBonusCardTitle}</h3>
+                            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
                                 {t.myEmojiBonusCardDesc}
                                 <br />
                                 <span className="text-sm mt-2 block">
                                     <strong>{t.myEmojiBonusCardCredit.split(':')[0]}:</strong>
                                     {t.myEmojiBonusCardCredit.split(':')[1]}
-                                    <a href="https://www.prog.co.il/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline ms-1">
+                                    <a href="https://www.prog.co.il/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline ms-1">
                                         https://www.prog.co.il/
                                     </a>
                                 </span>

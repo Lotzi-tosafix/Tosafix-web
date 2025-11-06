@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Languages } from 'lucide-react';
+import { Menu, X, ChevronDown, Languages, Sun, Moon } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { translations } from '../translations/translations';
 
 const extensions = [
@@ -15,15 +16,11 @@ const extensions = [
   { nameKey: 'edgeOpenerName', path: '/extensions/edgeopener', logo: 'https://files.cdn-files-a.com/uploads/10483955/400_6806edcc12daa.png' },
 ];
 
-// FIX: Moved helper components before the main Header component to fix hoisting-related errors.
-// FIX: Define props with an interface for clarity and to potentially resolve a type-checking issue.
-// FIX: Renamed 'href' prop to 'to' for consistency with react-router-dom and to fix type errors.
 interface NavLinkProps {
   to: string;
   children: React.ReactNode;
 }
 
-// FIX: Explicitly type component with React.FC to resolve issue where TypeScript compiler does not correctly identify `children` prop.
 const NavLink: React.FC<NavLinkProps> = ({ to, children }) => (
   <Link 
     to={to} 
@@ -33,16 +30,13 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children }) => (
   </Link>
 );
 
-// FIX: Define props with an interface for clarity and to potentially resolve a type-checking issue.
-// FIX: Renamed 'href' prop to 'to' for consistency with react-router-dom and to fix type errors.
 interface MobileNavLinkProps {
   to: string;
   children: React.ReactNode;
 }
 
-// FIX: Explicitly type component with React.FC to resolve issue where TypeScript compiler does not correctly identify `children` prop.
 const MobileNavLink: React.FC<MobileNavLinkProps> = ({ to, children }) => (
-  <Link to={to} className="block px-3 py-2 rounded-md text-base font-bold font-assistant text-text-dark hover:bg-gray-100">{children}</Link>
+  <Link to={to} className="block px-3 py-2 rounded-md text-base font-bold font-assistant text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{children}</Link>
 );
 
 
@@ -56,10 +50,10 @@ const ExtensionsDropdown = () => {
         <span>{t.extensions}</span>
         <ChevronDown size={16} className="ms-1" />
       </button>
-      <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-bg-light rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+      <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-bg-light dark:bg-gray-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
         <div className="py-2 grid grid-cols-1 gap-1">
           {extensions.map(ext => (
-            <Link key={ext.path} to={ext.path} className="flex items-center px-4 py-2 text-text-dark hover:bg-gray-100">
+            <Link key={ext.path} to={ext.path} className="flex items-center px-4 py-2 text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">
               <img src={ext.logo} alt={t[ext.nameKey as keyof typeof t]} className="w-6 h-6 me-3 rounded-md" />
               <span className="font-assistant">{t[ext.nameKey as keyof typeof t]}</span>
             </Link>
@@ -78,14 +72,14 @@ const MobileExtensionsDropdown = () => {
 
     return (
         <div>
-            <button onClick={() => setIsExtOpen(!isExtOpen)} className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-bold font-assistant text-text-dark hover:bg-gray-100">
+            <button onClick={() => setIsExtOpen(!isExtOpen)} className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-bold font-assistant text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">
                 <span>{t.extensions}</span>
                 <ChevronDown size={20} className={`transition-transform duration-200 ${isExtOpen ? 'rotate-180' : ''}`} />
             </button>
             {isExtOpen && (
-                <div className="ps-4 border-s-2 border-gray-200 ms-2">
+                <div className="ps-4 border-s-2 border-gray-200 dark:border-gray-600 ms-2">
                     {extensions.map(ext => (
-                         <Link key={ext.path} to={ext.path} className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-md">
+                         <Link key={ext.path} to={ext.path} className="flex items-center px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
                             <img src={ext.logo} alt={t[ext.nameKey as keyof typeof t]} className="w-5 h-5 me-3 rounded-sm" />
                             <span className="font-assistant">{t[ext.nameKey as keyof typeof t]}</span>
                         </Link>
@@ -104,13 +98,27 @@ const LanguageSwitcher = () => {
       <button className={`flex items-center font-medium transition-colors duration-200 text-text-light hover:text-text-light/80`}>
         <Languages size={20} />
       </button>
-      <div className="absolute right-0 mt-2 w-28 bg-bg-light rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+      <div className="absolute right-0 mt-2 w-28 bg-bg-light dark:bg-gray-800 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
         <div className="py-1">
-          <button onClick={() => setLanguage('en')} className={`block w-full text-left px-4 py-2 text-sm ${language === 'en' ? 'bg-gray-100 text-text-dark' : 'text-gray-700'} hover:bg-gray-100`}>English</button>
-          <button onClick={() => setLanguage('he')} className={`block w-full text-left px-4 py-2 text-sm ${language === 'he' ? 'bg-gray-100 text-text-dark' : 'text-gray-700'} hover:bg-gray-100`}>עברית</button>
+          <button onClick={() => setLanguage('en')} className={`block w-full text-left px-4 py-2 text-sm ${language === 'en' ? 'bg-gray-100 dark:bg-gray-700 text-text-dark dark:text-text-light' : 'text-gray-700 dark:text-gray-300'} hover:bg-gray-100 dark:hover:bg-gray-700`}>English</button>
+          <button onClick={() => setLanguage('he')} className={`block w-full text-left px-4 py-2 text-sm ${language === 'he' ? 'bg-gray-100 dark:bg-gray-700 text-text-dark dark:text-text-light' : 'text-gray-700 dark:text-gray-300'} hover:bg-gray-100 dark:hover:bg-gray-700`}>עברית</button>
         </div>
       </div>
     </div>
+  );
+};
+
+const ThemeSwitcher = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <button 
+      onClick={toggleTheme} 
+      className={`p-2 rounded-full transition-colors duration-200 text-text-light hover:bg-white/20`}
+      aria-label="Toggle theme"
+    >
+      {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+    </button>
   );
 };
 
@@ -143,17 +151,19 @@ export default function Header() {
               {t.siteTitle}
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-            {/* FIX: Changed prop 'href' to 'to' to match updated NavLink component. */}
+          <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
             <NavLink to="/">{t.home}</NavLink>
             <ExtensionsDropdown />
-            {/* FIX: Changed prop 'href' to 'to' to match updated NavLink component. */}
             <NavLink to="/contact">{t.contact}</NavLink>
-            <LanguageSwitcher />
+            <div className='flex items-center space-x-2 rtl:space-x-reverse'>
+                <LanguageSwitcher />
+                <ThemeSwitcher />
+            </div>
           </div>
           <div className="md:hidden flex items-center">
             <LanguageSwitcher />
-            <button onClick={() => setIsOpen(!isOpen)} className={`ms-4 text-text-light`}>
+            <ThemeSwitcher />
+            <button onClick={() => setIsOpen(!isOpen)} className={`ms-2 text-text-light`}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -161,12 +171,10 @@ export default function Header() {
       </nav>
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-bg-light shadow-lg">
+        <div className="md:hidden bg-bg-light dark:bg-bg-dark shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {/* FIX: Changed prop 'href' to 'to' to match updated MobileNavLink component. */}
             <MobileNavLink to="/">{t.home}</MobileNavLink>
             <MobileExtensionsDropdown />
-            {/* FIX: Changed prop 'href' to 'to' to match updated MobileNavLink component. */}
             <MobileNavLink to="/contact">{t.contact}</MobileNavLink>
           </div>
         </div>

@@ -17,7 +17,7 @@ const DesignsGallerySection = () => {
     ];
   
     return (
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-bg-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -26,12 +26,12 @@ const DesignsGallerySection = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
               <span className="bg-gradient-to-l from-green-600 to-emerald-800 bg-clip-text text-transparent">
                 {t.netSkinGalleryTitle}
               </span>
             </h2>
-            <p className="text-lg text-slate-600">{t.netSkinGalleryDesc}</p>
+            <p className="text-lg text-slate-600 dark:text-slate-400">{t.netSkinGalleryDesc}</p>
           </motion.div>
   
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

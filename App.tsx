@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { useLanguage } from './contexts/LanguageContext';
@@ -24,7 +25,7 @@ function App() {
 
   return (
     <HashRouter>
-      <div className="font-sans bg-bg-light text-text-dark">
+      <div className="font-sans bg-bg-light text-text-dark dark:bg-bg-dark dark:text-text-light">
         <Header />
         <main>
           <Routes>

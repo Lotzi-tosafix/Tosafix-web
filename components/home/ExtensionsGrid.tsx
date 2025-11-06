@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -32,15 +33,15 @@ export default function ExtensionsGrid() {
   const ArrowIcon = isHebrew ? ArrowLeft : ArrowRight;
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark font-assistant">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-text-light font-assistant">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               {t.ourExtensions}
             </span>
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-gray-600">{t.ourExtensionsDesc}</p>
+          <p className="text-lg max-w-2xl mx-auto text-gray-600 dark:text-gray-400">{t.ourExtensionsDesc}</p>
         </div>
         <motion.div 
           variants={containerVariants}
@@ -51,17 +52,17 @@ export default function ExtensionsGrid() {
         >
           {extensionList.map((ext) => (
             <motion.div key={ext.nameKey} variants={itemVariants} className="flex">
-              <div className="rounded-lg w-full flex flex-col bg-white border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="rounded-lg w-full flex flex-col bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="p-6">
                   <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} p-4 mb-4 mx-auto`}>
                     <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-full h-full object-contain" />
                   </div>
-                  <h3 className="font-semibold tracking-tight text-center text-xl text-text-dark font-assistant">
+                  <h3 className="font-semibold tracking-tight text-center text-xl text-text-dark dark:text-text-light font-assistant">
                     {t[ext.nameKey as keyof typeof t]}
                   </h3>
                 </div>
                 <div className="p-6 pt-0 flex flex-col flex-grow">
-                  <p className="text-center text-gray-700/80 mb-6 leading-relaxed flex-grow min-h-[7em]">
+                  <p className="text-center text-gray-700/80 dark:text-gray-300 mb-6 leading-relaxed flex-grow min-h-[7em]">
                     {t[ext.descKey as keyof typeof t]}
                   </p>
                   <Link to={ext.path} className="mt-auto">
