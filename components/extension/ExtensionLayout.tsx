@@ -13,7 +13,6 @@ interface Feature {
 interface InstallSection {
   description: string;
   chromeStoreUrl: string;
-  downloadUrl: string;
 }
 
 interface SupportedForum {
@@ -31,6 +30,7 @@ interface ExtensionLayoutProps {
   privacyPolicyUrl?: string;
   privacyPolicyContent?: string;
   supportedForums?: SupportedForum[];
+  beforeFeaturesContent?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -91,6 +91,7 @@ export default function ExtensionLayout({
   privacyPolicyUrl,
   privacyPolicyContent,
   supportedForums,
+  beforeFeaturesContent,
   children
 }: ExtensionLayoutProps) {
   const { language } = useLanguage();
@@ -98,12 +99,12 @@ export default function ExtensionLayout({
 
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } }
+    visible: { transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
@@ -127,43 +128,45 @@ export default function ExtensionLayout({
               <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-text-dark bg-primary hover:bg-primary-hover w-full sm:w-auto font-assistant transition-colors">
                 <Download className="me-2 -ms-1 h-5 w-5" /> {t.chromeWebStore}
               </a>
-              <a href={installSection.downloadUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-primary bg-primary/10 hover:bg-primary/20 w-full sm:w-auto font-assistant transition-colors">
-                <Download className="me-2 -ms-1 h-5 w-5" /> {t.manualDownload}
-              </a>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* Before Features Section */}
+      {beforeFeaturesContent}
+
       {/* Features Section */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl text-text-dark sm:text-4xl font-assistant font-bold">{t.keyFeatures}</h2>
-          </div>
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="space-y-16"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-              >
-                <div className="md:w-1/2">
-                  <h3 className="text-2xl font-bold text-text-dark font-assistant">{feature.title}</h3>
-                  <p className="mt-4 text-lg text-gray-600">{feature.description}</p>
-                </div>
-                <div className="md:w-1/2">
-                  <img src={feature.image} alt={feature.title} className="rounded-xl shadow-2xl w-full" />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+      <section className="py-20 bg-gray-50/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark font-assistant">
+                    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        {t.keyFeatures}
+                    </span>
+                </h2>
+            </div>
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                className="flex flex-wrap justify-center gap-8"
+            >
+                {features.map((feature, index) => (
+                    <motion.div key={index} variants={itemVariants} className="w-full max-w-sm flex">
+                        <div className="w-full rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 bg-white/80 backdrop-blur-sm border border-primary/20 flex flex-col">
+                            <div className="p-6 flex flex-col flex-grow">
+                                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl overflow-hidden bg-gradient-to-br from-primary to-secondary p-1 shadow-md">
+                                    <img src={feature.image} alt={feature.title} className="w-full h-full object-cover rounded-xl" />
+                                </div>
+                                <h3 className="text-lg font-bold text-center mb-3 text-text-dark font-assistant">{feature.title}</h3>
+                                <p className="text-sm text-center leading-relaxed text-gray-600 flex-grow">{feature.description}</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                ))}
+            </motion.div>
         </div>
       </section>
 
@@ -208,9 +211,6 @@ export default function ExtensionLayout({
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                  <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-text-dark bg-primary hover:bg-primary-hover w-full sm:w-auto font-assistant transition-colors">
                     <Download className="me-2 -ms-1 h-5 w-5" /> {t.chromeWebStore}
-                </a>
-                <a href={installSection.downloadUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-primary bg-primary/10 hover:bg-primary/20 w-full sm:w-auto font-assistant transition-colors">
-                    <Download className="me-2 -ms-1 h-5 w-5" /> {t.manualDownload}
                 </a>
             </div>
             {privacyPolicyContent ? (

@@ -38,7 +38,6 @@ export default function NotiForum() {
   const installSection = {
     description: t.notiInstallDesc,
     chromeStoreUrl: 'https://chromewebstore.google.com/detail/noti/hgceibdlnoiclpkmgccijjgdkocflkfj?utm_source=ext_app_menu',
-    downloadUrl: '#'
   };
   
   const supportedForums = [

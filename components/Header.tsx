@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Languages } from 'lucide-react';
@@ -55,7 +56,7 @@ const ExtensionsDropdown = () => {
         <span>{t.extensions}</span>
         <ChevronDown size={16} className="ms-1" />
       </button>
-      <div className="absolute -left-1/2 rtl:right-0 rtl:-left-auto transform translate-x-1/2 rtl:-translate-x-1/2 mt-2 w-64 bg-bg-light rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+      <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-bg-light rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
         <div className="py-2 grid grid-cols-1 gap-1">
           {extensions.map(ext => (
             <Link key={ext.path} to={ext.path} className="flex items-center px-4 py-2 text-text-dark hover:bg-gray-100">
@@ -137,7 +138,8 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className={`text-2xl font-extrabold font-assistant text-text-light`}>
+            <Link to="/" className={`flex items-center text-2xl font-extrabold font-assistant text-text-light`}>
+              <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_690c942fa7d49.png" alt="Tosafix Logo" className="h-10 w-10 me-3" style={{ filter: 'drop-shadow(0 0 5px white)' }} />
               {t.siteTitle}
             </Link>
           </div>
