@@ -4,9 +4,13 @@ export const translations = {
     home: 'בית',
     extensions: 'התוספים',
     contact: 'צור קשר',
+    language: 'שפה',
+    menu: 'תפריט',
+    toggleTheme: 'שנה ערכת נושא',
     
     // Site
     siteTitle: 'תוספיקס',
+    backToTop: 'חזרה למעלה',
 
     // Hero Section (Home)
     heroTitle: 'תוספי כרום שימושיים',
@@ -15,7 +19,7 @@ export const translations = {
 
     // About Section
     aboutTitle: 'אודותינו',
-    aboutText: 'ברוכים הבבאים ל"תוספיקס" – הבית לתוספי כרום חכמים ושימושיים באמת! אנו יוצרים תוספים שמייעלים את חוויית המשתמש, חוסכים זמן ומפשטים משימות יומיומיות בצורה חכמה. ב"תוספיקס" אנו מאמינים שתוספים צריכים להיות קלים לשימוש, מועילים ומותאמים בדיוק לצרכים של המשתמשים. לכן, כל תוסף שאנו מפתחים נותן פתרון אמיתי לבעיות שכיחות, כדי להפוך את העבודה שלך למהירה ונוחה יותר.',
+    aboutText: 'ברוכים הבאים ל"תוספיקס" – הבית לתוספי כרום חכמים ושימושיים באמת! אנו יוצרים תוספים שמייעלים את חוויית המשתמש, חוסכים זמן ומפשטים משימות יומיומיות בצורה חכמה. ב"תוספיקס" אנו מאמינים שתוספים צריכים להיות קלים לשימוש, מועילים ומותאמים בדיוק לצרכים של המשתמשים. לכן, כל תוסף שאנו מפתחים נותן פתרון אמיתי לבעיות שכיחות, כדי להפוך את העבודה שלך למהירה ונוחה יותר.',
     userFocused: 'מותאם למשתמש',
     userFocusedDesc: 'תוספים שנבנו בהתאם לצרכים האמיתיים של המשתמשים',
     timeSaving: 'חיסכון בזמן',
@@ -74,7 +78,7 @@ export const translations = {
     privacyPolicy: 'מדיניות פרטיות',
     chromeWebStore: 'חנות הכרום',
     supportedForums: 'פורומים נתמכים',
-    notiInstallDesc: 'להורדה מחנות האינטרנט של Chrome. להתקנה ידנית, יש לחלץ את התיקייה ולטעון אותה באופן ידני.',
+    notiInstallDesc: 'להורדה מחנות האינטרנט של Chrome.',
     copy: 'העתק',
     copied: 'הועתק!',
     copyError: 'שגיאה',
@@ -273,7 +277,7 @@ export const translations = {
 8. צור קשר
 אם יש לך שאלות או חששות לגבי מדיניות הפרטיות הזו או נוהלי הנתונים של התוסף, אנא צור איתנו קשר באתר.
 
-מדיניות פרטיות זו מסופקת כדי להבטיח שקיפות לגבי האופן שבו התוסף ימינה מטפל בנתוני משתמשים. אנו מחויבים להגן על הפרטיות שלך ולספק חוויה בטוחה ושימושית.`,
+מדיניות פרטיות זו מסופקת כדי להבטיח שקיxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxנו מחויבים להגן על הפרטיות שלך ולספק חוויה בטוחה ושימושית.`,
     netSkinPrivacyPolicy: `עודכן לאחרונה: 22 באוגוסט 2025
 
 מדיניות פרטיות זו מתארת את האופן שבו תוסף הדפדפן NetSkin ("התוסף") מטפל במידע. פרטיותך נמצאת בראש סדר העדיפויות שלנו, ומדיניות זו נועדה לספק לך שקיפות מלאה לגבי פעולת התוסף. אנו מתחייבים לצמצם את הגישה למידע למינימום ההכרחי לתפקודו התקין של התוסף.
@@ -303,47 +307,107 @@ alarms: הרשאה זו משמשת לתזמון החלפת העיצוב האקר
 
 3. שירותי צד ג'
 NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נטפרי כדי לקבל שמות של תגיות.
-שרתי תמונות: חלק מתמונות הרקע המשמשות בעיצובים השונים מאוחסנים על שרתים חיצוניים (כגון lovepik.com, stockcake.com וכו'). טעינת תמונות אלו היא פעולת דפדפן סטנדרטית.
+שרתי תמונות: חלק מתמונות הרקע המשמשות בעיצובים השונים מאוחסנים על שרתים חיצוניים (כגון lovepik.com, stockcake.com וכו'). טעינת תמונות אלו היא פעולה סטנדרטית של הדפדפן, בדומה לטעינת תמונות בכל אתר אינטרנט.
 
-4. אבטחת מידע
-אנו משתמשים במנגנוני האחסון והתקשורת המובנים והמאובטחים של דפדפן כרום כדי להגן על הגדרותיך. איננו מחזיקים שרתים פרטיים ואיננו שומרים כל מידע הקשור למשתמשים שלנו.
+4. שינויים במדיניות
+אנו עשויים לעדכן מדיניות זו מעת לעת. כל שינוי מהותי יפורסם בדף התוסף בחנות האינטרנט של Chrome.
 
-5. שינויים במדיניות הפרטיות
-אנו עשויים לעדכן את מדיניות הפרטיות מעת לעת כדי לשקף שינויים בתוסף או דרישות רגולטוריות. אנו ממליצים לעיין בדף זה מדי פעם. המשך השימוש בתוסף לאחר עדכון המדיניות מהווה הסכמה לה.
+5. יצירת קשר
+אם יש לך שאלות כלשהן לגבי מדיניות פרטיות זו, אנא צור איתנו קשר דרך אתר התוסף.
 
-6. יצירת קשר
-אם יש לך שאלות כלשהן בנוגע למדיניות פרטיות זו, אנא אל תהסס לפנות אלינו.`,
-    hebrewDatePrivacyPolicy: `עודכן לאחרונה: 23 באוגוסט 2025
+אנו מודים לך על השימוש ב-NetSkin!`,
+    hebrewDatePrivacyPolicy: `מדיניות פרטיות - מציג תאריך עברי
+תאריך עדכון אחרון: 26 באוקטובר 2025
 
-התוסף 'מציג תאריך עברי' פועל באופן מקומי לחלוטין בדפדפן שלך. הוא אינו אוסף, שומר, או משדר כל מידע אישי או נתוני גלישה. פעולתו מוגבלת לזיהוי תאריכים לועזיים בדפי אינטרנט והצגת התאריך העברי המקביל. הפרטיות שלך מובטחת במלואה.`,
-    myEmojiPrivacyPolicy: `עודכן לאחרונה: 23 באוגוסט 2025
+התוסף "מציג תאריך עברי" (להלן: "התוסף") נוצר במטרה אחת: להציג לכם את התאריך העברי המקביל לתאריך לועזי שמופיע בדפי אינטרנט. פרטיותכם חשובה לנו מאוד, ולכן התוסף תוכנן להיות פשוט ובטוח ככל האפשר.
 
-התוסף 'אימוג'י אישי' שומר את כל האימוג'ים וההגדרות שלך באופן מקומי ומאובטח במחשבך. אנו לא אוספים, ניגשים או משתפים מידע אישי כלשהו. אם תבחר להשתמש בתכונת הסרת הרקע, התמונה תישלח באופן מאובטח לשירות החיצוני (remove.bg) שבחרת לחבר, בכפוף למדיניות הפרטיות שלו. התוסף עצמו אינו שומר תמונות אלו לאחר העיבוד.`,
-    edgeOpenerPrivacyPolicy: `עודכן לאחרונה: 23 באוגוסט 2025
+1. איסוף מידע
+התוסף אינו אוסף, שומר, משדר או משתף שום מידע אישי או נתוני גלישה. פעולתו מתבצעת באופן מלא ומקומי בדפדפן שלכם.
+התוסף אינו דורש הרשאות מיוחדות מעבר ליכולת לקרוא את תוכן הדף הנוכחי כדי לזהות תאריכים.
 
-התוסף 'פותחן Edge' פועל באופן מקומי ואינו אוסף כל מידע אישי או נתוני גלישה. פעולתו היחידה היא לקרוא את כתובת ה-URL של הלשונית הפעילה ולנסות לפתוח אותה בדפדפן Microsoft Edge. פרטיותך נשמרת במלואה.`
+2. שימוש במידע
+התוסף קורא את תוכן הדף באופן זמני כדי לאתר תאריכים לועזיים. המידע הזה מעובד באופן מיידי לצורך המרה לתאריך עברי, ואינו נשמר בשום מקום לאחר סגירת הדף.
+
+3. צדדים שלישיים
+התוסף אינו מתקשר עם שרתים חיצוניים או שירותי צד שלישי כלשהם. כל חישובי התאריכים מתבצעים באופן מקומי.
+
+4. שינויים במדיניות
+כל שינוי במדיניות פרטיות זו יעודכן בתיאור התוסף בחנות האינטרנט של Chrome.
+
+תודה על השימוש בתוסף!`,
+    myEmojiPrivacyPolicy: `מדיניות פרטיות - אימוג'י אישי (My Emoji)
+תאריך עדכון אחרון: 26 באוקטובר 2025
+
+אנו, מפתחי "אימוג'י אישי" (להלן: "התוסף"), מחויבים להגן על פרטיות המשתמשים שלנו. מדיניות זו מסבירה כיצד אנו מטפלים במידע שלכם. העיקרון המנחה אותנו הוא שכל המידע שלכם הוא שלכם בלבד, ונשאר על המחשב שלכם.
+
+1. איסוף ואחסון מידע
+התוסף מאפשר לכם להעלות ולנהל קבצי תמונה (אימוג'ים). כל הקבצים שאתם מעלים, יחד עם הגדרותיכם (כגון שמות האימוג'ים, גודל מועדף וסדר המיון), נשמרים באופן מאובטח ומקומי על המחשב שלכם באמצעות מנגנון chrome.storage.local.
+אנו לעולם לא ניגשים, אוספים, מעבירים או משתפים את האימוג'ים או ההגדרות שלכם עם שרתים חיצוניים או צד שלישי כלשהו.
+
+2. גיבוי ושחזור (ייצוא/ייבוא)
+התוסף מציע אפשרות לייצא את אוסף האימוג'ים שלכם לקובץ Zip. פעולה זו מתבצעת באופן יזום על ידכם בלבד, והקובץ נשמר במקום שתבחרו במחשבכם. תהליך הייבוא דומה ומאפשר לכם לשחזר את האוסף מקובץ גיבוי מקומי.
+
+3. אינטגרציה עם שירותי צד שלישי (אופציונלי)
+התוסף מציע אינטגרציה אופציונלית עם שירות הסרת הרקע remove.bg.
+- כדי להשתמש בתכונה זו, עליכם להזין באופן ידני מפתח API (API Key) אישי שלכם מחשבון remove.bg.
+- מפתח ה-API נשמר באופן מאובטח ומקומי על המחשב שלכם.
+- כאשר אתם בוחרים להסיר רקע מתמונה, התוסף שולח את התמונה ישירות לשרתי remove.bg לצורך עיבוד, בהתאם לתנאי השימוש ומדיניות הפרטיות שלהם. אנו לא שולחים מידע נוסף.
+- השימוש בתכונה זו הוא על אחריותכם בלבד. אם לא תזינו מפתח API, התוסף לא יתקשר עם שירות זה.
+
+4. הרשאות
+התוסף דורש הרשאת "storage" כדי לשמור את המידע שלכם באופן מקומי, והרשאת "clipboardWrite" כדי לאפשר לכם להעתיק את האימוג'ים ללוח.
+
+5. הסרת התוסף
+הסרת התוסף מהדפדפן תמחק באופן סופי את כל האימוג'ים וההגדרות ששמרתם.
+
+תודה על השימוש ב"אימוג'י אישי"!`,
+    edgeOpenerPrivacyPolicy: `מדיניות פרטיות - פותחן Edge
+תאריך עדכון אחרון: 26 באוקטובר 2025
+
+התוסף "פותחן Edge" (להלן: "התוסף") תוכנן לפעול בפשטות ובשקיפות מלאה. פרטיותך חשובה לנו, ומדיניות זו מסבירה את פעולתו.
+
+1. איסוף מידע
+התוסף אינו אוסף, שומר או משדר כל מידע אישי או נתוני גלישה.
+
+2. פעולת התוסף
+כאשר אתה לוחץ על סמל התוסף, הוא מבצע שתי פעולות בלבד:
+א. קריאת כתובת ה-URL של הלשונית הפעילה הנוכחית.
+ב. ניסיון לפתוח את הכתובת הזו בדפדפן Microsoft Edge באמצעות פרוטוקול "microsoft-edge:".
+ג. במקרה שהפתיחה נכשלת, התוסף מעתיק את כתובת ה-URL ללוח ההעתקה שלך.
+המידע על כתובת ה-URL משמש באופן מיידי לפעולות אלה בלבד ואינו נשמר או נשלח לשום מקום.
+
+3. הרשאות
+התוסף דורש את ההרשאות הבאות:
+- "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
+- "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
+
+התוסף אינו מתקשר עם שרתים חיצוניים. כל הפxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
   },
   en: {
     // Header & Navigation
     home: 'Home',
     extensions: 'Extensions',
     contact: 'Contact',
+    language: 'Language',
+    menu: 'Menu',
+    toggleTheme: 'Toggle Theme',
     
     // Site
     siteTitle: 'Tosafix',
+    backToTop: 'Back to Top',
 
     // Hero Section (Home)
     heroTitle: 'Useful Chrome Extensions',
-    heroSubtitle: 'A must-have tool for every user!',
+    heroSubtitle: 'Must-have tools for every user!',
     discoverExtensions: 'Discover Extensions',
 
     // About Section
     aboutTitle: 'About Us',
-    aboutText: 'Welcome to "Tosafix" – your home for truly smart and useful Chrome extensions! We create extensions that streamline the user experience, save time, and simplify daily tasks in a smart way. At "Tosafix", we believe that extensions should be easy to use, beneficial, and tailored precisely to the needs of users. Therefore, every extension we develop provides a real solution to common problems, making your work faster and more convenient.',
+    aboutText: 'Welcome to "Tosafix" – your home for smart and truly useful Chrome extensions! We create extensions that streamline the user experience, save time, and simplify daily tasks in a smart way. At "Tosafix," we believe extensions should be easy to use, beneficial, and perfectly tailored to users\' needs. Therefore, every extension we develop provides a real solution to common problems, to make your work faster and more convenient.',
     userFocused: 'User-Focused',
     userFocusedDesc: 'Extensions built according to the real needs of users',
-    timeSaving: 'Time Saving',
-    timeSavingDesc: 'Tools that streamline daily tasks and save valuable time',
+    timeSaving: 'Time-Saving',
+    timeSavingDesc: 'Tools that streamline daily tasks and save precious time',
     secureReliable: 'Secure & Reliable',
     secureReliableDesc: 'Safe extensions with full protection of user privacy',
     easyToUse: 'Easy to Use',
@@ -357,26 +421,26 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 
     // Grid Descriptions
     notiForumGridName: 'Noti',
-    notiForumGridDesc: 'A plugin to track forum notifications, saving you time by centralizing alerts from various forums so you don\'t have to check each one separately.',
-    yaminaGridDesc: 'An extension to align LTR pages to RTL, automatically making English pages readable and convenient for Hebrew speakers.',
-    netSkinGridDesc: 'NetSkin replaces the standard NetFree block page with dozens of stunning, dynamic, and fully customizable designs.',
+    notiForumGridDesc: 'A forum notification tracking extension – saves time by centralizing notifications from various forums, so you don\'t have to check each one separately.',
+    yaminaGridDesc: 'An extension for aligning LTR pages to RTL – automatically makes English pages readable and convenient for Hebrew speakers.',
+    netSkinGridDesc: 'NetSkin replaces NetFree\'s standard block page with dozens of stunning, dynamic, and fully customizable designs.',
     hebrewDateGridDesc: 'Displays the Hebrew date in a tooltip when hovering over a Gregorian date.',
-    myEmojiGridDesc: 'Upload, manage, search, and add your own custom emojis to chats, emails, social networks, and more. Includes an advanced background removal feature!',
-    edgeOpenerGridDesc: 'Opens the current tab in the Microsoft Edge browser or copies the address.',
+    myEmojiGridDesc: 'Upload, manage, search, and add your own custom emojis to chats, emails, social media, and more. Includes an advanced background removal option!',
+    edgeOpenerGridDesc: 'Opens the current tab in Microsoft Edge or copies the URL.',
 
     // Extension Names & Descriptions
     notiForumName: 'NotiForum',
-    notiForumDesc: 'An advanced Chrome extension for NodeBB and XenForo-based forums, providing real-time notifications directly to your browser.',
+    notiForumDesc: 'An advanced Chrome extension for NodeBB and XenForo based forums, providing real-time notifications directly to your browser.',
     yaminaName: 'Yamina',
-    yaminaDesc: '"Yamina" is a smart browser extension developed to improve the Hebrew reading experience on the internet. The extension automatically changes the direction of pages to RTL (right-to-left) on pages not already configured to do so, while considering user preferences. With a convenient interface and advanced features, "Yamina" allows you to customize your browsing experience easily and efficiently.',
+    yaminaDesc: '"Yamina" is a smart browser extension designed to improve the Hebrew reading experience online. It automatically changes page direction to RTL (right-to-left) on pages not set up that way, respecting user preferences. With a convenient interface and advanced features, "Yamina" lets you customize your browsing experience easily and efficiently.',
     netSkinName: 'NetSkin',
-    netSkinDesc: "Turn every block into a visual experience! NetSkin replaces NetFree's gray, standard block page with a whole world of stunning and dynamic designs. Instead of a standard page, enjoy dozens of designs customized for the type of block, whether it's a blocked site, a file under review, or a site in development. The extension even smartly identifies why a site was blocked by a personal tag and displays its name! With advanced customization options, full control, and a choice between random or fixed modes, safe browsing has never looked better.",
+    netSkinDesc: 'Turn every block into a visual experience! NetSkin replaces NetFree\'s gray, standard block page with a whole world of stunning and dynamic designs. Instead of a standard page, enjoy dozens of designs customized to the type of block, whether it\'s a blocked site, a file under review, or a site in development. The extension even smartly detects why a site was blocked by a personal tag and displays its name! With advanced customization options, full control, and a choice between random or fixed modes, safe browsing has never looked better.',
     hebrewDateName: 'Hebrew Date Viewer',
-    hebrewDateDesc: "Have you ever browsed the web, came across an important Gregorian date—whether in an article, calendar, forum, or social media—and wondered what the exact Hebrew date is? The 'Hebrew Date Converter' extension is designed to answer this exact need! It serves as a personal and accessible date converter, allowing you to see the corresponding Hebrew date with a simple hover, without leaving the page or using external tools. Make your browsing experience more efficient and informative with this instant conversion.",
+    hebrewDateDesc: 'Have you ever browsed the web, came across an important Gregorian date – in an article, calendar, forum, or social media – and wondered what the exact Hebrew date is? The \'Hebrew Date converter\' extension is designed to meet this exact need! It serves as a personal and accessible date converter, allowing you to see the corresponding Hebrew date with a simple hover, without leaving the page or using external tools. Make your browsing experience more efficient and informative with this instant conversion.',
     myEmojiName: 'My Emoji',
-    myEmojiDesc: "Make your digital communication more personal and creative with 'My Emoji'! This Chrome extension lets you break away from the usual emojis and create your own private collection based on your favorite images and SVG files. Easily upload your own PNG, JPG, GIF, WEBP, and SVG files and manage them in a convenient and user-friendly interface. With the click of a button, copy your chosen emoji directly to your clipboard, ready to paste into chats, emails, social media, documents, and anywhere else you want to add a unique touch. With options for searching, sorting, editing names, setting a preferred size, backing up via export/import, and even advanced background removal (using an external API of your choice), 'My Emoji' gives you all the tools to create and use the perfect emoji collection for you. All your emojis are stored securely and locally on your computer, with full respect for your privacy. Install now and start expressing yourself in a new and exciting way!",
+    myEmojiDesc: "Make your digital communication more personal and creative with 'My emoji'! This Chrome extension lets you break the routine of familiar emojis and create your own private collection, based on your favorite images and SVG files. Easily upload your own PNG, JPG, GIF, WEBP, and SVG files and manage them in a convenient and user-friendly Hebrew interface. With the click of a button, copy your chosen emoji directly to your clipboard, ready to paste into chats, emails, social media, documents, and anywhere else you want to add a unique touch. With options for searching, sorting, editing names, setting a preferred size, backup via export/import, and even advanced background removal (using an external API of your choice), 'My emoji' gives you all the tools to create and use the perfect emoji collection for you. All your emojis are stored securely and locally on your computer, fully preserving your privacy. Install now and start expressing yourself in a new and exciting way!",
     edgeOpenerName: 'Edge Opener',
-    edgeOpenerDesc: 'Quickly switch from Chrome to Edge! Open the current page in Microsoft Edge with a single click. Includes automatic copying to the clipboard if direct opening fails.',
+    edgeOpenerDesc: "Quickly switch from Chrome to Edge! Open the current page in Microsoft Edge with a single click. Includes automatic copying to the clipboard if direct opening fails.",
 
     // Contact Page
     contactTitle: 'Contact Us',
@@ -390,43 +454,43 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     successMessage: 'Message sent successfully!',
     errorMessage: 'An error occurred. Please try again later.',
     contactInfo: 'Contact Information',
-    
+
     // Extension Layout
     heroTagline: 'Chrome Extension',
     keyFeatures: 'Key Features',
     installation: 'Installation',
     privacyPolicy: 'Privacy Policy',
-    chromeWebStore: 'Chrome Store',
+    chromeWebStore: 'Chrome Web Store',
     supportedForums: 'Supported Forums',
-    notiInstallDesc: 'Download from the Chrome Web Store. For manual installation, extract the folder and load it manually.',
+    notiInstallDesc: 'Download from the Chrome Web Store.',
     copy: 'Copy',
     copied: 'Copied!',
     copyError: 'Error',
     download: 'Download',
     copyPolicyTooltip: 'Copy policy',
-    downloadPolicyTooltip: 'Download policy as .txt',
+    downloadPolicyTooltip: 'Download policy as a .txt file.',
 
     // NotiForum Features
-    notiFeature1Title: 'Real-time Updates',
-    notiFeature1Desc: '"NotiForum" provides new notifications and conversations in real-time, with an instant update of the notification count on the icon and an option for a notification sound – for complete control of your information.',
+    notiFeature1Title: 'Real-Time Updates',
+    notiFeature1Desc: '"NotiForum" provides real-time notifications and new conversations, with an immediate update of the notification count on the icon and an option for an alert sound – for full control over your information.',
     notiFeature2Title: 'Broad Forum Support',
     notiFeature2Desc: 'Supports NodeBB-based forums (like Tchumim) and XenForo-based forums (like Prog), with the ability to easily add more sites for centralized management of all your activity.',
     notiFeature3Title: 'Efficient User Interface',
     notiFeature3Desc: 'A clear interface including a sidebar for sites, tabs for notifications and conversations (in XenForo), and a detailed view of content and times – all for convenient and fast operation.',
     notiFeature4Title: 'Add Forums Independently',
-    notiFeature4Desc: 'Manually add any new NodeBB or XenForo-based forum through the settings interface, giving you full flexibility to customize the extension to your list of sites.',
+    notiFeature4Desc: 'Manually add any new NodeBB or XenForo based forum through the settings interface, giving you full flexibility to customize the extension to your list of sites.',
     notiFeature5Title: 'Low Resource Consumption',
-    notiFeature5Desc: '"NotiForum" is designed to operate efficiently, with minimal use of system resources, so you can enjoy continuous updates without slowing down your browser.',
-
+    notiFeature5Desc: '"NotiForum" is designed to run efficiently, with minimal use of system resources, so you can enjoy continuous updates without slowing down your browser.',
+    
     // MyEmoji Features
     myEmojiFeature1Title: 'Personal Upload & Management',
     myEmojiFeature1Desc: 'Easily upload your own PNG, JPG, GIF, WEBP, and SVG files and manage them in one place.',
     myEmojiFeature2Title: 'Custom Size',
-    myEmojiFeature2Desc: 'Select the exact size (in pixels) at which the emoji will be copied to the clipboard, including a custom size option.',
+    myEmojiFeature2Desc: 'Choose the exact size (in pixels) at which the emoji will be copied to the clipboard, including a custom size option.',
     myEmojiFeature3Title: 'Advanced Search & Sort',
     myEmojiFeature3Desc: 'Easily find the desired emoji using text search and sort your collection by name or date added.',
     myEmojiFeature4Title: 'Quick Access to Recents',
-    myEmojiFeature4Desc: 'The emojis you\'ve used recently appear at the top of the popup for instant and convenient access.',
+    myEmojiFeature4Desc: 'The emojis you\'ve recently used appear at the top of the popup for immediate and convenient access.',
     myEmojiFeature5Title: 'Easy Import & Export',
     myEmojiFeature5Desc: 'Back up your entire emoji collection to a simple Zip file, and easily import it to another computer or after a reinstall.',
     myEmojiFeature6Title: 'One-Click Background Removal',
@@ -436,136 +500,148 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     myEmojiBonusCardDesc: 'Download a bonus file containing Haredi emojis in a zip file for import into the extension.',
     myEmojiBonusCardCredit: 'Credit: The emojis were created by users of the Prog forum.',
     myEmojiBonusDownloadBtn: 'Download Haredi Emojis',
-    
+
     // HebrewDate Features
     hebrewDateFeature1Title: 'Automatic Conversion on Hover',
-    hebrewDateFeature1Desc: 'Simply hover your mouse over a supported Gregorian date and wait about half a second. A small tooltip will automatically appear next to the cursor with the full Hebrew date.',
+    hebrewDateFeature1Desc: 'Simply hover your mouse over a supported Gregorian date and wait about half a second. A small tooltip will automatically appear near the cursor with the full Hebrew date.',
     hebrewDateFeature2Title: 'Accurate Conversion',
-    hebrewDateFeature2Desc: 'The extension uses reliable algorithms (based on the Hebcal library) to ensure the displayed Hebrew date is the most accurate, including accounting for leap years.',
+    hebrewDateFeature2Desc: 'The extension uses reliable algorithms (based on the Hebcal library) to ensure the displayed Hebrew date is the most correct and accurate, including consideration of leap years.',
     hebrewDateFeature3Title: 'Full Hebrew Date',
-    hebrewDateFeature3Desc: 'The extension displays the full Hebrew date in a familiar and readable format: day of the month (in Gematria letters), the Hebrew month name, and the Hebrew year.',
+    hebrewDateFeature3Desc: 'The extension displays the full Hebrew date in the familiar and readable format: day of the month (in Gematria letters), Hebrew month name, and Hebrew year.',
     hebrewDateFeature4Title: 'Convenience and Speed',
-    hebrewDateFeature4Desc: 'Save valuable time! No need to copy dates, open external websites, or use calculators. The conversion happens instantly on the page you are on.',
+    hebrewDateFeature4Desc: 'Save precious time! No need to copy dates, open external sites, or use calculators. The conversion happens instantly on the page you are on.',
     hebrewDateFeature5Title: 'Smooth and Clean Experience',
-    hebrewDateFeature5Desc: 'The slight delay before the tooltip appears prevents it from popping up unnecessarily. It is positioned close to the mouse cursor and is designed not to interfere with or hide important content.',
+    hebrewDateFeature5Desc: 'The slight delay before the tooltip appears prevents it from "jumping" unnecessarily. It is positioned close to the mouse cursor and is designed not to interfere with or hide important content.',
     hebrewDateFeature6Title: 'Support for Common Standards',
     hebrewDateFeature6Desc: 'To ensure reliable detection, the extension focuses on dates clearly marked in the website\'s HTML code (datetime or data-numeric-value attribute).',
 
     // NetSkin Features
-    netSkinGalleryTitle: "Designs Gallery",
+    netSkinGalleryTitle: "Design Gallery",
     netSkinGalleryDesc: "Some of the designs available in the extension",
-    netSkinFeature1Title: 'Rich Gallery of Designs',
+    netSkinFeature1Title: 'Rich Design Gallery',
     netSkinFeature1Desc: 'Choose from over 60 unique designs, divided into smart categories by block type (blocked, in development, site check, files, and tags).',
     netSkinFeature2Title: 'Smart Tag Detection',
-    netSkinFeature2Desc: "For the first time, know exactly why a site was blocked! NetSkin identifies the personal tag that caused the block and displays its full name, straight from NetFree's servers.",
-    netSkinFeature3Title: 'Full Control and Customization',
-    netSkinFeature3Desc: 'Choose how designs are displayed: in random mode, scheduled random (daily/hourly change), or by specifically selecting your favorite design for each category separately.',
+    netSkinFeature2Desc: 'For the first time, know exactly why a site was blocked! NetSkin detects the personal tag that caused the block and displays its full name, straight from NetFree\'s servers.',
+    netSkinFeature3Title: 'Full Control & Customization',
+    netSkinFeature3Desc: 'Choose how designs are displayed: in random mode, scheduled random (daily/hourly change), or by specifically selecting your favorite design for each category.',
     netSkinFeature4Title: 'Personal Design Pool',
-    netSkinFeature4Desc: 'Like only some of the designs? Mark which designs to include in the random modes and create your own private, customized gallery.',
+    netSkinFeature4Desc: 'Like only some of the designs? Mark which designs will be included in the random modes, and create your own private, customized gallery.',
     netSkinFeature5Title: "Contextual Adaptation",
     netSkinFeature5Desc: "The extension identifies the reason for the block and allows you to set a different design style for each scenario, whether it's a file check or a site in development.",
     netSkinFeature6Title: "Advanced User Experience",
-    netSkinFeature6Desc: "A convenient and intuitive settings interface, full support for Dark Mode, and a preview option for each design at the click of a button.",
-    
+    netSkinFeature6Desc: "A convenient and intuitive settings interface, full support for Dark Mode, and the ability to preview any design with the click of a button.",
+
     // Yamina Features
     yaminaHowItWorksTitle: 'How It Works',
-    yaminaHowItWorksDesc: 'Demonstration of aligning a page from LTR (before) to RTL (after)',
+    yaminaHowItWorksDesc: 'Demonstration of aligning a page from left-to-right (before) and right-to-left (after)',
     yaminaFeature1Title: 'Automatic RTL Alignment',
-    yaminaFeature1Desc: 'Changes page direction to right-to-left on non-RTL pages, while ignoring pages already set to RTL.',
+    yaminaFeature1Desc: 'Changes the page direction to right-to-left on non-RTL pages, while ignoring pages already set to RTL.',
     yaminaFeature2Title: 'Alignment Mode Selection',
-    yaminaFeature2Desc: 'Allows choosing between full alignment (including elements) and text-only alignment to preserve the original page layout.',
+    yaminaFeature2Desc: 'Allows choosing between full alignment (including elements) and text-only alignment, to preserve the original page structure.',
     yaminaFeature3Title: 'Custom Blacklist',
-    yaminaFeature3Desc: 'You can add specific sites or pages to a blacklist where the extension will not run, via the settings page or context menu.',
+    yaminaFeature3Desc: 'You can add specific sites or pages to a blacklist where the extension will not operate, via the settings page or context menu.',
     yaminaFeature4Title: 'Convenient Context Menu',
     yaminaFeature4Desc: 'A right-click on the extension icon allows for quick addition or removal of sites and pages from the blacklist.',
     yaminaFeature5Title: 'User-Friendly Interface',
     yaminaFeature5Desc: 'A well-designed and simple-to-use settings page with full customization options.',
     yaminaFeature6Title: 'Privacy Guaranteed',
     yaminaFeature6Desc: 'The extension operates locally, saves data only on your device, and does not share information with third parties.',
-    
+
     // EdgeOpener Features
     edgeOpenerHowItWorksTitle: 'How It Works',
-    edgeOpenerHowItWorksDesc: 'Easy and quick switch from Chrome to Edge with a single click',
-    edgeOpenerFeature1Title: 'Instant Open in Edge',
-    edgeOpenerFeature1Desc: 'With a single click, the extension attempts to open the current tab\'s address directly in the Microsoft Edge browser using the dedicated protocol (microsoft-edge:).',
-    edgeOpenerFeature2Title: 'Smart Fallback: Copy to Clipboard',
-    edgeOpenerFeature2Desc: 'If automatic opening in Edge is not possible (e.g., the protocol is not configured on the system), the full address of the current page will be automatically copied to your clipboard.',
+    edgeOpenerHowItWorksDesc: 'Easy and fast transition from Chrome to Edge in one click',
+    edgeOpenerFeature1Title: "Instant Open in Edge",
+    edgeOpenerFeature1Desc: 'With a single click, the extension attempts to open the current tab\'s URL directly in Microsoft Edge using the dedicated protocol (microsoft-edge:).',
+    edgeOpenerFeature2Title: "Smart Backup: Copy to Clipboard",
+    edgeOpenerFeature2Desc: 'If automatic opening in Edge is not possible (e.g., the protocol is not configured on the system), the full URL of the current page will be automatically copied to your clipboard.',
     edgeOpenerFeature3Title: 'Compatibility with Standard Web Pages',
-    edgeOpenerFeature3Desc: 'The extension is designed to work on regular web addresses starting with http: or https:. It recognizes when it is an internal browser address (like chrome://extensions) and notifies that it cannot operate.',
+    edgeOpenerFeature3Desc: 'The extension is designed to work on regular web addresses starting with http: or https:. It recognizes when it\'s an internal browser address (like chrome://extensions) and notifies that it cannot operate.',
 
     // Privacy Policies
-    notiForumPrivacyPolicy: `Privacy Policy for the "NotiForum" Extension
+    notiForumPrivacyPolicy: `Privacy Policy for "NotiForum" Extension
 Last Updated: October 26, 2025
 
-We, the developers of "NotiForum" (hereinafter: "the Extension"), are committed to protecting the privacy of our users. This Privacy Policy explains how we collect, use, store, and protect your information when you use the Extension, which is designed to centralize, display, and manage notifications from NodeBB and XenForo-based forums.
+We, the developers of "NotiForum" (hereinafter: "the Extension"), are committed to protecting the privacy of our users. This privacy policy explains how we collect, use, store, and protect your information when you use the Extension, which is designed to centralize, display, and manage notifications from NodeBB and XenForo based forums.
 
-By using the Extension, you agree to this policy. Our guiding principle is simple: all of your information remains completely local on your computer. We never collect or transfer personal information to external servers.
+Use of the Extension constitutes acceptance of this policy. Our guiding principle is simple: all your information remains entirely local on your computer. We never collect or transfer personal information to external servers.
 
 1. Information We Collect
-The Extension collects and stores the following types of information, solely within your local browser:
+
+The Extension collects and stores the following types of information, but only in your local browser:
 
 1.1. User Settings:
+
 List of forums to track: The addresses and names of the forums you have added, whether from the default list or manually.
 Operational preferences: Notification check frequency, sound settings (including volume and sound choice for each forum), and browser notification preferences.
-Appearance preferences: The selected theme, display mode (light/dark/auto), and display style (popup/sidebar).
-This information is saved using \`chrome.storage.sync\` to synchronize your settings across devices connected to the same Google account.
+Appearance preferences: The selected theme, display mode (light/dark/auto), and display method (popup/sidebar).
+This information is saved using chrome.storage.sync to synchronize your settings between devices connected to the same Google account.
 
 1.2. User-Uploaded Content:
-Custom icons: Image files you have uploaded to represent forums you added.
+
+Custom icons: Image files you have uploaded to represent forums you have added.
 Custom sounds: Audio files you have uploaded to be used as notification sounds.
-This content is saved as text (in Data URL format) using \`chrome.storage.local\` and remains exclusively on your device. We do not have access to these files, and they are never sent from your computer.
+This content is saved as text (in Data URL format) using chrome.storage.local and remains exclusively on your device. We do not have access to these files and they are never sent from your computer.
 
 1.3. Notification and Connection Data:
+
 Notification content: Text, links, and dates of new notifications and private messages. This information is retrieved directly from the forums you have configured.
 Connection status: The Extension temporarily saves the connection status for each forum (whether the connection succeeded or failed) and the latest notification content.
-This information is temporarily saved in \`chrome.storage.local\` to manage the display of notifications and detect changes.
+This information is temporarily saved in chrome.storage.local to manage the display of notifications and detect changes.
 
 1.4. Authentication Cookies:
+
 The Extension accesses cookies belonging to the domains of the forums you have configured. This access is essential to make authenticated requests on your behalf and receive relevant notifications.
-The Extension does not collect, save, or transfer your cookies. It only uses them locally as permitted by the browser.
+The Extension does not collect, save, or transfer your cookies. It uses them locally only as the browser allows.
 
 2. How We Use Information
+
 The collected information is used solely for the following purposes:
+
 Full operation of the Extension: Fetching notifications, displaying them in the interface, playing sounds, and showing browser notifications according to your chosen settings.
 Personalization of the experience: Saving your appearance and behavior preferences to provide a consistent experience.
-Use of your uploaded content: Displaying the icons you uploaded in the interface, and playing the audio files you uploaded upon receiving a notification.
+Use of your uploaded content: Displaying the icons you uploaded in the interface, and playing the audio files you uploaded when a notification is received.
 We do not use your information for advertising, statistical analysis, tracking, or any other activity not directly related to the core functionality of the Extension.
 
 3. Sharing Information with Third Parties
-We do not share your information with any third parties. The only communication that occurs is directly from your browser to the servers of the forums you have configured for tracking.
+
+We do not share your information with any third party. The only communication that takes place is directly from your browser to the servers of the forums you have configured for tracking.
 
 4. Data Storage and Security
-All information is stored locally on your computer using Google Chrome's secure mechanisms (\`chrome.storage\`).
-Synchronized settings (\`chrome.storage.sync\`) are protected by the security mechanisms of your Google account.
-Local data (\`chrome.storage.local\`), such as uploaded files and notification status, is accessible only on the specific device you are using.
+
+All information is stored locally on your computer using Google Chrome's secure mechanisms (chrome.storage).
+Synchronized settings (chrome.storage.sync) are protected by your Google account's security mechanisms.
+Local information (chrome.storage.local), such as uploaded files and notification status, is accessible only on the specific device you are using.
 
 5. User Rights
-Full control: You can edit, add, or delete the list of forums, settings, and uploaded files at any time through the Extension's settings page.
-Complete removal: Uninstalling the Extension from the browser will immediately and completely delete all information that the Extension has saved.
+
+Full control: You can edit, add, or delete the list of forums, settings, and files you have uploaded at any time through the Extension's settings page.
+Complete removal: Uninstalling the Extension from the browser will immediately and completely delete all information the Extension has saved.
 
 6. Changes to the Privacy Policy
+
 We may update this policy in the future to reflect changes in the Extension or Chrome Web Store requirements. Any changes will be published in an updated version of the Extension.
 
 7. Contact Us
+
 For questions or clarifications regarding this policy, you are welcome to contact us through the Extension's website.
 
 Thank you for choosing NotiForum.`,
     yaminaPrivacyPolicy: `Last Updated: March 26, 2025
 
-The Yamina extension ("we") is designed to automatically change the directionality of web pages to RTL (right-to-left) to improve the reading experience in Hebrew. This Privacy Policy explains how we handle user data, ensuring transparency and compliance with privacy standards.
+The Yamina extension ("we," "us") is designed to automatically change the directionality of web pages to RTL (right-to-left) to improve the Hebrew reading experience. This Privacy Policy explains how we handle user data, ensuring transparency and compliance with privacy standards.
 
 1. Data We Collect
 The Yamina extension collects the following data:
 - Website URLs: When you add a site or page to the blacklist (via the context menu or settings page), the URL of the active tab is stored locally on your device using chrome.storage.local. This is necessary to determine whether the extension should align the directionality to RTL for specific sites or pages.
 
 2. How We Use Your Data
-The collected URLs are used solely to manage the blacklist feature, which allows you to control which sites or pages the extension will not change the directionality of. The data is stored locally on your device and is not transmitted to external servers or third parties.
+The collected URLs are used solely to manage the blacklist feature, which allows you to control on which sites or pages the extension will not change their directionality. The data is stored locally on your device and is not transmitted to external servers or third parties.
 
 3. Data Storage and Security
 All data collected by the extension (i.e., blacklisted URLs) is stored locally on your device using chrome.storage.local. We do not have access to this data, and it is not sent to external servers. The data remains on your device and can be managed or deleted by you through the extension's settings page.
 
 4. Data Sharing
-We do not share, sell, or disclose any data collected by the extension with any third party. The extension operates entirely locally within your browser.
+We do not share, sell, or disclose any data collected by the extension with third parties. The extension operates entirely locally within your browser.
 
 5. Permissions and Access
 The extension uses the following permissions:
@@ -573,65 +649,123 @@ The extension uses the following permissions:
 - "content_scripts" with "<all_urls>": To align the directionality to RTL on non-RTL pages, while respecting the blacklist.
 - "storage": To save your settings, such as the blacklist and alignment mode (full/text-only).
 - "contextMenus": To provide a context menu for adding/removing sites from the blacklist.
-These permissions are used solely to provide the core functionality of the extension and are not used to collect or track user data beyond what is necessary for the blacklist feature.
+These permissions are used exclusively to provide the core functionality of the extension and are not used for collecting or tracking user data beyond what is necessary for the blacklist feature.
 
 6. User Control
 You have full control over the data stored by the extension. You can view, edit, or remove URLs from the blacklist at any time through the extension's settings page.
 
-7. Changes to the Privacy Policy
+7. Changes to This Privacy Policy
 We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated "Last Updated" date. We encourage you to review this policy periodically.
 
 8. Contact Us
-If you have any questions or concerns about this Privacy Policy or the extension's data practices, please contact us on our website.
+If you have any questions or concerns about this Privacy Policy or the extension's data practices, please contact us on the website.
 
 This Privacy Policy is provided to ensure transparency about how the Yamina extension handles user data. We are committed to protecting your privacy and providing a safe and useful experience.`,
     netSkinPrivacyPolicy: `Last Updated: August 22, 2025
 
-This Privacy Policy describes how the NetSkin browser extension ("the Extension") handles information. Your privacy is our top priority, and this policy is designed to provide you with full transparency about the Extension's operation. We are committed to minimizing access to information to the absolute minimum necessary for the proper functioning of the Extension.
+This Privacy Policy describes how the NetSkin browser extension ("the Extension") handles information. Your privacy is our top priority, and this policy is designed to provide you with full transparency about the Extension's operation. We are committed to minimizing information access to the minimum necessary for the Extension's proper functioning.
 
-1. What Information Do We Process?
-The NetSkin Extension was designed from the ground up with privacy in mind. We do not collect, store, or transmit any Personally Identifiable Information (PII) such as your name, email address, or general browsing history. The only information the Extension handles is of two types:
+1. What information do we process?
+The NetSkin Extension was designed from the ground up with privacy in mind. We do not collect, store, or transmit any personally identifiable information (PII) such as your name, email address, or your general browsing history. The only information the Extension handles is of two types:
 
-User Settings: All settings you choose for the Extension (such as preferred design, mode of operation, enabling/disabling categories) are stored locally on your computer using the \`chrome.storage.sync\` mechanism. This information is synchronized with your Google account to maintain consistency across devices but is not sent to or accessible by us in any way.
+User Settings: All settings you choose for the Extension (such as preferred design, operating mode, enabling/disabling categories) are stored locally on your computer using the chrome.storage.sync mechanism. This information is synchronized with your Google account to maintain consistency between devices but is not sent to or accessible by us in any way.
 Anonymous Tag Information (for display purposes only): One of the key features of the Extension is the ability to display the name of the personal tag that caused a site to be blocked. To achieve this, and only when a page is blocked due to a personal tag you have set in NetFree, the Extension performs the following actions:
-- The Extension identifies the tag ID (an anonymous numeric code) from the information NetFree provides on the block page.
-- The Extension sends only this numeric ID to NetFree's official API server (at https://netfree.link/api/tags/get-names).
+- The Extension identifies the tag's identifier (an anonymous numeric code) from the information provided by NetFree on the block page.
+- The Extension sends only this numeric identifier to NetFree's official API server (at https://netfree.link/api/tags/get-names).
 - The NetFree server responds with the literal name of the tag (e.g., "News").
 - The Extension displays this name to you on the styled block page.
 
 It is important to emphasize:
-- The information sent (the tag ID) is anonymous and is not linked to your account or identity.
-- The information is not saved by the Extension after the tag name is received.
+- The information sent (the tag identifier) is anonymous and not linked to your account or identity.
+- The information is not stored by the Extension after receiving the tag name.
 - The operation is performed securely with NetFree's official server, for this purpose only.
 
 2. Explanation of Extension Permissions
 During installation, the Extension requests the following permissions:
 
-"Access your data on all websites" (<all_urls>): We understand that this permission sounds broad, so it is important for us to explain why it is necessary. NetFree's block page can appear on any web address you try to browse. This permission is required solely to allow the Extension to detect the existence of NetFree's block page on the page you are on.
-We guarantee that the Extension does not read, collect, store, modify, or transmit the content of any other site you browse. Its operation is strictly limited to identifying and replacing the specific NetFree block page.
+"Access your data on all websites" (<all_urls>): We understand that this permission sounds broad, so it is important for us to explain why it is necessary. NetFree's block page can appear at any web address you try to browse. This permission is required solely to allow the Extension to detect the existence of NetFree's block page on the page you are on.
+We pledge that the Extension does not read, collect, store, modify, or transmit the content of any other site you browse. Its operation is strictly limited to identifying and replacing the specific NetFree block page.
 storage: This permission is required to save your personal settings (as explained in section 1).
 alarms: This permission is used to schedule the random design change in "scheduled random" mode, according to your settings (e.g., once a day).
 
 3. Third-Party Services
 NetFree API: As mentioned, the Extension communicates with NetFree's official API to get tag names.
-Image Servers: Some of the background images used in the various designs are hosted on external servers (such as lovepik.com, stockcake.com, etc.). Loading these images is a standard browser action.
+Image Servers: Some of the background images used in the various designs are hosted on external servers (such as lovepik.com, stockcake.com, etc.). Loading these images is a standard browser action, similar to loading images on any website.
 
-4. Data Security
-We use the built-in, secure storage and communication mechanisms of the Chrome browser to protect your settings. We do not maintain private servers and do not store any information related to our users.
+4. Policy Changes
+We may update this policy from time to time. Any material changes will be published on the Extension's page in the Chrome Web Store.
 
-5. Changes to the Privacy Policy
-We may update this Privacy Policy from time to time to reflect changes in the Extension or regulatory requirements. We recommend reviewing this page periodically. Continued use of the Extension after a policy update constitutes your agreement to it.
+5. Contact Us
+If you have any questions about this privacy policy, please contact us through the Extension's website.
 
-6. Contact Us
-If you have any questions regarding this Privacy Policy, please do not hesitate to contact us.`,
-    hebrewDatePrivacyPolicy: `Last Updated: August 23, 2025
+We thank you for using NetSkin!`,
+    hebrewDatePrivacyPolicy: `Privacy Policy - Hebrew Date Viewer
+Last Updated: October 26, 2025
 
-The 'Hebrew Date Viewer' extension operates entirely locally within your browser. It does not collect, store, or transmit any personal information or browsing data. Its operation is limited to identifying Gregorian dates on web pages and displaying the corresponding Hebrew date. Your privacy is fully guaranteed.`,
-    myEmojiPrivacyPolicy: `Last Updated: August 23, 2025
+The "Hebrew Date Viewer" extension (hereinafter: "the Extension") was created with one purpose: to show you the Hebrew date corresponding to a Gregorian date that appears on web pages. Your privacy is very important to us, so the Extension was designed to be as simple and safe as possible.
 
-The 'My Emoji' extension saves all your emojis and settings locally and securely on your computer. We do not collect, access, or share any personal information. If you choose to use the background removal feature, the image will be securely sent to the external service (remove.bg) you have chosen to connect, subject to its privacy policy. The extension itself does not save these images after processing.`,
-    edgeOpenerPrivacyPolicy: `Last Updated: August 23, 2025
+1. Information Collection
+The Extension does not collect, store, transmit, or share any personal information or browsing data. Its operation is performed entirely and locally in your browser.
+The Extension does not require special permissions beyond the ability to read the content of the current page to identify dates.
 
-The 'Edge Opener' extension operates locally and does not collect any personal information or browsing data. Its sole function is to read the URL of the active tab and attempt to open it in the Microsoft Edge browser. Your privacy is fully maintained.`
+2. Use of Information
+The Extension reads the page content temporarily to locate Gregorian dates. This information is processed immediately for conversion to a Hebrew date and is not stored anywhere after the page is closed.
+
+3. Third Parties
+The Extension does not communicate with any external servers or third-party services. All date calculations are performed locally.
+
+4. Policy Changes
+Any changes to this privacy policy will be updated in the extension's description in the Chrome Web Store.
+
+Thank you for using the extension!`,
+    myEmojiPrivacyPolicy: `Privacy Policy - My Emoji
+Last Updated: October 26, 2025
+
+We, the developers of "My Emoji" (hereinafter: "the Extension"), are committed to protecting the privacy of our users. This policy explains how we handle your information. Our guiding principle is that all your information is yours alone and stays on your computer.
+
+1. Information Collection and Storage
+The Extension allows you to upload and manage image files (emojis). All the files you upload, along with your settings (such as emoji names, preferred size, and sort order), are stored securely and locally on your computer using the chrome.storage.local mechanism.
+We never access, collect, transfer, or share your emojis or settings with any external servers or third parties.
+
+2. Backup and Restore (Export/Import)
+The Extension offers an option to export your emoji collection to a Zip file. This action is initiated by you only, and the file is saved to a location of your choice on your computer. The import process is similar and allows you to restore your collection from a local backup file.
+
+3. Integration with Third-Party Services (Optional)
+The Extension offers an optional integration with the remove.bg background removal service.
+- To use this feature, you must manually enter your personal API Key from your remove.bg account.
+- The API Key is stored securely and locally on your computer.
+- When you choose to remove a background from an image, the Extension sends the image directly to remove.bg's servers for processing, in accordance with their terms of service and privacy policy. We do not send any additional information.
+- The use of this feature is at your own risk. If you do not enter an API Key, the Extension will not communicate with this service.
+
+4. Permissions
+The Extension requires the "storage" permission to save your information locally, and the "clipboardWrite" permission to allow you to copy emojis to the clipboard.
+
+5. Uninstalling the Extension
+Uninstalling the Extension from the browser will permanently delete all the emojis and settings you have saved.
+
+Thank you for using "My Emoji"!`,
+    edgeOpenerPrivacyPolicy: `Privacy Policy - Edge Opener
+Last Updated: October 26, 2025
+
+The "Edge Opener" extension (hereinafter: "the Extension") is designed to operate with simplicity and full transparency. Your privacy is important to us, and this policy explains its operation.
+
+1. Information Collection
+The Extension does not collect, store, or transmit any personal information or browsing data.
+
+2. Extension Operation
+When you click on the extension icon, it performs only two actions:
+a. Reads the URL of the current active tab.
+b. Attempts to open that URL in the Microsoft Edge browser using the "microsoft-edge:" protocol.
+c. If the opening fails, the Extension copies the URL to your clipboard.
+The URL information is used immediately for these actions only and is not saved or sent anywhere.
+
+3. Permissions
+The Extension requires the following permissions:
+- "tabs": To read the URL of the active tab.
+- "clipboardWrite": To copy the URL to the clipboard if needed.
+
+The Extension does not communicate with external servers. All operations are performed entirely locally.
+
+Thank you for using "Edge Opener"!`,
   }
 };

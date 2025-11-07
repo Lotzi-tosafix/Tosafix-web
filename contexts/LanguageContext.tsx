@@ -21,8 +21,7 @@ interface LanguageProviderProps {
     children: ReactNode;
 }
 
-// FIX: Explicitly type the component with React.FC to potentially resolve a type-checking issue with the children prop.
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguageState] = useState<'he' | 'en'>('he');
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       setLanguageState(savedLanguage);
     } else {
       const browserLang = navigator.language || (navigator as any).userLanguage;
-      if (browserLang.startsWith('en')) {
+      if (browserLang && browserLang.startsWith('en')) {
         setLanguageState('en');
       } else {
         setLanguageState('he');

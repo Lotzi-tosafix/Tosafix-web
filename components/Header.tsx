@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Languages, Sun, Moon } from 'lucide-react';
@@ -92,10 +91,15 @@ const MobileExtensionsDropdown = () => {
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
+  const t = translations[language];
 
   return (
     <div className="relative group">
-      <button className={`flex items-center font-medium transition-colors duration-200 text-text-light hover:text-text-light/80`}>
+      <button 
+        className={`flex items-center font-medium transition-colors duration-200 text-text-light hover:text-text-light/80`}
+        title={t.language}
+        aria-label={t.language}
+      >
         <Languages size={20} />
       </button>
       <div className="absolute right-0 mt-2 w-28 bg-bg-light dark:bg-gray-800 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
@@ -110,12 +114,15 @@ const LanguageSwitcher = () => {
 
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <button 
       onClick={toggleTheme} 
       className={`p-2 rounded-full transition-colors duration-200 text-text-light hover:bg-white/20`}
-      aria-label="Toggle theme"
+      aria-label={t.toggleTheme}
+      title={t.toggleTheme}
     >
       {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
     </button>
@@ -163,7 +170,12 @@ export default function Header() {
           <div className="md:hidden flex items-center">
             <LanguageSwitcher />
             <ThemeSwitcher />
-            <button onClick={() => setIsOpen(!isOpen)} className={`ms-2 text-text-light`}>
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className={`ms-2 text-text-light`}
+              title={t.menu}
+              aria-label={t.menu}
+            >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>

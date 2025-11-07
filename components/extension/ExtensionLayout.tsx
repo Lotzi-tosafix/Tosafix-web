@@ -106,6 +106,10 @@ export default function ExtensionLayout({
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
+  
+  const scrollToInstallation = () => {
+    document.getElementById('installation')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-bg-light dark:bg-bg-dark">
@@ -125,9 +129,9 @@ export default function ExtensionLayout({
             <p className="mt-2 text-lg font-medium text-gray-500 dark:text-gray-400 font-assistant">{t.heroTagline}</p>
             <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-300">{description}</p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-text-dark bg-primary hover:bg-primary-hover w-full sm:w-auto font-assistant transition-colors">
-                <Download className="me-2 -ms-1 h-5 w-5" /> {t.chromeWebStore}
-              </a>
+              <button onClick={scrollToInstallation} className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-text-dark bg-primary hover:bg-primary-hover w-full sm:w-auto font-assistant transition-colors">
+                {t.installation}
+              </button>
             </div>
           </motion.div>
         </div>
@@ -204,12 +208,12 @@ export default function ExtensionLayout({
       )}
 
       {/* Installation and Privacy Section */}
-      <section className="py-20">
+      <section id="installation" className="py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl text-text-dark dark:text-text-light sm:text-4xl mb-6 font-assistant font-bold">{t.installation}</h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">{installSection.description}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                 <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-text-dark bg-primary hover:bg-primary-hover w-full sm:w-auto font-assistant transition-colors">
+                 <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 hover:shadow-xl transition-all duration-300 w-full sm:w-auto font-assistant shadow-lg transform hover:-translate-y-1">
                     <Download className="me-2 -ms-1 h-5 w-5" /> {t.chromeWebStore}
                 </a>
             </div>

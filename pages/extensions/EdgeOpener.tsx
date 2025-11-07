@@ -1,51 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import ExtensionLayout from '../../components/extension/ExtensionLayout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
-
-const EdgeOpenerHowItWorksSection = () => {
-    const { language } = useLanguage();
-    const t = translations[language];
-    return (
-        <section className="py-20 bg-white dark:bg-bg-dark">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
-                        <span className="bg-gradient-to-l from-indigo-600 to-blue-800 bg-clip-text text-transparent">
-                            {t.edgeOpenerHowItWorksTitle}
-                        </span>
-                    </h2>
-                    <p className="text-lg text-slate-600 dark:text-slate-400">{t.edgeOpenerHowItWorksDesc}</p>
-                </motion.div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                    >
-                        <img src="https://images.cdn-files-a.com/ready_uploads/media/182116/2000_5cebd6d2d1a23.jpg" alt="Open in Edge" className="w-full rounded-xl shadow-2xl" />
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
-                    >
-                        <img src="https://images.cdn-files-a.com/ready_uploads/media/6996573/2000_5f97d168e9038.jpg" alt="Extension Interface" className="w-full rounded-xl shadow-2xl" />
-                    </motion.div>
-                </div>
-            </div>
-        </section>
-    );
-};
 
 export default function EdgeOpener() {
   const { language } = useLanguage();
@@ -82,7 +38,6 @@ export default function EdgeOpener() {
       features={features}
       installSection={installSection}
       privacyPolicyContent={t.edgeOpenerPrivacyPolicy}
-      beforeFeaturesContent={<EdgeOpenerHowItWorksSection />}
     />
   );
 }
