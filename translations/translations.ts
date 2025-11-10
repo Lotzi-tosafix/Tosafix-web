@@ -7,6 +7,10 @@ export const translations = {
     language: 'שפה',
     menu: 'תפריט',
     toggleTheme: 'שנה ערכת נושא',
+    share: 'שתף',
+    shareTitle: 'תוספיקס - תוספי כרום שימושיים',
+    shareText: 'מצאתי אתר מעולה עם תוספי כרום חכמים ושימושיים. כדאי לבדוק!',
+    linkCopied: 'הקישור הועתק!',
     
     // Site
     siteTitle: 'תוספיקס',
@@ -86,17 +90,30 @@ export const translations = {
     copyPolicyTooltip: 'העתק מדיניות',
     downloadPolicyTooltip: 'הורד מדיניות כקובץ txt.',
 
-    // NotiForum Features
-    notiFeature1Title: 'עדכונים בזמן אמת',
-    notiFeature1Desc: '"NotiForum" מספק התראות ושיחות חדשות בזמן אמת, עם עדכון מיידי של ספירת ההתראות על הסמל ואפשרות לצליל התראה – לשליטה מלאה במידע שלכם.',
-    notiFeature2Title: 'תמיכה רחבה בפורומים',
-    notiFeature2Desc: 'תומך בפורומים מבוססי NodeBB (כגון תחומים) ו-XenForo (כגון פרוג), עם אפשרות להוספת אתרים נוספים בקלות, לניהול מרכזי של כל הפעילות שלכם.',
-    notiFeature3Title: 'ממשק משתמש יעיל',
-    notiFeature3Desc: 'ממשק ברור הכולל סרגל צד לאתרים, לשוניות להתראות ושיחות (ב-XenForo), ותצוגה מפורטת של תוכן וזמנים – הכל לתפעול נוח ומהיר.',
-    notiFeature4Title: 'הוספה עצמאית של פורומים',
-    notiFeature4Desc: 'הוסיפו ידנית כל פורום חדש מבוסס NodeBB או XenForo דרך ממשק ההגדרות, וקבלו גמישות מלאה להתאים את התוסף לרשימת האתרים שלכם.',
-    notiFeature5Title: 'צריכת משאבים נמוכה',
-    notiFeature5Desc: '"NotiForum" תוכנן לפעול ביעילות, עם שימוש מינימלי במשאבי המערכת, כך שתוכלו ליהנות מעדכונים רציפים בלי להאט את הדפדפן שלכם.',
+    // NotiForum Page (New design)
+    notiPageTitle: 'נוטיפורום',
+    notiPageSubtitle: 'כל הפורומים שלך. תיבת התראות אחת.',
+    notiPageDescription: 'NotiForum הוא הפתרון המושלם שנועד לחסוך לכם זמן ולרכז עבורכם את כל ההתראות וההודעות הפרטיות במקום אחד, נגיש ומעוצב, ישירות מהדפדפן.',
+    notiFeaturesSectionTitle: 'תכונות',
+    notiFeaturesSectionSubtitle: 'כל מה שצריך כדי להישאר מעודכן, בלי מאמץ',
+    notiFeatureUnifiedInboxTitle: 'תיבת דואר נכנס מאוחדת',
+    notiFeatureUnifiedInboxDesc: 'קבלו את כל ההתראות וההודעות הפרטיות מכל הפורומים שלכם בפיד אחד מסודר. סוף סוף לא צריך לקפוץ בין טאבים!',
+    notiFeatureCustomizationTitle: 'התאמה אישית מלאה',
+    notiFeatureCustomizationDesc: 'בחרו מבין ערכות נושא מרהיבות, עברו למצב כהה, הגדירו צליל ייחודי לכל פורום או אפילו העלו קבצי סאונד משלכם!',
+    notiFeatureFlexibleUITitle: 'ממשק גמיש: Popup או סרגל צד',
+    notiFeatureFlexibleUIDesc: 'בחרו להציג את התוסף בחלון קופץ קלאסי, או קבעו אותו בסרגל הצד של הדפדפן לגישה מהירה ונוחה שעובדת תמיד.',
+    notiFeatureWideSupportTitle: 'תמיכה רחבה והוספה קלה',
+    notiFeatureWideSupportDesc: 'התוסף מגיע עם רשימת פורומים מוכנה, ומאפשר לכם להוסיף בקלות כל פורום מבוסס NodeBB או XenForo. הוא אפילו יזהה את סוג הפורום אוטומטית!',
+    notiFeaturePerformanceTitle: 'יעילות וביצועים',
+    notiFeaturePerformanceDesc: 'עם מנגנון בדיקות מהיר שרץ ברקע וצריכת משאבים נמוכה, NotiForum שומר אתכם מעודכנים מבלי להאט את חווית הגלישה.',
+    notiFeaturePrivacyTitle: 'פרטיות מעל הכל',
+    notiFeaturePrivacyDesc: 'כל המידע שלכם, כולל הגדרות וקבצים שהעליתם, נשמר באופן מקומי לחלוטין על המחשב שלכם. שום מידע אינו נשלח לשרתים חיצוניים.',
+    notiSupportSectionTitle: 'תמיכה רחבה וגמישות מלאה',
+    notiSupportSectionSubtitle: 'מרשימת ברירת המחדל ועד כל פורום שתוסיפו בעצמכם',
+    andMore: 'ועוד...',
+    notiInstallSectionTitle: 'התקנה',
+    notiInstallSectionDesc: 'להתקנה מחנות התוספים Chrome',
+    notiPrivacySectionTitle: 'מדיניות פרטיות',
     
     // MyEmoji Features
     myEmojiFeature1Title: 'העלאה וניהול אישיים',
@@ -277,7 +294,7 @@ export const translations = {
 8. צור קשר
 אם יש לך שאלות או חששות לגבי מדיניות הפרטיות הזו או נוהלי הנתונים של התוסף, אנא צור איתנו קשר באתר.
 
-מדיניות פרטיות זו מסופקת כדי להבטיח שקיxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxנו מחויבים להגן על הפרטיות שלך ולספק חוויה בטוחה ושימושית.`,
+מדיניות פרטיות זו מסופקת כדי להבטיח שקיפות ועמידה בתקני פרטיות. אנו מחויבים להגן על פרטיותך ולספק חוויה בטוחה ושימושית.`,
     netSkinPrivacyPolicy: `עודכן לאחרונה: 22 באוגוסט 2025
 
 מדיניות פרטיות זו מתארת את האופן שבו תוסף הדפדפן NetSkin ("התוסף") מטפל במידע. פרטיותך נמצאת בראש סדר העדיפויות שלנו, ומדיניות זו נועדה לספק לך שקיפות מלאה לגבי פעולת התוסף. אנו מתחייבים לצמצם את הגישה למידע למינימום ההכרחי לתפקודו התקין של התוסף.
@@ -381,7 +398,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 - "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
 - "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
 
-התוסף אינו מתקשר עם שרתים חיצוניים. כל הפxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
+התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין. תודה על השימוש ב"פותחן Edge"!`,
   },
   en: {
     // Header & Navigation
@@ -391,6 +408,10 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     language: 'Language',
     menu: 'Menu',
     toggleTheme: 'Toggle Theme',
+    share: 'Share',
+    shareTitle: 'Tosafix - Useful Chrome Extensions',
+    shareText: 'I found a great site with smart and useful Chrome extensions. You should check it out!',
+    linkCopied: 'Link copied!',
     
     // Site
     siteTitle: 'Tosafix',
@@ -470,18 +491,31 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     copyPolicyTooltip: 'Copy policy',
     downloadPolicyTooltip: 'Download policy as a .txt file.',
 
-    // NotiForum Features
-    notiFeature1Title: 'Real-Time Updates',
-    notiFeature1Desc: '"NotiForum" provides real-time notifications and new conversations, with an immediate update of the notification count on the icon and an option for an alert sound – for full control over your information.',
-    notiFeature2Title: 'Broad Forum Support',
-    notiFeature2Desc: 'Supports NodeBB-based forums (like Tchumim) and XenForo-based forums (like Prog), with the ability to easily add more sites for centralized management of all your activity.',
-    notiFeature3Title: 'Efficient User Interface',
-    notiFeature3Desc: 'A clear interface including a sidebar for sites, tabs for notifications and conversations (in XenForo), and a detailed view of content and times – all for convenient and fast operation.',
-    notiFeature4Title: 'Add Forums Independently',
-    notiFeature4Desc: 'Manually add any new NodeBB or XenForo based forum through the settings interface, giving you full flexibility to customize the extension to your list of sites.',
-    notiFeature5Title: 'Low Resource Consumption',
-    notiFeature5Desc: '"NotiForum" is designed to run efficiently, with minimal use of system resources, so you can enjoy continuous updates without slowing down your browser.',
-    
+    // NotiForum Page (New design)
+    notiPageTitle: 'NotiForum',
+    notiPageSubtitle: 'All your forums. One inbox.',
+    notiPageDescription: 'NotiForum is the perfect solution designed to save you time and centralize all your notifications and private messages in one accessible and stylish place, directly from your browser.',
+    notiFeaturesSectionTitle: 'Features',
+    notiFeaturesSectionSubtitle: 'Everything you need to stay updated, effortlessly',
+    notiFeatureUnifiedInboxTitle: 'Unified Inbox',
+    notiFeatureUnifiedInboxDesc: 'Get all your notifications and private messages from all your forums in one organized feed. Finally, no more jumping between tabs!',
+    notiFeatureCustomizationTitle: 'Full Customization',
+    notiFeatureCustomizationDesc: 'Choose from stunning themes, switch to dark mode, set a unique sound for each forum, or even upload your own sound files!',
+    notiFeatureFlexibleUITitle: 'Flexible UI: Popup or Sidebar',
+    notiFeatureFlexibleUIDesc: 'Choose to display the extension in a classic popup window, or pin it to the browser sidebar for quick and easy access that always works.',
+    notiFeatureWideSupportTitle: 'Wide Support & Easy Addition',
+    notiFeatureWideSupportDesc: 'The extension comes with a pre-made list of forums, and allows you to easily add any NodeBB or XenForo-based forum. It will even detect the forum type automatically!',
+    notiFeaturePerformanceTitle: 'Efficiency and Performance',
+    notiFeaturePerformanceDesc: 'With a fast background check mechanism and low resource consumption, NotiForum keeps you updated without slowing down your browsing experience.',
+    notiFeaturePrivacyTitle: 'Privacy Above All',
+    notiFeaturePrivacyDesc: 'All your information, including settings and uploaded files, is stored entirely locally on your computer. No data is sent to external servers.',
+    notiSupportSectionTitle: 'Broad Support and Full Flexibility',
+    notiSupportSectionSubtitle: 'From the default list to any forum you add yourself',
+    andMore: 'And more...',
+    notiInstallSectionTitle: 'Installation',
+    notiInstallSectionDesc: 'To install from the Chrome Web Store',
+    notiPrivacySectionTitle: 'Privacy Policy',
+
     // MyEmoji Features
     myEmojiFeature1Title: 'Personal Upload & Management',
     myEmojiFeature1Desc: 'Easily upload your own PNG, JPG, GIF, WEBP, and SVG files and manage them in one place.',

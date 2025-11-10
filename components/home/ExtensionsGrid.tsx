@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
@@ -12,7 +12,7 @@ export default function ExtensionsGrid() {
   const t = translations[language];
 
   const extensionList = [
-    { nameKey: 'notiForumGridName', descKey: 'notiForumGridDesc', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_67e410c38cc1d.png', gradient: 'from-[#5FB8D6] to-[#5B72E8]' },
+    { nameKey: 'notiForumName', descKey: 'notiForumGridDesc', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png', gradient: 'from-[#5FB8D6] to-[#5B72E8]' },
     { nameKey: 'yaminaName', descKey: 'yaminaGridDesc', path: '/extensions/yamina', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_67e4106bd03f6.png', gradient: 'from-[#9B7FD9] to-[#5FB8D6]' },
     { nameKey: 'netSkinName', descKey: 'netSkinGridDesc', path: '/extensions/netskin', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_68ab2c12bf824.png', gradient: 'from-[#5B72E8] to-[#9B7FD9]' },
     { nameKey: 'hebrewDateName', descKey: 'hebrewDateGridDesc', path: '/extensions/hebrewdate', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806ed720e298.png', gradient: 'from-[#5FB8D6] to-[#9B7FD9]' },
@@ -26,23 +26,27 @@ export default function ExtensionsGrid() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  const ArrowIcon = isHebrew ? ArrowLeft : ArrowRight;
-
   return (
-    <section className="py-20 bg-white dark:bg-bg-dark">
+    <section className="py-20 bg-bg-light dark:bg-bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-text-light font-assistant">
+        <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-text-light">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               {t.ourExtensions}
             </span>
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-gray-600 dark:text-gray-400">{t.ourExtensionsDesc}</p>
-        </div>
+          <p className="text-lg max-w-2xl mx-auto text-text-dark/70 dark:text-text-light/70">{t.ourExtensionsDesc}</p>
+        </motion.div>
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -52,23 +56,25 @@ export default function ExtensionsGrid() {
         >
           {extensionList.map((ext) => (
             <motion.div key={ext.nameKey} variants={itemVariants} className="flex">
-              <div className="rounded-lg w-full flex flex-col bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="p-6">
-                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} p-4 mb-4 mx-auto`}>
-                    <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-full h-full object-contain" />
+              <div className="flex flex-col w-full rounded-xl shadow h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 border border-primary/20 dark:border-secondary/20">
+                <div className="p-6 text-center">
+                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} mb-4 mx-auto flex items-center justify-center`}>
+                    <div className="w-16 h-16 bg-white/80 dark:bg-white/20 rounded-full flex items-center justify-center shadow-inner backdrop-blur-sm">
+                        <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-12 h-12 object-contain" />
+                    </div>
                   </div>
-                  <h3 className="font-semibold tracking-tight text-center text-xl text-text-dark dark:text-text-light font-assistant">
+                  <h3 className="font-semibold tracking-tight text-xl text-text-dark dark:text-text-light">
                     {t[ext.nameKey as keyof typeof t]}
                   </h3>
                 </div>
                 <div className="p-6 pt-0 flex flex-col flex-grow">
-                  <p className="text-center text-gray-700/80 dark:text-gray-300 mb-6 leading-relaxed flex-grow min-h-[7em]">
+                  <p className="text-center text-text-dark/70 dark:text-text-light/70 mb-6 leading-relaxed flex-grow">
                     {t[ext.descKey as keyof typeof t]}
                   </p>
                   <Link to={ext.path} className="mt-auto">
-                    <button className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium text-text-light bg-gradient-to-r from-[#5FB8D6] to-[#5B72E8] hover:brightness-110 transition-all duration-300 font-assistant">
+                    <button className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium text-white shadow hover:shadow-lg transition-all duration-300" style={{ background: 'linear-gradient(135deg, #5FB8D6 0%, #5B72E8 100%)' }}>
                         {t.readMore}
-                        <ArrowIcon className="w-4 h-4" />
+                        <ArrowLeft className={`w-4 h-4 transform ${isHebrew ? '' : 'rotate-180'}`} />
                     </button>
                   </Link>
                 </div>

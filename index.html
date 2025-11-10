@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_690c942fa7d49.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-site-verification" content="KImHX8RBGBtHuJDzbI9qjmMA3zL5d8EstrZfWh3kxok" />
     <title>Tosafix - Chrome Extensions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@600;700;800&family=Heebo:wght@400&family=Rubik:wght@500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Rubik:wght@500;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -16,18 +15,16 @@
         theme: {
           extend: {
             colors: {
-              primary: '#79C9E8',
-              'primary-hover': '#9ED2F5',
-              secondary: '#B18BE8',
-              accent: '#65E6CB',
-              'text-dark': '#2E2E2E',
+              primary: '#5FB8D6',
+              'primary-hover': '#5B72E8',
+              secondary: '#9B7FD9',
+              'text-dark': '#1C1C28',
               'text-light': '#FAFAFA',
-              'bg-light': '#F8FAFC',
-              'bg-dark': '#181820',
+              'bg-light': '#F6F9FC',
+              'bg-dark': '#1C1C28',
             },
             fontFamily: {
-              sans: ['Heebo', 'sans-serif'],
-              assistant: ['Assistant', 'sans-serif'],
+              sans: ['Assistant', 'sans-serif'],
               rubik: ['Rubik', 'sans-serif'],
             },
           },
@@ -43,24 +40,47 @@
         background: #F8FAFC;
       }
       ::-webkit-scrollbar-thumb {
-        background: #B18BE8;
+        background: #9B7FD9;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #79C9E8;
+        background: #5FB8D6;
       }
       html.dark ::-webkit-scrollbar {
         width: 8px;
       }
       html.dark ::-webkit-scrollbar-track {
-        background: #181820;
+        background: #1C1C28;
       }
       html.dark ::-webkit-scrollbar-thumb {
-        background: #79C9E8;
+        background: #5FB8D6;
         border-radius: 4px;
       }
       html.dark ::-webkit-scrollbar-thumb:hover {
-        background: #9ED2F5;
+        background: #5B72E8;
+      }
+      @keyframes spinOnce {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .spin-once {
+        animation: spinOnce 3s ease-out;
+      }
+      @keyframes siteGradient {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 200% 0%; }
+      }
+      @keyframes chromeGradient {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 200% 0%; }
+      }
+      .animate-gradient-text {
+        background: linear-gradient(90deg, #5FB8D6 0%, #9B7FD9 50%, #5FB8D6 100%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: siteGradient 4s linear infinite;
       }
     </style>
   <script type="importmap">
@@ -71,7 +91,8 @@
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.552.0",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "react-intersection-observer": "https://aistudiocdn.com/react-intersection-observer@^10.0.0"
   }
 }
 </script>

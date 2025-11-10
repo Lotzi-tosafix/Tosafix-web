@@ -63,21 +63,18 @@ const PrivacyPolicyDisplay = ({ content }: { content: string }) => {
     };
 
     return (
-        <div className="mt-16 text-left">
-            <h3 className="text-2xl text-text-dark dark:text-text-light sm:text-3xl mb-6 font-assistant font-bold text-center">{t.privacyPolicy}</h3>
-            <div className="relative bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg shadow-inner border border-gray-200 dark:border-gray-700">
-                <div className="absolute top-2 right-2 rtl:left-2 rtl:right-auto flex gap-2">
-                    <button onClick={copyToClipboard} title={t.copyPolicyTooltip} className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-gray-600 dark:text-gray-300 transition-colors">
-                        <Copy size={16} />
-                        <span className="sr-only">{copyButtonText}</span>
-                    </button>
-                    <button onClick={downloadAsTxt} title={t.downloadPolicyTooltip} className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-gray-600 dark:text-gray-300 transition-colors">
-                        <FileDown size={16} />
-                         <span className="sr-only">{t.download}</span>
-                    </button>
-                </div>
-                <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-sans text-right rtl:text-right ltr:text-left">{content}</pre>
+        <div className="relative bg-gray-50 dark:bg-gray-900/50 p-6 sm:p-8 rounded-lg shadow-inner border border-gray-200 dark:border-gray-700">
+            <div className="absolute top-2 right-2 rtl:left-2 rtl:right-auto flex gap-2">
+                <button onClick={copyToClipboard} title={t.copyPolicyTooltip} className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-gray-600 dark:text-gray-300 transition-colors">
+                    <Copy size={16} />
+                    <span className="sr-only">{copyButtonText}</span>
+                </button>
+                <button onClick={downloadAsTxt} title={t.downloadPolicyTooltip} className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-gray-600 dark:text-gray-300 transition-colors">
+                    <FileDown size={16} />
+                     <span className="sr-only">{t.download}</span>
+                </button>
             </div>
+            <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-sans text-right rtl:text-right ltr:text-left">{content}</pre>
         </div>
     );
 };
@@ -124,15 +121,14 @@ export default function ExtensionLayout({
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <img src={logo} alt={`${name} Logo`} className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 rounded-3xl shadow-lg" />
+             <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 rounded-3xl shadow-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <div className="w-20 h-20 md:w-28 md:h-28 bg-white/80 dark:bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
+                    <img src={logo} alt={`${name} Logo`} className="w-16 h-16 md:w-24 md:h-24 object-contain" />
+                </div>
+            </div>
             <h1 className="text-4xl md:text-6xl text-text-dark dark:text-text-light font-assistant font-bold">{name}</h1>
             <p className="mt-2 text-lg font-medium text-gray-500 dark:text-gray-400 font-assistant">{t.heroTagline}</p>
             <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-300">{description}</p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button onClick={scrollToInstallation} className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-text-dark bg-primary hover:bg-primary-hover w-full sm:w-auto font-assistant transition-colors">
-                {t.installation}
-              </button>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -207,29 +203,51 @@ export default function ExtensionLayout({
           </section>
       )}
 
-      {/* Installation and Privacy Section */}
-      <section id="installation" className="py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl text-text-dark dark:text-text-light sm:text-4xl mb-6 font-assistant font-bold">{t.installation}</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">{installSection.description}</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                 <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 hover:shadow-xl transition-all duration-300 w-full sm:w-auto font-assistant shadow-lg transform hover:-translate-y-1">
-                    <Download className="me-2 -ms-1 h-5 w-5" /> {t.chromeWebStore}
+      {/* Installation Section */}
+      <section id="installation" className="py-20 bg-white dark:bg-bg-dark">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-text-dark dark:text-text-light font-assistant">
+                    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        {t.installation}
+                    </span>
+                </h2>
+                <p className="text-lg mb-8 leading-relaxed text-text-dark/70 dark:text-text-light/70">{installSection.description}</p>
+                <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer">
+                    <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto" style={{ background: 'linear-gradient(90deg, rgb(219, 68, 55) 0%, rgb(244, 180, 0) 25%, rgb(15, 157, 88) 50%, rgb(66, 133, 244) 75%, rgb(219, 68, 55) 100%) 0% 0% / 200% 100%', animation: 'chromeGradient 3s linear infinite' }}>
+                        <Download className="me-2 -ms-1 h-5 w-5" />
+                        {t.chromeWebStore}
+                    </button>
                 </a>
-            </div>
-            {privacyPolicyContent ? (
-                <PrivacyPolicyDisplay content={privacyPolicyContent} />
-            ) : privacyPolicyUrl && (
-                <div className="mt-16 flex items-center justify-center text-gray-500 dark:text-gray-400">
-                    <Lock className="h-5 w-5 me-2" />
-                    <a href={privacyPolicyUrl} target="_blank" rel="noopener noreferrer" className="hover:text-text-dark dark:hover:text-text-light transition-colors font-assistant">
-                    {t.privacyPolicy}
-                    </a>
-                    <ExternalLink className="h-4 w-4 ms-1" />
-                </div>
-            )}
+            </motion.div>
         </div>
       </section>
+
+      {/* Privacy Section */}
+      {(privacyPolicyContent || privacyPolicyUrl) && (
+        <section id="privacy" className="py-20 bg-bg-light dark:bg-bg-dark/80">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                    {privacyPolicyContent ? (
+                        <div className="bg-white dark:bg-gray-800/50 rounded-3xl p-8 md:p-12 shadow-lg border border-primary/20 dark:border-primary/30">
+                            <h2 className="text-3xl font-bold mb-6 text-text-dark dark:text-text-light text-center font-assistant">{t.privacyPolicy}</h2>
+                            <PrivacyPolicyDisplay content={privacyPolicyContent} />
+                        </div>
+                    ) : (
+                        <div className="text-center">
+                            <div className="flex items-center justify-center text-gray-500 dark:text-gray-400">
+                                <Lock className="h-5 w-5 me-2" />
+                                <a href={privacyPolicyUrl} target="_blank" rel="noopener noreferrer" className="hover:text-text-dark dark:hover:text-text-light transition-colors font-assistant">
+                                    {t.privacyPolicy}
+                                </a>
+                                <ExternalLink className="h-4 w-4 ms-1" />
+                            </div>
+                        </div>
+                    )}
+                </motion.div>
+            </div>
+        </section>
+      )}
     </div>
   );
 }
