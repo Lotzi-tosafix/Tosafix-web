@@ -21,7 +21,7 @@ const ExtensionsDropdown = () => {
 
   return (
     <div className="relative group">
-      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 hover:text-primary-hover hover:bg-bg-light px-3 py-2" style={{letterSpacing: '0.5px'}}>
+      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark px-3 py-2" style={{letterSpacing: '0.5px'}}>
         <span>{t.extensions}</span>
         <ChevronDown size={16} className="ms-1" />
       </button>
