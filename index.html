@@ -99,6 +99,13 @@
 </script>
 </head>
   <body>
+    <!-- Netlify form handling for SPA -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

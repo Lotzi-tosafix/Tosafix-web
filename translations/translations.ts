@@ -64,12 +64,18 @@ export const translations = {
 
     // Contact Page
     contactTitle: 'צור קשר',
-    contactSubtitle: 'יש לך שאלה או רעיון? נשמח לשמוע ממך!',
-    nameLabel: 'שם',
-    phoneLabel: 'טלפון',
-    emailLabel: 'אימייל',
+    contactSubtitle: 'יש לך שאלה, הערה או רעיון? נשמח לשמוע ממך!',
+    contactFormTitle: 'שלחו לנו הודעה',
+    contactFormSubtitle: 'אנו נענה בהקדם האפשרי',
+    nameLabel: 'שם מלא',
+    phoneLabel: 'טלפון (אופציונלי)',
+    emailLabel: 'כתובת דואר אלקטרוני',
     messageLabel: 'הודעה',
-    submitButton: 'שלח',
+    namePlaceholder: "הכנס את שמך המלא",
+    phonePlaceholder: "05X-XXX-XXXX",
+    emailPlaceholder: "your.email@example.com",
+    messagePlaceholder: "כתבו כאן את הודעתכם...",
+    submitButton: 'שלח הודעה',
     submittingButton: 'שולח...',
     successMessage: 'ההודעה נשלחה בהצלחה!',
     errorMessage: 'אירעה שגיאה. נסה שוב מאוחר יותר.',
@@ -398,7 +404,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 - "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
 - "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
 
-התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין. תודה על השימוש ב"פותחן Edge"!`,
+התוסף אינו מתקשר עם שרתים חיצוניxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
   },
   en: {
     // Header & Navigation
@@ -465,12 +471,18 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 
     // Contact Page
     contactTitle: 'Contact Us',
-    contactSubtitle: 'Have a question or an idea? We\'d love to hear from you!',
-    nameLabel: 'Name',
-    phoneLabel: 'Phone',
-    emailLabel: 'Email',
+    contactSubtitle: "Have a question, comment, or idea? We'd love to hear from you!",
+    contactFormTitle: "Send us a message",
+    contactFormSubtitle: "We will reply as soon as possible",
+    nameLabel: 'Full Name',
+    phoneLabel: 'Phone (Optional)',
+    emailLabel: 'Email Address',
     messageLabel: 'Message',
-    submitButton: 'Send',
+    namePlaceholder: "Enter your full name",
+    phonePlaceholder: "Your phone number",
+    emailPlaceholder: "your.email@example.com",
+    messagePlaceholder: "Write your message here...",
+    submitButton: 'Send Message',
     submittingButton: 'Sending...',
     successMessage: 'Message sent successfully!',
     errorMessage: 'An error occurred. Please try again later.',
