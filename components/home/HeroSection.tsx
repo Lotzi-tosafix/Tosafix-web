@@ -8,8 +8,8 @@ export default function HeroSection() {
   const { language } = useLanguage();
   const t = translations[language];
 
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToExtensions = () => {
+    document.getElementById('extensions-grid')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -44,7 +44,7 @@ export default function HeroSection() {
           className="mt-12"
         >
           <button
-            onClick={scrollToAbout}
+            onClick={scrollToExtensions}
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary h-12 text-white px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-0"
             style={{ background: 'linear-gradient(135deg, #5FB8D6 0%, #5B72E8 100%)' }}
           >
@@ -61,7 +61,7 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <button
-          onClick={scrollToAbout}
+          onClick={scrollToExtensions}
           className="text-white/70 hover:text-white transition-colors duration-300 animate-bounce"
           aria-label={t.discoverExtensions}
         >

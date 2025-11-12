@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Languages, House, Mail, Share2, Check } from 'lucide-react';
+import { Menu, X, ChevronDown, Languages, House, Mail, Share2, Check, Sun, Moon } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
+import { useTheme } from '../contexts/ThemeContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const extensions = [
   { nameKey: 'notiForumName', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png' },
@@ -102,6 +104,35 @@ const ShareButton = () => {
     );
 };
 
+const ThemeToggleButton = () => {
+    const { theme, toggleTheme } = useTheme();
+    const { language } = useLanguage();
+    const t = translations[language];
+
+    return (
+        <button
+            onClick={toggleTheme}
+            title={t.toggleTheme}
+            className="justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 w-8 rounded-md p-0 text-xs flex items-center justify-center border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-primary-hover hover:border-primary-hover/60 relative overflow-hidden"
+            aria-live="polite"
+        >
+            <span className="sr-only">{t.toggleTheme}</span>
+            <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                    key={theme}
+                    initial={{ y: -20, opacity: 0, rotate: -90 }}
+                    animate={{ y: 0, opacity: 1, rotate: 0 }}
+                    exit={{ y: 20, opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute"
+                >
+                    {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                </motion.div>
+            </AnimatePresence>
+        </button>
+    );
+};
+
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -148,6 +179,7 @@ export default function Header() {
             </Link>
             <ShareButton />
             <LanguageSwitcher />
+            <ThemeToggleButton />
           </div>
 
           <div className="md:hidden flex items-center">
@@ -174,6 +206,7 @@ export default function Header() {
              <div className="px-3 py-2 flex items-center justify-start space-x-4 rtl:space-x-reverse">
                 <LanguageSwitcher />
                 <ShareButton />
+                <ThemeToggleButton />
              </div>
           </div>
         </div>
