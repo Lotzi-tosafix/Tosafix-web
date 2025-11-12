@@ -13,6 +13,7 @@ import HebrewDate from './pages/extensions/HebrewDate';
 import MyEmoji from './pages/extensions/MyEmoji';
 import EdgeOpener from './pages/extensions/EdgeOpener';
 import BackToTopButton from './components/BackToTopButton';
+import TempleTimerPopup from './components/TempleTimerPopup';
 
 function AppContent() {
   const { language, isHebrew } = useLanguage();
@@ -46,6 +47,7 @@ function AppContent() {
       </main>
       <Footer />
       {location.pathname !== '/' && <BackToTopButton />}
+      <TempleTimerPopup />
     </div>
   );
 }
