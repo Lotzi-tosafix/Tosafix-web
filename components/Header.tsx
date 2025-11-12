@@ -137,13 +137,13 @@ export default function Header() {
           </Link>
           
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
-            <Link to="/" className="flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <House size={16} />
+            <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+              <House size={16} className="transition-transform duration-300 group-hover:scale-110" />
               <span>{t.home}</span>
             </Link>
             <ExtensionsDropdown />
-            <Link to="/contact" className="flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <Mail size={16} />
+            <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+              <Mail size={16} className="transition-transform duration-300 group-hover:scale-110" />
               <span>{t.contact}</span>
             </Link>
             <ShareButton />
@@ -151,8 +151,8 @@ export default function Header() {
           </div>
 
           <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark">
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <button onClick={() => setIsOpen(!isOpen)} className="group p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark">
+              {isOpen ? <X size={24} className="transition-transform duration-300 group-hover:scale-110" /> : <Menu size={24} className="transition-transform duration-300 group-hover:scale-110" />}
             </button>
           </div>
         </div>

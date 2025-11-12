@@ -1,5 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+// FIX: Import Variants type from framer-motion to explicitly type animation variants.
+import { motion, Variants } from 'framer-motion';
 import { Users, Clock, Shield, Zap } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
@@ -28,12 +29,14 @@ export default function AboutSection() {
     visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
   };
   
-  const textVariants = {
+  // FIX: Explicitly type with Variants to satisfy TypeScript's strict type checking for the 'ease' property.
+  const textVariants: Variants = {
      hidden: { x: -50, opacity: 0 },
      visible: { x: 0, opacity: 1, transition: { duration: 0.7, ease: "easeOut" } }
   }
   
-   const gridVariants = {
+  // FIX: Explicitly type with Variants to satisfy TypeScript's strict type checking for the 'ease' property.
+   const gridVariants: Variants = {
      hidden: { x: 50, opacity: 0 },
      visible: { x: 0, opacity: 1, transition: { duration: 0.7, ease: "easeOut", delay: 0.2 } }
   }
