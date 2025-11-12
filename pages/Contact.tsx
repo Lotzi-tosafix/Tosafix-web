@@ -25,17 +25,14 @@ export default function Contact() {
     });
   };
 
-  const encode = (data: { [key: string]: any }) => {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&");
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
     setShowSuccessMessage(false);
+
+    const formElement = e.currentTarget;
+    const formDataForNetlify = new FormData(formElement);
 
     try {
       const response = await fetch("/", {
@@ -43,7 +40,7 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: encode({ "form-name": "contact", ...formData })
+        body: new URLSearchParams(formDataForNetlify as any).toString()
       });
 
       if (response.ok) {
@@ -99,11 +96,11 @@ export default function Contact() {
                   className="space-y-6"
                 >
                   <input type="hidden" name="form-name" value="contact" />
-                  <div hidden>
+                  <p className="hidden">
                       <label>
                           Don’t fill this out if you’re human: <input name="bot-field" />
                       </label>
-                  </div>
+                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium leading-none text-text-dark/80 dark:text-text-light/80 flex items-center gap-2" htmlFor="name">
