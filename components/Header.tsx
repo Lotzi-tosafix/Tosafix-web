@@ -19,7 +19,7 @@ const ExtensionsDropdown = () => {
 
   return (
     <div className="relative group">
-      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 hover:text-primary-hover hover:bg-bg-light px-3 py-2" style={{letterSpacing: '0.5px'}}>
+      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 hover:text-primary-hover hover:bg-bg-light px-3 py-2" style={{letterSpacing: '0.5px'}}>
         <span>{t.extensions}</span>
         <ChevronDown size={16} className="ms-1" />
       </button>
@@ -137,12 +137,12 @@ export default function Header() {
           </Link>
           
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
-            <Link to="/" className="flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark" style={{ letterSpacing: '0.5px' }}>
+            <Link to="/" className="flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
               <House size={16} />
               <span>{t.home}</span>
             </Link>
             <ExtensionsDropdown />
-            <Link to="/contact" className="flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark" style={{ letterSpacing: '0.5px' }}>
+            <Link to="/contact" className="flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
               <Mail size={16} />
               <span>{t.contact}</span>
             </Link>
