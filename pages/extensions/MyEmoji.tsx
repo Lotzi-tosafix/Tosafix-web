@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import ExtensionLayout from '../../components/extension/ExtensionLayout';
@@ -113,7 +114,6 @@ export default function MyEmoji() {
       logo="https://files.cdn-files-a.com/uploads/10483955/400_6810cd042475f.png"
       features={features}
       installSection={installSection}
-      privacyPolicyContent={t.myEmojiPrivacyPolicy}
     >
       <MyEmojiBonusSection />
     </ExtensionLayout>

@@ -14,7 +14,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tosafix.netlify.app/">
+    <meta property="og:url" content="https://tosafix.vercel.app/">
     <meta property="og:title" content="Tosafix - תוספי כרום שימושיים | Useful Chrome Extensions">
     <meta property="og:description" content="גלו קולקציה של תוספי כרום חכמים ושימושיים שנועדו לשפר את חווית הגלישה שלכם ולחסוך לכם זמן.">
     <meta property="og:image" content="https://files.cdn-files-a.com/uploads/10483955/2000_gi-67e44ca9eb2a9.jpg">
@@ -23,7 +23,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://tosafix.netlify.app/">
+    <meta name="twitter:url" content="https://tosafix.vercel.app/">
     <meta name="twitter:title" content="Tosafix - תוספי כרום שימושיים | Useful Chrome Extensions">
     <meta name="twitter:description" content="גלו קולקציה של תוספי כרום חכמים ושימושיים שנועדו לשפר את חווית הגלישה שלכם ולחסוך לכם זמן.">
     <meta name="twitter:image" content="https://files.cdn-files-a.com/uploads/10483955/2000_gi-67e44ca9eb2a9.jpg">
@@ -34,6 +34,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Rubik:wght@500;600;800&family=Bona+Nova+SC:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Polyfill for process.env which is required by some Vercel packages
+      window.process = { env: { NODE_ENV: 'production' } };
+
       tailwind.config = {
         darkMode: 'class',
         theme: {
@@ -116,14 +119,18 @@
     "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.552.0",
     "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "react-intersection-observer": "https://aistudiocdn.com/react-intersection-observer@^10.0.0"
+    "react-intersection-observer": "https://aistudiocdn.com/react-intersection-observer@^10.0.0",
+    "@vercel/analytics/react": "https://esm.sh/@vercel/analytics@1.5.0/react?external=react,react-dom",
+    "@vercel/speed-insights/react": "https://esm.sh/@vercel/speed-insights@1.1.0/react?external=react,react-dom",
+    "@vercel/analytics/": "https://aistudiocdn.com/@vercel/analytics@^1.5.0/",
+    "@vercel/speed-insights/": "https://aistudiocdn.com/@vercel/speed-insights@^1.2.0/"
   }
 }
 </script>
 </head>
   <body>
-    <!-- Netlify form handling for SPA -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <!-- Netlify form handling for SPA - kept for reference, but might need adjustment for Vercel -->
+    <form name="contact" hidden>
       <input type="text" name="name" />
       <input type="tel" name="phone" />
       <input type="email" name="email" />

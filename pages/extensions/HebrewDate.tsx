@@ -54,7 +54,6 @@ export default function HebrewDate() {
       logo="https://files.cdn-files-a.com/uploads/10483955/400_6806ed720e298.png"
       features={features}
       installSection={installSection}
-      privacyPolicyContent={t.hebrewDatePrivacyPolicy}
     />
   );
 }

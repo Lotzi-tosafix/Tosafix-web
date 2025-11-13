@@ -14,6 +14,8 @@ import MyEmoji from './pages/extensions/MyEmoji';
 import EdgeOpener from './pages/extensions/EdgeOpener';
 import BackToTopButton from './components/BackToTopButton';
 import TempleTimerPopup from './components/TempleTimerPopup';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function AppContent() {
   const { language, isHebrew } = useLanguage();
@@ -48,6 +50,8 @@ function AppContent() {
       <Footer />
       {location.pathname !== '/' && <BackToTopButton />}
       <TempleTimerPopup />
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
