@@ -1,13 +1,13 @@
-
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req, res) {
-  // Handle CORS if necessary, though usually not needed for same-origin calls on Vercel
+export default async function handler(req: any, res: any) {
+  // Handle CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
+  // Handle OPTIONS request for preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -23,39 +23,68 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const data = await resend.emails.send({
-      from: 'Tosafix Contact <onboarding@resend.dev>', // השתמש בכתובת זו או בדומיין מאומת משלך ב-Resend
-      to: process.env.CONTACT_EMAIL || 'tosafix@gmail.com',
-      reply_to: email,
-      subject: `פנייה חדשה מאתר תוספיקס: ${name || 'ללא שם'}`,
-      html: `
-        <div dir="rtl" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1C1C28; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #f8fafc;">
-          <div style="text-align: center; margin-bottom: 24px;">
-             <h2 style="color: #5FB8D6; margin: 0;">הודעה חדשה התקבלה</h2>
-             <p style="color: #64748b; margin-top: 4px; font-size: 14px;">מאתר Tosafix</p>
+    const emailHtml = `
+      <div dir="rtl" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f6f9fc; padding: 40px 20px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+          
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #5FB8D6 0%, #9B7FD9 100%); padding: 30px; text-align: center;">
+            <h1 style="margin: 0; color: #ffffff; font-size: 26px; font-weight: bold;">הודעה חדשה מאתר Tosafix</h1>
           </div>
           
-          <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <p style="margin: 8px 0;"><strong>👤 שם:</strong> ${name || 'לא צוין'}</p>
-            <p style="margin: 8px 0;"><strong>📧 אימייל:</strong> <a href="mailto:${email}" style="color: #5B72E8; text-decoration: none;">${email}</a></p>
-            <p style="margin: 8px 0;"><strong>📱 טלפון:</strong> ${phone || 'לא צוין'}</p>
+          <!-- Content -->
+          <div style="padding: 30px;">
+            <div style="margin-bottom: 25px; border-bottom: 1px solid #eef2f6; padding-bottom: 20px;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 10px 0; color: #64748b; font-size: 16px;">שם השולח:</td>
+                  <td style="padding: 10px 0; color: #1e293b; font-weight: 600; font-size: 18px; text-align: left;">${name || 'לא צוין'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: #64748b; font-size: 16px;">אימייל:</td>
+                  <td style="padding: 10px 0; color: #1e293b; font-weight: 600; font-size: 18px; text-align: left;">
+                    <a href="mailto:${email}" style="color: #5FB8D6; text-decoration: none;">${email}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: #64748b; font-size: 16px;">טלפון:</td>
+                  <td style="padding: 10px 0; color: #1e293b; font-weight: 600; font-size: 18px; text-align: left;">${phone || 'לא צוין'}</td>
+                </tr>
+              </table>
+            </div>
             
-            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0;" />
-            
-            <p style="font-weight: bold; margin-bottom: 8px;">תוכן ההודעה:</p>
-            <div style="background-color: #f1f5f9; padding: 12px; border-radius: 6px; white-space: pre-wrap; line-height: 1.5;">${message}</div>
+            <div>
+              <p style="margin: 0 0 10px 0; color: #64748b; font-size: 16px; font-weight: 600;">תוכן ההודעה:</p>
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; color: #334155; line-height: 1.6; font-size: 18px;">
+                ${message.replace(/\n/g, '<br>')}
+              </div>
+            </div>
           </div>
           
-          <div style="text-align: center; margin-top: 24px; font-size: 12px; color: #94a3b8;">
-            נשלח באמצעות Vercel & Resend
+          <!-- Footer -->
+          <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #eef2f6;">
+            <p style="margin: 0; color: #94a3b8; font-size: 13px;">נשלח אוטומטית דרך טופס צור קשר באתר Tosafix</p>
           </div>
         </div>
-      `,
+      </div>
+    `;
+
+    const data = await resend.emails.send({
+      from: 'Tosafix Contact <onboarding@resend.dev>',
+      to: process.env.CONTACT_EMAIL || 'tosafix@gmail.com',
+      subject: `🔔 פנייה חדשה: ${name} - תוספיקס`,
+      replyTo: email,
+      html: emailHtml,
     });
 
+    if (data.error) {
+      console.error('Resend API error:', data.error);
+      return res.status(400).json({ success: false, error: data.error });
+    }
+
     return res.status(200).json({ success: true, data });
-  } catch (error) {
-    console.error('Resend Error:', error);
-    return res.status(500).json({ error: 'Failed to send email' });
+  } catch (error: any) {
+    console.error('Server error:', error);
+    return res.status(500).json({ success: false, error: error.message || 'Internal Server Error' });
   }
 }
