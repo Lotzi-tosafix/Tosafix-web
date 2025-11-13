@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Send, CheckCircle, User, MessageSquare, AlertCircle, Phone } from 'lucide-react';
@@ -31,27 +32,28 @@ export default function Contact() {
     setError(null);
     setShowSuccessMessage(false);
 
-    const formElement = e.currentTarget;
-    const formDataForNetlify = new FormData(formElement);
-
     try {
-      const response = await fetch("/", {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json',
         },
-        body: new URLSearchParams(formDataForNetlify as any).toString()
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setShowSuccessMessage(true);
         setFormData({ name: '', phone: '', email: '', message: '' });
         setTimeout(() => setShowSuccessMessage(false), 5000);
       } else {
         setError(t.errorMessage);
+        console.error('Submission error:', data);
       }
     } catch (err) {
       setError(t.errorMessage);
+      console.error('Network error:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -88,19 +90,9 @@ export default function Contact() {
               </div>
               <div className="p-8 bg-white/50 dark:bg-bg-dark/50">
                 <form 
-                  name="contact" 
-                  method="post" 
-                  data-netlify="true" 
-                  data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit} 
                   className="space-y-6"
                 >
-                  <input type="hidden" name="form-name" value="contact" />
-                  <p className="hidden">
-                      <label>
-                          Don’t fill this out if you’re human: <input name="bot-field" />
-                      </label>
-                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium leading-none text-text-dark/80 dark:text-text-light/80 flex items-center gap-2" htmlFor="name">
