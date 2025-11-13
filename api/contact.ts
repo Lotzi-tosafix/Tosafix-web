@@ -29,47 +29,41 @@ export default async function handler(req: any, res: any) {
           
           <!-- Header -->
           <div style="background: linear-gradient(135deg, #5FB8D6 0%, #9B7FD9 100%); padding: 30px; text-align: center;">
-            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">הודעה חדשה מאתר Tosafix</h1>
+            <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;">הודעה חדשה מאתר Tosafix</h1>
           </div>
           
           <!-- Content -->
-          <div style="padding: 35px;">
-            
-            <!-- Details Section -->
-            <div style="margin-bottom: 30px;">
-              <div style="margin-bottom: 15px;">
-                <span style="color: #64748b; font-size: 18px; display: block; margin-bottom: 5px;">שם השולח:</span>
-                <div style="color: #1e293b; font-weight: 600; font-size: 20px;">${name || 'לא צוין'}</div>
-              </div>
-              
-              <div style="margin-bottom: 15px;">
-                <span style="color: #64748b; font-size: 18px; display: block; margin-bottom: 5px;">אימייל:</span>
-                <div style="color: #1e293b; font-weight: 600; font-size: 20px;">
-                  <a href="mailto:${email}" style="color: #5FB8D6; text-decoration: none;">${email}</a>
-                </div>
-              </div>
-
-              <div style="margin-bottom: 15px;">
-                <span style="color: #64748b; font-size: 18px; display: block; margin-bottom: 5px;">טלפון:</span>
-                <div style="color: #1e293b; font-weight: 600; font-size: 20px;">${phone || 'לא צוין'}</div>
-              </div>
+          <div style="padding: 30px;">
+            <div style="margin-bottom: 25px; border-bottom: 1px solid #eef2f6; padding-bottom: 20px;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; color: #64748b; font-size: 14px;">שם השולח:</td>
+                  <td style="padding: 8px 0; color: #1e293b; font-weight: 600; font-size: 16px; text-align: left;">${name || 'לא צוין'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #64748b; font-size: 14px;">אימייל:</td>
+                  <td style="padding: 8px 0; color: #1e293b; font-weight: 600; font-size: 16px; text-align: left;">
+                    <a href="mailto:${email}" style="color: #5FB8D6; text-decoration: none;">${email}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #64748b; font-size: 14px;">טלפון:</td>
+                  <td style="padding: 8px 0; color: #1e293b; font-weight: 600; font-size: 16px; text-align: left;">${phone || 'לא צוין'}</td>
+                </tr>
+              </table>
             </div>
-
-            <div style="border-top: 1px solid #e2e8f0; margin: 25px 0;"></div>
-
-            <!-- Message Section -->
+            
             <div>
-              <span style="color: #64748b; font-size: 18px; font-weight: 600; display: block; margin-bottom: 15px;">תוכן ההודעה:</span>
-              <div style="background-color: #f8fafc; border-radius: 12px; padding: 25px; color: #334155; line-height: 1.6; font-size: 20px;">
+              <p style="margin: 0 0 10px 0; color: #64748b; font-size: 14px; font-weight: 600;">תוכן ההודעה:</p>
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: #334155; line-height: 1.6; font-size: 16px;">
                 ${message.replace(/\n/g, '<br>')}
               </div>
             </div>
-
           </div>
           
           <!-- Footer -->
           <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #eef2f6;">
-            <p style="margin: 0; color: #94a3b8; font-size: 14px;">נשלח אוטומטית דרך טופס צור קשר באתר Tosafix</p>
+            <p style="margin: 0; color: #94a3b8; font-size: 12px;">נשלח אוטומטית דרך טופס צור קשר באתר Tosafix</p>
           </div>
         </div>
       </div>
