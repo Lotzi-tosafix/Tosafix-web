@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, Loader } from 'lucide-react';
+import { Play, Pause, Loader, Volume2, VolumeX } from 'lucide-react';
 
 // Station data structure
 interface Station {
@@ -13,10 +13,10 @@ interface Station {
 
 const stations: Station[] = [
     { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg' },
-    { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://tosafix.42web.io/new-page/%D7%A7%D7%95%D7%9C%20%D7%A4%D7%9C%D7%99%D7%99.jfif' },
+    { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png' },
     { nameKey: 'tokerFm', streamUrl: 'https://broadcast.adpronet.com/radio/6060/radio.mp3', logoUrl: 'https://tosafix.42web.io/new-page/%D7%98%D7%95%D7%A7%D7%A8_FM.png' },
-    { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://tosafix.42web.io/new-page/jewishradionetwork.jfif' },
-    { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://tosafix.42web.io/new-page/jewishmusicstream.jfif' }
+    { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/8NR67WMChMtGwPEAdV6LDnDvftgswEd_Z94TSwkY_derdGcfxglik3AHXkLGUC37PcDo' },
+    { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU' }
 ];
 
 // Radio Player Component
@@ -41,38 +41,23 @@ const RadioPlayer: React.FC<RadioPlayerProps> = ({ station, isPlaying, isLoading
 
     return (
         <motion.div
-            className="group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer"
+            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isPlaying ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
             onClick={() => onPlayPause(station)}
             whileHover={{ scale: 1.03 }}
             transition={{ type: 'spring', stiffness: 300 }}
         >
-            {/* Background Image & Overlay */}
             <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style={{ backgroundImage: `url(${station.logoUrl})` }}
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
-            {/* Now Playing Glow */}
-            <AnimatePresence>
-                {isPlaying && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 ring-4 ring-primary ring-opacity-75 rounded-2xl pointer-events-none animate-pulse"
-                    />
-                )}
-            </AnimatePresence>
-
-            {/* Play/Pause Button */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white/50 group-hover:scale-105">
                     {buttonIcon}
                 </div>
             </div>
 
-            {/* Station Name */}
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
                 <h3 className="text-white text-lg font-bold text-center truncate">{t[station.nameKey]}</h3>
                 <AnimatePresence>
@@ -101,17 +86,17 @@ const LiveMusic: React.FC = () => {
     const [currentlyPlaying, setCurrentlyPlaying] = useState<Station | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [loadingStation, setLoadingStation] = useState<Station | null>(null);
+    const [volume, setVolume] = useState<number>(0.75);
+    const [isMuted, setIsMuted] = useState<boolean>(false);
 
     const handlePlayPause = (station: Station) => {
         if (loadingStation) return;
 
         if (currentlyPlaying?.streamUrl === station.streamUrl && isPlaying) {
-            // Pause current station
             audioRef.current?.pause();
         } else {
-            // Play new or paused station
             setLoadingStation(station);
-            setIsPlaying(false); // Stop showing pause icon on old station immediately
+            setIsPlaying(false);
             if (audioRef.current) {
                 if (currentlyPlaying?.streamUrl !== station.streamUrl) {
                     audioRef.current.src = station.streamUrl;
@@ -130,10 +115,7 @@ const LiveMusic: React.FC = () => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        const onPlay = () => {
-            setIsPlaying(true);
-            setLoadingStation(null);
-        };
+        const onPlay = () => { setIsPlaying(true); setLoadingStation(null); };
         const onPause = () => setIsPlaying(false);
         const onStalled = () => setLoadingStation(currentlyPlaying);
         const onWaiting = () => setLoadingStation(currentlyPlaying);
@@ -154,6 +136,11 @@ const LiveMusic: React.FC = () => {
         };
     }, [currentlyPlaying]);
 
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = isMuted ? 0 : volume;
+        }
+    }, [volume, isMuted]);
 
     return (
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark py-12 px-4">
@@ -164,6 +151,29 @@ const LiveMusic: React.FC = () => {
                     </h1>
                     <p className="mt-4 text-lg text-text-dark/70 dark:text-text-light/70">{t.liveMusicDescription}</p>
                 </header>
+                
+                <div className="mb-12 flex justify-center items-center gap-4 bg-white/50 dark:bg-gray-800/50 p-4 rounded-full max-w-sm mx-auto shadow-md backdrop-blur-sm border border-primary/20">
+                    <button 
+                        onClick={() => setIsMuted(!isMuted)} 
+                        className="text-text-dark dark:text-text-light hover:text-primary transition-colors"
+                        aria-label={isMuted ? "Unmute" : "Mute"}
+                    >
+                        {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                    </button>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={isMuted ? 0 : volume}
+                        onChange={(e) => {
+                            setVolume(parseFloat(e.target.value));
+                            if (isMuted) setIsMuted(false);
+                        }}
+                        className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                        aria-label="Volume control"
+                    />
+                </div>
 
                 <main>
                     <motion.div 

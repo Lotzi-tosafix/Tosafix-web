@@ -55,6 +55,19 @@
               sans: ['Assistant', 'sans-serif'],
               rubik: ['Rubik', 'sans-serif'],
             },
+            keyframes: {
+              'glowing-border': {
+                '0%, 100%': {
+                  boxShadow: '0 0 3px #79C9E8, 0 0 6px #79C9E8, 0 0 9px #B18BE8, 0 0 12px #B18BE8'
+                },
+                '50%': {
+                  boxShadow: '0 0 6px #B18BE8, 0 0 12px #B18BE8, 0 0 18px #79C9E8, 0 0 24px #79C9E8'
+                }
+              }
+            },
+            animation: {
+              'glowing-border': 'glowing-border 2.5s ease-in-out infinite',
+            }
           },
         },
       }
@@ -113,6 +126,17 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: siteGradient 4s linear infinite;
+      }
+      .glowing-border-animation {
+        animation: glowing-border 2.5s ease-in-out infinite;
+      }
+      @keyframes glowing-border {
+        0%, 100% {
+          box-shadow: 0 0 3px #79C9E8, 0 0 6px #79C9E8, 0 0 9px #B18BE8, 0 0 12px #B18BE8;
+        }
+        50% {
+          box-shadow: 0 0 6px #B18BE8, 0 0 12px #B18BE8, 0 0 18px #79C9E8, 0 0 24px #79C9E8;
+        }
       }
     </style>
   <script type="importmap">
