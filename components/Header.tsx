@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Languages, House, Mail, Share2, Check, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronDown, Languages, House, Mail, Share2, Check, Sun, Moon, Plus, Code2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 import { useTheme } from '../contexts/ThemeContext';
@@ -173,9 +173,17 @@ export default function Header() {
               <span>{t.home}</span>
             </Link>
             <ExtensionsDropdown />
+            <Link to="/nosafix" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+              <Plus size={16} className="transition-transform duration-300 group-hover:scale-110" />
+              <span>{t.nosafix}</span>
+            </Link>
             <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
               <Mail size={16} className="transition-transform duration-300 group-hover:scale-110" />
               <span>{t.contact}</span>
+            </Link>
+            <Link to="/developers" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+              <Code2 size={16} className="transition-transform duration-300 group-hover:scale-110" />
+              <span>{t.developers}</span>
             </Link>
             <ShareButton />
             <LanguageSwitcher />
@@ -194,7 +202,9 @@ export default function Header() {
         <div className="md:hidden bg-white dark:bg-bg-dark/95 shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link to="/" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.home}</Link>
+            <Link to="/nosafix" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.nosafix}</Link>
             <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.contact}</Link>
+            <Link to="/developers" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.developers}</Link>
              <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
             {extensions.map(ext => (
               <Link key={ext.path} to={ext.path} className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">

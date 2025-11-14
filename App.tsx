@@ -1,4 +1,6 @@
 
+
+
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useLanguage } from './contexts/LanguageContext';
@@ -6,6 +8,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
+import Nosafix from './pages/Nusafix';
+import Developers from './pages/Developers';
 import NotiForum from './pages/extensions/Noti';
 import Yamina from './pages/extensions/Yamina';
 import NetSkin from './pages/extensions/NetSkin';
@@ -14,6 +18,8 @@ import MyEmoji from './pages/extensions/MyEmoji';
 import EdgeOpener from './pages/extensions/EdgeOpener';
 import BackToTopButton from './components/BackToTopButton';
 import TempleTimerPopup from './components/TempleTimerPopup';
+import Cutfix from './pages/nosafix/Cutfix';
+import LiveMusic from './pages/nosafix/LiveMusic';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -39,6 +45,10 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/nosafix" element={<Nosafix />} />
+          <Route path="/developers" element={<Developers />} />
+          <Route path="/nosafix/cutfix" element={<Cutfix />} />
+          <Route path="/nosafix/live-music" element={<LiveMusic />} />
           <Route path="/extensions/notiforum" element={<NotiForum />} />
           <Route path="/extensions/yamina" element={<Yamina />} />
           <Route path="/extensions/netskin" element={<NetSkin />} />

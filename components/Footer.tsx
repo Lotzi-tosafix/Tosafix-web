@@ -30,13 +30,19 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 font-rubik">{t.contact}</h4>
+            <h4 className="text-lg font-semibold mb-4 font-rubik">{t.quickLinks}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-text-light/70 hover:text-accent transition-colors">{t.home}</Link>
               </li>
               <li>
+                <Link to="/nosafix" className="text-text-light/70 hover:text-accent transition-colors">{t.nosafix}</Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-text-light/70 hover:text-accent transition-colors">{t.contact}</Link>
+              </li>
+              <li>
+                <Link to="/developers" className="text-text-light/70 hover:text-accent transition-colors">{t.developers}</Link>
               </li>
             </ul>
           </div>
