@@ -28,7 +28,7 @@ export default async function handler(req: any, res: any) {
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
           
           <!-- Header -->
-          <div style="background: linear-gradient(135deg, #5FB8D6 0%, #9B7FD9 100%); padding: 30px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%); padding: 30px; text-align: center;">
             <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;">הודעה חדשה מאתר Tosafix</h1>
           </div>
           
@@ -43,7 +43,7 @@ export default async function handler(req: any, res: any) {
                 <tr>
                   <td style="padding: 8px 0; color: #64748b; font-size: 14px;">אימייל:</td>
                   <td style="padding: 8px 0; color: #1e293b; font-weight: 600; font-size: 16px; text-align: left;">
-                    <a href="mailto:${email}" style="color: #5FB8D6; text-decoration: none;">${email}</a>
+                    <a href="mailto:${email}" style="color: #79C9E8; text-decoration: none;">${email}</a>
                   </td>
                 </tr>
                 <tr>

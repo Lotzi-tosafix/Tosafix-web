@@ -127,10 +127,10 @@ export default function Contact() {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="mb-4 bg-green-100 dark:bg-green-900/50 border border-green-400 dark:border-green-600 text-green-700 dark:text-green-300 px-4 py-3 rounded-md relative flex items-center"
+                          className="mb-4 bg-accent/10 dark:bg-accent/20 border border-accent/40 dark:border-accent/60 text-accent/90 px-4 py-3 rounded-md relative flex items-center"
                           role="alert"
                         >
-                          <CheckCircle className="h-5 w-5 me-2" />
+                          <CheckCircle className="h-5 w-5 me-2 text-accent" />
                           <span className="block sm:inline">{t.successMessage}</span>
                         </motion.div>
                       )}
@@ -150,8 +150,11 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 w-full h-12 px-4 py-2 rounded-md text-base font-semibold text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed"
-                      style={{ background: 'linear-gradient(135deg, #5FB8D6 0%, #5B72E8 100%)' }}
+                      className="inline-flex items-center justify-center gap-2 w-full h-12 px-4 py-2 rounded-md text-base font-semibold text-white transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed"
+                      style={{ 
+                          background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)',
+                          boxShadow: '0 0 12px #79C9E840' 
+                      }}
                     >
                       {isSubmitting ? (
                         <>

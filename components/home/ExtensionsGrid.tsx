@@ -12,12 +12,12 @@ export default function ExtensionsGrid() {
   const t = translations[language];
 
   const extensionList = [
-    { nameKey: 'notiForumName', descKey: 'notiForumGridDesc', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png', gradient: 'from-[#5FB8D6] to-[#5B72E8]' },
-    { nameKey: 'yaminaName', descKey: 'yaminaGridDesc', path: '/extensions/yamina', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_67e4106bd03f6.png', gradient: 'from-[#9B7FD9] to-[#5FB8D6]' },
-    { nameKey: 'netSkinName', descKey: 'netSkinGridDesc', path: '/extensions/netskin', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_68ab2c12bf824.png', gradient: 'from-[#5B72E8] to-[#9B7FD9]' },
-    { nameKey: 'hebrewDateName', descKey: 'hebrewDateGridDesc', path: '/extensions/hebrewdate', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806ed720e298.png', gradient: 'from-[#5FB8D6] to-[#9B7FD9]' },
-    { nameKey: 'myEmojiName', descKey: 'myEmojiGridDesc', path: '/extensions/myemoji', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6810cd042475f.png', gradient: 'from-[#9B7FD9] to-[#5B72E8]' },
-    { nameKey: 'edgeOpenerName', descKey: 'edgeOpenerGridDesc', path: '/extensions/edgeopener', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806edcc12daa.png', gradient: 'from-[#5B72E8] to-[#5FB8D6]' },
+    { nameKey: 'notiForumName', descKey: 'notiForumGridDesc', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png', gradient: 'from-primary to-secondary' },
+    { nameKey: 'yaminaName', descKey: 'yaminaGridDesc', path: '/extensions/yamina', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_67e4106bd03f6.png', gradient: 'from-secondary to-accent' },
+    { nameKey: 'netSkinName', descKey: 'netSkinGridDesc', path: '/extensions/netskin', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_68ab2c12bf824.png', gradient: 'from-accent to-primary' },
+    { nameKey: 'hebrewDateName', descKey: 'hebrewDateGridDesc', path: '/extensions/hebrewdate', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806ed720e298.png', gradient: 'from-primary to-secondary' },
+    { nameKey: 'myEmojiName', descKey: 'myEmojiGridDesc', path: '/extensions/myemoji', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6810cd042475f.png', gradient: 'from-secondary to-accent' },
+    { nameKey: 'edgeOpenerName', descKey: 'edgeOpenerGridDesc', path: '/extensions/edgeopener', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806edcc12daa.png', gradient: 'from-accent to-primary' },
   ];
 
   const containerVariants = {
@@ -72,7 +72,13 @@ export default function ExtensionsGrid() {
                     {t[ext.descKey as keyof typeof t]}
                   </p>
                   <Link to={ext.path} className="mt-auto">
-                    <button className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium text-white shadow hover:shadow-lg transition-all duration-300" style={{ background: 'linear-gradient(135deg, #5FB8D6 0%, #5B72E8 100%)' }}>
+                    <button 
+                        className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium text-white transition-all duration-300" 
+                        style={{ 
+                            background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)',
+                            boxShadow: '0 0 12px #79C9E840' 
+                        }}
+                    >
                         {t.readMore}
                         <ArrowLeft className={`w-4 h-4 transform ${isHebrew ? '' : 'rotate-180'}`} />
                     </button>

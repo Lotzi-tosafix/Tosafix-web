@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
@@ -39,7 +40,7 @@ const BackToTopButton = () => {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className={`fixed bottom-6 ${buttonPositionClass} bg-primary hover:bg-primary-hover text-text-dark p-3 rounded-full shadow-lg z-50 transition-all duration-300 transform hover:scale-110`}
+          className={`fixed bottom-6 ${buttonPositionClass} bg-primary hover:bg-secondary text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 transform hover:scale-110`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

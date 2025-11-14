@@ -45,8 +45,11 @@ export default function HeroSection() {
         >
           <button
             onClick={scrollToExtensions}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary h-12 text-white px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-0"
-            style={{ background: 'linear-gradient(135deg, #5FB8D6 0%, #5B72E8 100%)' }}
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-12 text-white px-8 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 border-0"
+            style={{ 
+              background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)',
+              boxShadow: '0 0 12px #79C9E840'
+            }}
           >
             <Download className="w-5 h-5" />
             {t.discoverExtensions}

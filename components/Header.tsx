@@ -21,14 +21,14 @@ const ExtensionsDropdown = () => {
 
   return (
     <div className="relative group">
-      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark px-3 py-2" style={{letterSpacing: '0.5px'}}>
+      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark px-3 py-2" style={{letterSpacing: '0.5px'}}>
         <span>{t.extensions}</span>
         <ChevronDown size={16} className="ms-1" />
       </button>
       <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-primary/30">
         <div className="py-2 grid grid-cols-1 gap-1">
           {extensions.map(ext => (
-            <Link key={ext.path} to={ext.path} className="flex items-center gap-2 px-4 py-2 text-text-dark dark:text-text-light hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-primary-hover/80 rounded-md">
+            <Link key={ext.path} to={ext.path} className="flex items-center gap-2 px-4 py-2 text-text-dark dark:text-text-light hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent/80 rounded-md">
                <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-5 h-5 object-contain" />
               <span className="font-sans">{t[ext.nameKey as keyof typeof t]}</span>
             </Link>
@@ -49,7 +49,7 @@ const LanguageSwitcher = () => {
     return (
         <button
             onClick={handleLanguageToggle}
-            className="justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border bg-background shadow-sm h-8 rounded-md px-3 text-xs flex items-center gap-2 border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-primary-hover hover:border-primary-hover/60"
+            className="justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border bg-background shadow-sm h-8 rounded-md px-3 text-xs flex items-center gap-2 border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60"
         >
             <Languages size={16} />
             {language === 'he' ? 'EN' : 'עב'}
@@ -90,7 +90,7 @@ const ShareButton = () => {
             onClick={handleShare}
             disabled={copied}
             title={copied ? t.linkCopied : t.share}
-            className={`justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 rounded-md px-3 text-xs flex items-center border-primary/40 ${copied ? 'gap-2 whitespace-nowrap text-green-600 border-green-400 dark:text-green-400 dark:border-green-600 cursor-default' : 'hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-primary-hover hover:border-primary-hover/60'}`}
+            className={`justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 rounded-md px-3 text-xs flex items-center border-primary/40 ${copied ? 'gap-2 whitespace-nowrap text-green-600 border-green-400 dark:text-green-400 dark:border-green-600 cursor-default' : 'hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60'}`}
         >
             {copied ? (
                 <>
@@ -113,7 +113,7 @@ const ThemeToggleButton = () => {
         <button
             onClick={toggleTheme}
             title={t.toggleTheme}
-            className="justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 w-8 rounded-md p-0 text-xs flex items-center justify-center border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-primary-hover hover:border-primary-hover/60 relative overflow-hidden"
+            className="justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 w-8 rounded-md p-0 text-xs flex items-center justify-center border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60 relative overflow-hidden"
             aria-live="polite"
         >
             <span className="sr-only">{t.toggleTheme}</span>
@@ -158,9 +158,9 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_690c942fa7d49.png" alt="Tosafix Logo" className="h-11 w-11 spin-once" />
+            <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_6916f3f610b79.png" alt="Tosafix Logo" className="h-11 w-11 spin-once" />
             <div>
-              <h1 className="text-2xl font-bold font-rubik" style={{ background: 'linear-gradient(135deg, #5FB8D6 0%, #9B7FD9 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <h1 className="text-2xl font-bold font-rubik" style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {t.siteTitle}
               </h1>
               <p className="text-xs text-text-dark/70 dark:text-text-light/70 -mt-1" style={{ letterSpacing: '0.5px' }}>{t.heroTitle}</p>
@@ -168,12 +168,12 @@ export default function Header() {
           </Link>
           
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
-            <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+            <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
               <House size={16} className="transition-transform duration-300 group-hover:scale-110" />
               <span>{t.home}</span>
             </Link>
             <ExtensionsDropdown />
-            <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+            <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
               <Mail size={16} className="transition-transform duration-300 group-hover:scale-110" />
               <span>{t.contact}</span>
             </Link>
@@ -183,7 +183,7 @@ export default function Header() {
           </div>
 
           <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="group p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-primary-hover hover:bg-bg-light dark:hover:bg-bg-dark">
+            <button onClick={() => setIsOpen(!isOpen)} className="group p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark">
               {isOpen ? <X size={24} className="transition-transform duration-300 group-hover:scale-110" /> : <Menu size={24} className="transition-transform duration-300 group-hover:scale-110" />}
             </button>
           </div>

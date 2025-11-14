@@ -73,25 +73,25 @@ const FeaturesSection = () => {
         { title: t.notiFeaturePrivacyTitle, description: t.notiFeaturePrivacyDesc, image: "https://images.cdn-files-a.com/ready_uploads/media/1940743/400_5dd206fbc03b8.jpg" }
     ];
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-bg-dark">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <AnimatedDiv className="text-center mb-8">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark">
-                        <span style={{ background: 'linear-gradient(135deg, rgb(95, 184, 214) 0%, rgb(155, 127, 217) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-text-light">
+                        <span style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                             {t.notiFeaturesSectionTitle}
                         </span>
                     </h2>
-                    <p className="text-lg text-slate-600">{t.notiFeaturesSectionSubtitle}</p>
+                    <p className="text-lg text-slate-600 dark:text-slate-300">{t.notiFeaturesSectionSubtitle}</p>
                 </AnimatedDiv>
                 <div className="flex flex-wrap justify-center gap-8">
                     {features.map((feature, index) => (
                         <AnimatedDiv key={index} className="w-full max-w-sm">
-                            <div className="h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white/80 backdrop-blur-sm border rounded-lg p-6" style={{ borderColor: 'rgb(95, 184, 214)' }}>
-                                <div className="w-16 h-16 mx-auto mb-4 rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgb(95, 184, 214) 0%, rgb(155, 127, 217) 100%)' }}>
+                            <div className="h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border rounded-lg p-6 border-primary/50">
+                                <div className="w-16 h-16 mx-auto mb-4 rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)' }}>
                                     <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-center mb-3 text-text-dark">{feature.title}</h3>
-                                <p className="text-sm text-center leading-relaxed text-text-dark/70">{feature.description}</p>
+                                <h3 className="text-lg font-semibold text-center mb-3 text-text-dark dark:text-text-light">{feature.title}</h3>
+                                <p className="text-sm text-center leading-relaxed text-text-dark/70 dark:text-text-light/70">{feature.description}</p>
                             </div>
                         </AnimatedDiv>
                     ))}
@@ -119,13 +119,13 @@ const SupportedForumsSection = () => {
         { name: "הסולידית", url: "https://www.hasolidit.com/kehila/", icon: "https://files.cdn-files-a.com/uploads/10483955/400_67d81429d107a.png" },
     ];
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-bg-dark">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <AnimatedDiv className="text-center mb-8">
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                        <span className="bg-gradient-to-l from-blue-600 to-blue-800 bg-clip-text text-transparent">{t.notiSupportSectionTitle}</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-text-light mb-4">
+                        <span className="bg-gradient-to-l from-primary to-secondary bg-clip-text text-transparent">{t.notiSupportSectionTitle}</span>
                     </h2>
-                    <p className="text-lg text-slate-600">{t.notiSupportSectionSubtitle}</p>
+                    <p className="text-lg text-slate-600 dark:text-slate-300">{t.notiSupportSectionSubtitle}</p>
                 </AnimatedDiv>
                 <div className="flex flex-wrap justify-center items-start gap-8">
                     {forums.map((forum, index) => (
@@ -138,15 +138,15 @@ const SupportedForumsSection = () => {
                             className="flex flex-col items-center"
                         >
                             <a href={forum.url} target="_blank" rel="noopener noreferrer" className="group block">
-                                <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 border border-slate-100">
+                                <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 border border-slate-100 dark:border-gray-700">
                                     <img src={forum.icon} alt={forum.name} className="w-10 h-10 object-contain" />
                                 </div>
-                                <p className="text-sm text-slate-600 text-center mt-3 group-hover:text-blue-600 transition-colors">{forum.name}</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 text-center mt-3 group-hover:text-primary transition-colors">{forum.name}</p>
                             </a>
                         </motion.div>
                     ))}
                 </div>
-                <p className="text-lg text-slate-600 text-center mt-8">{t.andMore}</p>
+                <p className="text-lg text-slate-600 dark:text-slate-300 text-center mt-8">{t.andMore}</p>
             </div>
         </section>
     );
@@ -157,15 +157,15 @@ const InstallSection = () => {
     const { language } = useLanguage();
     const t = translations[language];
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-bg-dark">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <AnimatedDiv className="text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8 text-text-dark">
-                        <span style={{ background: 'linear-gradient(135deg, rgb(95, 184, 214) 0%, rgb(155, 127, 217) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-8 text-text-dark dark:text-text-light">
+                        <span style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                            {t.notiInstallSectionTitle}
                         </span>
                     </h2>
-                    <p className="text-lg mb-8 leading-relaxed text-text-dark/70">{t.notiInstallSectionDesc}</p>
+                    <p className="text-lg mb-8 leading-relaxed text-text-dark/70 dark:text-text-light/70">{t.notiInstallSectionDesc}</p>
                     <a href="https://chromewebstore.google.com/detail/noti/hgceibdlnoiclpkmgccijjgdkocflkfj?utm_source=ext_app_menu" target="_blank" rel="noopener noreferrer">
                         <style>
                             {`@keyframes chromeGradient {
@@ -214,12 +214,12 @@ const PrivacySection = () => {
     };
 
     return (
-        <section className="py-20 bg-bg-light">
+        <section className="py-20 bg-bg-light dark:bg-bg-dark/80">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <AnimatedDiv>
-                    <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border" style={{ borderColor: 'rgb(95, 184, 214)' }}>
-                        <h2 className="text-3xl font-bold mb-6 text-text-dark text-center">{t.notiPrivacySectionTitle}</h2>
-                        <div className="relative bg-gray-50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-lg shadow-inner border border-gray-200 dark:border-gray-700">
+                    <div className="bg-white dark:bg-gray-800/50 rounded-3xl p-8 md:p-12 shadow-lg border border-primary/50">
+                        <h2 className="text-3xl font-bold mb-6 text-text-dark dark:text-text-light text-center">{t.notiPrivacySectionTitle}</h2>
+                        <div className="relative bg-gray-50 dark:bg-gray-900/50 p-6 sm:p-8 rounded-lg shadow-inner border border-gray-200 dark:border-gray-700">
                              <div className="absolute top-2 right-2 rtl:left-2 rtl:right-auto flex gap-2">
                                 <button onClick={copyToClipboard} title={t.copyPolicyTooltip} className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-gray-600 dark:text-gray-300 transition-colors">
                                     <Copy size={16} />
@@ -243,7 +243,7 @@ const PrivacySection = () => {
 
 export default function NotiForum() {
   return (
-    <div className="min-h-screen bg-bg-light">
+    <div className="min-h-screen bg-bg-light dark:bg-bg-dark">
         <HeroSection />
         <FeaturesSection />
         <SupportedForumsSection />
