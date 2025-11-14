@@ -21,7 +21,8 @@ interface LanguageProviderProps {
     children: ReactNode;
 }
 
-export const LanguageProvider = ({ children }: LanguageProviderProps) => {
+// FIX: Explicitly type LanguageProvider as a React.FC to resolve potential type inference issues.
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<'he' | 'en'>('he');
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -10,7 +11,13 @@ const itemVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
-const AnimatedDiv = ({ children, className = "" } : { children: React.ReactNode, className?: string }) => {
+// FIX: Update AnimatedDiv to be of type React.FC. This correctly types it as a React component, resolving errors related to the missing 'children' prop and the unrecognized 'key' prop.
+type AnimatedDivProps = {
+    children: React.ReactNode;
+    className?: string;
+};
+
+const AnimatedDiv: React.FC<AnimatedDivProps> = ({ children, className = "" }) => {
     const controls = useAnimation();
     const [ref, inView] = useInView({
         triggerOnce: true,

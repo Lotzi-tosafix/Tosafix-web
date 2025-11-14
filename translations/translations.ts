@@ -404,7 +404,9 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 - "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
 - "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
 
-התוסף אינו מתקשר עם שרתים חיצוניxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
+התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין.
+
+תודה על השימוש ב"פותחן Edge"!`,
   },
   en: {
     // Header & Navigation
