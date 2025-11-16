@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Languages, House, Mail, Share2, Check, Sun, Moon, Plus, Code2 } from 'lucide-react';
+import { Menu, X, ChevronDown, Languages, Home, Mail, Share2, Check, Sun, Moon, Plus, Code2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 import { useTheme } from '../contexts/ThemeContext';
@@ -176,7 +176,7 @@ export default function Header() {
           
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
             <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <House size={16} className="transition-transform duration-300 group-hover:scale-110" />
+              <Home size={16} className="transition-transform duration-300 group-hover:scale-110" />
               <span>{t.home}</span>
             </Link>
             <ExtensionsDropdown />

@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useLanguage } from './contexts/LanguageContext';
@@ -33,10 +34,24 @@ function AppContent() {
     html.dir = isHebrew ? 'rtl' : 'ltr';
   }, [language, isHebrew]);
   
-  // Scroll to top on route change
+  // Scroll to top or to anchor on route change
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    const { hash } = location;
+    // A small delay is needed because the element might not have been rendered yet when the route changes.
+    const timer = setTimeout(() => {
+      if (hash) {
+        const id = hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="font-sans bg-bg-light text-text-dark dark:bg-bg-dark dark:text-text-light">

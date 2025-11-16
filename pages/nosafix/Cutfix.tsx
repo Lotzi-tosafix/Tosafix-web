@@ -95,7 +95,7 @@ const Cutfix: React.FC = () => {
                 setLoadingText(t.processingImage);
                 const formData = new FormData();
                 formData.append('file', file);
-                const response = await fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', { method: 'POST', body: formData });
+                const response = await fetch('https://lotzi-fix-remover.hf.space/api/remove-background', { method: 'POST', body: formData });
                 if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(t.serverError(response.status, errorText));

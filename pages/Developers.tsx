@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
-import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, Scissors } from 'lucide-react';
+import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, Scissors, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 
@@ -64,22 +64,6 @@ export default function Developers() {
     }
   }, [cutfixInView, timerInView]);
 
-  useEffect(() => {
-    // Handles scrolling to the correct section when the page is loaded with a hash.
-    const timer = setTimeout(() => {
-      const { hash } = location;
-      if (hash) {
-        const id = hash.substring(1); // remove the '#'
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }, 150); // A small delay ensures the component has rendered.
-
-    return () => clearTimeout(timer);
-  }, [location.hash]);
-
   const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     event.preventDefault();
     const element = document.getElementById(targetId);
@@ -92,7 +76,7 @@ export default function Developers() {
 const formData = new FormData();
 formData.append('file', imageFile);
 
-fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
+fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
   method: 'POST',
   body: formData,
 })
@@ -116,15 +100,54 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
 
   const curlCode = `curl -X POST \\
   -F "file=@/path/to/your/image.jpg" \\
-  https://lotzi-my-awesome-remover.hf.space/api/remove-background \\
+  https://lotzi-fix-remover.hf.space/api/remove-background \\
   --output processed_image.png`;
   
-  const iframeCode = `<iframe 
-  src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer.html" 
+  const autoEmbedScriptCode = `<script>
+    (function() {
+        // --- הגדרות ---
+        const hebrewUrl = 'https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html';
+        const englishUrl = 'https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html';
+        const containerId = 'temple-timer-container';
+        
+        // --- לוגיקת זיהוי שפה ויצירת האייפרם ---
+        const userLang = navigator.language || navigator.userLanguage; 
+        const isHebrew = userLang.toLowerCase().startsWith('he');
+        
+        const iframeUrl = isHebrew ? hebrewUrl : englishUrl;
+        const title = isHebrew ? 'טיימר חורבן בית המקדש' : 'Beit HaMikdash Destruction Timer';
+        
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', iframeUrl);
+        iframe.setAttribute('width', '330');
+        iframe.setAttribute('height', '215');
+        iframe.setAttribute('title', title);
+        iframe.style.border = 'none';
+        iframe.style.overflow = 'hidden';
+        
+        const container = document.getElementById(containerId);
+        if (container) {
+            container.appendChild(iframe);
+        } else {
+            console.error('Temple Timer container with ID "' + containerId + '" was not found.');
+        }
+    })();
+</script>`;
+  
+  const heIframeCode = `<iframe 
+  src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html" 
   width="330" 
   height="215" 
   style="border:none; overflow:hidden;" 
   title="טיימר חורבן בית המקדש">
+</iframe>`;
+
+  const enIframeCode = `<iframe 
+  src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html" 
+  width="330" 
+  height="215" 
+  style="border:none; overflow:hidden;" 
+  title="Beit HaMikdash Destruction Timer">
 </iframe>`;
 
   return (
@@ -193,7 +216,7 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><Server size={20} /> {t.endpoint}</h3>
-                    <code className="block text-sm bg-gray-100 dark:bg-gray-700/50 p-3 rounded-lg text-accent dark:text-primary break-all">https://lotzi-my-awesome-remover.hf.space/api/remove-background</code>
+                    <code className="block text-sm bg-gray-100 dark:bg-gray-700/50 p-3 rounded-lg text-accent dark:text-primary break-all">https://lotzi-fix-remover.hf.space/api/remove-background</code>
                   </div>
                   
                   <div>
@@ -274,16 +297,35 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
 
                 <div className="space-y-8">
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.livePreview}</h3>
-                    <div className="flex justify-center items-center bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg">
-                       <iframe src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer.html" width="330" height="215" style={{border:'none', overflow:'hidden'}} title={t.templeTimerTitle}></iframe>
+                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.liveDemos}</h3>
+                    <div className="flex flex-col sm:flex-row gap-x-6 gap-y-2 justify-center items-center bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg">
+                       <a href="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:text-accent/80 underline transition-colors">
+                         {t.liveDemoHe}
+                         <ExternalLink size={14} />
+                       </a>
+                       <a href="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:text-accent/80 underline transition-colors">
+                         {t.liveDemoEn}
+                         <ExternalLink size={14} />
+                       </a>
                     </div>
                   </div>
 
                   <div>
                     <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><Code2 size={20} /> {t.embedCode}</h3>
-                    <p className="text-text-dark/80 dark:text-text-light/80 mb-2">{t.embedInstructions}</p>
-                    <CodeBlock code={iframeCode} language="html" />
+                    <p className="text-text-dark/80 dark:text-text-light/80 mb-4">{t.embedInstructions}</p>
+                    
+                    <h4 className="font-semibold mt-4 mb-2 text-text-dark dark:text-text-light">{t.embedAutoTitle}</h4>
+                    <p className="text-sm text-text-dark/80 dark:text-text-light/80 mb-2">{t.embedAutoStep1}</p>
+                    <CodeBlock code={`<div id="temple-timer-container"></div>`} language="html" />
+                    <p className="text-sm text-text-dark/80 dark:text-text-light/80 mt-4 mb-2">{t.embedAutoStep2}</p>
+                    <CodeBlock code={autoEmbedScriptCode} language="html" />
+                    
+                    <h4 className="font-semibold mt-6 mb-2 text-text-dark dark:text-text-light">{t.embedManualTitle}</h4>
+                    <p className="text-sm text-text-dark/80 dark:text-text-light/80 mb-2">{t.embedManualDesc}</p>
+                    <h5 className="font-medium mt-4 mb-1 text-text-dark dark:text-text-light">{t.embedManualHe}</h5>
+                    <CodeBlock code={heIframeCode} language="html" />
+                    <h5 className="font-medium mt-4 mb-1 text-text-dark dark:text-text-light">{t.embedManualEn}</h5>
+                    <CodeBlock code={enIframeCode} language="html" />
                   </div>
 
                   <div>
@@ -293,7 +335,18 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
 
                   <div>
                     <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><BookUser size={20} /> {t.credits}</h3>
-                     <p className="text-text-dark/80 dark:text-text-light/80 p-4 bg-gray-100 dark:bg-gray-700/50 rounded-lg">{t.creditsDesc}</p>
+                     <p className="text-text-dark/80 dark:text-text-light/80 p-4 bg-gray-100 dark:bg-gray-700/50 rounded-lg">
+                      {t.creditsDesc_part1}
+                      <a href="https://github.com/kdroidFilter/SecondTempleTimerLibrary" target="_blank" rel="noopener noreferrer" className="text-accent underline hover:text-accent/80 transition-colors">
+                        {t.creditsDesc_link}
+                      </a>
+                      {t.creditsDesc_part2}
+                     </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><BookUser size={20} /> {t.license}</h3>
+                     <p className="text-text-dark/80 dark:text-text-light/80 p-4 bg-gray-100 dark:bg-gray-700/50 rounded-lg">{t.licenseDesc}</p>
                   </div>
                 </div>
               </motion.section>
