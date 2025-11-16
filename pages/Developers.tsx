@@ -297,16 +297,30 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
 
                 <div className="space-y-8">
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.liveDemos}</h3>
-                    <div className="flex flex-col sm:flex-row gap-x-6 gap-y-2 justify-center items-center bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg">
-                       <a href="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:text-accent/80 underline transition-colors">
-                         {t.liveDemoHe}
-                         <ExternalLink size={14} />
-                       </a>
-                       <a href="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:text-accent/80 underline transition-colors">
-                         {t.liveDemoEn}
-                         <ExternalLink size={14} />
-                       </a>
+                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.livePreview}</h3>
+                    <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8 mt-4 bg-gray-100 dark:bg-gray-700/50 p-6 rounded-lg">
+                      <div className="text-center">
+                        <h4 className="font-semibold mb-2 text-text-dark/80 dark:text-text-light/80">{t.embedManualHe}</h4>
+                        <iframe
+                          src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html"
+                          width="330"
+                          height="215"
+                          style={{ border: 'none', overflow: 'hidden' }}
+                          title="טיימר חורבן בית המקדש"
+                          className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
+                        ></iframe>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-semibold mb-2 text-text-dark/80 dark:text-text-light/80">{t.embedManualEn}</h4>
+                        <iframe
+                          src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html"
+                          width="330"
+                          height="215"
+                          style={{ border: 'none', overflow: 'hidden' }}
+                          title="Beit HaMikdash Destruction Timer"
+                          className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
+                        ></iframe>
+                      </div>
                     </div>
                   </div>
 
