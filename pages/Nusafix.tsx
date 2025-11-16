@@ -71,12 +71,14 @@ export default function Nosafix() {
                         </div>
                       </div>
                       <h3 className="font-semibold tracking-tight text-xl text-text-dark dark:text-text-light">
-                        {t[tool.nameKey as keyof typeof t]}
+                        {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
+                        {t[tool.nameKey as keyof typeof t] as string}
                       </h3>
                     </div>
                     <div className="p-6 pt-0 flex flex-col flex-grow">
                       <p className="text-center text-text-dark/70 dark:text-text-light/70 mb-6 leading-relaxed flex-grow">
-                        {t[tool.descKey as keyof typeof t]}
+                        {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
+                        {t[tool.descKey as keyof typeof t] as string}
                       </p>
                       <Link to={tool.path} className="mt-auto">
                         <button

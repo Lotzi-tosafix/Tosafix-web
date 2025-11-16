@@ -34,8 +34,10 @@ const ExtensionsDropdown = () => {
         <div className="py-2 grid grid-cols-1 gap-1">
           {extensions.map(ext => (
             <Link key={ext.path} to={ext.path} className="flex items-center gap-2 px-4 py-2 text-text-dark dark:text-text-light hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent/80 rounded-md">
-               <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-5 h-5 object-contain" />
-              <span className="font-sans">{t[ext.nameKey as keyof typeof t]}</span>
+               {/* FIX: Cast dynamic translation lookup to string to resolve type error for the 'alt' attribute. */}
+               <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-5 h-5 object-contain" />
+              {/* FIX: Cast dynamic translation lookup to string to resolve type error for ReactNode. */}
+              <span className="font-sans">{t[ext.nameKey as keyof typeof t] as string}</span>
             </Link>
           ))}
         </div>
@@ -213,8 +215,10 @@ export default function Header() {
              <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
             {extensions.map(ext => (
               <Link key={ext.path} to={ext.path} className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-5 h-5 object-contain" />
-                {t[ext.nameKey as keyof typeof t]}
+                {/* FIX: Cast dynamic translation lookup to string to resolve type error for the 'alt' attribute. */}
+                <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-5 h-5 object-contain" />
+                {/* FIX: Cast dynamic translation lookup to string to resolve type error for ReactNode. */}
+                {t[ext.nameKey as keyof typeof t] as string}
               </Link>
             ))}
              <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>

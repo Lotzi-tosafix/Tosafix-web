@@ -52,7 +52,8 @@ export default function Footer() {
               {extensions.map(ext => (
                 <li key={ext.path}>
                   <Link to={ext.path} className="text-text-light/70 hover:text-accent transition-colors">
-                    {t[ext.nameKey as keyof typeof t]}
+                    {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
+                    {t[ext.nameKey as keyof typeof t] as string}
                   </Link>
                 </li>
               ))}

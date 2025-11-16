@@ -214,7 +214,8 @@ export const translations = {
     myEmojiBonusCardTitle: 'אימוג\'ים חרדיים',
     myEmojiBonusCardDesc: 'להורדה קובץ בונוס המכיל אימוג\'ים חרדיים בקובץ zip לייבוא לתוסף.',
     myEmojiBonusCardCredit: 'קרדיט: האימוג\'ים נוצרו ע"י משתמשי פורום פרוג.',
-    myEmojiBonusCardBtn: 'הורד אימוג\'ים חרדיים',
+    // FIX: Renamed key to match English translation and component usage.
+    myEmojiBonusDownloadBtn: 'הורד אימוג\'ים חרדיים',
 
     // HebrewDate Features
     hebrewDateFeature1Title: 'המרה אוטומטית בריחוף',
@@ -480,9 +481,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 - "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
 - "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
 
-התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין.
-
-תודה על השימוש ב"פותחן Edge"!`,
+התוסף אינו מתקשר עם שרתים חיצוניים. כל הפxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
   },
   en: {
     // Header & Navigation

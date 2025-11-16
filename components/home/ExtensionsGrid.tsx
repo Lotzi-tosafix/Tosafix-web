@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -60,16 +61,19 @@ export default function ExtensionsGrid() {
                 <div className="p-6 text-center">
                   <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} mb-4 mx-auto flex items-center justify-center`}>
                     <div className="w-16 h-16 bg-white/80 dark:bg-white/20 rounded-full flex items-center justify-center shadow-inner backdrop-blur-sm">
-                        <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t]} className="w-12 h-12 object-contain" />
+                        {/* FIX: Cast dynamic translation lookup to string to resolve type error for 'alt' attribute. */}
+                        <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-12 h-12 object-contain" />
                     </div>
                   </div>
                   <h3 className="font-semibold tracking-tight text-xl text-text-dark dark:text-text-light">
-                    {t[ext.nameKey as keyof typeof t]}
+                    {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
+                    {t[ext.nameKey as keyof typeof t] as string}
                   </h3>
                 </div>
                 <div className="p-6 pt-0 flex flex-col flex-grow">
                   <p className="text-center text-text-dark/70 dark:text-text-light/70 mb-6 leading-relaxed flex-grow">
-                    {t[ext.descKey as keyof typeof t]}
+                    {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
+                    {t[ext.descKey as keyof typeof t] as string}
                   </p>
                   <Link to={ext.path} className="mt-auto">
                     <button 

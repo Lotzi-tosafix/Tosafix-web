@@ -55,11 +55,20 @@ export default function Developers() {
   const { ref: timerRef, inView: timerInView } = useInView(observerOptions);
 
   useEffect(() => {
-    // Order matters: the last one in view as you scroll down should be active
-    if (cutfixInView) setActiveSection('cutfix-api');
-    if (timerInView) setActiveSection('temple-timer');
+    if (timerInView) {
+      setActiveSection('temple-timer');
+    } else if (cutfixInView) {
+      setActiveSection('cutfix-api');
+    }
   }, [cutfixInView, timerInView]);
 
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    event.preventDefault();
+    const element = document.getElementById(targetId);
+    element?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
 
   const jsCode = `const imageFile = document.querySelector('input[type="file"]').files[0];
 const formData = new FormData();
@@ -127,6 +136,7 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
                     <a
                       key={item.id}
                       href={`#${item.id}`}
+                      onClick={(e) => handleNavClick(e, item.id)}
                       className={`flex items-center gap-3 p-3 rounded-lg text-sm font-medium transition-all duration-200 border-s-2 ${
                         isActive
                           ? 'bg-primary/10 text-primary border-primary'
@@ -134,7 +144,8 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
                       }`}
                     >
                       <Icon size={18} />
-                      <span>{t[item.titleKey as keyof typeof t]}</span>
+                      {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
+                      <span>{t[item.titleKey as keyof typeof t] as string}</span>
                     </a>
                   );
                 })}
