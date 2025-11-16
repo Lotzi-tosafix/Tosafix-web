@@ -59,7 +59,8 @@ const RadioPlayer: React.FC<RadioPlayerProps> = ({ station, isPlaying, isLoading
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                <h3 className="text-white text-lg font-bold text-center truncate">{t[station.nameKey]}</h3>
+                {/* FIX: Cast dynamic translation lookup to string to resolve ReactNode type error. */}
+                <h3 className="text-white text-lg font-bold text-center truncate">{t[station.nameKey] as string}</h3>
                 <AnimatePresence>
                 {isPlaying && (
                      <motion.p 

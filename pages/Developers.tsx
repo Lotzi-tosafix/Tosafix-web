@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLocation } from 'react-router-dom';
 import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, Scissors } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
@@ -40,6 +41,7 @@ export default function Developers() {
   const { language, isHebrew } = useLanguage();
   const t = translations[language];
   const [activeSection, setActiveSection] = useState('cutfix-api');
+  const location = useLocation();
 
   const navItems = [
     { id: 'cutfix-api', titleKey: 'cutfixApiTitle', icon: Scissors },
@@ -61,6 +63,22 @@ export default function Developers() {
       setActiveSection('cutfix-api');
     }
   }, [cutfixInView, timerInView]);
+
+  useEffect(() => {
+    // Handles scrolling to the correct section when the page is loaded with a hash.
+    const timer = setTimeout(() => {
+      const { hash } = location;
+      if (hash) {
+        const id = hash.substring(1); // remove the '#'
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }, 150); // A small delay ensures the component has rendered.
+
+    return () => clearTimeout(timer);
+  }, [location.hash]);
 
   const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     event.preventDefault();
