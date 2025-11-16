@@ -71,7 +71,7 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
   --output processed_image.png`;
   
   const iframeCode = `<iframe 
-  src="https://lotzi-tosafix.github.io/temple-timer/timer.html" 
+  src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer.html" 
   width="330" 
   height="215" 
   style="border:none; overflow:hidden;" 
@@ -179,7 +179,7 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
                   </div>
                 </div>
                 <a 
-                  href="https://github.com/Lotzi-tosafix/temple-timer" 
+                  href="https://github.com/Lotzi-tosafix/bezachrenu_es_zion" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border h-10 px-4 py-2 rounded-md border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0 text-text-dark dark:text-text-light"
@@ -194,7 +194,7 @@ fetch('https://lotzi-my-awesome-remover.hf.space/api/remove-background', {
               <div>
                 <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.livePreview}</h3>
                 <div className="flex justify-center items-center bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg">
-                   <iframe src="https://lotzi-tosafix.github.io/temple-timer/timer.html" width="330" height="215" style={{border:'none', overflow:'hidden'}} title={t.templeTimerTitle}></iframe>
+                   <iframe src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer.html" width="330" height="215" style={{border:'none', overflow:'hidden'}} title={t.templeTimerTitle}></iframe>
                 </div>
               </div>
 
