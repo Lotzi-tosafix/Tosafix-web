@@ -6,13 +6,12 @@ import { Play, Pause, Loader, Volume2, VolumeX, Music } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 const stations: Station[] = [
-    { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg', metadataUrl: 'https://kcm.fm/Home/LiveJ/1', metadataType: 'kol-chai' },
-    { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png', metadataUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/status-json.xsl', metadataType: 'icecast' },
-    { nameKey: 'tokerFm', streamUrl: 'https://broadcast.adpronet.com/radio/6060/radio.mp3', logoUrl: 'https://tosafix.42web.io/new-page/%D7%98%D7%95%D7%A7%D7%A8_FM.png', metadataUrl: 'https://broadcast.adpronet.com/radio/8060/stats?json=1', metadataType: 'shoutcast' },
-    { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/8NR67WMChMtGwPEAdV6LDnDvftgswEd_Z94TSwkY_derdGcfxglik3AHXkLGUC37PcDo', metadataUrl: 'https://stream.jewishradionetwork.com:8000/status-json.xsl', metadataType: 'icecast' },
-    { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU', metadataUrl: 'https://stream.jewishmusicstream.com:8000/status-json.xsl', metadataType: 'icecast' }
+    { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg' },
+    { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png' },
+    { nameKey: 'tokerFm', streamUrl: 'https://broadcast.adpronet.com/radio/6060/radio.mp3', logoUrl: 'https://tosafix.42web.io/new-page/%D7%98%D7%95%D7%A7%D7%A8_FM.png' },
+    { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/8NR67WMChMtGwPEAdV6LDnDvftgswEd_Z94TSwkY_derdGcfxglik3AHXkLGUC37PcDo' },
+    { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU' }
 ];
-
 
 // Main Player Component
 const MainPlayer = () => {
@@ -27,7 +26,7 @@ const MainPlayer = () => {
         isMuted,
         setIsMuted,
         togglePlayPause,
-        songInfo,
+        nowPlayingInfo
     } = useMusicPlayer();
 
     const stationName = currentlyPlaying ? t[currentlyPlaying.nameKey] as string : t.liveMusicDescription;
@@ -47,9 +46,64 @@ const MainPlayer = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-12 bg-white/50 dark:bg-gray-800/50 p-4 rounded-2xl max-w-2xl mx-auto shadow-lg backdrop-blur-sm border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4"
+            className="mb-12 bg-white/50 dark:bg-gray-800/50 p-4 rounded-2xl max-w-4xl mx-auto shadow-lg backdrop-blur-sm border border-primary/20 flex flex-col sm:flex-row-reverse items-center justify-between gap-4"
         >
-            <div className="flex items-center gap-4 w-full sm:w-auto">
+            {/* Left/Start Controls */}
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-center flex-shrink-0">
+                <button
+                    onClick={togglePlayPause}
+                    disabled={!currentlyPlaying || isLoading}
+                    className="w-16 h-16 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105 flex-shrink-0"
+                    aria-label={isPlaying ? "Pause" : "Play"}
+                >
+                    {buttonIcon}
+                </button>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => setIsMuted(!isMuted)}
+                        className="text-text-dark dark:text-text-light hover:text-primary transition-colors"
+                        aria-label={isMuted ? "Unmute" : "Mute"}
+                    >
+                        {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                    </button>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={isMuted ? 0 : volume}
+                        onChange={(e) => setVolume(parseFloat(e.target.value))}
+                        className="w-32 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                        aria-label="Volume control"
+                    />
+                </div>
+            </div>
+
+            {/* Center: Song Info */}
+            <div className="flex-grow min-w-0 text-center h-12">
+                <AnimatePresence>
+                    {nowPlayingInfo && (currentlyPlaying?.nameKey === 'kolChaiMusic' || currentlyPlaying?.nameKey === 'jewishRadioNetwork') && (
+                        <motion.div
+                            key={nowPlayingInfo.song}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <p className="text-md text-text-dark dark:text-text-light font-semibold truncate" title={nowPlayingInfo.song}>
+                                <Music size={14} className="inline -mt-1 me-1.5" />
+                                {nowPlayingInfo.song}
+                            </p>
+                            <p className="text-sm text-text-dark/70 dark:text-text-light/70 truncate" title={nowPlayingInfo.artist}>
+                                {nowPlayingInfo.artist}
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+
+            {/* Right/End: Station Info */}
+            <div className="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start flex-shrink-0" style={{ minWidth: '220px' }}>
                 <AnimatePresence mode="wait">
                     <motion.img
                         key={stationLogo}
@@ -58,10 +112,10 @@ const MainPlayer = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
-                        className="w-16 h-16 rounded-lg object-cover shadow-md"
+                        className="w-16 h-16 rounded-lg object-cover shadow-md flex-shrink-0"
                     />
                 </AnimatePresence>
-                <div className="flex-grow min-w-0">
+                <div className="text-start min-w-0 flex-grow">
                     <p className="text-sm text-primary font-semibold h-5">{currentlyPlaying ? t.nowPlaying : ' '}</p>
                     <AnimatePresence mode="wait">
                         <motion.h2
@@ -78,66 +132,6 @@ const MainPlayer = () => {
                 </div>
             </div>
 
-            <div className="flex-grow min-w-0 text-center sm:text-start px-4">
-                 <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`${songInfo.presenter}-${songInfo.song}`}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                         {currentlyPlaying && (songInfo.song || songInfo.presenter) ? (
-                            <>
-                                <p className="text-sm font-medium text-text-dark/70 dark:text-text-light/70 truncate" title={songInfo.presenter}>
-                                    {songInfo.presenter || <>&nbsp;</>}
-                                </p>
-                                <p className="text-lg font-semibold text-text-dark dark:text-text-light truncate" title={songInfo.song}>
-                                    {songInfo.song || <>&nbsp;</>}
-                                </p>
-                            </>
-                        ) : currentlyPlaying ? (
-                            <div className="h-12 flex items-center justify-center sm:justify-start"> 
-                                <p className="text-sm text-text-dark/60 dark:text-text-light/60">
-                                    {t.loadingSongInfo}
-                                </p>
-                            </div>
-                        ) : (
-                            <div className="h-12" />
-                        )}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
-                <button
-                    onClick={togglePlayPause}
-                    disabled={!currentlyPlaying || isLoading}
-                    className="w-16 h-16 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105 flex-shrink-0"
-                    aria-label={isPlaying ? "Pause" : "Play"}
-                >
-                    {buttonIcon}
-                </button>
-                <div className="flex items-center gap-2 flex-grow sm:flex-grow-0">
-                    <button
-                        onClick={() => setIsMuted(!isMuted)}
-                        className="text-text-dark dark:text-text-light hover:text-primary transition-colors"
-                        aria-label={isMuted ? "Unmute" : "Mute"}
-                    >
-                        {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
-                    </button>
-                    <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={isMuted ? 0 : volume}
-                        onChange={(e) => setVolume(parseFloat(e.target.value))}
-                        className="w-full sm:w-32 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
-                        aria-label="Volume control"
-                    />
-                </div>
-            </div>
         </motion.div>
     );
 };

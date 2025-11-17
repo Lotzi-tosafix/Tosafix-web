@@ -6,8 +6,11 @@ export interface Station {
     nameKey: keyof typeof translations['he'];
     streamUrl: string;
     logoUrl: string;
-    metadataUrl?: string;
-    metadataType?: 'icecast' | 'shoutcast' | 'kol-chai';
+}
+
+export interface NowPlayingInfo {
+    song: string;
+    artist: string;
 }
 
 // Defines the shape of the context data and functions.
@@ -18,7 +21,7 @@ interface MusicPlayerContextType {
     loadingStation: Station | null;
     volume: number;
     isMuted: boolean;
-    songInfo: { presenter: string; song: string };
+    nowPlayingInfo: NowPlayingInfo | null;
     playStation: (station: Station) => void;
     togglePlayPause: () => void;
     stopStation: () => void;
@@ -44,66 +47,99 @@ interface MusicPlayerProviderProps {
 // Provider component that wraps the app and provides the music player state.
 export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ children }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const metadataIntervalRef = useRef<number | null>(null);
-
+    const pollingIntervalId = useRef<number | null>(null);
+    const currentStationRef = useRef<Station | null>(null); // To avoid race conditions
     const [currentlyPlaying, setCurrentlyPlaying] = useState<Station | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [loadingStation, setLoadingStation] = useState<Station | null>(null);
     const [volume, setVolumeState] = useState<number>(0.75);
     const [isMuted, setIsMutedState] = useState<boolean>(false);
-    const [songInfo, setSongInfo] = useState<{ presenter: string; song: string }>({ presenter: '', song: '' });
+    const [nowPlayingInfo, setNowPlayingInfo] = useState<NowPlayingInfo | null>(null);
 
-    // Clears the metadata fetching interval.
-    const clearMetadataInterval = () => {
-        if (metadataIntervalRef.current) {
-            clearInterval(metadataIntervalRef.current);
-            metadataIntervalRef.current = null;
+    const clearPolling = () => {
+        if (pollingIntervalId.current) {
+            clearInterval(pollingIntervalId.current);
+            pollingIntervalId.current = null;
         }
+        setNowPlayingInfo(null);
     };
 
-    // Fetches and parses metadata for the currently playing station.
-    const fetchMetadata = async (station: Station) => {
-        if (!station.metadataUrl) {
-            setSongInfo({ presenter: '', song: '' });
+    const fetchKolChaiMusicInfo = async () => {
+        // Guard against race condition: only fetch if Kol Chai is still the active station.
+        if (currentStationRef.current?.nameKey !== 'kolChaiMusic') {
             return;
         }
         try {
-            const response = await fetch(station.metadataUrl, { cache: "no-store" });
-            if (!response.ok) throw new Error('Metadata fetch failed with status ' + response.status);
-            
-            const data = await response.json();
-            let song = '';
-            let presenter = '';
-
-            if (station.metadataType === 'kol-chai' && Array.isArray(data) && data.length > 0) {
-                presenter = data[0].SdarName || '';
-                song = data[0].CurrentSong || '';
-            } else {
-                let title = '';
-                if (station.metadataType === 'icecast' && data.icestats?.source?.title) {
-                    title = data.icestats.source.title;
-                } else if (station.metadataType === 'shoutcast' && data.songtitle) {
-                    title = data.songtitle;
-                }
-                if (title) {
-                    const parts = title.split(' - ');
-                    if (parts.length >= 2) {
-                        presenter = parts[0].trim();
-                        song = parts.slice(1).join(' - ').trim();
-                    } else {
-                        song = title.trim();
-                    }
-                }
+            const response = await fetch('https://kcm.fm/Home/LiveJ/1');
+            if (!response.ok) {
+                console.error('Failed to fetch Kol Chai Music info, status:', response.status);
+                setNowPlayingInfo(null);
+                return;
             }
+            const data = await response.json();
+            const playingString = data?.item?.playing;
 
-            setSongInfo({ presenter: presenter.trim(), song: song.trim() });
+            if (playingString && typeof playingString === 'string') {
+                const parts = playingString.split(' - ');
+                const song = parts[0]?.trim() || '';
+                const artist = parts.slice(1).join(' - ').trim() || '';
+                
+                if (song && artist) {
+                    setNowPlayingInfo(prevInfo => {
+                        if (prevInfo?.song !== song || prevInfo?.artist !== artist) {
+                            return { song, artist };
+                        }
+                        return prevInfo;
+                    });
+                } else {
+                    setNowPlayingInfo(null);
+                }
+            } else {
+                setNowPlayingInfo(null);
+            }
         } catch (error) {
-            console.error(`Failed to fetch or parse metadata for ${station.nameKey}:`, error);
-            setSongInfo({ presenter: '', song: '' }); // Clear info on error
+            console.error("Error fetching Kol Chai Music info:", error);
+            setNowPlayingInfo(null);
         }
     };
+    
+    const fetchJewishRadioNetworkInfo = async () => {
+        if (currentStationRef.current?.nameKey !== 'jewishRadioNetwork') {
+            return;
+        }
+        try {
+            const targetUrl = `https://jewishradionetwork.com/system/web/song.json?q=${Date.now()}`;
+            // Following the advice provided, using a different proxy to bypass NetFree content filtering.
+            const apiUrl = `/api/getSong`;
+            const response = await fetch(apiUrl);
 
+            if (!response.ok) {
+                console.error('Failed to fetch Jewish Radio Network info from our API, status:', response.status);
+                setNowPlayingInfo(null);
+                return;
+            }
+            
+            const data = await response.json();
+            const song = data?.TITLE?.trim() || '';
+            const artist = data?.ARTIST?.trim() || '';
+
+            if (song && artist) {
+                setNowPlayingInfo(prevInfo => {
+                    if (prevInfo?.song !== song || prevInfo?.artist !== artist) {
+                        return { song, artist };
+                    }
+                    return prevInfo;
+                });
+            } else {
+                setNowPlayingInfo(null);
+            }
+        } catch (error) {
+            console.error("Error fetching Jewish Radio Network info:", error);
+            setNowPlayingInfo(null);
+        }
+    };
+    
     // Initialize the Audio element and its event listeners on component mount.
     useEffect(() => {
         audioRef.current = new Audio();
@@ -111,7 +147,7 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         const audio = audioRef.current;
 
         const onPlay = () => { setIsPlaying(true); setIsLoading(false); setLoadingStation(null); };
-        const onPause = () => { setIsPlaying(false); clearMetadataInterval(); };
+        const onPause = () => setIsPlaying(false);
         const onWaiting = () => setIsLoading(true);
         const onPlaying = () => { setIsLoading(false); setLoadingStation(null); };
         
@@ -126,7 +162,7 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
             audio.removeEventListener('waiting', onWaiting);
             audio.removeEventListener('playing', onPlaying);
             audio.pause();
-            clearMetadataInterval();
+            clearPolling();
         };
     }, []);
     
@@ -141,33 +177,36 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
     const playStation = (station: Station) => {
         if (!audioRef.current) return;
         
-        clearMetadataInterval();
-        setSongInfo({ presenter: '', song: '' });
+        clearPolling();
+        
+        if (station.nameKey === 'kolChaiMusic') {
+            fetchKolChaiMusicInfo();
+            pollingIntervalId.current = window.setInterval(fetchKolChaiMusicInfo, 5000);
+        } else if (station.nameKey === 'jewishRadioNetwork') {
+            fetchJewishRadioNetworkInfo();
+            pollingIntervalId.current = window.setInterval(fetchJewishRadioNetworkInfo, 5000);
+        }
+
         setLoadingStation(station);
         setIsLoading(true);
 
         if (audioRef.current.src !== station.streamUrl) {
             setCurrentlyPlaying(station);
+            currentStationRef.current = station;
             audioRef.current.src = station.streamUrl;
             audioRef.current.load();
         }
-
-        if (station.metadataUrl) {
-            fetchMetadata(station);
-            metadataIntervalRef.current = window.setInterval(() => fetchMetadata(station), 5000);
-        }
-
         audioRef.current.play().catch(e => {
             console.error("Audio playback error:", e);
             setIsLoading(false);
             setLoadingStation(null);
-            clearMetadataInterval();
         });
     };
 
     // Toggles play/pause for the current station.
     const togglePlayPause = () => {
         if (!audioRef.current) return;
+
         if (isPlaying) {
             audioRef.current.pause();
         } else if(currentlyPlaying) {
@@ -181,11 +220,11 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         audioRef.current.pause();
         audioRef.current.src = '';
         setCurrentlyPlaying(null);
+        currentStationRef.current = null;
         setIsPlaying(false);
         setIsLoading(false);
         setLoadingStation(null);
-        setSongInfo({ presenter: '', song: '' });
-        clearMetadataInterval();
+        clearPolling();
     };
     
     // Sets the player volume.
@@ -208,7 +247,7 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         loadingStation,
         volume,
         isMuted,
-        songInfo,
+        nowPlayingInfo,
         playStation,
         togglePlayPause,
         stopStation,
