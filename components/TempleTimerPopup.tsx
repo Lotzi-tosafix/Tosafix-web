@@ -23,7 +23,7 @@ const TempleTimerPopup: React.FC = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className={`fixed bottom-5 ${containerPositionClass} z-[1000] w-[330px] h-[215px]`}>
+        <div className={`fixed bottom-5 ${containerPositionClass} z-[1000] w-[280px] h-[180px]`}>
           <motion.iframe
             initial={animationInitial}
             animate={{ opacity: 1, x: 0 }}
