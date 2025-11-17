@@ -6,12 +6,13 @@ import { Play, Pause, Loader, Volume2, VolumeX, Music } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 const stations: Station[] = [
-    { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg' },
-    { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png' },
-    { nameKey: 'tokerFm', streamUrl: 'https://broadcast.adpronet.com/radio/6060/radio.mp3', logoUrl: 'https://tosafix.42web.io/new-page/%D7%98%D7%95%D7%A7%D7%A8_FM.png' },
-    { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/8NR67WMChMtGwPEAdV6LDnDvftgswEd_Z94TSwkY_derdGcfxglik3AHXkLGUC37PcDo' },
-    { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU' }
+    { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg', metadataUrl: 'https://kcm.fm/Home/LiveJ/1', metadataType: 'kol-chai' },
+    { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png', metadataUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/status-json.xsl', metadataType: 'icecast' },
+    { nameKey: 'tokerFm', streamUrl: 'https://broadcast.adpronet.com/radio/6060/radio.mp3', logoUrl: 'https://tosafix.42web.io/new-page/%D7%98%D7%95%D7%A7%D7%A8_FM.png', metadataUrl: 'https://broadcast.adpronet.com/radio/8060/stats?json=1', metadataType: 'shoutcast' },
+    { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/8NR67WMChMtGwPEAdV6LDnDvftgswEd_Z94TSwkY_derdGcfxglik3AHXkLGUC37PcDo', metadataUrl: 'https://stream.jewishradionetwork.com:8000/status-json.xsl', metadataType: 'icecast' },
+    { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU', metadataUrl: 'https://stream.jewishmusicstream.com:8000/status-json.xsl', metadataType: 'icecast' }
 ];
+
 
 // Main Player Component
 const MainPlayer = () => {
@@ -25,7 +26,8 @@ const MainPlayer = () => {
         setVolume,
         isMuted,
         setIsMuted,
-        togglePlayPause
+        togglePlayPause,
+        songInfo,
     } = useMusicPlayer();
 
     const stationName = currentlyPlaying ? t[currentlyPlaying.nameKey] as string : t.liveMusicDescription;
@@ -47,7 +49,7 @@ const MainPlayer = () => {
             transition={{ duration: 0.5 }}
             className="mb-12 bg-white/50 dark:bg-gray-800/50 p-4 rounded-2xl max-w-2xl mx-auto shadow-lg backdrop-blur-sm border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-            <div className="flex items-center gap-4 w-full sm:w-auto flex-grow">
+            <div className="flex items-center gap-4 w-full sm:w-auto">
                 <AnimatePresence mode="wait">
                     <motion.img
                         key={stationLogo}
@@ -75,6 +77,38 @@ const MainPlayer = () => {
                     </AnimatePresence>
                 </div>
             </div>
+
+            <div className="flex-grow min-w-0 text-center sm:text-start px-4">
+                 <AnimatePresence mode="wait">
+                    <motion.div
+                        key={`${songInfo.presenter}-${songInfo.song}`}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                         {currentlyPlaying && (songInfo.song || songInfo.presenter) ? (
+                            <>
+                                <p className="text-sm font-medium text-text-dark/70 dark:text-text-light/70 truncate" title={songInfo.presenter}>
+                                    {songInfo.presenter || <>&nbsp;</>}
+                                </p>
+                                <p className="text-lg font-semibold text-text-dark dark:text-text-light truncate" title={songInfo.song}>
+                                    {songInfo.song || <>&nbsp;</>}
+                                </p>
+                            </>
+                        ) : currentlyPlaying ? (
+                            <div className="h-12 flex items-center justify-center sm:justify-start"> 
+                                <p className="text-sm text-text-dark/60 dark:text-text-light/60">
+                                    {t.loadingSongInfo}
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="h-12" />
+                        )}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
             <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
                 <button
                     onClick={togglePlayPause}

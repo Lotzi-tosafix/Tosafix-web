@@ -86,6 +86,7 @@ export const translations = {
     jewishRadioNetwork: 'Jewish Radio Network',
     jewishMusicStream: 'Jewish Music Stream',
     nowPlaying: 'מנגן כעת',
+    loadingSongInfo: 'טוען מידע...',
 
 
     // Developers Page
@@ -495,9 +496,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 - "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
 - "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
 
-התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין.
-
-תודה על השימוש ב"פותחן Edge"!`,
+התוסף אינו מתקשר עם שרתים חיצוניים. כל הפxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
   },
   en: {
     // Header & Navigation
@@ -586,6 +585,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     jewishRadioNetwork: 'Jewish Radio Network',
     jewishMusicStream: 'Jewish Music Stream',
     nowPlaying: 'Now Playing',
+    loadingSongInfo: 'Loading info...',
 
     // Developers Page
     devIntro: 'Welcome to the Tosafix Developer Center. Here you will find documentation for various APIs and tools we offer.',
