@@ -127,7 +127,7 @@ const MainPlayer = () => {
                             className="text-lg font-bold text-text-dark dark:text-text-light truncate"
                         >
                             {stationName}
-                        </h2 >
+                        </motion.h2>
                     </AnimatePresence>
                 </div>
             </div>
