@@ -2,7 +2,7 @@ import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, Loader, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, Loader, Volume2, VolumeX, Music } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 const stations: Station[] = [
@@ -13,30 +13,110 @@ const stations: Station[] = [
     { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU' }
 ];
 
-// Radio Player Component
-interface RadioPlayerProps {
-    station: Station;
-    isPlaying: boolean;
-    isLoading: boolean;
-    onPlayPause: (station: Station) => void;
-}
-
-const RadioPlayer: React.FC<RadioPlayerProps> = ({ station, isPlaying, isLoading, onPlayPause }) => {
+// Main Player Component
+const MainPlayer = () => {
     const { language } = useLanguage();
     const t = translations[language];
+    const {
+        currentlyPlaying,
+        isPlaying,
+        loadingStation,
+        volume,
+        setVolume,
+        isMuted,
+        setIsMuted,
+        togglePlayPause
+    } = useMusicPlayer();
+
+    const stationName = currentlyPlaying ? t[currentlyPlaying.nameKey] as string : t.liveMusicDescription;
+    const stationLogo = currentlyPlaying ? currentlyPlaying.logoUrl : 'https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_6916f3f610b79.png';
+    const isLoading = !!loadingStation;
 
     const buttonIcon = isLoading ? (
-        <Loader className="w-10 h-10 text-black animate-spin" />
+        <Loader className="w-8 h-8 text-white animate-spin" />
     ) : isPlaying ? (
-        <Pause className="w-10 h-10 text-black fill-current" />
+        <Pause className="w-8 h-8 text-white fill-current" />
     ) : (
-        <Play className="w-10 h-10 text-black fill-current ml-1" />
+        <Play className="w-8 h-8 text-white fill-current ml-1" />
     );
 
     return (
         <motion.div
-            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isPlaying ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
-            onClick={() => onPlayPause(station)}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12 bg-white/50 dark:bg-gray-800/50 p-4 rounded-2xl max-w-2xl mx-auto shadow-lg backdrop-blur-sm border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+            <div className="flex items-center gap-4 w-full sm:w-auto flex-grow">
+                <AnimatePresence mode="wait">
+                    <motion.img
+                        key={stationLogo}
+                        src={stationLogo}
+                        alt={stationName}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="w-16 h-16 rounded-lg object-cover shadow-md"
+                    />
+                </AnimatePresence>
+                <div className="flex-grow min-w-0">
+                    <p className="text-sm text-primary font-semibold h-5">{currentlyPlaying ? t.nowPlaying : ' '}</p>
+                    <AnimatePresence mode="wait">
+                        <motion.h2
+                            key={stationName}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.2 }}
+                            className="text-lg font-bold text-text-dark dark:text-text-light truncate"
+                        >
+                            {stationName}
+                        </motion.h2>
+                    </AnimatePresence>
+                </div>
+            </div>
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
+                <button
+                    onClick={togglePlayPause}
+                    disabled={!currentlyPlaying || isLoading}
+                    className="w-16 h-16 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105 flex-shrink-0"
+                    aria-label={isPlaying ? "Pause" : "Play"}
+                >
+                    {buttonIcon}
+                </button>
+                <div className="flex items-center gap-2 flex-grow sm:flex-grow-0">
+                    <button
+                        onClick={() => setIsMuted(!isMuted)}
+                        className="text-text-dark dark:text-text-light hover:text-primary transition-colors"
+                        aria-label={isMuted ? "Unmute" : "Mute"}
+                    >
+                        {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                    </button>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={isMuted ? 0 : volume}
+                        onChange={(e) => setVolume(parseFloat(e.target.value))}
+                        className="w-full sm:w-24 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                        aria-label="Volume control"
+                    />
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
+// Station Card Component
+const StationCard: React.FC<{ station: Station, isActive: boolean, onSelect: (station: Station) => void }> = ({ station, isActive, onSelect }) => {
+    const { language } = useLanguage();
+    const t = translations[language];
+
+    return (
+        <motion.div
+            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isActive ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
+            onClick={() => onSelect(station)}
             whileHover={{ scale: 1.03 }}
             transition={{ type: 'spring', stiffness: 300 }}
         >
@@ -46,16 +126,10 @@ const RadioPlayer: React.FC<RadioPlayerProps> = ({ station, isPlaying, isLoading
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white/50 group-hover:scale-105">
-                    {buttonIcon}
-                </div>
-            </div>
-
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
                 <h3 className="text-white text-lg font-bold text-center truncate">{t[station.nameKey] as string}</h3>
                 <AnimatePresence>
-                {isPlaying && (
+                {isActive && (
                      <motion.p 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
@@ -77,23 +151,8 @@ const LiveMusic: React.FC = () => {
     const t = translations[language];
     const {
         currentlyPlaying,
-        isPlaying,
-        loadingStation,
-        volume,
-        setVolume,
-        isMuted,
-        setIsMuted,
         playStation,
-        togglePlayPause
     } = useMusicPlayer();
-
-    const handlePlayPause = (station: Station) => {
-        if (currentlyPlaying?.streamUrl === station.streamUrl) {
-            togglePlayPause();
-        } else {
-            playStation(station);
-        }
-    };
 
     return (
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark py-12 px-4">
@@ -105,25 +164,7 @@ const LiveMusic: React.FC = () => {
                     <p className="mt-4 text-lg text-text-dark/70 dark:text-text-light/70">{t.liveMusicDescription}</p>
                 </header>
                 
-                <div className="mb-12 flex justify-center items-center gap-4 bg-white/50 dark:bg-gray-800/50 p-4 rounded-full max-w-sm mx-auto shadow-md backdrop-blur-sm border border-primary/20">
-                    <button 
-                        onClick={() => setIsMuted(!isMuted)} 
-                        className="text-text-dark dark:text-text-light hover:text-primary transition-colors"
-                        aria-label={isMuted ? "Unmute" : "Mute"}
-                    >
-                        {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
-                    </button>
-                    <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={isMuted ? 0 : volume}
-                        onChange={(e) => setVolume(parseFloat(e.target.value))}
-                        className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
-                        aria-label="Volume control"
-                    />
-                </div>
+                <MainPlayer />
 
                 <main>
                     <motion.div 
@@ -136,11 +177,10 @@ const LiveMusic: React.FC = () => {
                     >
                         {stations.map(station => (
                             <motion.div key={station.nameKey} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                                <RadioPlayer
+                                <StationCard
                                     station={station}
-                                    isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
-                                    isLoading={loadingStation?.streamUrl === station.streamUrl}
-                                    onPlayPause={handlePlayPause}
+                                    isActive={currentlyPlaying?.streamUrl === station.streamUrl}
+                                    onSelect={playStation}
                                 />
                             </motion.div>
                         ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, Loader, X } from 'lucide-react';
 import { useMusicPlayer } from '../contexts/MusicPlayerContext';
@@ -17,6 +17,7 @@ const MiniMusicPlayer: React.FC = () => {
     const { isHebrew, language } = useLanguage();
     const t = translations[language];
     const location = useLocation();
+    const navigate = useNavigate();
 
     // Determine if the mini player should be visible
     const isVisible = currentlyPlaying && location.pathname !== '/nosafix/live-music';
@@ -57,17 +58,22 @@ const MiniMusicPlayer: React.FC = () => {
         <Play className="w-6 h-6 text-white fill-current ml-1" />
     );
 
+    const handleNavigation = () => {
+        navigate('/nosafix/live-music');
+    };
+
     return (
         <AnimatePresence>
             {isVisible && (
                 <motion.div
-                    className={`fixed bottom-5 ${positionClass} z-[1000] w-64`}
+                    className={`fixed bottom-5 ${positionClass} z-[1000] w-64 cursor-pointer`}
                     custom={isHebrew}
                     variants={animationVariants}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
                     layout
+                    onClick={handleNavigation}
                 >
                     <div className="bg-white/80 dark:bg-bg-dark/80 backdrop-blur-md rounded-xl shadow-2xl border border-primary/30 flex items-center p-3 gap-3">
                         <img 
@@ -84,7 +90,7 @@ const MiniMusicPlayer: React.FC = () => {
                             </p>
                         </div>
                         <button 
-                            onClick={togglePlayPause} 
+                            onClick={(e) => { e.stopPropagation(); togglePlayPause(); }} 
                             className="w-12 h-12 flex-shrink-0 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-colors"
                             aria-label={isPlaying ? "Pause" : "Play"}
                         >
@@ -92,7 +98,7 @@ const MiniMusicPlayer: React.FC = () => {
                         </button>
                     </div>
                     <button
-                        onClick={stopStation}
+                        onClick={(e) => { e.stopPropagation(); stopStation(); }}
                         className={`absolute ${isHebrew ? '-left-2 -top-2' : '-right-2 -top-2'} w-7 h-7 flex items-center justify-center bg-black/60 backdrop-blur-sm rounded-full text-white/80 hover:text-white hover:bg-black/80 transition-all duration-300 shadow-lg transform hover:scale-110 z-10`}
                         aria-label="Close player"
                     >
