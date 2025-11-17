@@ -23,6 +23,8 @@ import Cutfix from './pages/nosafix/Cutfix';
 import LiveMusic from './pages/nosafix/LiveMusic';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { MusicPlayerProvider } from './contexts/MusicPlayerContext';
+import MiniMusicPlayer from './components/MiniMusicPlayer';
 
 function AppContent() {
   const { language, isHebrew } = useLanguage();
@@ -75,6 +77,7 @@ function AppContent() {
       <Footer />
       {location.pathname !== '/' && <BackToTopButton />}
       <TempleTimerPopup />
+      <MiniMusicPlayer />
       <Analytics />
       <SpeedInsights />
     </div>
@@ -84,7 +87,9 @@ function AppContent() {
 function App() {
   return (
     <HashRouter>
-      <AppContent />
+      <MusicPlayerProvider>
+        <AppContent />
+      </MusicPlayerProvider>
     </HashRouter>
   );
 }

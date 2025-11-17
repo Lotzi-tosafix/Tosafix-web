@@ -1,15 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, Loader, Volume2, VolumeX } from 'lucide-react';
-
-// Station data structure
-interface Station {
-    nameKey: keyof typeof translations['he'];
-    streamUrl: string;
-    logoUrl: string;
-}
+import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 const stations: Station[] = [
     { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg' },
@@ -59,7 +53,6 @@ const RadioPlayer: React.FC<RadioPlayerProps> = ({ station, isPlaying, isLoading
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                {/* FIX: Cast dynamic translation lookup to string to resolve ReactNode type error. */}
                 <h3 className="text-white text-lg font-bold text-center truncate">{t[station.nameKey] as string}</h3>
                 <AnimatePresence>
                 {isPlaying && (
@@ -82,66 +75,25 @@ const RadioPlayer: React.FC<RadioPlayerProps> = ({ station, isPlaying, isLoading
 const LiveMusic: React.FC = () => {
     const { language } = useLanguage();
     const t = translations[language];
-    const audioRef = useRef<HTMLAudioElement>(null);
-
-    const [currentlyPlaying, setCurrentlyPlaying] = useState<Station | null>(null);
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    const [loadingStation, setLoadingStation] = useState<Station | null>(null);
-    const [volume, setVolume] = useState<number>(0.75);
-    const [isMuted, setIsMuted] = useState<boolean>(false);
+    const {
+        currentlyPlaying,
+        isPlaying,
+        loadingStation,
+        volume,
+        setVolume,
+        isMuted,
+        setIsMuted,
+        playStation,
+        togglePlayPause
+    } = useMusicPlayer();
 
     const handlePlayPause = (station: Station) => {
-        if (loadingStation) return;
-
-        if (currentlyPlaying?.streamUrl === station.streamUrl && isPlaying) {
-            audioRef.current?.pause();
+        if (currentlyPlaying?.streamUrl === station.streamUrl) {
+            togglePlayPause();
         } else {
-            setLoadingStation(station);
-            setIsPlaying(false);
-            if (audioRef.current) {
-                if (currentlyPlaying?.streamUrl !== station.streamUrl) {
-                    audioRef.current.src = station.streamUrl;
-                    audioRef.current.load();
-                }
-                audioRef.current.play().catch(e => {
-                    console.error("Audio playback error:", e);
-                    setLoadingStation(null);
-                });
-            }
-            setCurrentlyPlaying(station);
+            playStation(station);
         }
     };
-    
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        const onPlay = () => { setIsPlaying(true); setLoadingStation(null); };
-        const onPause = () => setIsPlaying(false);
-        const onStalled = () => setLoadingStation(currentlyPlaying);
-        const onWaiting = () => setLoadingStation(currentlyPlaying);
-        const onPlaying = () => setLoadingStation(null);
-
-        audio.addEventListener('play', onPlay);
-        audio.addEventListener('pause', onPause);
-        audio.addEventListener('stalled', onStalled);
-        audio.addEventListener('waiting', onWaiting);
-        audio.addEventListener('playing', onPlaying);
-        
-        return () => {
-            audio.removeEventListener('play', onPlay);
-            audio.removeEventListener('pause', onPause);
-            audio.removeEventListener('stalled', onStalled);
-            audio.removeEventListener('waiting', onWaiting);
-            audio.removeEventListener('playing', onPlaying);
-        };
-    }, [currentlyPlaying]);
-
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.volume = isMuted ? 0 : volume;
-        }
-    }, [volume, isMuted]);
 
     return (
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark py-12 px-4">
@@ -167,10 +119,7 @@ const LiveMusic: React.FC = () => {
                         max="1"
                         step="0.01"
                         value={isMuted ? 0 : volume}
-                        onChange={(e) => {
-                            setVolume(parseFloat(e.target.value));
-                            if (isMuted) setIsMuted(false);
-                        }}
+                        onChange={(e) => setVolume(parseFloat(e.target.value))}
                         className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
                         aria-label="Volume control"
                     />
@@ -196,7 +145,6 @@ const LiveMusic: React.FC = () => {
                             </motion.div>
                         ))}
                     </motion.div>
-                    <audio ref={audioRef} preload="none" className="hidden" />
                 </main>
             </div>
         </div>
