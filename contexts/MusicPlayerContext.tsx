@@ -140,6 +140,40 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         }
     };
     
+    const fetchJewishMusicStreamInfo = async () => {
+        if (currentStationRef.current?.nameKey !== 'jewishMusicStream') {
+            return;
+        }
+        try {
+            const apiUrl = `/api/getJmsSong`;
+            const response = await fetch(apiUrl);
+
+            if (!response.ok) {
+                console.error('Failed to fetch Jewish Music Stream info from our API, status:', response.status);
+                setNowPlayingInfo(null);
+                return;
+            }
+            
+            const data = await response.json();
+            const song = data?.TITLE?.trim() || '';
+            const artist = data?.ARTIST?.trim() || '';
+
+            if (song && artist) {
+                setNowPlayingInfo(prevInfo => {
+                    if (prevInfo?.song !== song || prevInfo?.artist !== artist) {
+                        return { song, artist };
+                    }
+                    return prevInfo;
+                });
+            } else {
+                setNowPlayingInfo(null);
+            }
+        } catch (error) {
+            console.error("Error fetching Jewish Music Stream info:", error);
+            setNowPlayingInfo(null);
+        }
+    };
+    
     // Initialize the Audio element and its event listeners on component mount.
     useEffect(() => {
         audioRef.current = new Audio();
@@ -185,6 +219,9 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         } else if (station.nameKey === 'jewishRadioNetwork') {
             fetchJewishRadioNetworkInfo();
             pollingIntervalId.current = window.setInterval(fetchJewishRadioNetworkInfo, 5000);
+        } else if (station.nameKey === 'jewishMusicStream') {
+            fetchJewishMusicStreamInfo();
+            pollingIntervalId.current = window.setInterval(fetchJewishMusicStreamInfo, 5000);
         }
 
         setLoadingStation(station);

@@ -82,7 +82,7 @@ const MainPlayer = () => {
             {/* Center: Song Info */}
             <div className="flex-grow min-w-0 text-center h-12">
                 <AnimatePresence>
-                    {nowPlayingInfo && (currentlyPlaying?.nameKey === 'kolChaiMusic' || currentlyPlaying?.nameKey === 'jewishRadioNetwork') && (
+                    {nowPlayingInfo && (currentlyPlaying?.nameKey === 'kolChaiMusic' || currentlyPlaying?.nameKey === 'jewishRadioNetwork' || currentlyPlaying?.nameKey === 'jewishMusicStream') && (
                         <motion.div
                             key={nowPlayingInfo.song}
                             initial={{ opacity: 0, y: 10 }}
@@ -127,7 +127,7 @@ const MainPlayer = () => {
                             className="text-lg font-bold text-text-dark dark:text-text-light truncate"
                         >
                             {stationName}
-                        </motion.h2>
+                        </h2 >
                     </AnimatePresence>
                 </div>
             </div>
