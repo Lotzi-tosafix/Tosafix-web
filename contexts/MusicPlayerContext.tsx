@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState, useRef, useEffect, ReactNode } from 'react';
 import { translations } from '../translations/translations';
+import Hls from 'hls.js';
 
 // Defines the structure for a radio station object.
 export interface Station {
     nameKey: keyof typeof translations['he'];
     streamUrl: string;
     logoUrl: string;
+    nowPlayingUrl?: string;
 }
 
 export interface NowPlayingInfo {
@@ -47,6 +49,7 @@ interface MusicPlayerProviderProps {
 // Provider component that wraps the app and provides the music player state.
 export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ children }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const hlsRef = useRef<Hls | null>(null);
     const pollingIntervalId = useRef<number | null>(null);
     const currentStationRef = useRef<Station | null>(null); // To avoid race conditions
     const [currentlyPlaying, setCurrentlyPlaying] = useState<Station | null>(null);
@@ -65,15 +68,19 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         setNowPlayingInfo(null);
     };
 
-    const fetchKolChaiMusicInfo = async () => {
-        // Guard against race condition: only fetch if Kol Chai is still the active station.
-        if (currentStationRef.current?.nameKey !== 'kolChaiMusic') {
+    const fetchKcmInfo = async (station: Station | null) => {
+        if (!station || !station.nowPlayingUrl) {
+            setNowPlayingInfo(null);
+            return;
+        }
+        // Guard against race condition: only fetch if the station is still the active one.
+        if (currentStationRef.current?.streamUrl !== station.streamUrl) {
             return;
         }
         try {
-            const response = await fetch('https://kcm.fm/Home/LiveJ/1');
+            const response = await fetch(station.nowPlayingUrl);
             if (!response.ok) {
-                console.error('Failed to fetch Kol Chai Music info, status:', response.status);
+                console.error(`Failed to fetch info from ${station.nowPlayingUrl}, status:`, response.status);
                 setNowPlayingInfo(null);
                 return;
             }
@@ -99,7 +106,7 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
                 setNowPlayingInfo(null);
             }
         } catch (error) {
-            console.error("Error fetching Kol Chai Music info:", error);
+            console.error(`Error fetching info from ${station.nowPlayingUrl}:`, error);
             setNowPlayingInfo(null);
         }
     };
@@ -109,7 +116,6 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
             return;
         }
         try {
-            const targetUrl = `https://jewishradionetwork.com/system/web/song.json?q=${Date.now()}`;
             // Following the advice provided, using a different proxy to bypass NetFree content filtering.
             const apiUrl = `/api/getSong`;
             const response = await fetch(apiUrl);
@@ -195,6 +201,9 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
             audio.removeEventListener('pause', onPause);
             audio.removeEventListener('waiting', onWaiting);
             audio.removeEventListener('playing', onPlaying);
+            if (hlsRef.current) {
+                hlsRef.current.destroy();
+            }
             audio.pause();
             clearPolling();
         };
@@ -213,9 +222,9 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         
         clearPolling();
         
-        if (station.nameKey === 'kolChaiMusic') {
-            fetchKolChaiMusicInfo();
-            pollingIntervalId.current = window.setInterval(fetchKolChaiMusicInfo, 5000);
+        if (station.nowPlayingUrl?.includes('kcm.fm')) {
+            fetchKcmInfo(station);
+            pollingIntervalId.current = window.setInterval(() => fetchKcmInfo(currentStationRef.current), 5000);
         } else if (station.nameKey === 'jewishRadioNetwork') {
             fetchJewishRadioNetworkInfo();
             pollingIntervalId.current = window.setInterval(fetchJewishRadioNetworkInfo, 5000);
@@ -227,17 +236,48 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
         setLoadingStation(station);
         setIsLoading(true);
 
-        if (audioRef.current.src !== station.streamUrl) {
-            setCurrentlyPlaying(station);
-            currentStationRef.current = station;
+        const isHls = station.streamUrl.includes('.m3u8');
+
+        if (isHls) {
+            if (Hls.isSupported()) {
+                if (hlsRef.current) {
+                    hlsRef.current.destroy();
+                }
+                const hls = new Hls();
+                hlsRef.current = hls;
+                hls.loadSource(station.streamUrl);
+                hls.attachMedia(audioRef.current);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    audioRef.current?.play().catch(e => {
+                        console.error("Audio playback error:", e);
+                        setIsLoading(false);
+                        setLoadingStation(null);
+                    });
+                });
+            } else if (audioRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+                // For browsers with native HLS support (e.g., Safari)
+                audioRef.current.src = station.streamUrl;
+                audioRef.current.play().catch(e => console.error("Audio playback error:", e));
+            }
+        } else {
+            // For regular streams (MP3, etc.)
+            if (hlsRef.current) {
+                hlsRef.current.destroy();
+                hlsRef.current = null;
+            }
             audioRef.current.src = station.streamUrl;
-            audioRef.current.load();
+            const playPromise = audioRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                    console.error("Audio playback error:", e);
+                    setIsLoading(false);
+                    setLoadingStation(null);
+                });
+            }
         }
-        audioRef.current.play().catch(e => {
-            console.error("Audio playback error:", e);
-            setIsLoading(false);
-            setLoadingStation(null);
-        });
+
+        setCurrentlyPlaying(station);
+        currentStationRef.current = station;
     };
 
     // Toggles play/pause for the current station.
@@ -246,16 +286,29 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
 
         if (isPlaying) {
             audioRef.current.pause();
-        } else if(currentlyPlaying) {
-             playStation(currentlyPlaying);
+        } else if (currentlyPlaying) {
+             const playPromise = audioRef.current.play();
+             if (playPromise !== undefined) {
+                 playPromise.catch(error => {
+                     console.error("Audio playback error on resume:", error);
+                     // If resuming fails, it might be because the stream has ended or the connection is stale.
+                     // Let's try to restart the station from scratch.
+                     playStation(currentlyPlaying);
+                 });
+             }
         }
     };
     
     // Stops playback and clears the current station.
     const stopStation = () => {
+        if (hlsRef.current) {
+            hlsRef.current.destroy();
+            hlsRef.current = null;
+        }
         if (!audioRef.current) return;
         audioRef.current.pause();
-        audioRef.current.src = '';
+        audioRef.current.removeAttribute('src'); // Use removeAttribute for cleaner state
+        audioRef.current.load();
         setCurrentlyPlaying(null);
         currentStationRef.current = null;
         setIsPlaying(false);

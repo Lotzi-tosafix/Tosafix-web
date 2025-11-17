@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Play, Pause, Loader, X } from 'lucide-react';
 import { useMusicPlayer } from '../contexts/MusicPlayerContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -25,7 +25,9 @@ const MiniMusicPlayer: React.FC = () => {
     const positionClass = isHebrew ? 'right-5' : 'left-5';
     
     // Animation variants for the "emerge from center and move to corner" effect
-    const animationVariants = {
+    // FIX: Correctly type animationVariants with Variants and ensure all variant properties are functions
+    // to resolve type incompatibility when using the `custom` prop.
+    const animationVariants: Variants = {
         hidden: (isHebrew: boolean) => ({ 
             opacity: 0, 
             scale: 0.5, 
@@ -34,7 +36,7 @@ const MiniMusicPlayer: React.FC = () => {
             translateX: "-50%",
             translateY: "-50%"
         }),
-        visible: { 
+        visible: () => ({ 
             opacity: 1, 
             scale: 1, 
             y: 0,
@@ -42,12 +44,12 @@ const MiniMusicPlayer: React.FC = () => {
             translateX: 0,
             translateY: 0,
             transition: { type: "spring", stiffness: 100, damping: 15, duration: 0.5 }
-        },
-        exit: { 
+        }),
+        exit: () => ({ 
             opacity: 0, 
             scale: 0.8,
             transition: { duration: 0.2 }
-        }
+        })
     };
     
     const buttonIcon = isLoading ? (
