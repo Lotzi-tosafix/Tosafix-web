@@ -45,7 +45,7 @@ export default function HeroSection() {
         >
           <button
             onClick={scrollToExtensions}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-12 text-white px-8 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 border-0"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-12 text-white px-8 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 hover:brightness-110 border-0"
             style={{ 
               background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)',
               boxShadow: '0 0 12px #79C9E840'

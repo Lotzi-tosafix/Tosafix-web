@@ -53,7 +53,7 @@ export const translations = {
     netSkinGridDesc: 'NetSkin מחליף את דף החסימה הסטנדרטי של נטפרי בעשרות עיצובים מרהיבים, דינמיים וניתנים להתאמה אישית מלאה.',
     hebrewDateGridDesc: 'מציג תאריך עברי בחלונית קופצת (tooltip) בעת ריחוף מעל תאריך לועזי.',
     myEmojiGridDesc: "העלה, נהל, חפש, והוסף אימוג'ים מותאמים אישית משלך לצ'אטים, מיילים, רשתות חברתיות ועוד. כולל אפשרות מתקדמת להסרת רקע!",
-    edgeOpenerGridDesc: 'פותח את הטאב הנוכחי בדפדפן Microsoft Edge או מעתיק את הכתובת.',
+    edgeOpenerGridDesc: "פותח את הטאב הנוכחי בדפדפן Microsoft Edge או מעתיק את הכתובת.",
 
     // Cutfix Tool
     cutfix: 'Fix remover',
@@ -113,6 +113,7 @@ export const translations = {
     codeExamples: 'דוגמאות קוד',
     jsExample: 'דוגמה ב-JavaScript (Fetch API)',
     curlExample: 'דוגמה ב-cURL',
+    templeTimerTitle: 'טיימר בית המקדש',
     templeTimerDesc: 'ווידג\'ט פשוט המציג טיימר דינמי הסופר את הזמן שחלף מאז חורבן בית המקדש השני, זמין בעברית ובאנגלית, וקל להטמעה.',
     livePreview: 'תצוגה מקדימה חיה',
     embedCode: 'קוד להטמעה',
@@ -494,7 +495,9 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 - "tabs": כדי לקרוא את כתובת ה-URL של הלשונית הפעילה.
 - "clipboardWrite": כדי להעתיק את הכתובת ללוח במקרה הצורך.
 
-התוסף אינו מתקשר עם שרתים חיצוניים. כל הפxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge"!`,
+התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין.
+
+תודה על השימוש ב"פותחן Edge"!`,
   },
   en: {
     // Header & Navigation
@@ -609,6 +612,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     codeExamples: 'Code Examples',
     jsExample: 'JavaScript Example (Fetch API)',
     curlExample: 'cURL Example',
+    templeTimerTitle: 'Temple Timer Widget',
     templeTimerDesc: 'A simple widget that displays a dynamic timer counting the time elapsed since the destruction of the Second Temple, available in Hebrew and English, and easy to embed.',
     livePreview: 'Live Preview',
     embedCode: 'Embed Code',
