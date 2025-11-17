@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -57,7 +54,7 @@ export default function ExtensionsGrid() {
         >
           {extensionList.map((ext) => (
             <motion.div key={ext.nameKey} variants={itemVariants} className="flex">
-              <div className="flex flex-col w-full rounded-xl shadow h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 border border-primary/20 dark:border-secondary/20">
+              <Link to={ext.path} className="flex flex-col w-full rounded-xl shadow h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 border border-primary/20 dark:border-secondary/20 cursor-pointer">
                 <div className="p-6 text-center">
                   <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} mb-4 mx-auto flex items-center justify-center`}>
                     <div className="w-16 h-16 bg-white/80 dark:bg-white/20 rounded-full flex items-center justify-center shadow-inner backdrop-blur-sm">
@@ -75,20 +72,8 @@ export default function ExtensionsGrid() {
                     {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
                     {t[ext.descKey as keyof typeof t] as string}
                   </p>
-                  <Link to={ext.path} className="mt-auto">
-                    <button 
-                        className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium text-white transition-all duration-300" 
-                        style={{ 
-                            background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)',
-                            boxShadow: '0 0 12px #79C9E840' 
-                        }}
-                    >
-                        {t.readMore}
-                        <ArrowLeft className={`w-4 h-4 transform ${isHebrew ? '' : 'rotate-180'}`} />
-                    </button>
-                  </Link>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

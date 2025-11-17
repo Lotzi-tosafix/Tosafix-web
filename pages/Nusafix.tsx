@@ -63,7 +63,7 @@ export default function Nosafix() {
               const Icon = tool.icon;
               return (
                 <motion.div key={tool.nameKey} variants={itemVariants} className="flex">
-                  <div className="flex flex-col w-full max-w-sm mx-auto rounded-xl shadow h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 border border-secondary/20 dark:border-accent/20">
+                  <Link to={tool.path} className="flex flex-col w-full max-w-sm mx-auto rounded-xl shadow h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 border border-secondary/20 dark:border-accent/20 cursor-pointer">
                     <div className="p-6 text-center">
                       <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${tool.gradient} mb-4 mx-auto flex items-center justify-center`}>
                         <div className="w-16 h-16 bg-white/80 dark:bg-white/20 rounded-full flex items-center justify-center shadow-inner backdrop-blur-sm">
@@ -80,20 +80,8 @@ export default function Nosafix() {
                         {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
                         {t[tool.descKey as keyof typeof t] as string}
                       </p>
-                      <Link to={tool.path} className="mt-auto">
-                        <button
-                          className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium text-white transition-all duration-300"
-                          style={{
-                            background: 'linear-gradient(135deg, #B18BE8 0%, #007AFF 100%)',
-                            boxShadow: '0 0 12px #B18BE840'
-                          }}
-                        >
-                          {t.readMore}
-                          <ArrowLeft className={`w-4 h-4 transform ${isHebrew ? '' : 'rotate-180'}`} />
-                        </button>
-                      </Link>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               )
             })}
