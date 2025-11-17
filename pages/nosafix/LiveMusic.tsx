@@ -99,7 +99,7 @@ const MainPlayer = () => {
                         step="0.01"
                         value={isMuted ? 0 : volume}
                         onChange={(e) => setVolume(parseFloat(e.target.value))}
-                        className="w-full sm:w-24 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                        className="w-full sm:w-32 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
                         aria-label="Volume control"
                     />
                 </div>
@@ -109,13 +109,13 @@ const MainPlayer = () => {
 };
 
 // Station Card Component
-const StationCard: React.FC<{ station: Station, isActive: boolean, onSelect: (station: Station) => void }> = ({ station, isActive, onSelect }) => {
+const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: boolean, onSelect: (station: Station) => void }> = ({ station, isSelected, isPlaying, onSelect }) => {
     const { language } = useLanguage();
     const t = translations[language];
 
     return (
         <motion.div
-            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isActive ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
+            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isSelected ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
             onClick={() => onSelect(station)}
             whileHover={{ scale: 1.03 }}
             transition={{ type: 'spring', stiffness: 300 }}
@@ -129,7 +129,7 @@ const StationCard: React.FC<{ station: Station, isActive: boolean, onSelect: (st
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
                 <h3 className="text-white text-lg font-bold text-center truncate">{t[station.nameKey] as string}</h3>
                 <AnimatePresence>
-                {isActive && (
+                {isPlaying && (
                      <motion.p 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
@@ -151,8 +151,18 @@ const LiveMusic: React.FC = () => {
     const t = translations[language];
     const {
         currentlyPlaying,
+        isPlaying,
         playStation,
+        togglePlayPause,
     } = useMusicPlayer();
+    
+    const handleStationSelect = (station: Station) => {
+        if (currentlyPlaying?.streamUrl === station.streamUrl) {
+            togglePlayPause();
+        } else {
+            playStation(station);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark py-12 px-4">
@@ -179,8 +189,9 @@ const LiveMusic: React.FC = () => {
                             <motion.div key={station.nameKey} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
                                 <StationCard
                                     station={station}
-                                    isActive={currentlyPlaying?.streamUrl === station.streamUrl}
-                                    onSelect={playStation}
+                                    isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
+                                    isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
+                                    onSelect={handleStationSelect}
                                 />
                             </motion.div>
                         ))}
