@@ -8,7 +8,7 @@ import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 // FIX: Use `as const` to preserve the literal types of `nameKey` and prevent type widening to `string`.
 const baseStations = [
-    { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm/upload/pictures/11/11391.jpg', nowPlayingUrl: 'https://kcm.fm/Home/LiveJ/1' },
+    { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm//static/images/fblogo.png', nowPlayingUrl: 'https://kcm.fm/Home/LiveJ/1' },
     { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png' },
     { nameKey: 'tokerFm', streamUrl: 'https://broadcast.adpronet.com/radio/6060/radio.mp3', logoUrl: 'https://tosafix.42web.io/new-page/%D7%98%D7%95%D7%A7%D7%A8_FM.png' },
     { nameKey: 'jewishRadioNetwork', streamUrl: 'https://stream.jewishradionetwork.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/8NR67WMChMtGwPEAdV6LDnDvftgswEd_Z94TSwkY_derdGcfxglik3AHXkLGUC37PcDo' },
