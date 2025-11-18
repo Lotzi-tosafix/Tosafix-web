@@ -219,24 +219,28 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
     // Function to start playing a new station.
     const playStation = (station: Station) => {
         if (!audioRef.current) return;
-        
+
         clearPolling();
         
-        if (station.nowPlayingUrl?.includes('kcm.fm')) {
-            fetchKcmInfo(station);
-            pollingIntervalId.current = window.setInterval(() => fetchKcmInfo(currentStationRef.current), 5000);
-        } else if (station.nameKey === 'jewishRadioNetwork') {
-            fetchJewishRadioNetworkInfo();
-            pollingIntervalId.current = window.setInterval(fetchJewishRadioNetworkInfo, 5000);
-        } else if (station.nameKey === 'jewishMusicStream') {
-            fetchJewishMusicStreamInfo();
-            pollingIntervalId.current = window.setInterval(fetchJewishMusicStreamInfo, 5000);
+        const isHls = station.streamUrl.includes('.m3u8');
+
+        // Setup polling or HLS metadata listener
+        if (!isHls) {
+            // For non-HLS streams, check if they have a polling URL.
+            if (station.nowPlayingUrl?.includes('kcm.fm')) {
+                fetchKcmInfo(station);
+                pollingIntervalId.current = window.setInterval(() => fetchKcmInfo(currentStationRef.current), 5000);
+            } else if (station.nameKey === 'jewishRadioNetwork') {
+                fetchJewishRadioNetworkInfo();
+                pollingIntervalId.current = window.setInterval(fetchJewishRadioNetworkInfo, 5000);
+            } else if (station.nameKey === 'jewishMusicStream') {
+                fetchJewishMusicStreamInfo();
+                pollingIntervalId.current = window.setInterval(fetchJewishMusicStreamInfo, 5000);
+            }
         }
 
         setLoadingStation(station);
         setIsLoading(true);
-
-        const isHls = station.streamUrl.includes('.m3u8');
 
         if (isHls) {
             if (Hls.isSupported()) {
@@ -247,6 +251,27 @@ export const MusicPlayerProvider: React.FC<MusicPlayerProviderProps> = ({ childr
                 hlsRef.current = hls;
                 hls.loadSource(station.streamUrl);
                 hls.attachMedia(audioRef.current);
+                
+                // Attach FRAG_CHANGED listener for HLS streams to get real-time metadata
+                hls.on(Hls.Events.FRAG_CHANGED, (_event, data) => {
+                    const title = data.frag.title;
+                    if (title) {
+                        const parts = title.split(' - ');
+                        const song = parts[0]?.trim() || '';
+                        const artist = parts.slice(1).join(' - ').trim() || '';
+
+                        if (song) { // Artist can be optional sometimes
+                            setNowPlayingInfo(prevInfo => {
+                                // Prevent flicker if data is the same
+                                if (prevInfo?.song !== song || prevInfo?.artist !== artist) {
+                                    return { song, artist };
+                                }
+                                return prevInfo;
+                            });
+                        }
+                    }
+                });
+
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
                     audioRef.current?.play().catch(e => {
                         console.error("Audio playback error:", e);

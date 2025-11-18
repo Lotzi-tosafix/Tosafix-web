@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, Loader, Volume2, VolumeX, Music, Folder } from 'lucide-react';
+// FIX: Add Variants import from framer-motion to correctly type animation variants.
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { Play, Pause, Loader, Volume2, VolumeX, Music } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 // FIX: Use `as const` to preserve the literal types of `nameKey` and prevent type widening to `string`.
@@ -228,10 +229,14 @@ const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: 
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style={{ backgroundImage: `url(${station.logoUrl})` }}
             />
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
-
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end h-full">
-                <h3 className="text-white text-2xl font-bold text-center leading-tight drop-shadow-md">{t[station.nameKey] as string}</h3>
+            
+            <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end h-full">
+                <h3 
+                    className="text-white text-2xl font-bold text-center leading-tight"
+                    style={{ textShadow: '2px 2px 5px rgba(0, 0, 0, 0.8)' }}
+                >
+                    {t[station.nameKey] as string}
+                </h3>
                 <AnimatePresence>
                 {isPlaying && (
                      <motion.p 
@@ -239,6 +244,7 @@ const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: 
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         className="text-primary text-sm font-semibold text-center"
+                        style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)' }}
                      >
                         {t.nowPlaying}
                      </motion.p>
@@ -249,30 +255,21 @@ const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: 
     );
 };
 
-// Folder Card Component
-const FolderCard: React.FC<{ isOpen: boolean, onClick: () => void }> = ({ isOpen, onClick }) => {
-    const { language } = useLanguage();
-    const t = translations[language];
-
+// Folder Component
+const MusicVolumeFolder: React.FC<{ isOpen: boolean, onClick: () => void }> = ({ isOpen, onClick }) => {
     return (
         <motion.div
             layout
-            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isOpen ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
             onClick={onClick}
-            whileHover={{ scale: 1.03 }}
+            className={`w-full max-w-2xl mx-auto rounded-2xl bg-black cursor-pointer shadow-lg hover:shadow-primary/40 transition-shadow duration-300 ${isOpen ? 'glowing-border-animation' : ''}`}
+            whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
         >
-            <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style={{ backgroundImage: `url(https://play-lh.googleusercontent.com/eFXvAmNVEbn0DCezuqxoWfjKUzpDeULc-yNHOmCNO8suYtjv34s0snHBIcdpkrrOMvI=w240-h480-rw)` }}
+            <img 
+                src="https://kcm.fm/dist/assets/f035866fbe1095dafbd7.png" 
+                alt="Music Volume"
+                className="w-full h-auto object-contain rounded-2xl"
             />
-            <div className="absolute inset-0 bg-black/50" />
-            <div className="absolute inset-0 p-4 flex flex-col justify-end">
-                 <h3 className="text-white text-4xl font-black text-center leading-tight drop-shadow-lg">{t.musicVolume}</h3>
-            </div>
-             <div className="absolute top-3 right-3 text-white/70">
-                <Folder size={24} />
-            </div>
         </motion.div>
     );
 };
@@ -297,6 +294,40 @@ const LiveMusic: React.FC = () => {
         }
     };
 
+    // FIX: Explicitly type with Variants to resolve TypeScript error with transition properties.
+    const folderContainerVariants: Variants = {
+        open: {
+            height: 'auto',
+            opacity: 1,
+            transition: {
+                type: 'spring',
+                duration: 0.7,
+                staggerChildren: 0.05,
+            }
+        },
+        closed: {
+            height: 0,
+            opacity: 0,
+            transition: {
+                duration: 0.4,
+            }
+        }
+    };
+
+    // FIX: Explicitly type with Variants to resolve TypeScript error with transition properties.
+    const stationCardVariants: Variants = {
+        open: {
+            opacity: 1,
+            y: 0,
+            transition: { type: 'spring', stiffness: 300, damping: 24 }
+        },
+        closed: {
+            opacity: 0,
+            y: -20,
+            transition: { duration: 0.2 }
+        }
+    };
+
     return (
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark py-12 px-4">
             <div className="max-w-7xl mx-auto">
@@ -312,6 +343,7 @@ const LiveMusic: React.FC = () => {
                 </div>
 
                 <main>
+                    {/* Base Stations */}
                     <motion.div 
                         layout
                         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
@@ -326,28 +358,43 @@ const LiveMusic: React.FC = () => {
                                 />
                             </motion.div>
                         ))}
-                        <FolderCard isOpen={isFolderOpen} onClick={() => setIsFolderOpen(!isFolderOpen)} />
-                        
-                        <AnimatePresence>
-                            {isFolderOpen && musicVolumeStations.map((station, i) => (
-                                <motion.div
-                                    key={station.streamUrl}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.3 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.3, transition: { duration: 0.2 } }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 25, delay: i * 0.04 }}
-                                >
-                                    <StationCard
-                                        station={station}
-                                        isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
-                                        isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
-                                        onSelect={handleStationSelect}
-                                    />
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
                     </motion.div>
+                    
+                    {/* Music Volume Folder Section */}
+                    <div className="mt-12">
+                         <MusicVolumeFolder isOpen={isFolderOpen} onClick={() => setIsFolderOpen(!isFolderOpen)} />
+                         <AnimatePresence>
+                            {isFolderOpen && (
+                                <motion.div
+                                    key="folder-content"
+                                    initial="closed"
+                                    animate="open"
+                                    exit="closed"
+                                    variants={folderContainerVariants}
+                                    className="overflow-hidden mt-6"
+                                >
+                                    <motion.div
+                                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
+                                    >
+                                        {musicVolumeStations.map((station) => (
+                                            <motion.div
+                                                key={station.streamUrl}
+                                                variants={stationCardVariants}
+                                            >
+                                                <StationCard
+                                                    station={station}
+                                                    isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
+                                                    isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
+                                                    onSelect={handleStationSelect}
+                                                />
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
                 </main>
             </div>
         </div>
