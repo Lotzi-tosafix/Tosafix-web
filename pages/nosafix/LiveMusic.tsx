@@ -233,7 +233,7 @@ const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: 
             <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end h-full">
                 <h3 
                     className="text-white text-2xl font-bold text-center leading-tight"
-                    style={{ textShadow: '2px 2px 5px rgba(0, 0, 0, 0.8)' }}
+                    style={{ textShadow: '0px 4px 8px rgba(0, 0, 0, 0.9), 0px 2px 4px rgba(0, 0, 0, 0.9)' }}
                 >
                     {t[station.nameKey] as string}
                 </h3>
@@ -244,7 +244,7 @@ const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: 
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         className="text-primary text-sm font-semibold text-center"
-                        style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)' }}
+                        style={{ textShadow: '0px 2px 4px rgba(0, 0, 0, 0.9)' }}
                      >
                         {t.nowPlaying}
                      </motion.p>
