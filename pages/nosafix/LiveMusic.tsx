@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 // FIX: Add Variants import from framer-motion to correctly type animation variants.
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { Play, Pause, Loader, Volume2, VolumeX, Music } from 'lucide-react';
+import { Play, Pause, Loader, Volume2, VolumeX, Music, ChevronDown } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 // FIX: Use `as const` to preserve the literal types of `nameKey` and prevent type widening to `string`.
@@ -261,7 +262,7 @@ const MusicVolumeFolder: React.FC<{ isOpen: boolean, onClick: () => void }> = ({
         <motion.div
             layout
             onClick={onClick}
-            className={`w-full max-w-2xl mx-auto rounded-2xl bg-black cursor-pointer shadow-lg hover:shadow-primary/40 transition-shadow duration-300 ${isOpen ? 'glowing-border-animation' : ''}`}
+            className={`relative w-full max-w-2xl mx-auto rounded-2xl bg-black cursor-pointer shadow-lg hover:shadow-primary/40 transition-shadow duration-300 ${isOpen ? 'glowing-border-animation' : ''}`}
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
         >
@@ -270,6 +271,14 @@ const MusicVolumeFolder: React.FC<{ isOpen: boolean, onClick: () => void }> = ({
                 alt="Music Volume"
                 className="w-full h-auto object-contain rounded-2xl"
             />
+            <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-md rounded-full p-2 border border-white/20 text-white shadow-lg">
+                 <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                 >
+                    <ChevronDown size={24} />
+                 </motion.div>
+            </div>
         </motion.div>
     );
 };
@@ -346,10 +355,17 @@ const LiveMusic: React.FC = () => {
                     {/* Base Stations */}
                     <motion.div 
                         layout
-                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
+                        className="flex flex-wrap justify-center gap-6"
                     >
                         {baseStations.map(station => (
-                            <motion.div key={station.nameKey} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+                            <motion.div 
+                                key={station.nameKey} 
+                                layout 
+                                initial={{ opacity: 0 }} 
+                                animate={{ opacity: 1 }} 
+                                transition={{ duration: 0.5 }}
+                                className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                            >
                                 <StationCard
                                     station={station}
                                     isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
@@ -374,12 +390,13 @@ const LiveMusic: React.FC = () => {
                                     className="overflow-hidden mt-6"
                                 >
                                     <motion.div
-                                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
+                                        className="flex flex-wrap justify-center gap-6"
                                     >
                                         {musicVolumeStations.map((station) => (
                                             <motion.div
                                                 key={station.streamUrl}
                                                 variants={stationCardVariants}
+                                                className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
                                             >
                                                 <StationCard
                                                     station={station}
