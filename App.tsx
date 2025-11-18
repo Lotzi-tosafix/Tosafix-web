@@ -2,6 +2,7 @@
 
 
 
+
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useLanguage } from './contexts/LanguageContext';
@@ -64,7 +65,7 @@ function AppContent() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/nosafix" element={<Nosafix />} />
           <Route path="/developers" element={<Developers />} />
-          <Route path="/nosafix/cutfix" element={<Cutfix />} />
+          <Route path="/nosafix/fix-remover" element={<Cutfix />} />
           <Route path="/nosafix/live-music" element={<LiveMusic />} />
           <Route path="/extensions/notiforum" element={<NotiForum />} />
           <Route path="/extensions/yamina" element={<Yamina />} />

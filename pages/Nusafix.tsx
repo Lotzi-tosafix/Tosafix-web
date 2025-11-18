@@ -9,7 +9,7 @@ const tools = [
   {
     nameKey: 'cutfix',
     descKey: 'cutfixDescription',
-    path: '/nosafix/cutfix',
+    path: '/nosafix/fix-remover',
     icon: Scissors,
     gradient: 'from-secondary to-accent'
   },
