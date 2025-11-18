@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,12 +24,14 @@ const TempleTimerPopup: React.FC = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className={`fixed bottom-5 ${containerPositionClass} z-[1000] w-[280px] h-[180px]`}>
-          <motion.iframe
-            initial={animationInitial}
-            animate={{ opacity: 1, x: 0 }}
-            exit={animationExit}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+        <motion.div
+          initial={animationInitial}
+          animate={{ opacity: 1, x: 0 }}
+          exit={animationExit}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          className={`fixed bottom-5 ${containerPositionClass} z-[1000] w-[280px] h-[180px]`}
+        >
+          <iframe
             src={iframeUrl}
             title={iframeTitle}
             className="w-full h-full rounded-lg shadow-2xl overflow-hidden"
@@ -41,7 +44,7 @@ const TempleTimerPopup: React.FC = () => {
           >
             <X size={18} />
           </button>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
