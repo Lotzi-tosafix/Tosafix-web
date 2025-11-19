@@ -4,7 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 // FIX: Add Variants import from framer-motion to correctly type animation variants.
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { Play, Pause, Loader, Volume2, VolumeX, Music, ChevronDown } from 'lucide-react';
+import { Play, Pause, Loader, Volume2, VolumeX, Music, ChevronDown, Search, X } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
 // FIX: Use `as const` to preserve the literal types of `nameKey` and prevent type widening to `string`.
@@ -294,6 +294,7 @@ const LiveMusic: React.FC = () => {
         togglePlayPause,
     } = useMusicPlayer();
     const [isFolderOpen, setIsFolderOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     
     const handleStationSelect = (station: Station) => {
         if (currentlyPlaying?.streamUrl === station.streamUrl) {
@@ -302,6 +303,12 @@ const LiveMusic: React.FC = () => {
             playStation(station);
         }
     };
+
+    // Filter logic
+    const allStations = [...baseStations, ...musicVolumeStations];
+    const filteredStations = allStations.filter(station => 
+        (t[station.nameKey] as string).toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     // FIX: Explicitly type with Variants to resolve TypeScript error with transition properties.
     const folderContainerVariants: Variants = {
@@ -347,71 +354,138 @@ const LiveMusic: React.FC = () => {
                     <p className="mt-4 text-lg text-text-dark/70 dark:text-text-light/70">{t.liveMusicDescription}</p>
                 </header>
                 
-                <div className="sticky top-16 z-40 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-lg -mx-4 px-4 py-4 mb-12">
+                <div className="sticky top-16 z-40 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-lg -mx-4 px-4 py-4 mb-8 space-y-4">
                     <MainPlayer />
+                    
+                    {/* Search Input */}
+                    <div className="relative max-w-md mx-auto group">
+                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <Search className="w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                        </div>
+                        <input 
+                            type="text" 
+                            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-200 rounded-2xl bg-white/50 dark:bg-gray-800/50 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-transparent backdrop-blur-sm shadow-sm transition-all outline-none"
+                            placeholder={t.searchStations}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                         {searchQuery && (
+                            <button 
+                                onClick={() => setSearchQuery('')}
+                                className="absolute inset-y-0 end-0 flex items-center pe-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        )}
+                    </div>
                 </div>
 
                 <main>
-                    {/* Base Stations */}
-                    <motion.div 
-                        layout
-                        className="flex flex-wrap justify-center gap-6"
-                    >
-                        {baseStations.map(station => (
+                    <AnimatePresence mode="wait">
+                        {searchQuery ? (
+                             /* Search Results View */
                             <motion.div 
-                                key={station.nameKey} 
-                                layout 
-                                initial={{ opacity: 0 }} 
-                                animate={{ opacity: 1 }} 
-                                transition={{ duration: 0.5 }}
-                                className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                key="search-results"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="flex flex-wrap justify-center gap-6"
                             >
-                                <StationCard
-                                    station={station}
-                                    isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
-                                    isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
-                                    onSelect={handleStationSelect}
-                                />
+                                {filteredStations.length > 0 ? (
+                                    filteredStations.map(station => (
+                                         <motion.div 
+                                            key={station.streamUrl}
+                                            layout
+                                            initial={{ opacity: 0, scale: 0.9 }} 
+                                            animate={{ opacity: 1, scale: 1 }} 
+                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                        >
+                                            <StationCard
+                                                station={station}
+                                                isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
+                                                isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
+                                                onSelect={handleStationSelect}
+                                            />
+                                        </motion.div>
+                                    ))
+                                ) : (
+                                    <div className="text-center py-12 w-full">
+                                        <p className="text-xl text-gray-500 dark:text-gray-400">{t.noStationsFound}</p>
+                                    </div>
+                                )}
                             </motion.div>
-                        ))}
-                    </motion.div>
-                    
-                    {/* Music Volume Folder Section */}
-                    <div className="mt-12">
-                         <MusicVolumeFolder isOpen={isFolderOpen} onClick={() => setIsFolderOpen(!isFolderOpen)} />
-                         <AnimatePresence>
-                            {isFolderOpen && (
-                                <motion.div
-                                    key="folder-content"
-                                    initial="closed"
-                                    animate="open"
-                                    exit="closed"
-                                    variants={folderContainerVariants}
-                                    className="overflow-hidden mt-6"
+                        ) : (
+                            /* Default View */
+                             <motion.div
+                                key="default-view"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                             >
+                                {/* Base Stations */}
+                                <motion.div 
+                                    layout
+                                    className="flex flex-wrap justify-center gap-6"
                                 >
-                                    <motion.div
-                                        className="flex flex-wrap justify-center gap-6"
-                                    >
-                                        {musicVolumeStations.map((station) => (
-                                            <motion.div
-                                                key={station.streamUrl}
-                                                variants={stationCardVariants}
-                                                className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
-                                            >
-                                                <StationCard
-                                                    station={station}
-                                                    isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
-                                                    isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
-                                                    onSelect={handleStationSelect}
-                                                />
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
+                                    {baseStations.map(station => (
+                                        <motion.div 
+                                            key={station.nameKey} 
+                                            layout 
+                                            initial={{ opacity: 0 }} 
+                                            animate={{ opacity: 1 }} 
+                                            transition={{ duration: 0.5 }}
+                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                        >
+                                            <StationCard
+                                                station={station}
+                                                isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
+                                                isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
+                                                onSelect={handleStationSelect}
+                                            />
+                                        </motion.div>
+                                    ))}
                                 </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
+                                
+                                {/* Music Volume Folder Section */}
+                                <div className="mt-12">
+                                    <MusicVolumeFolder isOpen={isFolderOpen} onClick={() => setIsFolderOpen(!isFolderOpen)} />
+                                    <AnimatePresence>
+                                        {isFolderOpen && (
+                                            <motion.div
+                                                key="folder-content"
+                                                initial="closed"
+                                                animate="open"
+                                                exit="closed"
+                                                variants={folderContainerVariants}
+                                                className="overflow-hidden mt-6"
+                                            >
+                                                <motion.div
+                                                    className="flex flex-wrap justify-center gap-6"
+                                                >
+                                                    {musicVolumeStations.map((station) => (
+                                                        <motion.div
+                                                            key={station.streamUrl}
+                                                            variants={stationCardVariants}
+                                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                                        >
+                                                            <StationCard
+                                                                station={station}
+                                                                isSelected={currentlyPlaying?.streamUrl === station.streamUrl}
+                                                                isPlaying={isPlaying && currentlyPlaying?.streamUrl === station.streamUrl}
+                                                                onSelect={handleStationSelect}
+                                                            />
+                                                        </motion.div>
+                                                    ))}
+                                                </motion.div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </main>
             </div>
         </div>

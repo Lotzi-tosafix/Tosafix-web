@@ -1,3 +1,4 @@
+
 export const translations = {
   he: {
     // Header & Navigation
@@ -18,6 +19,14 @@ export const translations = {
     shareText: 'מצאתי אתר מעולה עם תוספי כרום חכמים ושימושיים. כדאי לבדוק!',
     linkCopied: 'הקישור הועתק!',
     
+    // Search
+    search: 'חיפוש',
+    searchPlaceholder: 'חפש תוספים, כלים או דפים...',
+    noResults: 'לא נמצאו תוצאות עבור',
+    startTyping: 'התחל להקליד כדי לחפש...',
+    searchResults: 'תוצאות חיפוש',
+    quickAccess: 'גישה מהירה',
+
     // Site
     siteTitle: 'תוספיקס',
     backToTop: 'חזרה למעלה',
@@ -80,6 +89,8 @@ export const translations = {
     // Live Music Tool
     liveMusic: 'לייב מיוזיק',
     liveMusicDescription: 'האזן לתחנות רדיו מוזיקה יהודית בשידור חי.',
+    searchStations: 'חפש תחנה או ערוץ...',
+    noStationsFound: 'לא נמצאו תחנות תואמות לחיפוש.',
     kolChaiMusic: 'קול חי מיוזיק',
     kolPlay: 'קול פליי',
     tokerFm: 'טוקר FM',
@@ -211,7 +222,7 @@ export const translations = {
     notiForumName: 'NotiForum',
     notiForumDesc: 'תוסף כרום מתקדם המיועד לפורומים מבוססי NodeBB ו-XenForo, המספק התראות בזמן אמת ישירות לדפדפן שלך.',
     yaminaName: 'ימינה',
-    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדפות המשתמש. עם ממשק נוח ותכונות מתקדמות, "ימינה" מאפשר לך להתאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
+    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx לך להתאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
     netSkinName: 'NetSkin',
     netSkinDesc: 'הפכו כל חסימה לחוויה ויזואלית! NetSkin מחליף את דף החסימה האפור והסטנדרטי של נטפרי בעולם שלם של עיצובים מרהיבים ודינמיים. במקום דף סטנדרטי, תיהנו מעשרות עיצובים המותאמים אישית לסוג החסימה, בין אם מדובר באתר חסום, קובץ לבדיקה או אתר בפיתוח. התוסף אף מזהה באופן חכם מדוע אתר נחסם לפי תגית אישית ומציג לכם את שמה! עם אפשרויות התאמה אישיות מתקדמות, שליטה מלאה ובחירה בין מצבים אקראיים או קבועים, גלישה בטוחה מעולם לא נראתה טוב יותר.',
     hebrewDateName: 'מציג תאריך עברי',
@@ -545,9 +556,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 
 תודה על השימוש ב"אימוג'י אישי"!`,
     edgeOpenerPrivacyPolicy: `מדיניות פרטיות - פותחן Edge
-תאריך עדכון אחרון: 26 באוקטובר 2025
-
-התוסף "פותחן Edge" (להלן: "התוסף") תוכנן לפעול בפשטות ובשקיפות מלאה. פרטיותך חשובה לנו, ומדיניות זו מסבירה את פעולתו.
+תאxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge" (להלן: "התוסף") תוכנן לפעול בפשטות ובשקיפות מלאה. פרטיותך חשובה לנו, ומדיניות זו מסבירה את פעולתו.
 
 1. איסוף מידע
 התוסף אינו אוסף, שומר או משדר כל מידע אישי או נתוני גלישה.
@@ -586,6 +595,14 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     shareTitle: 'Tosafix - Useful Chrome Extensions',
     shareText: 'I found a great site with smart and useful Chrome extensions. You should check it out!',
     linkCopied: 'Link copied!',
+
+    // Search
+    search: 'Search',
+    searchPlaceholder: 'Search extensions, tools, or pages...',
+    noResults: 'No results found for',
+    startTyping: 'Start typing to search...',
+    searchResults: 'Search Results',
+    quickAccess: 'Quick Access',
     
     // Site
     siteTitle: 'Tosafix',
@@ -649,6 +666,8 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     // Live Music Tool
     liveMusic: 'Live Music',
     liveMusicDescription: 'Listen to live Jewish music radio stations.',
+    searchStations: 'Search station or channel...',
+    noStationsFound: 'No matching stations found.',
     kolChaiMusic: 'Kol Chai Music',
     kolPlay: 'Kol Play',
     tokerFm: 'Toker FM',
@@ -1121,7 +1140,7 @@ The Extension does not collect, store, or transmit any personal information or b
 2. Extension Operation
 When you click on the extension icon, it performs only two actions:
 a. Reads the URL of the current active tab.
-b. Attempts to open that URL in the Microsoft Edge browser using the "microsoft-edge:" protocol.
+b. Attempts to open that URL in the Microsoft Edge browser using the "microsoft-edge:".
 c. If the opening fails, the Extension copies the URL to your clipboard.
 The URL information is used immediately for these actions only and is not saved or sent anywhere.
 

@@ -1,10 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Languages, Home, Mail, Share2, Check, Sun, Moon, Plus, Code2 } from 'lucide-react';
+import { Menu, X, ChevronDown, Languages, Home, Mail, Share2, Check, Sun, Moon, Plus, Code2, Search } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 import { useTheme } from '../contexts/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import SearchModal from './SearchModal';
 
 const extensions = [
   { nameKey: 'notiForumName', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png' },
@@ -140,9 +142,24 @@ const ThemeToggleButton = () => {
     );
 };
 
+const SearchButton = ({ onClick }: { onClick: () => void }) => {
+    const { language } = useLanguage();
+    const t = translations[language];
+
+    return (
+        <button
+            onClick={onClick}
+            title={t.search}
+            className="justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 w-8 rounded-md p-0 text-xs flex items-center justify-center border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60 group"
+        >
+            <Search size={16} className="transition-transform group-hover:scale-110" />
+        </button>
+    );
+};
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { language } = useLanguage();
   const t = translations[language];
@@ -153,7 +170,20 @@ export default function Header() {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Add keyboard shortcut for search
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            setIsSearchOpen(true);
+        }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
   
   useEffect(() => {
@@ -161,75 +191,84 @@ export default function Header() {
   }, [location]);
 
   return (
-    <header className={`sticky top-0 z-50 transition-transform duration-300 bg-white/90 dark:bg-bg-dark/90 backdrop-blur-md border-b border-primary/30`}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_6916f3f610b79.png" alt="Tosafix Logo" className="h-11 w-11 spin-once" />
-            <div>
-              <h1 className="text-2xl font-bold font-rubik" style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                {t.siteTitle}
-              </h1>
-              <p className="text-xs text-text-dark/70 dark:text-text-light/70 -mt-1" style={{ letterSpacing: '0.5px' }}>{t.heroTitle}</p>
-            </div>
-          </Link>
-          
-          <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
-            <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <Home size={16} className="transition-transform duration-300 group-hover:scale-110" />
-              <span>{t.home}</span>
-            </Link>
-            <ExtensionsDropdown />
-            <Link to="/nosafix" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <Plus size={16} className="transition-transform duration-300 group-hover:scale-110" />
-              <span>{t.nosafix}</span>
-            </Link>
-            <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <Mail size={16} className="transition-transform duration-300 group-hover:scale-110" />
-              <span>{t.contact}</span>
-            </Link>
-            <Link to="/developers" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-              <Code2 size={16} className="transition-transform duration-300 group-hover:scale-110" />
-              <span>{t.developers}</span>
-            </Link>
-            <ShareButton />
-            <LanguageSwitcher />
-            <ThemeToggleButton />
-          </div>
-
-          <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="group p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark">
-              {isOpen ? <X size={24} className="transition-transform duration-300 group-hover:scale-110" /> : <Menu size={24} className="transition-transform duration-300 group-hover:scale-110" />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {isOpen && (
-        <div className="md:hidden bg-white dark:bg-bg-dark/95 shadow-lg">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link to="/" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.home}</Link>
-            <Link to="/nosafix" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.nosafix}</Link>
-            <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.contact}</Link>
-            <Link to="/developers" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.developers}</Link>
-             <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
-            {extensions.map(ext => (
-              <Link key={ext.path} to={ext.path} className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                {/* FIX: Cast dynamic translation lookup to string to resolve type error for the 'alt' attribute. */}
-                <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-5 h-5 object-contain" />
-                {/* FIX: Cast dynamic translation lookup to string to resolve type error for ReactNode. */}
-                {t[ext.nameKey as keyof typeof t] as string}
+    <>
+        <header className={`sticky top-0 z-50 transition-transform duration-300 bg-white/90 dark:bg-bg-dark/90 backdrop-blur-md border-b border-primary/30`}>
+          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_6916f3f610b79.png" alt="Tosafix Logo" className="h-11 w-11 spin-once" />
+                <div>
+                  <h1 className="text-2xl font-bold font-rubik" style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    {t.siteTitle}
+                  </h1>
+                  <p className="text-xs text-text-dark/70 dark:text-text-light/70 -mt-1" style={{ letterSpacing: '0.5px' }}>{t.heroTitle}</p>
+                </div>
               </Link>
-            ))}
-             <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
-             <div className="px-3 py-2 flex items-center justify-start space-x-4 rtl:space-x-reverse">
-                <LanguageSwitcher />
+              
+              <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
+                <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+                  <Home size={16} className="transition-transform duration-300 group-hover:scale-110" />
+                  <span>{t.home}</span>
+                </Link>
+                <ExtensionsDropdown />
+                <Link to="/nosafix" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+                  <Plus size={16} className="transition-transform duration-300 group-hover:scale-110" />
+                  <span>{t.nosafix}</span>
+                </Link>
+                <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+                  <Mail size={16} className="transition-transform duration-300 group-hover:scale-110" />
+                  <span>{t.contact}</span>
+                </Link>
+                <Link to="/developers" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
+                  <Code2 size={16} className="transition-transform duration-300 group-hover:scale-110" />
+                  <span>{t.developers}</span>
+                </Link>
+                <div className="w-px h-6 bg-gray-300 dark:bg-gray-700 mx-2"></div>
+                <SearchButton onClick={() => setIsSearchOpen(true)} />
                 <ShareButton />
+                <LanguageSwitcher />
                 <ThemeToggleButton />
-             </div>
-          </div>
-        </div>
-      )}
-    </header>
+              </div>
+
+              <div className="md:hidden flex items-center gap-3">
+                <button onClick={() => setIsSearchOpen(true)} className="p-2 text-text-dark/70 dark:text-text-light/70 hover:text-accent">
+                    <Search size={20} />
+                </button>
+                <button onClick={() => setIsOpen(!isOpen)} className="group p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark">
+                  {isOpen ? <X size={24} className="transition-transform duration-300 group-hover:scale-110" /> : <Menu size={24} className="transition-transform duration-300 group-hover:scale-110" />}
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          {isOpen && (
+            <div className="md:hidden bg-white dark:bg-bg-dark/95 shadow-lg">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <Link to="/" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.home}</Link>
+                <Link to="/nosafix" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.nosafix}</Link>
+                <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.contact}</Link>
+                <Link to="/developers" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.developers}</Link>
+                 <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+                {extensions.map(ext => (
+                  <Link key={ext.path} to={ext.path} className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    {/* FIX: Cast dynamic translation lookup to string to resolve type error for the 'alt' attribute. */}
+                    <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-5 h-5 object-contain" />
+                    {/* FIX: Cast dynamic translation lookup to string to resolve type error for ReactNode. */}
+                    {t[ext.nameKey as keyof typeof t] as string}
+                  </Link>
+                ))}
+                 <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+                 <div className="px-3 py-2 flex items-center justify-start space-x-4 rtl:space-x-reverse">
+                    <LanguageSwitcher />
+                    <ShareButton />
+                    <ThemeToggleButton />
+                 </div>
+              </div>
+            </div>
+          )}
+        </header>
+        
+        <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+    </>
   );
 }
