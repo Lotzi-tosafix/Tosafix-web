@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Send, CheckCircle, User, MessageSquare, AlertCircle, Phone } from 'lucide-react';
@@ -32,11 +31,8 @@ export default function Contact() {
     setError(null);
     setShowSuccessMessage(false);
 
-    // FIX: The original API endpoint was removed. Simulate a successful submission for UI purposes.
-    // This prevents a crash and allows the form's success/error states to be tested.
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Simulate success
     setShowSuccessMessage(true);
     setFormData({ name: '', phone: '', email: '', message: '' });
     setTimeout(() => setShowSuccessMessage(false), 5000);
@@ -46,7 +42,7 @@ export default function Contact() {
 
   return (
     <main className="flex-1">
-      <div className="min-h-screen bg-gradient-to-b from-bg-light to-white dark:from-bg-dark dark:to-gray-800 py-20">
+      <div className="min-h-screen py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -54,10 +50,10 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-text-dark dark:text-text-light mb-6 font-assistant">
+            <h1 className="text-5xl md:text-6xl font-bold text-text-dark dark:text-text-light mb-6 font-rubik">
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t.contactTitle}</span>
             </h1>
-            <p className="text-xl text-text-dark/70 dark:text-text-light/70 max-w-2xl mx-auto leading-relaxed">{t.contactSubtitle}</p>
+            <p className="text-xl text-text-dark/70 dark:text-text-light/70 max-w-2xl mx-auto leading-relaxed font-light glass-card p-4 rounded-2xl inline-block">{t.contactSubtitle}</p>
           </motion.div>
 
           <motion.div
@@ -65,58 +61,58 @@ export default function Contact() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="rounded-xl border text-card-foreground bg-white/80 dark:bg-bg-dark/80 backdrop-blur-sm shadow-2xl border-primary/20 dark:border-secondary/20 overflow-hidden">
-              <div className="flex flex-col space-y-1.5 p-6 text-center pb-8">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg">
-                  <Mail className="w-8 h-8 text-white" />
+            <div className="glass-card rounded-[2.5rem] border border-white/50 dark:border-white/10 overflow-hidden shadow-2xl">
+              <div className="flex flex-col space-y-1.5 p-8 text-center pb-8 bg-gradient-to-b from-white/20 to-transparent">
+                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
+                  <Mail className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="font-semibold tracking-tight text-2xl text-text-dark dark:text-text-light">{t.contactFormTitle}</h3>
-                <p className="text-sm text-text-dark/70 dark:text-text-light/70">{t.contactFormSubtitle}</p>
+                <h3 className="font-bold tracking-tight text-2xl text-text-dark dark:text-text-light font-rubik">{t.contactFormTitle}</h3>
+                <p className="text-sm text-text-dark/70 dark:text-text-light/70 font-light">{t.contactFormSubtitle}</p>
               </div>
-              <div className="p-8 bg-white/50 dark:bg-bg-dark/50">
+              <div className="p-8 md:p-12 pt-0">
                 <form 
                   onSubmit={handleSubmit} 
                   className="space-y-6"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium leading-none text-text-dark/80 dark:text-text-light/80 flex items-center gap-2" htmlFor="name">
-                        <User className="w-4 h-4" />{t.nameLabel}
+                      <label className="text-sm font-bold leading-none text-text-dark dark:text-text-light flex items-center gap-2" htmlFor="name">
+                        <User className="w-4 h-4 text-primary" />{t.nameLabel}
                       </label>
-                      <input type="text" id="name" name="name" required value={formData.name} onChange={handleInputChange} placeholder={t.namePlaceholder} className="flex h-10 w-full rounded-md border bg-bg-light/50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors" />
+                      <input type="text" id="name" name="name" required value={formData.name} onChange={handleInputChange} placeholder={t.namePlaceholder} className="flex h-12 w-full rounded-xl border bg-white/40 dark:bg-black/20 border-gray-200 dark:border-gray-700 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all backdrop-blur-sm" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium leading-none text-text-dark/80 dark:text-text-light/80 flex items-center gap-2" htmlFor="phone">
-                        <Phone className="w-4 h-4" />{t.phoneLabel}
+                      <label className="text-sm font-bold leading-none text-text-dark dark:text-text-light flex items-center gap-2" htmlFor="phone">
+                        <Phone className="w-4 h-4 text-primary" />{t.phoneLabel}
                       </label>
-                      <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder={t.phonePlaceholder} className="flex h-10 w-full rounded-md border bg-bg-light/50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors" />
+                      <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder={t.phonePlaceholder} className="flex h-12 w-full rounded-xl border bg-white/40 dark:bg-black/20 border-gray-200 dark:border-gray-700 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all backdrop-blur-sm" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium leading-none text-text-dark/80 dark:text-text-light/80 flex items-center gap-2" htmlFor="email">
-                      <Mail className="w-4 h-4" />{t.emailLabel}
+                    <label className="text-sm font-bold leading-none text-text-dark dark:text-text-light flex items-center gap-2" htmlFor="email">
+                      <Mail className="w-4 h-4 text-primary" />{t.emailLabel}
                     </label>
-                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleInputChange} placeholder={t.emailPlaceholder} className="flex h-10 w-full rounded-md border bg-bg-light/50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors" />
+                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleInputChange} placeholder={t.emailPlaceholder} className="flex h-12 w-full rounded-xl border bg-white/40 dark:bg-black/20 border-gray-200 dark:border-gray-700 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all backdrop-blur-sm" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium leading-none text-text-dark/80 dark:text-text-light/80 flex items-center gap-2" htmlFor="message">
-                      <MessageSquare className="w-4 h-4" />{t.messageLabel}
+                    <label className="text-sm font-bold leading-none text-text-dark dark:text-text-light flex items-center gap-2" htmlFor="message">
+                      <MessageSquare className="w-4 h-4 text-primary" />{t.messageLabel}
                     </label>
-                    <textarea id="message" name="message" required value={formData.message} onChange={handleInputChange} rows={5} placeholder={t.messagePlaceholder} className="flex min-h-[60px] w-full rounded-md border bg-bg-light/50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors resize-none"></textarea>
+                    <textarea id="message" name="message" required value={formData.message} onChange={handleInputChange} rows={5} placeholder={t.messagePlaceholder} className="flex min-h-[100px] w-full rounded-xl border bg-white/40 dark:bg-black/20 border-gray-200 dark:border-gray-700 px-4 py-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all resize-none backdrop-blur-sm"></textarea>
                   </div>
                   
-                  <div className="pt-2">
+                  <div className="pt-4">
                      <AnimatePresence>
                       {showSuccessMessage && (
                         <motion.div
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="mb-4 bg-accent/10 dark:bg-accent/20 border border-accent/40 dark:border-accent/60 text-accent/90 px-4 py-3 rounded-md relative flex items-center"
+                          className="mb-4 bg-green-100/80 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-4 py-3 rounded-xl relative flex items-center backdrop-blur-sm"
                           role="alert"
                         >
-                          <CheckCircle className="h-5 w-5 me-2 text-accent" />
-                          <span className="block sm:inline">{t.successMessage}</span>
+                          <CheckCircle className="h-5 w-5 me-2" />
+                          <span className="block sm:inline font-medium">{t.successMessage}</span>
                         </motion.div>
                       )}
                       {error && (
@@ -124,21 +120,20 @@ export default function Contact() {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="mb-4 bg-red-100 dark:bg-red-900/50 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-300 px-4 py-3 rounded-md relative flex items-center"
+                          className="mb-4 bg-red-100/80 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-xl relative flex items-center backdrop-blur-sm"
                           role="alert"
                         >
                           <AlertCircle className="h-5 w-5 me-2" />
-                          <span className="block sm:inline">{error}</span>
+                          <span className="block sm:inline font-medium">{error}</span>
                         </motion.div>
                       )}
                     </AnimatePresence>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 w-full h-12 px-4 py-2 rounded-md text-base font-semibold text-white transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed"
+                      className="inline-flex items-center justify-center gap-2 w-full h-14 px-4 py-2 rounded-xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-primary/40 disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed"
                       style={{ 
                           background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)',
-                          boxShadow: '0 0 12px #79C9E840' 
                       }}
                     >
                       {isSubmitting ? (
@@ -146,13 +141,13 @@ export default function Contact() {
                           <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                            className="w-5 h-5 me-2 border-2 border-white border-t-transparent rounded-full"
+                            className="w-6 h-6 me-2 border-2 border-white border-t-transparent rounded-full"
                           ></motion.div>
                           {t.submittingButton}
                         </>
                       ) : (
                         <>
-                          <Send className="w-5 h-5 rtl:ms-2 ltr:me-2" />
+                          <Send className="w-6 h-6 rtl:ms-2 ltr:me-2" />
                           {t.submitButton}
                         </>
                       )}

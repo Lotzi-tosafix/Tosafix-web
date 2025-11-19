@@ -8,7 +8,7 @@ const YaminaHowItWorksSection = () => {
     const { language } = useLanguage();
     const t = translations[language];
     return (
-        <section className="py-20 bg-white dark:bg-bg-dark">
+        <section className="py-20">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -17,28 +17,30 @@ const YaminaHowItWorksSection = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-text-dark dark:text-text-light mb-4 font-rubik">
                         <span className="bg-gradient-to-l from-primary to-secondary bg-clip-text text-transparent">
                             {t.yaminaHowItWorksTitle}
                         </span>
                     </h2>
                 </motion.div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.2 }}
+                        className="glass-card p-4 rounded-3xl"
                     >
-                        <img src="https://files.cdn-files-a.com/uploads/10483955/800_67e40a03f03a0.png" alt="Yamina - Before" className="w-full rounded-xl shadow-2xl" />
+                        <img src="https://files.cdn-files-a.com/uploads/10483955/800_67e40a03f03a0.png" alt="Yamina - Before" className="w-full rounded-2xl shadow-xl" />
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.4 }}
+                        className="glass-card p-4 rounded-3xl"
                     >
-                        <img src="https://files.cdn-files-a.com/uploads/10483955/800_67e409f0a1eaa.png" alt="Yamina - After" className="w-full rounded-xl shadow-2xl" />
+                        <img src="https://files.cdn-files-a.com/uploads/10483955/800_67e409f0a1eaa.png" alt="Yamina - After" className="w-full rounded-2xl shadow-xl" />
                     </motion.div>
                 </div>
             </div>

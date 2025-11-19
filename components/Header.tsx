@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Languages, Home, Mail, Share2, Check, Sun, Moon, Plus, Code2, Search } from 'lucide-react';
@@ -28,18 +27,18 @@ const ExtensionsDropdown = () => {
 
   return (
     <div className="relative group">
-      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark px-3 py-2" style={{letterSpacing: '0.5px'}}>
+      <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-bold transition-all duration-300 h-10 text-text-dark/80 dark:text-text-light/80 hover:text-primary hover:bg-black/5 dark:hover:bg-white/10 px-4 py-2" style={{letterSpacing: '0.5px'}}>
         <span>{t.extensions}</span>
-        <ChevronDown size={16} className="ms-1" />
+        <ChevronDown size={16} className="ms-1 transition-transform duration-300 group-hover:rotate-180" />
       </button>
-      <div className={`absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible z-10 border border-primary/30 ${isMounted ? 'transition-all duration-300' : ''}`}>
-        <div className="py-2 grid grid-cols-1 gap-1">
+      <div className={`absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] opacity-0 invisible group-hover:opacity-100 group-hover:visible z-50 border border-white/20 dark:border-gray-700 p-2 transform origin-top transition-all duration-300 scale-95 group-hover:scale-100 translate-y-2 group-hover:translate-y-0`}>
+        <div className="grid grid-cols-1 gap-1">
           {extensions.map(ext => (
-            <Link key={ext.path} to={ext.path} className="flex items-center gap-2 px-4 py-2 text-text-dark dark:text-text-light hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent/80 rounded-md">
-               {/* FIX: Cast dynamic translation lookup to string to resolve type error for the 'alt' attribute. */}
-               <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-5 h-5 object-contain" />
-              {/* FIX: Cast dynamic translation lookup to string to resolve type error for ReactNode. */}
-              <span className="font-sans">{t[ext.nameKey as keyof typeof t] as string}</span>
+            <Link key={ext.path} to={ext.path} className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-dark dark:text-text-light hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 hover:text-primary rounded-2xl transition-colors">
+               <div className="w-8 h-8 rounded-xl bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center p-1">
+                 <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-full h-full object-contain" />
+               </div>
+              <span>{t[ext.nameKey as keyof typeof t] as string}</span>
             </Link>
           ))}
         </div>
@@ -58,10 +57,10 @@ const LanguageSwitcher = () => {
     return (
         <button
             onClick={handleLanguageToggle}
-            className="justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border bg-background shadow-sm h-8 rounded-md px-3 text-xs flex items-center gap-2 border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-gray-800/40 hover:bg-white/50 dark:hover:bg-gray-700/60 text-text-dark dark:text-text-light transition-all shadow-sm hover:shadow-md border border-white/20 dark:border-gray-700 group backdrop-blur-md"
         >
-            <Languages size={16} />
-            {language === 'he' ? 'EN' : 'עב'}
+            <Languages size={18} className="group-hover:scale-110 transition-transform" />
+            <span className="sr-only">{language === 'he' ? 'EN' : 'עב'}</span>
         </button>
     );
 };
@@ -99,16 +98,9 @@ const ShareButton = () => {
             onClick={handleShare}
             disabled={copied}
             title={copied ? t.linkCopied : t.share}
-            className={`justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 rounded-md px-3 text-xs flex items-center border-primary/40 ${copied ? 'gap-2 whitespace-nowrap text-green-600 border-green-400 dark:text-green-400 dark:border-green-600 cursor-default' : 'hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60'}`}
+            className={`flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-sm hover:shadow-md border border-white/20 dark:border-gray-700 backdrop-blur-md ${copied ? 'bg-green-100 dark:bg-green-900/30 text-green-600' : 'bg-white/20 dark:bg-gray-800/40 hover:bg-white/50 dark:hover:bg-gray-700/60 text-text-dark dark:text-text-light group'}`}
         >
-            {copied ? (
-                <>
-                    <Check size={16} />
-                    {t.linkCopied}
-                </>
-            ) : (
-                <Share2 size={16} />
-            )}
+            {copied ? <Check size={18} /> : <Share2 size={18} className="group-hover:scale-110 transition-transform" />}
         </button>
     );
 };
@@ -122,10 +114,8 @@ const ThemeToggleButton = () => {
         <button
             onClick={toggleTheme}
             title={t.toggleTheme}
-            className="justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 w-8 rounded-md p-0 text-xs flex items-center justify-center border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60 relative overflow-hidden"
-            aria-live="polite"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-gray-800/40 hover:bg-white/50 dark:hover:bg-gray-700/60 text-text-dark dark:text-text-light transition-all shadow-sm hover:shadow-md border border-white/20 dark:border-gray-700 overflow-hidden backdrop-blur-md"
         >
-            <span className="sr-only">{t.toggleTheme}</span>
             <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                     key={theme}
@@ -133,9 +123,8 @@ const ThemeToggleButton = () => {
                     animate={{ y: 0, opacity: 1, rotate: 0 }}
                     exit={{ y: 20, opacity: 0, rotate: 90 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute"
                 >
-                    {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                    {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
                 </motion.div>
             </AnimatePresence>
         </button>
@@ -150,9 +139,9 @@ const SearchButton = ({ onClick }: { onClick: () => void }) => {
         <button
             onClick={onClick}
             title={t.search}
-            className="justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none border bg-background shadow-sm h-8 w-8 rounded-md p-0 text-xs flex items-center justify-center border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 hover:text-accent hover:border-accent/60 group"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-gray-800/40 hover:bg-white/50 dark:hover:bg-gray-700/60 text-text-dark dark:text-text-light transition-all shadow-sm hover:shadow-md border border-white/20 dark:border-gray-700 group backdrop-blur-md"
         >
-            <Search size={16} className="transition-transform group-hover:scale-110" />
+            <Search size={18} className="transition-transform group-hover:scale-110" />
         </button>
     );
 };
@@ -160,18 +149,11 @@ const SearchButton = ({ onClick }: { onClick: () => void }) => {
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const { language } = useLanguage();
   const t = translations[language];
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    
-    // Add keyboard shortcut for search
     const handleKeyDown = (e: KeyboardEvent) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
@@ -179,11 +161,7 @@ export default function Header() {
         }
     };
     window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-        window.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
   
   useEffect(() => {
@@ -192,81 +170,120 @@ export default function Header() {
 
   return (
     <>
-        <header className={`sticky top-0 z-50 transition-transform duration-300 bg-white/90 dark:bg-bg-dark/90 backdrop-blur-md border-b border-primary/30`}>
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_6916f3f610b79.png" alt="Tosafix Logo" className="h-11 w-11 spin-once" />
-                <div>
-                  <h1 className="text-2xl font-bold font-rubik" style={{ background: 'linear-gradient(135deg, #79C9E8 0%, #B18BE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                    {t.siteTitle}
-                  </h1>
-                  <p className="text-xs text-text-dark/70 dark:text-text-light/70 -mt-1" style={{ letterSpacing: '0.5px' }}>{t.heroTitle}</p>
-                </div>
-              </Link>
+        <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 pointer-events-none">
+            <header 
+                className="pointer-events-auto bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-lg border border-white/20 dark:border-white/10 rounded-full w-full max-w-7xl transition-all duration-500"
+            >
+                <div className="px-4 sm:px-6">
+                    <div className="flex items-center justify-between h-16">
+                        {/* Logo Area */}
+                        <Link to="/" className="flex items-center gap-3 group">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                                <img src="https://files.cdn-files-a.com/uploads/10483955/400_filter_nobg_6916f3f610b79.png" alt="Tosafix Logo" className="h-10 w-10 relative z-10 transition-transform duration-500 group-hover:rotate-[360deg]" />
+                            </div>
+                            <div className="flex flex-col">
+                                <h1 className="text-xl font-bold font-rubik tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:scale-105 transition-transform origin-left">
+                                    {t.siteTitle}
+                                </h1>
+                            </div>
+                        </Link>
               
-              <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
-                <Link to="/" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-                  <Home size={16} className="transition-transform duration-300 group-hover:scale-110" />
-                  <span>{t.home}</span>
-                </Link>
-                <ExtensionsDropdown />
-                <Link to="/nosafix" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-                  <Plus size={16} className="transition-transform duration-300 group-hover:scale-110" />
-                  <span>{t.nosafix}</span>
-                </Link>
-                <Link to="/contact" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-                  <Mail size={16} className="transition-transform duration-300 group-hover:scale-110" />
-                  <span>{t.contact}</span>
-                </Link>
-                <Link to="/developers" className="group flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-all duration-200 text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark font-bold" style={{ letterSpacing: '0.5px' }}>
-                  <Code2 size={16} className="transition-transform duration-300 group-hover:scale-110" />
-                  <span>{t.developers}</span>
-                </Link>
-                <div className="w-px h-6 bg-gray-300 dark:bg-gray-700 mx-2"></div>
-                <SearchButton onClick={() => setIsSearchOpen(true)} />
-                <ShareButton />
-                <LanguageSwitcher />
-                <ThemeToggleButton />
-              </div>
+                        {/* Desktop Navigation */}
+                        <nav className="hidden md:flex items-center gap-1 bg-black/5 dark:bg-white/5 p-1 rounded-full border border-black/5 dark:border-white/5 shadow-inner">
+                            {[
+                                { to: '/', icon: Home, label: t.home },
+                                { to: '/nosafix', icon: Plus, label: t.nosafix },
+                                { to: '/contact', icon: Mail, label: t.contact },
+                                { to: '/developers', icon: Code2, label: t.developers },
+                            ].map((item) => (
+                                <Link 
+                                    key={item.to}
+                                    to={item.to} 
+                                    className={`group flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-300 font-bold text-sm ${
+                                        location.pathname === item.to 
+                                        ? 'bg-white dark:bg-gray-800 text-primary shadow-md' 
+                                        : 'text-text-dark/70 dark:text-text-light/70 hover:text-primary hover:bg-white/40 dark:hover:bg-white/10'
+                                    }`}
+                                >
+                                    <item.icon size={16} className={location.pathname === item.to ? 'text-primary' : 'opacity-70 group-hover:opacity-100 group-hover:text-primary'} />
+                                    <span>{item.label}</span>
+                                </Link>
+                            ))}
+                            <div className="w-px h-5 bg-gray-300 dark:bg-gray-700 mx-1"></div>
+                            <ExtensionsDropdown />
+                        </nav>
 
-              <div className="md:hidden flex items-center gap-3">
-                <button onClick={() => setIsSearchOpen(true)} className="p-2 text-text-dark/70 dark:text-text-light/70 hover:text-accent">
-                    <Search size={20} />
-                </button>
-                <button onClick={() => setIsOpen(!isOpen)} className="group p-2 rounded-lg text-text-dark/70 dark:text-text-light/70 hover:text-accent hover:bg-bg-light dark:hover:bg-bg-dark">
-                  {isOpen ? <X size={24} className="transition-transform duration-300 group-hover:scale-110" /> : <Menu size={24} className="transition-transform duration-300 group-hover:scale-110" />}
-                </button>
-              </div>
-            </div>
-          </nav>
+                        {/* Actions */}
+                        <div className="hidden md:flex items-center gap-3">
+                            <SearchButton onClick={() => setIsSearchOpen(true)} />
+                            <LanguageSwitcher />
+                            <ThemeToggleButton />
+                            <ShareButton />
+                        </div>
 
+                        {/* Mobile Menu Button */}
+                        <div className="md:hidden flex items-center gap-3">
+                            <SearchButton onClick={() => setIsSearchOpen(true)} />
+                            <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-full text-text-dark dark:text-text-light hover:bg-white/20 transition-colors">
+                                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
           {isOpen && (
-            <div className="md:hidden bg-white dark:bg-bg-dark/95 shadow-lg">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link to="/" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.home}</Link>
-                <Link to="/nosafix" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.nosafix}</Link>
-                <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.contact}</Link>
-                <Link to="/developers" className="block px-3 py-2 rounded-md text-base font-bold text-text-dark dark:text-text-light hover:bg-gray-100 dark:hover:bg-gray-700">{t.developers}</Link>
-                 <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
-                {extensions.map(ext => (
-                  <Link key={ext.path} to={ext.path} className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    {/* FIX: Cast dynamic translation lookup to string to resolve type error for the 'alt' attribute. */}
-                    <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-5 h-5 object-contain" />
-                    {/* FIX: Cast dynamic translation lookup to string to resolve type error for ReactNode. */}
-                    {t[ext.nameKey as keyof typeof t] as string}
-                  </Link>
+            <motion.div
+                initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="fixed top-24 left-4 right-4 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700 overflow-hidden md:hidden"
+            >
+              <div className="p-4 space-y-2">
+                 {[
+                    { to: '/', icon: Home, label: t.home },
+                    { to: '/nosafix', icon: Plus, label: t.nosafix },
+                    { to: '/contact', icon: Mail, label: t.contact },
+                    { to: '/developers', icon: Code2, label: t.developers },
+                ].map((item) => (
+                    <Link 
+                        key={item.to}
+                        to={item.to} 
+                        className="flex items-center gap-4 px-4 py-3 rounded-2xl text-lg font-medium text-text-dark dark:text-text-light hover:bg-primary/10 active:scale-95 transition-all"
+                    >
+                        <div className="p-2 bg-primary/20 rounded-xl text-primary">
+                            <item.icon size={20} />
+                        </div>
+                        {item.label}
+                    </Link>
                 ))}
-                 <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
-                 <div className="px-3 py-2 flex items-center justify-start space-x-4 rtl:space-x-reverse">
+                
+                 <div className="border-t border-gray-200 dark:border-gray-700 my-2 pt-2">
+                    <p className="px-4 text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">{t.extensions}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                        {extensions.map(ext => (
+                        <Link key={ext.path} to={ext.path} className="flex flex-col items-center justify-center gap-2 p-3 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-primary/10 transition-colors text-center border border-gray-100 dark:border-gray-700">
+                            <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-8 h-8 object-contain" />
+                            <span className="text-xs font-medium truncate w-full">{t[ext.nameKey as keyof typeof t] as string}</span>
+                        </Link>
+                        ))}
+                    </div>
+                 </div>
+
+                 <div className="flex items-center justify-between px-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <LanguageSwitcher />
-                    <ShareButton />
                     <ThemeToggleButton />
+                    <ShareButton />
                  </div>
               </div>
-            </div>
+            </motion.div>
           )}
-        </header>
+        </AnimatePresence>
         
         <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>

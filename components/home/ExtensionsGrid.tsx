@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
@@ -24,27 +24,31 @@ export default function ExtensionsGrid() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, type: 'spring', bounce: 0.3 } }
   };
 
   return (
-    <section id="extensions-grid" className="py-20 bg-bg-light dark:bg-bg-dark">
+    <section id="extensions-grid" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-text-light">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              {t.ourExtensions}
-            </span>
+          <div className="inline-flex items-center justify-center p-1.5 rounded-full bg-white/20 dark:bg-white/5 border border-white/10 backdrop-blur-sm mb-6">
+             <span className="px-5 py-1.5 rounded-full bg-white/50 dark:bg-white/10 text-sm font-bold text-primary uppercase tracking-wider shadow-sm">{t.extensions}</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-text-dark dark:text-text-light font-rubik tracking-tight">
+            {t.ourExtensions}
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-text-dark/70 dark:text-text-light/70">{t.ourExtensionsDesc}</p>
+          <p className="text-xl max-w-3xl mx-auto text-text-dark/70 dark:text-text-light/70 leading-relaxed font-light">
+            {t.ourExtensionsDesc}
+          </p>
         </motion.div>
+        
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -53,25 +57,38 @@ export default function ExtensionsGrid() {
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {extensionList.map((ext) => (
-            <motion.div key={ext.nameKey} variants={itemVariants} className="flex">
-              <Link to={ext.path} className="flex flex-col w-full rounded-xl shadow h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 border border-primary/20 dark:border-secondary/20 cursor-pointer">
-                <div className="p-6 text-center">
-                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} mb-4 mx-auto flex items-center justify-center`}>
-                    <div className="w-16 h-16 bg-white/80 dark:bg-white/20 rounded-full flex items-center justify-center shadow-inner backdrop-blur-sm">
-                        {/* FIX: Cast dynamic translation lookup to string to resolve type error for 'alt' attribute. */}
-                        <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-12 h-12 object-contain" />
+            <motion.div key={ext.nameKey} variants={itemVariants} className="h-full">
+              <Link to={ext.path} className="group relative block h-full">
+                <div className={`absolute inset-0 bg-gradient-to-br ${ext.gradient} rounded-[2rem] blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10`}></div>
+                <div className="relative h-full glass-card rounded-[2rem] p-8 transition-all duration-500 group-hover:-translate-y-2 border border-white/50 dark:border-white/10 flex flex-col overflow-hidden">
+                    
+                    {/* Decorative Circle */}
+                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+
+                    {/* Icon Container */}
+                    <div className="mb-8 relative">
+                        <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} p-[2px] shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all duration-500`}>
+                             <div className="w-full h-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-[14px] flex items-center justify-center">
+                                 <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-12 h-12 object-contain drop-shadow-md" />
+                             </div>
+                        </div>
                     </div>
-                  </div>
-                  <h3 className="font-semibold tracking-tight text-xl text-text-dark dark:text-text-light">
-                    {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
-                    {t[ext.nameKey as keyof typeof t] as string}
-                  </h3>
-                </div>
-                <div className="p-6 pt-0 flex flex-col flex-grow">
-                  <p className="text-center text-text-dark/70 dark:text-text-light/70 mb-6 leading-relaxed flex-grow">
-                    {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
-                    {t[ext.descKey as keyof typeof t] as string}
-                  </p>
+
+                    <h3 className="text-2xl font-bold mb-3 text-text-dark dark:text-text-light group-hover:text-primary transition-colors font-rubik">
+                        {t[ext.nameKey as keyof typeof t] as string}
+                    </h3>
+                    
+                    <p className="text-text-dark/70 dark:text-text-light/70 mb-8 leading-relaxed flex-grow font-light">
+                        {t[ext.descKey as keyof typeof t] as string}
+                    </p>
+
+                    <div className="flex items-center gap-2 text-primary font-bold group-hover:gap-4 transition-all mt-auto">
+                        <span className="relative">
+                            {t.readMore}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </span>
+                        <ArrowRight size={18} className="rtl:rotate-180 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+                    </div>
                 </div>
               </Link>
             </motion.div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ExtensionLayout from '../../components/extension/ExtensionLayout';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -38,6 +37,7 @@ export default function EdgeOpener() {
       logo="https://files.cdn-files-a.com/uploads/10483955/400_6806edcc12daa.png"
       features={features}
       installSection={installSection}
+      privacyPolicyContent={t.edgeOpenerPrivacyPolicy}
     />
   );
 }

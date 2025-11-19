@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import ExtensionLayout from '../../components/extension/ExtensionLayout';
@@ -17,7 +15,7 @@ const DesignsGallerySection = () => {
     ];
   
     return (
-      <section className="py-20 bg-white dark:bg-bg-dark">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -26,15 +24,15 @@ const DesignsGallerySection = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-dark dark:text-text-light mb-4 font-rubik">
               <span className="bg-gradient-to-l from-green-600 to-emerald-800 bg-clip-text text-transparent">
                 {t.netSkinGalleryTitle}
               </span>
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">{t.netSkinGalleryDesc}</p>
+            <p className="text-lg text-text-dark/60 dark:text-text-light/60">{t.netSkinGalleryDesc}</p>
           </motion.div>
   
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {designs.map((design, index) => (
               <motion.div
                 key={index}
@@ -43,9 +41,9 @@ const DesignsGallerySection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="rounded-lg shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                  <div className="p-0">
-                    <img src={design.src} alt={design.alt} className="w-full h-48 object-cover" />
+                <div className="rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105 glass-card p-2">
+                  <div className="p-0 rounded-2xl overflow-hidden">
+                    <img src={design.src} alt={design.alt} className="w-full h-56 object-cover hover:scale-110 transition-transform duration-700" />
                   </div>
                 </div>
               </motion.div>

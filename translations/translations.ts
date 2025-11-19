@@ -1,4 +1,5 @@
 
+
 export const translations = {
   he: {
     // Header & Navigation
@@ -8,7 +9,7 @@ export const translations = {
     nosafix: 'נוספיקס',
     developers: 'למפתחים',
     nosafixTitle: 'כלים נוספים מבית תוספיקס',
-    nosafixGridDesc: 'כלים שימושיים נוספים שנועדו להקל עליכם.',
+    nosafixGridDesc: 'כלים נוספים מבית תוספיקס',
     developersTitle: 'כלים ומידע למפתחים',
     comingSoon: 'בקרוב...',
     language: 'שפה',
@@ -36,6 +37,23 @@ export const translations = {
     heroTitle: 'תוספי כרום שימושיים',
     heroSubtitle: 'כלי חובה לכל משתמש!',
     discoverExtensions: 'גלה את התוספים',
+    topRated: 'דירוג גבוה',
+    secure: 'מאובטח',
+    fast: 'מהיר',
+    scrollDown: 'גלול למטה',
+    chromeExtensionsHub: 'מרכז תוספי כרום',
+
+    // General UI
+    tryNow: 'נסה עכשיו',
+    openTool: 'פתח כלי',
+    ready: 'מוכן',
+    selectStation: 'בחר תחנה לניגון',
+    stayUpdated: 'הישאר מעודכן',
+    newToolsUpdate: 'כלים חדשים ועדכונים יוצאים באופן קבוע.',
+    madeForCommunity: 'נבנה עבור הקהילה',
+    privacyPolicyFooter: 'מדיניות פרטיות',
+    termsOfService: 'תנאי שימוש',
+    allRightsReserved: 'כל הזכויות שמורות.',
 
     // About Section
     aboutTitle: 'אודותינו',
@@ -222,7 +240,7 @@ export const translations = {
     notiForumName: 'NotiForum',
     notiForumDesc: 'תוסף כרום מתקדם המיועד לפורומים מבוססי NodeBB ו-XenForo, המספק התראות בזמן אמת ישירות לדפדפן שלך.',
     yaminaName: 'ימינה',
-    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx לך להתאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
+    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדפות שלך. עם ממשק נוח ותכונות מתקדמות, "ימינה" מאפשר לך להתאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
     netSkinName: 'NetSkin',
     netSkinDesc: 'הפכו כל חסימה לחוויה ויזואלית! NetSkin מחליף את דף החסימה האפור והסטנדרטי של נטפרי בעולם שלם של עיצובים מרהיבים ודינמיים. במקום דף סטנדרטי, תיהנו מעשרות עיצובים המותאמים אישית לסוג החסימה, בין אם מדובר באתר חסום, קובץ לבדיקה או אתר בפיתוח. התוסף אף מזהה באופן חכם מדוע אתר נחסם לפי תגית אישית ומציג לכם את שמה! עם אפשרויות התאמה אישיות מתקדמות, שליטה מלאה ובחירה בין מצבים אקראיים או קבועים, גלישה בטוחה מעולם לא נראתה טוב יותר.',
     hebrewDateName: 'מציג תאריך עברי',
@@ -463,7 +481,7 @@ export const translations = {
 הרשאות אלה משמשות אך ורק לספק את הפונקציונליות המרכזית של התוסף ואינן משמשות לאיסוף או מעקב אחר נתוני משתמש מעבר למה שנחוץ לתכונת הרשימה השחורה.
 
 6. שליטת המשתמש
-יש לך שליטה מלאה על הנתונים שנשמרים על ידי התוסף. אתה יכול לצxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxך דף ההגדרות של התוסף.
+יש לך שליטה מלאה על הנתונים שנשמרים על ידי התוסף. אתה יכול לצפות, לערוך או להסיר כתובות URL מהרשימה השחורה בכל עת דרך דף ההגדרות של התוסף.
 
 7. שינויים במדיניות הפרטיות
 אנו עשויים לעדכן את מדיניות הפרטיות הזו מעת לעת. כל שינוי יבוא לידי ביטוי בדף זה עם תאריך "עודכן לאחרונה" מעודכן. אנו ממליצים לך לעיין במדיניות זו מעת לעת.
@@ -501,7 +519,7 @@ alarms: הרשאה זו משמשת לתזמון החלפת העיצוב האקר
 
 3. שירותי צד ג'
 NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נטפרי כדי לקבל שמות של תגיות.
-שרתי תמונות: חלק מתמונות הרקע המשמשות בעיצובים השונים מאוחסנים על שרתים חיצוניים (כגון lovepik.com, stockcake.com וכו'). טעינת תמונות אלו היא פעולה סטנדרטית של הדפדפן, בדומה לטעינת תמונות בכל אתר אינטרנט.
+שרתי תמונות: חלק מתמונות הרקע המשמשות בעיצובים השונים מאוחסנים על שרתים חיצוניים (כגון lovepik.com, stockcake.com, etc.). טעינת תמונות אלו היא פעולה סטנדרטית של הדפדפן, בדומה לטעינת תמונות בכל אתר אינטרנט.
 
 4. שינויים במדיניות
 אנו עשויים לעדכן מדיניות זו מעת לעת. כל שינוי מהותי יפורסם בדף התוסף בחנות האינטרנט של Chrome.
@@ -556,7 +574,9 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 
 תודה על השימוש ב"אימוג'י אישי"!`,
     edgeOpenerPrivacyPolicy: `מדיניות פרטיות - פותחן Edge
-תאxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge" (להלן: "התוסף") תוכנן לפעול בפשטות ובשקיפות מלאה. פרטיותך חשובה לנו, ומדיניות זו מסבירה את פעולתו.
+תאריך עדכון אחרון: 26 באוקטובר 2025
+
+התוסף "פותחן Edge" (להלן: "התוסף") תוכנן לפעול בפשטות ובשקיפות מלאה. פרטיותך חשובה לנו, ומדיניות זו מסבירה את פעולתו.
 
 1. איסוף מידע
 התוסף אינו אוסף, שומר או משדר כל מידע אישי או נתוני גלישה.
@@ -576,6 +596,38 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 התוסף אינו מתקשר עם שרתים חיצוניים. כל הפעולות מתבצעות באופן מקומי לחלוטין.
 
 תודה על השימוש ב"פותחן Edge"!`,
+
+    // Privacy & Terms Pages
+    privacyPageTitle: 'מדיניות פרטיות',
+    privacyPageLastUpdated: 'עודכן לאחרונה',
+    privacyIntro: 'ברוכים הבאים לאתר Tosafix ("האתר"). אנו מכבדים את פרטיותך ומחויבים להגן על המידע האישי שלך. מדיניות פרטיות זו מסבירה כיצד אנו אוספים, משתמשים ומגנים על המידע שלך בעת השימוש באתר.',
+    privacyCollectionTitle: 'איסוף מידע',
+    privacyCollectionDesc: 'האתר אינו אוסף מידע אישי מזהה באופן יזום, למעט מידע שתבחר לספק לנו מרצונך דרך טופס יצירת הקשר (כגון שם, דואר אלקטרוני, טלפון והודעה). מידע זה משמש אך ורק לצורך מענה לפנייתך.',
+    privacyUsageTitle: 'שימוש במידע',
+    privacyUsageDesc: 'אנו משתמשים במידע המסופק על ידך אך ורק למטרות הבאות: מתן שירות ותמיכה, שיפור האתר והשירותים שלנו, ויצירת קשר במקרה הצורך.',
+    privacyCookiesTitle: 'עוגיות (Cookies) וטכנולוגיות מעקב',
+    privacyCookiesDesc: 'האתר עשוי להשתמש בעוגיות (Cookies) כדי לשפר את חוויית המשתמש, לזכור העדפות (כגון שפה וערכת נושא) ולנתח תנועה באתר באמצעות שירותים כמו Vercel Analytics. עוגיות אלו אינן מכילות מידע אישי מזהה.',
+    privacyThirdPartyTitle: 'שיתוף מידע עם צד שלישי',
+    privacyThirdPartyDesc: 'אנו לא מוכרים, סוחרים או מעבירים את המידע האישי שלך לצדדים שלישיים ללא הסכמתך, למעט ספקים אמינים המסייעים לנו בתפעול האתר (כגון Vercel לאחסון האתר), ובלבד שספקים אלו מחויבים לשמור על סודיות המידע.',
+    privacyHostingTitle: 'אחסון האתר',
+    privacyHostingDesc: 'האתר מתארח בשרתי Vercel. השימוש באתר כפוף גם למדיניות הפרטיות של Vercel.',
+    privacyContactTitle: 'צור קשר',
+    privacyContactDesc: 'אם יש לך שאלות לגבי מדיניות פרטיות זו, אנא צור קשר דרך עמוד "צור קשר" באתר.',
+
+    termsPageTitle: 'תנאי שימוש',
+    termsPageLastUpdated: 'עודכן לאחרונה',
+    termsAcceptanceTitle: 'הסכמה לתנאים',
+    termsAcceptanceDesc: 'השימוש באתר Tosafix ("האתר") ובשירותים המוצעים בו מעיד על הסכמתך לתנאי שימוש אלו. אם אינך מסכים לתנאים אלו, אנא הימנע משימוש באתר.',
+    termsLicenseTitle: 'רישיון שימוש',
+    termsLicenseDesc: 'התוכן באתר, לרבות טקסט, גרפיקה, לוגו ותמונות, הוא קניינה הרוחני של Tosafix או של צדדים שלישיים. אנו מעניקים לך רישיון מוגבל, לא בלעדי ובלתי ניתן להעברה לצפות ולהשתמש באתר לשימוש אישי ולא מסחרי.',
+    termsDisclaimerTitle: 'הסרת אחריות',
+    termsDisclaimerDesc: 'המידע, התוספים והכלים באתר מסופקים "כמות שהם" (AS IS). אנו לא מתחייבים שהשירות יהיה נקי משגיאות או הפרעות. השימוש בכלים ובתוספים המוצגים באתר הוא על אחריות המשתמש בלבד.',
+    termsLimitationsTitle: 'הגבלת אחריות',
+    termsLimitationsDesc: 'בשום מקרה Tosafix לא תהיה אחראית לכל נזק ישיר, עקיף, מקרי או תוצאתי הנובע מהשימוש או חוסר היכולת להשתמש באתר או בתוספים המוצגים בו.',
+    termsLinksTitle: 'קישורים חיצוניים',
+    termsLinksDesc: 'האתר עשוי להכיל קישורים לאתרים חיצוניים (כגון חנות Chrome, GitHub). איננו אחראים לתוכן או למדיניות הפרטיות של אתרים אלו.',
+    termsModificationsTitle: 'שינויים בתנאים',
+    termsModificationsDesc: 'אנו שומרים לעצמנו את הזכות לעדכן את תנאי השימוש מעת לעת. המשך השימוש באתר לאחר ביצוע שינויים מהווה הסכמה לתנאים המעודכנים.',
   },
   en: {
     // Header & Navigation
@@ -585,7 +637,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     nosafix: 'Nosafix',
     developers: 'For Developers',
     nosafixTitle: 'More Tools from Tosafix',
-    nosafixGridDesc: 'More useful tools designed to make your life easier.',
+    nosafixGridDesc: 'More Tools from Tosafix',
     developersTitle: 'Tools & Info for Developers',
     comingSoon: 'Coming Soon...',
     language: 'Language',
@@ -613,6 +665,23 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     heroTitle: 'Useful Chrome Extensions',
     heroSubtitle: 'Must-have tools for every user!',
     discoverExtensions: 'Discover Extensions',
+    topRated: 'Top Rated',
+    secure: 'Secure',
+    fast: 'Fast',
+    scrollDown: 'Scroll Down',
+    chromeExtensionsHub: 'Chrome Extensions Hub',
+
+    // General UI
+    tryNow: 'Try Now',
+    openTool: 'Open Tool',
+    ready: 'Ready',
+    selectStation: 'Select a station to play',
+    stayUpdated: 'Stay Updated',
+    newToolsUpdate: 'New tools and updates released regularly.',
+    madeForCommunity: 'Made for the community',
+    privacyPolicyFooter: 'Privacy Policy',
+    termsOfService: 'Terms of Service',
+    allRightsReserved: 'All Rights Reserved.',
 
     // About Section
     aboutTitle: 'About Us',
@@ -806,7 +875,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     myEmojiName: 'My Emoji',
     myEmojiDesc: "Make your digital communication more personal and creative with 'My emoji'! This Chrome extension lets you break the routine of familiar emojis and create your own private collection, based on your favorite images and SVG files. Easily upload your own PNG, JPG, GIF, WEBP, and SVG files and manage them in a convenient and user-friendly Hebrew interface. With the click of a button, copy your chosen emoji directly to your clipboard, ready to paste into chats, emails, social media, documents, and anywhere else you want to add a unique touch. With options for searching, sorting, editing names, setting a preferred size, backup via export/import, and even advanced background removal (using an external API of your choice), 'My emoji' gives you all the tools to create and use the perfect emoji collection for you. All your emojis are stored securely and locally on your computer, fully preserving your privacy. Install now and start expressing yourself in a new and exciting way!",
     edgeOpenerName: 'Edge Opener',
-    edgeOpenerDesc: "Quickly switch from Chrome to Edge! Open the current page in Microsoft Edge with a single click. Includes automatic copying to the clipboard if direct opening fails.",
+    edgeOpenerDesc: "Quickly switch from Chrome to Edge! Open the current tab in Microsoft Edge with a single click. Includes automatic copying to the clipboard if direct opening fails.",
 
     // Contact Page
     contactTitle: 'Contact Us',
@@ -1152,5 +1221,37 @@ The Extension requires the following permissions:
 The Extension does not communicate with external servers. All operations are performed entirely locally.
 
 Thank you for using "Edge Opener"!`,
+
+    // Privacy & Terms Pages
+    privacyPageTitle: 'Privacy Policy',
+    privacyPageLastUpdated: 'Last Updated',
+    privacyIntro: 'Welcome to Tosafix ("the Site"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your information when you use the Site.',
+    privacyCollectionTitle: 'Information Collection',
+    privacyCollectionDesc: 'The Site does not proactively collect personally identifiable information, except for information you choose to provide to us voluntarily through the contact form (such as name, email, phone, and message). This information is used solely for the purpose of responding to your inquiry.',
+    privacyUsageTitle: 'Use of Information',
+    privacyUsageDesc: 'We use the information provided by you solely for the following purposes: providing service and support, improving the Site and our services, and contacting you if necessary.',
+    privacyCookiesTitle: 'Cookies and Tracking Technologies',
+    privacyCookiesDesc: 'The Site may use cookies to improve user experience, remember preferences (such as language and theme), and analyze site traffic using services like Vercel Analytics. These cookies do not contain personally identifiable information.',
+    privacyThirdPartyTitle: 'Third-Party Information Sharing',
+    privacyThirdPartyDesc: 'We do not sell, trade, or transfer your personal information to third parties without your consent, except for trusted providers who assist us in operating the Site (such as Vercel for hosting), provided that these parties agree to keep this information confidential.',
+    privacyHostingTitle: 'Site Hosting',
+    privacyHostingDesc: 'The Site is hosted on Vercel servers. Use of the Site is also subject to Vercel\'s Privacy Policy.',
+    privacyContactTitle: 'Contact Us',
+    privacyContactDesc: 'If you have any questions regarding this Privacy Policy, please contact us via the "Contact Us" page on the Site.',
+
+    termsPageTitle: 'Terms of Service',
+    termsPageLastUpdated: 'Last Updated',
+    termsAcceptanceTitle: 'Acceptance of Terms',
+    termsAcceptanceDesc: 'Use of the Tosafix website ("the Site") and the services offered therein indicates your acceptance of these Terms of Service. If you do not agree to these terms, please refrain from using the Site.',
+    termsLicenseTitle: 'Use License',
+    termsLicenseDesc: 'The content on the Site, including text, graphics, logos, and images, is the intellectual property of Tosafix or third parties. We grant you a limited, non-exclusive, non-transferable license to view and use the Site for personal, non-commercial use.',
+    termsDisclaimerTitle: 'Disclaimer',
+    termsDisclaimerDesc: 'The information, extensions, and tools on the Site are provided "AS IS". We do not warrant that the service will be error-free or uninterrupted. Use of the tools and extensions presented on the Site is at the user\'s own risk.',
+    termsLimitationsTitle: 'Limitation of Liability',
+    termsLimitationsDesc: 'In no event shall Tosafix be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the Site or the extensions presented therein.',
+    termsLinksTitle: 'External Links',
+    termsLinksDesc: 'The Site may contain links to external websites (such as the Chrome Web Store, GitHub). We are not responsible for the content or privacy practices of these sites.',
+    termsModificationsTitle: 'Changes to Terms',
+    termsModificationsDesc: 'We reserve the right to update the Terms of Service from time to time. Continued use of the Site after changes are made constitutes acceptance of the updated terms.',
   }
 };

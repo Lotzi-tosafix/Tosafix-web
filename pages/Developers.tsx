@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
-import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, Scissors, ExternalLink } from 'lucide-react';
+import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, Scissors, ExternalLink, Shield } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 
@@ -18,18 +19,18 @@ const CodeBlock = ({ code, language }: { code: string; language: string }) => {
   };
 
   return (
-    <div className="bg-gray-800 rounded-lg overflow-hidden relative group my-4">
-      <div className="flex justify-between items-center px-4 py-2 bg-gray-900">
-        <span className="text-xs font-mono text-gray-400">{language}</span>
+    <div className="bg-[#1E1E1E] rounded-xl overflow-hidden relative group my-4 shadow-lg border border-gray-700/50">
+      <div className="flex justify-between items-center px-4 py-3 bg-[#252526] border-b border-gray-700/50">
+        <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">{language}</span>
         <button
           onClick={copyToClipboard}
-          className="text-xs flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors"
+          className="text-xs flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-2 py-1 rounded"
         >
           {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
           {copied ? t.copied : t.copy}
         </button>
       </div>
-      <pre className="p-4 text-sm text-white overflow-x-auto">
+      <pre className="p-5 text-sm text-[#D4D4D4] overflow-x-auto font-mono leading-relaxed">
         <code className={`language-${language}`}>{code}</code>
       </pre>
     </div>
@@ -50,7 +51,7 @@ export default function Developers() {
 
   const observerOptions = {
     threshold: 0.2,
-    rootMargin: "-80px 0px -50% 0px" // Adjust to account for sticky header
+    rootMargin: "-80px 0px -50% 0px"
   };
 
   const { ref: cutfixRef, inView: cutfixInView } = useInView(observerOptions);
@@ -152,24 +153,25 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
 
   return (
     <main className="flex-1">
-      <div className="min-h-screen bg-gradient-to-b from-bg-light to-white dark:from-bg-dark dark:to-gray-800">
+      <div className="min-h-screen py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center pt-20"
+              className="text-center mb-16"
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-text-dark dark:text-text-light mb-6 font-assistant">
+              <h1 className="text-5xl md:text-6xl font-bold text-text-dark dark:text-text-light mb-6 font-rubik">
                 <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">{t.developers}</span>
               </h1>
-              <p className="text-xl text-text-dark/70 dark:text-text-light/70 max-w-3xl mx-auto leading-relaxed">{t.devIntro}</p>
+              <p className="text-xl text-text-dark/70 dark:text-text-light/70 max-w-3xl mx-auto leading-relaxed glass-card p-6 rounded-2xl">{t.devIntro}</p>
           </motion.div>
           
-          <div className="flex flex-col md:flex-row gap-12 py-12">
+          {/* Added items-start to prevent sidebar from stretching */}
+          <div className="flex flex-col md:flex-row gap-12 items-start">
             {/* Sidebar Navigation */}
-            <aside className="hidden md:block w-56 flex-shrink-0">
-              <div className="sticky top-24 space-y-2">
+            <aside className="hidden md:block w-64 flex-shrink-0 sticky top-32">
+              <div className="space-y-2 glass-card p-4 rounded-2xl border border-white/30 dark:border-white/10">
                 {navItems.map(item => {
                   const Icon = item.icon;
                   const isActive = activeSection === item.id;
@@ -178,10 +180,10 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                       key={item.id}
                       href={`#${item.id}`}
                       onClick={(e) => handleNavClick(e, item.id)}
-                      className={`flex items-center gap-3 p-3 rounded-lg text-sm font-medium transition-all duration-200 border-s-2 ${
+                      className={`flex items-center gap-3 p-3 rounded-xl text-sm font-bold transition-all duration-200 ${
                         isActive
-                          ? 'bg-primary/10 text-primary border-primary'
-                          : 'text-text-dark/70 dark:text-text-light/70 border-transparent hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:text-accent'
+                          ? 'bg-primary/20 text-primary shadow-sm'
+                          : 'text-text-dark/70 dark:text-text-light/70 hover:bg-white/40 dark:hover:bg-white/10'
                       }`}
                     >
                       <Icon size={18} />
@@ -201,65 +203,65 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white dark:bg-gray-800/50 rounded-2xl p-8 md:p-10 shadow-lg border border-primary/20"
+                className="glass-card rounded-3xl p-8 md:p-12 border border-white/40 dark:border-white/10"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-gradient-to-r from-secondary to-accent rounded-lg">
-                    <Scissors className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center shadow-lg">
+                    <Scissors className="w-8 h-8 text-white" />
                   </div>
                   <div>
                     <h2 className="text-3xl font-bold text-text-dark dark:text-text-light">{t.cutfixApiTitle}</h2>
-                    <p className="text-md text-text-dark/70 dark:text-text-light/70">{t.cutfixApiDesc}</p>
+                    <p className="text-lg text-text-dark/70 dark:text-text-light/70 font-light">{t.cutfixApiDesc}</p>
                   </div>
                 </div>
 
-                <div className="space-y-8">
+                <div className="space-y-10">
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><Server size={20} /> {t.endpoint}</h3>
-                    <code className="block text-sm bg-gray-100 dark:bg-gray-700/50 p-3 rounded-lg text-accent dark:text-primary break-all">https://lotzi-fix-remover.hf.space/api/remove-background</code>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><Server size={22} className="text-primary" /> {t.endpoint}</h3>
+                    <code className="block text-sm bg-white/50 dark:bg-black/30 p-4 rounded-xl text-accent dark:text-primary break-all border border-white/20 font-mono">https://lotzi-fix-remover.hf.space/api/remove-background</code>
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.method}</h3>
-                    <span className="inline-block px-3 py-1 text-sm font-semibold text-green-800 bg-green-200 dark:bg-green-700 dark:text-green-100 rounded-full">POST</span>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.method}</h3>
+                    <span className="inline-block px-4 py-1.5 text-sm font-bold text-green-800 bg-green-200 dark:bg-green-900/50 dark:text-green-300 rounded-full shadow-sm border border-green-300/50">POST</span>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><FileJson size={20} /> {t.body}</h3>
-                    <p className="text-text-dark/80 dark:text-text-light/80 mb-2">{t.bodyDesc}</p>
-                    <ul className="list-disc list-inside bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg space-y-2">
-                      <li><strong>{t.fieldName}:</strong> <code className="text-sm bg-gray-200 dark:bg-gray-600 px-1.5 py-0.5 rounded">{t.file}</code></li>
-                      <li><strong>{t.fieldDesc}</strong></li>
-                      <li><strong>{t.supportedFormats}:</strong> PNG, JPG/JPEG, WEBP</li>
-                      <li><strong>{t.fileSizeLimit}:</strong> 10MB</li>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><FileJson size={22} className="text-primary" /> {t.body}</h3>
+                    <p className="text-text-dark/80 dark:text-text-light/80 mb-4 font-light">{t.bodyDesc}</p>
+                    <ul className="bg-white/40 dark:bg-black/20 p-6 rounded-2xl space-y-3 border border-white/20">
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.fieldName}:</span> <code className="text-sm bg-white/50 dark:bg-white/10 px-2 py-0.5 rounded font-mono">{t.file}</code></li>
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.fieldDesc}</span></li>
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.supportedFormats}:</span> PNG, JPG/JPEG, WEBP</li>
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.fileSizeLimit}:</span> 10MB</li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.successResponse}</h3>
-                    <p className="text-text-dark/80 dark:text-text-light/80 mb-2">{t.successResponseDesc}</p>
-                    <ul className="list-disc list-inside bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg space-y-2">
-                      <li><strong>{t.statusCode}:</strong> <code className="text-sm bg-gray-200 dark:bg-gray-600 px-1.5 py-0.5 rounded">200 OK</code></li>
-                      <li><strong>{t.contentType}:</strong> <code className="text-sm bg-gray-200 dark:bg-gray-600 px-1.5 py-0.5 rounded">image/png</code></li>
-                      <li><strong>{t.responseBody}:</strong> {t.responseBodyDesc}</li>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.successResponse}</h3>
+                    <p className="text-text-dark/80 dark:text-text-light/80 mb-4 font-light">{t.successResponseDesc}</p>
+                    <ul className="bg-white/40 dark:bg-black/20 p-6 rounded-2xl space-y-3 border border-white/20">
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.statusCode}:</span> <code className="text-sm bg-white/50 dark:bg-white/10 px-2 py-0.5 rounded font-mono">200 OK</code></li>
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.contentType}:</span> <code className="text-sm bg-white/50 dark:bg-white/10 px-2 py-0.5 rounded font-mono">image/png</code></li>
+                      <li className="flex items-center gap-2"><span className="font-bold w-32">{t.responseBody}:</span> {t.responseBodyDesc}</li>
                     </ul>
                   </div>
 
                    <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.errorResponse}</h3>
-                    <ul className="list-disc list-inside bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg space-y-2">
-                      <li><code className="text-sm bg-gray-200 dark:bg-gray-600 px-1.5 py-0.5 rounded">400 Bad Request:</code> {t.error400}</li>
-                      <li><code className="text-sm bg-gray-200 dark:bg-gray-600 px-1.5 py-0.5 rounded">500 Internal Server Error:</code> {t.error500}</li>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.errorResponse}</h3>
+                    <ul className="bg-red-50/50 dark:bg-red-900/10 p-6 rounded-2xl space-y-3 border border-red-200 dark:border-red-800/30 text-red-800 dark:text-red-200">
+                      <li className="flex items-start gap-2"><code className="text-sm bg-red-100 dark:bg-red-900/40 px-2 py-0.5 rounded font-mono font-bold">400 Bad Request:</code> {t.error400}</li>
+                      <li className="flex items-start gap-2"><code className="text-sm bg-red-100 dark:bg-red-900/40 px-2 py-0.5 rounded font-mono font-bold">500 Internal Server Error:</code> {t.error500}</li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><Code2 size={20} />{t.codeExamples}</h3>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><Code2 size={22} className="text-primary" />{t.codeExamples}</h3>
                     
-                    <h4 className="font-semibold mt-4 mb-1 text-text-dark dark:text-text-light">{t.jsExample}</h4>
+                    <h4 className="font-bold mt-6 mb-2 text-text-dark dark:text-text-light">{t.jsExample}</h4>
                     <CodeBlock code={jsCode} language="javascript" />
                     
-                    <h4 className="font-semibold mt-6 mb-1 text-text-dark dark:text-text-light">{t.curlExample}</h4>
+                    <h4 className="font-bold mt-8 mb-2 text-text-dark dark:text-text-light">{t.curlExample}</h4>
                     <CodeBlock code={curlCode} language="bash" />
                   </div>
                 </div>
@@ -271,87 +273,89 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white dark:bg-gray-800/50 rounded-2xl p-8 md:p-10 shadow-lg border border-primary/20"
+                className="glass-card rounded-3xl p-8 md:p-12 border border-white/40 dark:border-white/10"
               >
-                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-gradient-to-r from-amber-500 to-red-600 rounded-lg flex-shrink-0">
-                        <Timer className="w-6 h-6 text-white" />
+                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
+                    <div className="flex items-center gap-6">
+                      <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
+                        <Timer className="w-8 h-8 text-white" />
                       </div>
                       <div>
                         <h2 className="text-3xl font-bold text-text-dark dark:text-text-light">{t.templeTimerTitle}</h2>
-                        <p className="text-md text-text-dark/70 dark:text-text-light/70">{t.templeTimerDesc}</p>
+                        <p className="text-lg text-text-dark/70 dark:text-text-light/70 font-light">{t.templeTimerDesc}</p>
                       </div>
                     </div>
                     <a 
                       href="https://github.com/Lotzi-tosafix/bezachrenu_es_zion" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border h-10 px-4 py-2 rounded-md border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0 text-text-dark dark:text-text-light"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-white/50 dark:hover:bg-white/10 transition-all font-bold text-text-dark dark:text-text-light self-start sm:self-center"
                     >
-                      <Github size={16} />
+                      <Github size={20} />
                       {t.viewOnGitHub}
                     </a>
                   </div>
 
 
-                <div className="space-y-8">
+                <div className="space-y-10">
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light">{t.livePreview}</h3>
-                    <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8 mt-4 bg-gray-100 dark:bg-gray-700/50 p-6 rounded-lg">
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.livePreview}</h3>
+                    <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8 mt-4 bg-white/40 dark:bg-black/20 p-8 rounded-2xl border border-white/20">
                       <div className="text-center">
-                        <h4 className="font-semibold mb-2 text-text-dark/80 dark:text-text-light/80">{t.embedManualHe}</h4>
-                        <iframe
-                          src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html"
-                          width="330"
-                          height="215"
-                          style={{ border: 'none', overflow: 'hidden' }}
-                          title="טיימר חורבן בית המקדש"
-                          className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
-                        ></iframe>
+                        <h4 className="font-bold mb-4 text-text-dark/80 dark:text-text-light/80">{t.embedManualHe}</h4>
+                        <div className="rounded-xl overflow-hidden shadow-2xl border border-white/20">
+                            <iframe
+                            src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-he.html"
+                            width="330"
+                            height="215"
+                            style={{ border: 'none', overflow: 'hidden' }}
+                            title="טיימר חורבן בית המקדש"
+                            ></iframe>
+                        </div>
                       </div>
                       <div className="text-center">
-                        <h4 className="font-semibold mb-2 text-text-dark/80 dark:text-text-light/80">{t.embedManualEn}</h4>
-                        <iframe
-                          src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html"
-                          width="330"
-                          height="215"
-                          style={{ border: 'none', overflow: 'hidden' }}
-                          title="Beit HaMikdash Destruction Timer"
-                          className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
-                        ></iframe>
+                        <h4 className="font-bold mb-4 text-text-dark/80 dark:text-text-light/80">{t.embedManualEn}</h4>
+                         <div className="rounded-xl overflow-hidden shadow-2xl border border-white/20">
+                            <iframe
+                            src="https://lotzi-tosafix.github.io/bezachrenu_es_zion/timer-en.html"
+                            width="330"
+                            height="215"
+                            style={{ border: 'none', overflow: 'hidden' }}
+                            title="Beit HaMikdash Destruction Timer"
+                            ></iframe>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><Code2 size={20} /> {t.embedCode}</h3>
-                    <p className="text-text-dark/80 dark:text-text-light/80 mb-4">{t.embedInstructions}</p>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><Code2 size={22} className="text-primary" /> {t.embedCode}</h3>
+                    <p className="text-text-dark/80 dark:text-text-light/80 mb-6 font-light">{t.embedInstructions}</p>
                     
-                    <h4 className="font-semibold mt-4 mb-2 text-text-dark dark:text-text-light">{t.embedAutoTitle}</h4>
+                    <h4 className="font-bold mt-6 mb-3 text-text-dark dark:text-text-light">{t.embedAutoTitle}</h4>
                     <p className="text-sm text-text-dark/80 dark:text-text-light/80 mb-2">{t.embedAutoStep1}</p>
                     <CodeBlock code={`<div id="temple-timer-container"></div>`} language="html" />
-                    <p className="text-sm text-text-dark/80 dark:text-text-light/80 mt-4 mb-2">{t.embedAutoStep2}</p>
+                    <p className="text-sm text-text-dark/80 dark:text-text-light/80 mt-6 mb-2">{t.embedAutoStep2}</p>
                     <CodeBlock code={autoEmbedScriptCode} language="html" />
                     
-                    <h4 className="font-semibold mt-6 mb-2 text-text-dark dark:text-text-light">{t.embedManualTitle}</h4>
+                    <h4 className="font-bold mt-8 mb-3 text-text-dark dark:text-text-light">{t.embedManualTitle}</h4>
                     <p className="text-sm text-text-dark/80 dark:text-text-light/80 mb-2">{t.embedManualDesc}</p>
-                    <h5 className="font-medium mt-4 mb-1 text-text-dark dark:text-text-light">{t.embedManualHe}</h5>
+                    <h5 className="font-medium mt-6 mb-2 text-text-dark dark:text-text-light">{t.embedManualHe}</h5>
                     <CodeBlock code={heIframeCode} language="html" />
-                    <h5 className="font-medium mt-4 mb-1 text-text-dark dark:text-text-light">{t.embedManualEn}</h5>
+                    <h5 className="font-medium mt-6 mb-2 text-text-dark dark:text-text-light">{t.embedManualEn}</h5>
                     <CodeBlock code={enIframeCode} language="html" />
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><Wrench size={20} /> {t.customization}</h3>
-                     <p className="text-text-dark/80 dark:text-text-light/80 p-4 bg-gray-100 dark:bg-gray-700/50 rounded-lg">{t.customizationDesc}</p>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><Wrench size={22} className="text-primary" /> {t.customization}</h3>
+                     <p className="text-text-dark/80 dark:text-text-light/80 p-6 bg-white/40 dark:bg-black/20 rounded-2xl border border-white/20 leading-relaxed">{t.customizationDesc}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><BookUser size={20} /> {t.credits}</h3>
-                     <p className="text-text-dark/80 dark:text-text-light/80 p-4 bg-gray-100 dark:bg-gray-700/50 rounded-lg">
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><BookUser size={22} className="text-primary" /> {t.credits}</h3>
+                     <p className="text-text-dark/80 dark:text-text-light/80 p-6 bg-white/40 dark:bg-black/20 rounded-2xl border border-white/20 leading-relaxed">
                       {t.creditsDesc_part1}
-                      <a href="https://github.com/kdroidFilter/SecondTempleTimerLibrary" target="_blank" rel="noopener noreferrer" className="text-accent underline hover:text-accent/80 transition-colors">
+                      <a href="https://github.com/kdroidFilter/SecondTempleTimerLibrary" target="_blank" rel="noopener noreferrer" className="text-accent font-bold hover:text-accent/80 transition-colors">
                         {t.creditsDesc_link}
                       </a>
                       {t.creditsDesc_part2}
@@ -359,8 +363,8 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-text-dark dark:text-text-light flex items-center gap-2"><BookUser size={20} /> {t.license}</h3>
-                     <p className="text-text-dark/80 dark:text-text-light/80 p-4 bg-gray-100 dark:bg-gray-700/50 rounded-lg">{t.licenseDesc}</p>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><Shield size={22} className="text-primary" /> {t.license}</h3>
+                     <p className="text-text-dark/80 dark:text-text-light/80 p-6 bg-white/40 dark:bg-black/20 rounded-2xl border border-white/20">{t.licenseDesc}</p>
                   </div>
                 </div>
               </motion.section>

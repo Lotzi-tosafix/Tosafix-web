@@ -2,12 +2,10 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
-// FIX: Add Variants import from framer-motion to correctly type animation variants.
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Play, Pause, Loader, Volume2, VolumeX, Music, ChevronDown, Search, X } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
 
-// FIX: Use `as const` to preserve the literal types of `nameKey` and prevent type widening to `string`.
 const baseStations = [
     { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm//static/images/fblogo.png', nowPlayingUrl: 'https://kcm.fm/Home/LiveJ/1' },
     { nameKey: 'kolPlay', streamUrl: 'https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio', logoUrl: 'https://upload.wikimedia.org/wikipedia/he/2/2b/%D7%9C%D7%95%D7%92%D7%95_%D7%A7%D7%95%D7%9C_%D7%A4%D7%9C%D7%99%D7%99.png' },
@@ -16,7 +14,6 @@ const baseStations = [
     { nameKey: 'jewishMusicStream', streamUrl: 'https://stream.jewishmusicstream.com:8000/stream', logoUrl: 'https://play-lh.googleusercontent.com/xmVDcArYbsmg8ENX6bCRh_C6fBPzahmlUuDKdgGGIOK2chDjLsoa9_qqfHMICd-ntxU' }
 ] as const;
 
-// FIX: Use `as const` and `.slice()` to create a mutable, correctly-typed array that can be sorted.
 const musicVolumeStations = ([
     { nameKey: 'kcm_2', streamUrl: 'https://live.kcm.fm/02/hls.m3u8', logoUrl: 'https://kcm.fm/upload/pictures/5/5156.jpg', nowPlayingUrl: 'https://kcm.fm/Home/LiveJ/2' },
     { nameKey: 'kcm_3', streamUrl: 'https://live.kcm.fm/03/hls.m3u8', logoUrl: 'https://kcm.fm/upload/pictures/7/7864.jpg', nowPlayingUrl: 'https://kcm.fm/Home/LiveJ/3' },
@@ -93,7 +90,6 @@ const musicVolumeStations = ([
 });
 
 
-// Main Player Component
 const MainPlayer = () => {
     const { language } = useLanguage();
     const t = translations[language];
@@ -122,23 +118,17 @@ const MainPlayer = () => {
     );
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-2xl max-w-4xl mx-auto shadow-lg backdrop-blur-sm border border-primary/20 flex flex-col sm:flex-row-reverse items-center justify-between gap-4"
-        >
-            {/* Left/Start Controls */}
-            <div className="flex items-center gap-3 w-full sm:w-auto justify-center flex-shrink-0">
+        <div className="w-full max-w-4xl mx-auto flex flex-col sm:flex-row-reverse items-center justify-between gap-6">
+            <div className="flex items-center gap-4 w-full sm:w-auto justify-center flex-shrink-0">
                 <button
                     onClick={togglePlayPause}
                     disabled={!currentlyPlaying || isLoading}
-                    className="w-16 h-16 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105 flex-shrink-0"
+                    className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary/50 transform hover:scale-105"
                     aria-label={isPlaying ? "Pause" : "Play"}
                 >
                     {buttonIcon}
                 </button>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3 bg-white/30 dark:bg-black/20 p-2 rounded-xl backdrop-blur-sm">
                     <button
                         onClick={() => setIsMuted(!isMuted)}
                         className="text-text-dark dark:text-text-light hover:text-primary transition-colors"
@@ -153,16 +143,15 @@ const MainPlayer = () => {
                         step="0.01"
                         value={isMuted ? 0 : volume}
                         onChange={(e) => setVolume(parseFloat(e.target.value))}
-                        className="w-32 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                        className="w-32 h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
                         aria-label="Volume control"
                     />
                 </div>
             </div>
 
-            {/* Center: Song Info */}
-            <div className="flex-grow min-w-0 text-center h-12">
-                <AnimatePresence>
-                    {nowPlayingInfo && (
+            <div className="flex-grow min-w-0 text-center h-12 flex flex-col justify-center w-full sm:w-auto">
+                <AnimatePresence mode="wait">
+                    {nowPlayingInfo ? (
                         <motion.div
                             key={nowPlayingInfo.song}
                             initial={{ opacity: 0, y: 10 }}
@@ -170,39 +159,48 @@ const MainPlayer = () => {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <p className="text-md text-text-dark dark:text-text-light font-semibold truncate" title={nowPlayingInfo.song}>
-                                <Music size={14} className="inline -mt-1 me-1.5" />
+                            <p className="text-lg text-text-dark dark:text-text-light font-bold truncate drop-shadow-sm" title={nowPlayingInfo.song}>
                                 {nowPlayingInfo.song}
                             </p>
-                            <p className="text-sm text-text-dark/70 dark:text-text-light/70 truncate" title={nowPlayingInfo.artist}>
+                            <p className="text-sm text-text-dark/80 dark:text-text-light/80 truncate font-medium" title={nowPlayingInfo.artist}>
                                 {nowPlayingInfo.artist}
                             </p>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <p className="text-sm text-text-dark/50 dark:text-text-light/50 font-medium">{t.selectStation}</p>
                         </motion.div>
                     )}
                 </AnimatePresence>
             </div>
 
-            {/* Right/End: Station Info */}
-            <div className="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start flex-shrink-0" style={{ minWidth: '220px' }}>
-                <AnimatePresence mode="wait">
-                    <motion.img
-                        key={stationLogo}
-                        src={stationLogo}
-                        alt={stationName}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        className="w-16 h-16 rounded-lg object-cover shadow-md flex-shrink-0"
-                    />
-                </AnimatePresence>
+            <div className="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start flex-shrink-0" style={{ minWidth: '240px' }}>
+                <div className="relative w-16 h-16 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-white/20">
+                    <AnimatePresence mode="wait">
+                        <motion.img
+                            key={stationLogo}
+                            src={stationLogo}
+                            alt={stationName}
+                            initial={{ opacity: 0, scale: 1.2 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            transition={{ duration: 0.4 }}
+                            className="w-full h-full object-cover"
+                        />
+                    </AnimatePresence>
+                </div>
                 <div className="text-start min-w-0 flex-grow">
-                    <p className="text-sm text-primary font-semibold h-5">{currentlyPlaying ? t.nowPlaying : ' '}</p>
+                    <p className="text-xs text-primary font-bold uppercase tracking-wider mb-1">{currentlyPlaying ? t.nowPlaying : t.ready}</p>
                     <AnimatePresence mode="wait">
                         <motion.h2
                             key={stationName}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
                             transition={{ duration: 0.2 }}
                             className="text-lg font-bold text-text-dark dark:text-text-light truncate"
                         >
@@ -211,44 +209,41 @@ const MainPlayer = () => {
                     </AnimatePresence>
                 </div>
             </div>
-
-        </motion.div>
+        </div>
     );
 };
 
-// Station Card Component
 const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: boolean, onSelect: (station: Station) => void }> = ({ station, isSelected, isPlaying, onSelect }) => {
     const { language } = useLanguage();
     const t = translations[language];
 
     return (
         <div
-            className={`group relative w-full aspect-square rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${isSelected ? 'glowing-border-animation' : 'hover:shadow-primary/40'}`}
+            className={`group relative w-full aspect-square rounded-[2rem] shadow-lg overflow-hidden cursor-pointer transition-all duration-500 ${isSelected ? 'ring-4 ring-primary shadow-primary/50 scale-105' : 'hover:shadow-xl hover:-translate-y-2 hover:scale-105'}`}
             onClick={() => onSelect(station)}
         >
             <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                 style={{ backgroundImage: `url(${station.logoUrl})` }}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
             
-            <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end h-full">
+            <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col justify-end h-full">
                 <h3 
-                    className="text-white text-2xl font-bold text-center leading-tight"
-                    style={{ textShadow: '0px 4px 8px rgba(0, 0, 0, 0.9), 0px 2px 4px rgba(0, 0, 0, 0.9)' }}
+                    className="text-white text-xl font-bold text-center leading-tight drop-shadow-md transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
                 >
                     {t[station.nameKey] as string}
                 </h3>
                 <AnimatePresence>
                 {isPlaying && (
-                     <motion.p 
+                     <motion.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="text-primary text-sm font-semibold text-center"
-                        style={{ textShadow: '0px 2px 4px rgba(0, 0, 0, 0.9)' }}
+                        className="flex justify-center mt-2"
                      >
-                        {t.nowPlaying}
-                     </motion.p>
+                         <span className="inline-block w-2 h-2 bg-primary rounded-full animate-ping"></span>
+                     </motion.div>
                 )}
                 </AnimatePresence>
             </div>
@@ -256,34 +251,33 @@ const StationCard: React.FC<{ station: Station, isSelected: boolean, isPlaying: 
     );
 };
 
-// Folder Component
 const MusicVolumeFolder: React.FC<{ isOpen: boolean, onClick: () => void }> = ({ isOpen, onClick }) => {
     return (
         <motion.div
             layout
             onClick={onClick}
-            className={`relative w-full max-w-2xl mx-auto rounded-2xl bg-black cursor-pointer shadow-lg hover:shadow-primary/40 transition-shadow duration-300 ${isOpen ? 'glowing-border-animation' : ''}`}
+            className={`relative w-full max-w-2xl mx-auto rounded-3xl bg-black/80 backdrop-blur-xl cursor-pointer shadow-2xl border border-white/10 overflow-hidden group`}
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
         >
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-blue-900/50 opacity-50 group-hover:opacity-70 transition-opacity"></div>
             <img 
                 src="https://kcm.fm/dist/assets/f035866fbe1095dafbd7.png" 
                 alt="Music Volume"
-                className="w-full h-auto object-contain rounded-2xl"
+                className="w-full h-auto object-contain relative z-10"
             />
-            <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-md rounded-full p-2 border border-white/20 text-white shadow-lg">
+            <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 bg-white/20 backdrop-blur-md rounded-full p-3 border border-white/30 text-white shadow-lg z-20 hover:bg-white/30 transition-colors">
                  <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                  >
-                    <ChevronDown size={24} />
+                    <ChevronDown size={28} />
                  </motion.div>
             </div>
         </motion.div>
     );
 };
 
-// Main Live Music Page Component
 const LiveMusic: React.FC = () => {
     const { language } = useLanguage();
     const t = translations[language];
@@ -304,13 +298,11 @@ const LiveMusic: React.FC = () => {
         }
     };
 
-    // Filter logic
     const allStations = [...baseStations, ...musicVolumeStations];
     const filteredStations = allStations.filter(station => 
         (t[station.nameKey] as string).toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // FIX: Explicitly type with Variants to resolve TypeScript error with transition properties.
     const folderContainerVariants: Variants = {
         open: {
             height: 'auto',
@@ -330,67 +322,73 @@ const LiveMusic: React.FC = () => {
         }
     };
 
-    // FIX: Explicitly type with Variants to resolve TypeScript error with transition properties.
     const stationCardVariants: Variants = {
         open: {
             opacity: 1,
             y: 0,
+            scale: 1,
             transition: { type: 'spring', stiffness: 300, damping: 24 }
         },
         closed: {
             opacity: 0,
             y: -20,
+            scale: 0.9,
             transition: { duration: 0.2 }
         }
     };
 
     return (
-        <div className="min-h-screen bg-bg-light dark:bg-bg-dark py-12 px-4">
+        <div className="min-h-screen py-20 px-4">
             <div className="max-w-7xl mx-auto">
-                <header className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-text-dark dark:text-text-light">
+                <header className="text-center mb-16">
+                    <h1 className="text-5xl md:text-6xl font-bold text-text-dark dark:text-text-light font-rubik mb-6">
                         <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">{t.liveMusic}</span>
                     </h1>
-                    <p className="mt-4 text-lg text-text-dark/70 dark:text-text-light/70">{t.liveMusicDescription}</p>
+                    <p className="text-xl text-text-dark/70 dark:text-text-light/70 font-light max-w-2xl mx-auto glass-card p-4 rounded-2xl">{t.liveMusicDescription}</p>
                 </header>
                 
-                <div className="sticky top-16 z-40 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-lg -mx-4 px-4 py-4 mb-8 space-y-4">
-                    <MainPlayer />
-                    
-                    {/* Search Input */}
-                    <div className="relative max-w-md mx-auto group">
-                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <Search className="w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                <div className="sticky top-24 z-30 -mx-4 px-4 pb-8">
+                    <motion.div 
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="glass-card rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-white/40 dark:border-white/10 max-w-5xl mx-auto backdrop-blur-xl flex flex-col items-center gap-8"
+                    >
+                        <MainPlayer />
+                        
+                        <div className="relative w-full max-w-md mx-auto group">
+                            <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
+                                <Search className="w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                            </div>
+                            <input 
+                                type="text" 
+                                className="block w-full p-4 ps-12 text-base text-gray-900 border border-gray-200/50 rounded-2xl bg-white/50 dark:bg-black/20 dark:border-gray-700/50 dark:placeholder-gray-400 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent backdrop-blur-md shadow-inner transition-all outline-none"
+                                placeholder={t.searchStations}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            {searchQuery && (
+                                <button 
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute inset-y-0 end-0 flex items-center pe-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                            )}
                         </div>
-                        <input 
-                            type="text" 
-                            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-200 rounded-2xl bg-white/50 dark:bg-gray-800/50 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-transparent backdrop-blur-sm shadow-sm transition-all outline-none"
-                            placeholder={t.searchStations}
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                         {searchQuery && (
-                            <button 
-                                onClick={() => setSearchQuery('')}
-                                className="absolute inset-y-0 end-0 flex items-center pe-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
-                        )}
-                    </div>
+                    </motion.div>
                 </div>
 
-                <main>
+                <main className="mt-8">
                     <AnimatePresence mode="wait">
                         {searchQuery ? (
-                             /* Search Results View */
                             <motion.div 
                                 key="search-results"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3 }}
-                                className="flex flex-wrap justify-center gap-6"
+                                className="flex flex-wrap justify-center gap-8"
                             >
                                 {filteredStations.length > 0 ? (
                                     filteredStations.map(station => (
@@ -399,7 +397,7 @@ const LiveMusic: React.FC = () => {
                                             layout
                                             initial={{ opacity: 0, scale: 0.9 }} 
                                             animate={{ opacity: 1, scale: 1 }} 
-                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                            className="w-40 sm:w-48 md:w-56 lg:w-60 aspect-square flex-shrink-0"
                                         >
                                             <StationCard
                                                 station={station}
@@ -410,13 +408,12 @@ const LiveMusic: React.FC = () => {
                                         </motion.div>
                                     ))
                                 ) : (
-                                    <div className="text-center py-12 w-full">
-                                        <p className="text-xl text-gray-500 dark:text-gray-400">{t.noStationsFound}</p>
+                                    <div className="text-center py-20 w-full glass-card rounded-3xl">
+                                        <p className="text-2xl text-gray-500 dark:text-gray-400 font-light">{t.noStationsFound}</p>
                                     </div>
                                 )}
                             </motion.div>
                         ) : (
-                            /* Default View */
                              <motion.div
                                 key="default-view"
                                 initial={{ opacity: 0 }}
@@ -424,10 +421,9 @@ const LiveMusic: React.FC = () => {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3 }}
                              >
-                                {/* Base Stations */}
                                 <motion.div 
                                     layout
-                                    className="flex flex-wrap justify-center gap-6"
+                                    className="flex flex-wrap justify-center gap-8"
                                 >
                                     {baseStations.map(station => (
                                         <motion.div 
@@ -436,7 +432,7 @@ const LiveMusic: React.FC = () => {
                                             initial={{ opacity: 0 }} 
                                             animate={{ opacity: 1 }} 
                                             transition={{ duration: 0.5 }}
-                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                            className="w-40 sm:w-48 md:w-56 lg:w-60 aspect-square flex-shrink-0"
                                         >
                                             <StationCard
                                                 station={station}
@@ -448,8 +444,7 @@ const LiveMusic: React.FC = () => {
                                     ))}
                                 </motion.div>
                                 
-                                {/* Music Volume Folder Section */}
-                                <div className="mt-12">
+                                <div className="mt-20">
                                     <MusicVolumeFolder isOpen={isFolderOpen} onClick={() => setIsFolderOpen(!isFolderOpen)} />
                                     <AnimatePresence>
                                         {isFolderOpen && (
@@ -459,16 +454,16 @@ const LiveMusic: React.FC = () => {
                                                 animate="open"
                                                 exit="closed"
                                                 variants={folderContainerVariants}
-                                                className="overflow-hidden mt-6"
+                                                className="overflow-hidden mt-10"
                                             >
                                                 <motion.div
-                                                    className="flex flex-wrap justify-center gap-6"
+                                                    className="flex flex-wrap justify-center gap-8"
                                                 >
                                                     {musicVolumeStations.map((station) => (
                                                         <motion.div
                                                             key={station.streamUrl}
                                                             variants={stationCardVariants}
-                                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                                            className="w-40 sm:w-48 md:w-56 lg:w-60 aspect-square flex-shrink-0"
                                                         >
                                                             <StationCard
                                                                 station={station}

@@ -31,7 +31,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Rubik:wght@500;600;800&family=Bona+Nova+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;500;600;700;800&family=Bona+Nova+SC:wght@400;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -45,28 +45,45 @@
             colors: {
               primary: '#79C9E8',
               secondary: '#B18BE8',
-              accent: '#007AFF',
-              'text-dark': '#1C1C28',
-              'text-light': '#FAFAFA',
-              'bg-light': '#F6F9FC',
-              'bg-dark': '#1C1C28',
+              accent: '#3B82F6',
+              dark: '#0F172A',
+              'dark-card': '#1E293B',
+              'text-dark': '#0F172A',
+              'text-light': '#F8FAFC',
+              'bg-light': '#F0F9FF',
+              'bg-dark': '#020617',
             },
             fontFamily: {
               sans: ['Assistant', 'sans-serif'],
               rubik: ['Rubik', 'sans-serif'],
             },
+            animation: {
+              blob: "blob 10s infinite",
+              float: "float 6s ease-in-out infinite",
+              'spin-slow': 'spin 12s linear infinite',
+              'gradient-x': 'gradient-x 15s ease infinite',
+            },
             keyframes: {
-              'glowing-border': {
+              blob: {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" }
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" }
+              },
+              'gradient-x': {
                 '0%, 100%': {
-                  boxShadow: '0 0 3px #79C9E8, 0 0 6px #79C9E8, 0 0 9px #B18BE8, 0 0 12px #B18BE8'
+                    'background-size': '200% 200%',
+                    'background-position': 'left center'
                 },
                 '50%': {
-                  boxShadow: '0 0 6px #B18BE8, 0 0 12px #B18BE8, 0 0 18px #79C9E8, 0 0 24px #79C9E8'
-                }
-              }
-            },
-            animation: {
-              'glowing-border': 'glowing-border 2.5s ease-in-out infinite',
+                    'background-size': '200% 200%',
+                    'background-position': 'right center'
+                },
+              },
             }
           },
         },
@@ -77,70 +94,89 @@
         font-family: 'Digital-7';
         src: url('https://db.onlinewebfonts.com/t/1e888b1f592f9e42b93815a51989725f.woff2') format('woff2');
       }
-      /* Custom scrollbar for better aesthetics */
+      
+      body {
+        overflow-x: hidden;
+      }
+      
+      /* Glassmorphism Utilities */
+      .glass {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .dark .glass {
+        background: rgba(15, 23, 42, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      }
+      
+      .dark .glass-card {
+        background: rgba(15, 23, 42, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .dark .glass-nav {
+        background: rgba(2, 6, 23, 0.8);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Custom scrollbar */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #F8FAFC;
+        background: transparent;
       }
       ::-webkit-scrollbar-thumb {
         background: #B18BE8;
-        border-radius: 4px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        background-clip: content-box;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #79C9E8;
+        border: 2px solid transparent;
+        background-clip: content-box;
       }
-      html.dark ::-webkit-scrollbar {
-        width: 8px;
-      }
-      html.dark ::-webkit-scrollbar-track {
-        background: #1C1C28;
-      }
-      html.dark ::-webkit-scrollbar-thumb {
-        background: #79C9E8;
-        border-radius: 4px;
-      }
-      html.dark ::-webkit-scrollbar-thumb:hover {
-        background: #B18BE8;
-      }
-      @keyframes spinOnce {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
-      .spin-once {
-        animation: spinOnce 3s ease-out;
-      }
-      @keyframes siteGradient {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 200% 0%; }
-      }
-      @keyframes chromeGradient {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 200% 0%; }
-      }
-      .animate-gradient-text {
-        background: linear-gradient(90deg, #79C9E8 0%, #B18BE8 50%, #79C9E8 100%);
-        background-size: 200% 100%;
+
+      .text-gradient {
+        background: linear-gradient(to right, #79C9E8, #B18BE8);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: siteGradient 4s linear infinite;
       }
+      
+      /* Glowing border animation for cards */
+      @keyframes glow {
+        0% { box-shadow: 0 0 5px #79C9E8, 0 0 10px #79C9E8; }
+        50% { box-shadow: 0 0 20px #B18BE8, 0 0 30px #B18BE8; }
+        100% { box-shadow: 0 0 5px #79C9E8, 0 0 10px #79C9E8; }
+      }
+      
       .glowing-border-animation {
-        animation: glowing-border 2.5s ease-in-out infinite;
+        animation: glow 3s infinite;
       }
-      @keyframes glowing-border {
-        0%, 100% {
-          box-shadow: 0 0 3px #79C9E8, 0 0 6px #79C9E8, 0 0 9px #B18BE8, 0 0 12px #B18BE8;
-        }
-        50% {
-          box-shadow: 0 0 6px #B18BE8, 0 0 12px #B18BE8, 0 0 18px #79C9E8, 0 0 24px #79C9E8;
-        }
-      }
+
+      /* Smooth Scrolling */
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 5rem; /* 80px to offset for sticky header */
       }
     </style>
   <script type="importmap">
