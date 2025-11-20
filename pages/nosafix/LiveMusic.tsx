@@ -397,7 +397,7 @@ const LiveMusic: React.FC = () => {
                                             layout
                                             initial={{ opacity: 0, scale: 0.9 }} 
                                             animate={{ opacity: 1, scale: 1 }} 
-                                            className="w-40 sm:w-48 md:w-56 lg:w-60 aspect-square flex-shrink-0"
+                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
                                         >
                                             <StationCard
                                                 station={station}
@@ -432,7 +432,7 @@ const LiveMusic: React.FC = () => {
                                             initial={{ opacity: 0 }} 
                                             animate={{ opacity: 1 }} 
                                             transition={{ duration: 0.5 }}
-                                            className="w-40 sm:w-48 md:w-56 lg:w-60 aspect-square flex-shrink-0"
+                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
                                         >
                                             <StationCard
                                                 station={station}
@@ -463,7 +463,7 @@ const LiveMusic: React.FC = () => {
                                                         <motion.div
                                                             key={station.streamUrl}
                                                             variants={stationCardVariants}
-                                                            className="w-40 sm:w-48 md:w-56 lg:w-60 aspect-square flex-shrink-0"
+                                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
                                                         >
                                                             <StationCard
                                                                 station={station}
