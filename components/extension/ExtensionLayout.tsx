@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Lock, ExternalLink, Copy, FileDown } from 'lucide-react';
@@ -217,8 +218,14 @@ export default function ExtensionLayout({
                     </h2>
                     <p className="text-lg mb-10 leading-relaxed text-text-dark/70 dark:text-text-light/70 max-w-2xl mx-auto">{installSection.description}</p>
                     <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer">
-                        <button className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-full text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto" style={{ background: 'linear-gradient(90deg, rgb(219, 68, 55) 0%, rgb(244, 180, 0) 25%, rgb(15, 157, 88) 50%, rgb(66, 133, 244) 75%, rgb(219, 68, 55) 100%) 0% 0% / 200% 100%', animation: 'chromeGradient 3s linear infinite' }}>
-                            <Download className="me-2 -ms-1 h-5 w-5" />
+                        <style>
+                            {`@keyframes chromeGradient {
+                                0% { background-position: 0% 0%; }
+                                100% { background-position: 200% 0%; }
+                            }`}
+                        </style>
+                        <button className="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-full text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto" style={{ background: 'linear-gradient(90deg, rgb(219, 68, 55) 0%, rgb(244, 180, 0) 25%, rgb(15, 157, 88) 50%, rgb(66, 133, 244) 75%, rgb(219, 68, 55) 100%) 0% 0% / 200% 100%', animation: '3s linear 0s infinite normal none running chromeGradient' }}>
+                            <Download className="me-2 -ms-1 h-6 w-6" />
                             {t.chromeWebStore}
                         </button>
                     </a>
