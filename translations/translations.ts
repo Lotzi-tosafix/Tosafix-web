@@ -40,11 +40,11 @@ export const translations = {
     topRated: 'דירוג גבוה',
     secure: 'מאובטח',
     fast: 'מהיר',
-    scrollDown: 'גלול למטה',
-    chromeExtensionsHub: 'מרכז תוספי כרום',
+    scrollDown: 'גלול מטה',
+    chromeExtensionsHub: 'המרכז לתוספי כרום',
 
     // General UI
-    tryNow: 'נסה עכשיו',
+    tryNow: 'נסה את זה',
     openTool: 'פתח כלי',
     ready: 'מוכן',
     selectStation: 'בחר תחנה לניגון',
@@ -57,7 +57,7 @@ export const translations = {
 
     // About Section
     aboutTitle: 'אודותינו',
-    aboutText: 'ברוכים הבאים ל"תוספיקס" – הבית לתוספי כרום חכמים ושימושיים באמת! אנו יוצרים תוספים שמייעלים את חוויית המשתמש, חוסכים זמן ומפשטים משימות יומיומיות בצורה חכמה. ב"תוספיקס" אנו מאמינים שתוספים צריכים להיות קלים לשימוש, מועילים ומותאמים בדיוק לצרכים של המשתמשים. לכן, כל תוסף שאנו מפתחים נותן פתרון אמיתי לבעיות שכיחות, כדי להפוך את העבודה שלך למהירה ונוחה יותר.',
+    aboutText: "ברוכים הבאים ל'תוספיקס' – המקום שבו הטכנולוגיה פוגשת את הנוחות היומיומית! האתר מרכז מגוון רחב של תוספי כרום ייחודיים וכלים מתקדמים שנועדו לשדרג את חווית הגלישה והעבודה שלכם. בין הפיתוחים שלנו תמצאו את 'NotiForum' לריכוז התראות מפורומים, 'NetSkin' לעיצוב דפי חסימה בנטפרי, 'Yamina' ליישור דפי אינטרנט, 'My Emoji' ליצירת אימוג'ים אישיים, 'מציג תאריך עברי', ו'פותחן Edge'. בנוסף, האתר מציע כלים שימושיים כמו 'Fix Remover' להסרת רקעים מתמונות, נגן 'Live Music' לתחנות רדיו יהודיות, ועוד. ב'תוספיקס' אנו שמים דגש על פשטות, יעילות והתאמה אישית, כדי לספק לכם פתרונות חכמים לצרכים אמיתיים.",
     userFocused: 'מותאם למשתמש',
     userFocusedDesc: 'תוספים שנבנו בהתאם לצרכים האמיתיים של המשתמשים',
     timeSaving: 'חיסכון בזמן',
@@ -351,7 +351,7 @@ export const translations = {
     netSkinFeature2Title: 'זיהוי תגיות חכם',
     netSkinFeature2Desc: "לראשונה, דעו בדיוק למה אתר נחסם! NetSkin מזהה את התגית האישית שגרמה לחסימה ומציג לכם את שמה המלא, היישר משרתי נטפרי.",
     netSkinFeature3Title: 'שליטה מלאה והתאמה אישית',
-    netSkinFeature3Desc: 'בחרו כיצד יוצגו העיצובים: במצב אקראי, אקראי מתוזמן (החלפה יומית/שעתית) או בחירה ספציפית של העיצוב האהוב עליכם לכל קטגוריה בנפרד.',
+    netSkinFeature3Desc: 'בחרו כיצד יוצגו העיצובים: במצב אקראי, אקראי מתוזמן (החלפה יומית/שעתית) או בחירה ספציפית של העיצוב האהוב עליך לכל קטגוריה בנפרד.',
     netSkinFeature4Title: 'בריכת עיצובים אישית',
     netSkinFeature4Desc: 'אוהבים רק חלק מהעיצובים? סמנו אילו עיצובים ייכללו במצבים האקראיים, וצרו לעצמכם גלריה פרטית ומותאמת אישית.',
     netSkinFeature5Title: "התאמה קונטקסטואלית",
@@ -685,7 +685,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
 
     // About Section
     aboutTitle: 'About Us',
-    aboutText: 'Welcome to "Tosafix" – your home for smart and truly useful Chrome extensions! We create extensions that streamline the user experience, save time, and simplify daily tasks in a smart way. At "Tosafix," we believe extensions should be easy to use, beneficial, and perfectly tailored to users\' needs. Therefore, every extension we develop provides a real solution to common problems, to make your work faster and more convenient.',
+    aboutText: "Welcome to 'Tosafix' – where technology meets daily convenience! The site features a wide range of unique Chrome extensions and advanced tools designed to upgrade your browsing and workflow experience. Among our developments, you'll find 'NotiForum' for centralized forum notifications, 'NetSkin' for styling NetFree block pages, 'Yamina' for web page alignment, 'My Emoji' for creating custom emojis, 'Hebrew Date Viewer', and 'Edge Opener'. Additionally, the site offers useful tools like 'Fix Remover' for background removal, a 'Live Music' player for Jewish radio stations, and more. At 'Tosafix', we focus on simplicity, efficiency, and customization to provide smart solutions for real needs.",
     userFocused: 'User-Focused',
     userFocusedDesc: 'Extensions built according to the real needs of users',
     timeSaving: 'Time-Saving',
