@@ -36,7 +36,7 @@ const getStatusIcon = (status: TestStatus) => {
     }
 };
 
-const TestCard = ({ test, t }: { test: TestResult, t: any }) => {
+const TestCard: React.FC<{ test: TestResult, t: any }> = ({ test, t }) => {
     const Icon = test.icon;
     const statusClass = getStatusColor(test.status);
     
@@ -46,21 +46,24 @@ const TestCard = ({ test, t }: { test: TestResult, t: any }) => {
           animate={{ opacity: 1, scale: 1 }}
           className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-300 ${statusClass} backdrop-blur-md ${test.fullWidth ? 'col-span-1 sm:col-span-2' : ''}`}
       >
-          <div className="flex items-center gap-3">
-              <div className="p-2 rounded-full bg-white/40 dark:bg-black/20">
+          <div className="flex items-center gap-3 overflow-hidden">
+              <div className="p-2 rounded-full bg-white/40 dark:bg-black/20 flex-shrink-0">
                   <Icon size={20} />
               </div>
-              <div className="flex flex-col text-start">
-                   <h3 className="font-bold text-sm text-text-dark dark:text-text-light">{t[test.labelKey as keyof typeof t] as string}</h3>
-                   {test.status === 'idle' && test.id.startsWith('browser') ? null : (
-                       <div className="font-medium text-sm mt-0.5">
+              <div className="flex flex-col text-start overflow-hidden">
+                   <h3 className="font-bold text-sm text-text-dark dark:text-text-light whitespace-nowrap">{t[test.labelKey as keyof typeof t] as string}</h3>
+                   {test.status !== 'idle' && (
+                       <div className="font-medium text-sm mt-0.5 truncate">
                            {test.result}
                        </div>
+                   )}
+                   {test.status === 'idle' && (
+                       <div className="font-medium text-sm mt-0.5 opacity-50">-</div>
                    )}
               </div>
           </div>
            {test.status !== 'idle' && (
-               <div className="flex-shrink-0">
+               <div className="flex-shrink-0 ms-2">
                    {getStatusIcon(test.status)}
                </div>
            )}
@@ -68,12 +71,16 @@ const TestCard = ({ test, t }: { test: TestResult, t: any }) => {
     );
 };
 
+const LtrText: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
+    <span className="ltr:text-left rtl:text-right inline-block" dir="ltr">{children}</span>
+);
+
 const FixChecker = () => {
   const { language } = useLanguage();
   const t = translations[language];
   const [isRunning, setIsRunning] = useState(false);
   
-  const [results, setResults] = useState<{ [key: string]: { status: TestStatus, result?: React.ReactNode } }>({
+  const [results, setResults] = useState<Record<string, { status: TestStatus, result: React.ReactNode }>>({
     browser: { status: 'idle', result: '-' },
     os: { status: 'idle', result: '-' },
     screen: { status: 'idle', result: '-' },
@@ -94,6 +101,50 @@ const FixChecker = () => {
     }));
   };
 
+  const checkSystemInfo = () => {
+      // Browser
+      const userAgent = navigator.userAgent;
+      let browserName = "Unknown";
+      if(userAgent.includes("Edg")) browserName = "Microsoft Edge";
+      else if(userAgent.includes("Chrome")) browserName = "Google Chrome";
+      else if(userAgent.includes("Firefox")) browserName = "Mozilla Firefox";
+      else if(userAgent.includes("Safari")) browserName = "Apple Safari";
+      
+      updateResult('browser', 'idle', <LtrText>{browserName}</LtrText>);
+
+      // OS
+      let os = "Unknown";
+      if (userAgent.indexOf("Win") !== -1) os = "Windows";
+      if (userAgent.indexOf("Mac") !== -1) os = "MacOS";
+      if (userAgent.indexOf("Linux") !== -1) os = "Linux";
+      if (userAgent.indexOf("Android") !== -1) os = "Android";
+      if (userAgent.indexOf("like Mac") !== -1) os = "iOS";
+      
+      updateResult('os', 'idle', os);
+
+      // Screen
+      const width = window.screen.width;
+      const height = window.screen.height;
+      updateResult('screen', 'idle', <LtrText>{width} x {height}</LtrText>);
+
+      // Hardware
+      const cores = navigator.hardwareConcurrency || "?";
+      // @ts-ignore - deviceMemory is not in standard TS types yet
+      const ram = navigator.deviceMemory || "?";
+      
+      let hwStatus: React.ReactNode = "";
+      if (typeof ram === 'number' && ram < 4) {
+          hwStatus = <span className="block text-xs text-amber-500 font-bold mt-1">{t.resLowRam}</span>;
+      }
+      
+      updateResult('hardware', 'idle', (
+          <div className="flex flex-col">
+            <LtrText>{cores} Cores, ~{ram}GB RAM</LtrText>
+            {hwStatus}
+          </div>
+      ));
+  };
+
   const getPing = async (): Promise<number | null> => {
       const start = performance.now();
       try {
@@ -104,60 +155,13 @@ const FixChecker = () => {
       }
   };
 
-  const checkSystemInfo = () => {
-      // Browser
-      const userAgent = navigator.userAgent;
-      let browserName = "Unknown";
-      if(userAgent.includes("Edg")) browserName = "Microsoft Edge";
-      else if(userAgent.includes("Chrome")) browserName = "Google Chrome";
-      else if(userAgent.includes("Firefox")) browserName = "Mozilla Firefox";
-      else if(userAgent.includes("Safari")) browserName = "Apple Safari";
-      
-      updateResult('browser', 'idle', <span className="ltr:text-left rtl:text-right" dir="ltr">{browserName}</span>);
-
-      // OS
-      let os = "Unknown";
-      if (userAgent.indexOf("Win") !== -1) os = "Windows";
-      else if (userAgent.indexOf("Mac") !== -1) os = "MacOS";
-      else if (userAgent.indexOf("Linux") !== -1) os = "Linux";
-      else if (userAgent.indexOf("Android") !== -1) os = "Android";
-      else if (userAgent.indexOf("like Mac") !== -1) os = "iOS";
-      
-      updateResult('os', 'idle', os);
-
-      // Screen
-      const width = window.screen.width;
-      const height = window.screen.height;
-      updateResult('screen', 'idle', <span className="ltr:text-left rtl:text-right" dir="ltr">{width} x {height}</span>);
-
-      // Hardware
-      const cores = navigator.hardwareConcurrency || "?";
-      // Explicitly cast to any because deviceMemory is non-standard but supported in Chrome-based browsers
-      const ram = (navigator as any).deviceMemory || "?";
-      
-      let ramDisplay = ram;
-      if (ram === 8) ramDisplay = "8GB+";
-      else if (ram !== "?") ramDisplay = `${ram}GB`;
-      
-      let hwStatus: React.ReactNode = "";
-      if (typeof ram === 'number' && ram < 4) {
-          hwStatus = <span className="block text-xs text-amber-500 font-bold mt-1">{t.resLowRam}</span>;
-      }
-      
-      updateResult('hardware', 'idle', (
-          <div className="flex flex-col">
-            <span className="ltr:text-left rtl:text-right" dir="ltr">{cores} Cores, ~{ramDisplay} RAM</span>
-            {hwStatus}
-          </div>
-      ));
-  };
-
   const runDiagnostics = async () => {
     setIsRunning(true);
     
-    // Reset network tests
-    const networkTests = ['connect', 'isp', 'time', 'ping', 'jitter', 'ipv6', 'speed'];
-    networkTests.forEach(key => updateResult(key, 'running', t.statusChecking));
+    // Set all to checking state
+    Object.keys(results).forEach(key => {
+        updateResult(key, 'running', t.statusChecking);
+    });
 
     // Run System Info immediately
     checkSystemInfo();
@@ -168,47 +172,42 @@ const FixChecker = () => {
       updateResult('connect', 'success', t.resConnected);
     } catch (e) {
       updateResult('connect', 'error', t.resNoConnection);
-      setIsRunning(false);
-      return; // Stop if no connection
+      setIsRunning(false); // Stop if no internet
+      return; 
     }
 
-    // 2. ISP Check
+    // 2. IPv6 Check
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        await fetch('https://ipv6.google.com', { mode: 'no-cors', signal: controller.signal });
+        clearTimeout(timeoutId);
+        updateResult('ipv6', 'success', t.resIPv6Supported);
+    } catch (e) {
+        updateResult('ipv6', 'warning', t.resIPv6NotSupported);
+    }
+
+    // 3. ISP Check
     try {
       const res = await fetch('https://ipapi.co/json/');
       if(!res.ok) throw new Error();
       const data = await res.json();
       updateResult('isp', 'success', (
         <span className="flex flex-col text-sm">
-          <span className="font-bold ltr:text-left rtl:text-right" dir="ltr">{data.org}</span>
-          <span className="text-xs opacity-80 ltr:text-left rtl:text-right" dir="ltr">{data.ip} ({data.country_name})</span>
+          <span className="font-bold"><LtrText>{data.org}</LtrText></span>
+          <span className="text-xs opacity-80"><LtrText>{data.ip} ({data.country_name})</LtrText></span>
         </span>
       ));
     } catch (e) {
-       try {
-            const res2 = await fetch('https://api.db-ip.com/v2/free/self');
-            const data2 = await res2.json();
-            updateResult('isp', 'success', (
-                 <span className="flex flex-col text-sm">
-                    <span className="ltr:text-left rtl:text-right" dir="ltr">{data2.ipAddress}</span>
-                    <span className="text-xs opacity-80 ltr:text-left rtl:text-right" dir="ltr">{data2.countryName}</span>
-                </span>
-            ));
-        } catch(err) {
-            updateResult('isp', 'warning', 'Unknown ISP');
-        }
+        updateResult('isp', 'warning', 'Unknown ISP');
     }
 
-    // 3. Time Sync Check
+    // 4. Time Sync Check
     try {
-        const clientTime = Date.now();
-        const res = await fetch('/api/time');
-        if (!res.ok) throw new Error('Time API failed');
-        const data = await res.json();
-        const serverTime = data.serverTime;
-        
-        const diff = Math.abs(clientTime - serverTime);
-
-        if (diff < 90000) { // 1.5 minutes tolerance
+        const r = await fetch('https://worldtimeapi.org/api/ip');
+        const d = await r.json();
+        const diff = Math.abs(Date.now() - new Date(d.datetime).getTime());
+        if (diff < 60000) {
             updateResult('time', 'success', t.resTimeSynced);
         } else {
             const diffMin = Math.round(diff / 60000);
@@ -219,7 +218,7 @@ const FixChecker = () => {
         updateResult('time', 'warning', t.resTimeFetchError);
     }
 
-    // 4. Ping & Jitter Check
+    // 5. Ping & Jitter Check
     let pings: number[] = [];
     for(let i=0; i<5; i++) {
         const p = await getPing();
@@ -241,7 +240,7 @@ const FixChecker = () => {
         let pText = `${Math.round(avgPing)} ms`;
         if (avgPing > 100) { pStatus = 'warning'; pText += ` (${t.resPingSlow})`; }
         if (avgPing > 300) { pStatus = 'error'; pText += ` (${t.resPingVerySlow})`; }
-        updateResult('ping', pStatus, <span dir="ltr">{pText}</span>);
+        updateResult('ping', pStatus, <LtrText>{pText}</LtrText>);
 
         // Jitter Result
         let jStatus: TestStatus = 'success';
@@ -250,7 +249,7 @@ const FixChecker = () => {
         if(jitter > 100) { jStatus = 'error'; jText = t.resJitterUnstable; }
         updateResult('jitter', jStatus, (
             <span>
-                <span dir="ltr">{Math.round(jitter)} ms</span> <span className="text-xs opacity-75">({jText})</span>
+                <LtrText>{Math.round(jitter)} ms</LtrText> <span className="text-xs opacity-75">({jText})</span>
             </span>
         ));
 
@@ -259,44 +258,28 @@ const FixChecker = () => {
         updateResult('jitter', 'error', t.resPingError);
     }
 
-    // 5. IPv6 Check
-    try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000);
-        await fetch('https://ipv6.google.com', { mode: 'no-cors', signal: controller.signal });
-        clearTimeout(timeoutId);
-        updateResult('ipv6', 'success', t.resIPv6Supported);
-    } catch (e) {
-        updateResult('ipv6', 'warning', t.resIPv6NotSupported);
-    }
-
     // 6. Speed Test
     try {
-        const baseFileUrl = "https://upload.wikimedia.org/wikipedia/commons/f/fc/Crown_of_Thorns_Starfish_at_Malapascuas_Island_v._II.jpg";
-        const testFile = baseFileUrl + "?t=" + Date.now();
-        
-        const startTime = performance.now();
-        const response = await fetch(testFile);
+        const fileUrl = "https://upload.wikimedia.org/wikipedia/commons/f/fc/Crown_of_Thorns_Starfish_at_Malapascuas_Island_v._II.jpg?t=" + Date.now();
+        const start = performance.now();
+        const response = await fetch(fileUrl);
         const blob = await response.blob();
-        const endTime = performance.now();
+        const duration = (performance.now() - start) / 1000;
+        
+        const bits = blob.size * 8;
+        const mbps = (bits / duration) / (1024 * 1024);
+        const speed = mbps.toFixed(2);
 
-        const durationSeconds = (endTime - startTime) / 1000;
-        const sizeInBits = blob.size * 8;
-        const speedBps = sizeInBits / durationSeconds;
-        const speedMbps = speedBps / (1024 * 1024); 
-        const speedFixed = speedMbps.toFixed(2);
-
-        let diagnosis = "";
+        let diagnosis = t.resSpeedGood;
         let status: TestStatus = "success";
 
-        if (speedMbps > 50) diagnosis = t.resSpeedExcellent;
-        else if (speedMbps > 15) diagnosis = t.resSpeedGood;
-        else if (speedMbps > 5) { diagnosis = t.resSpeedFair; status = "warning"; }
-        else { diagnosis = t.resSpeedPoor; status = "error"; }
+        if(mbps > 50) diagnosis = t.resSpeedExcellent;
+        else if(mbps < 5) { diagnosis = t.resSpeedPoor; status = "error"; }
+        else if(mbps < 15) { diagnosis = t.resSpeedFair; status = "warning"; }
 
         updateResult('speed', status, (
             <div className="flex flex-col">
-                <span className="font-bold text-lg ltr:text-left rtl:text-right" dir="ltr">{speedFixed} Mbps</span>
+                <span className="font-bold text-lg"><LtrText>{speed} Mbps</LtrText></span>
                 <span className="text-xs opacity-80">{diagnosis}</span>
             </div>
         ));
@@ -327,11 +310,6 @@ const FixChecker = () => {
     { id: 'jitter', labelKey: 'testJitter', status: results.jitter.status, result: results.jitter.result, icon: Activity, fullWidth: true },
     { id: 'speed', labelKey: 'testSpeed', status: results.speed.status, result: results.speed.result, icon: Zap, fullWidth: true },
   ];
-
-  // Run system info on mount
-  React.useEffect(() => {
-      checkSystemInfo();
-  }, []);
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -381,7 +359,7 @@ const FixChecker = () => {
                 <button
                     onClick={runDiagnostics}
                     disabled={isRunning}
-                    className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                     {isRunning ? (
                          <>
