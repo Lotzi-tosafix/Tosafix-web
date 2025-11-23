@@ -21,6 +21,7 @@ import BackToTopButton from './components/BackToTopButton';
 import TempleTimerPopup from './components/TempleTimerPopup';
 import Cutfix from './pages/nosafix/Cutfix';
 import LiveMusic from './pages/nosafix/LiveMusic';
+import FixChecker from './pages/nosafix/FixChecker';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { MusicPlayerProvider } from './contexts/MusicPlayerContext';
@@ -78,6 +79,7 @@ function AppContent() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/nosafix/fix-remover" element={<Cutfix />} />
           <Route path="/nosafix/live-music" element={<LiveMusic />} />
+          <Route path="/nosafix/fix-checker" element={<FixChecker />} />
           <Route path="/extensions/notiforum" element={<NotiForum />} />
           <Route path="/extensions/yamina" element={<Yamina />} />
           <Route path="/extensions/netskin" element={<NetSkin />} />

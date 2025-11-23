@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Scissors, Music, ArrowRight } from 'lucide-react';
+import { Scissors, Music, Activity } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
@@ -22,6 +22,14 @@ const nosafixTools = [
     icon: Music,
     gradient: 'from-rose-500 to-pink-600',
     shadow: 'shadow-rose-500/20'
+  },
+  {
+    nameKey: 'fixChecker',
+    descKey: 'fixCheckerDescription',
+    path: '/nosafix/fix-checker',
+    icon: Activity,
+    gradient: 'from-blue-500 to-cyan-500',
+    shadow: 'shadow-blue-500/20'
   }
 ];
 
@@ -69,7 +77,7 @@ export default function NosafixGrid() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto relative z-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10"
             >
             {nosafixTools.map((tool) => {
                 const Icon = tool.icon;

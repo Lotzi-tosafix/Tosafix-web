@@ -45,6 +45,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     // Tools
     { title: t.cutfix, description: t.cutfixDescription, path: '/nosafix/fix-remover', category: t.nosafix },
     { title: t.liveMusic, description: t.liveMusicDescription, path: '/nosafix/live-music', category: t.nosafix },
+    { title: t.fixChecker, description: t.fixCheckerDescription, path: '/nosafix/fix-checker', category: t.nosafix },
   ];
 
   // Filter logic

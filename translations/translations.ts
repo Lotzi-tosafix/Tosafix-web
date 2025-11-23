@@ -79,8 +79,7 @@ export const translations = {
     yaminaGridDesc: 'תוסף ליישור דפי LTR ל-RTL – הופך אוטומטית עמודים באנגלית לקריאים ונוחים לדוברי עברית.',
     netSkinGridDesc: 'NetSkin מחליף את דף החסימה הסטנדרטי של נטפרי בעשרות עיצובים מרהיבים, דינמיים וניתנים להתאמה אישית מלאה.',
     hebrewDateGridDesc: 'מציג תאריך עברי בחלונית קופצת (tooltip) בעת ריחוף מעל תאריך לועזי.',
-    myEmojiGridDesc: "העלה, נהל, חפש, והוסף אימוג'ים מותאמים אישית משלך לצ'אטים, מיילים, רשתות חברתיות ועוד. כולל אפשרות מתקדמת להסרת רקע!",
-    edgeOpenerGridDesc: "פותח את הטאב הנוכחי בדפדפן Microsoft Edge או מעתיק את הכתובת.",
+    myEmojiGridDesc: "העלה, נהל, חפש, והוסף אימוג'ים מותאמים אישית משלך לצ'אטים, מיילים, רשתות חברתיות ועוד.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxח את הטאב הנוכחי בדפדפן Microsoft Edge או מעתיק את הכתובת.",
 
     // Cutfix Tool
     cutfix: 'Fix remover',
@@ -103,6 +102,46 @@ export const translations = {
     fileTooLarge: (size: number) => `הקובץ גדול מדי. הגודל המקסימלי הוא ${size}MB.`,
     serverError: (status: number, text: string) => `שגיאת שרת (${status}): ${text}`,
     processingError: 'אופס, משהו השתבש. נסה שוב מאוחר יותר.',
+    
+    // Fix Checker Tool
+    fixChecker: 'Fix Checker',
+    fixCheckerDescription: 'כלי אבחון רשת מקיף: מהירות, ספק, שעון ועוד.',
+    fixCheckerPageTitle: 'Fix Checker',
+    fixCheckerPageSubtitle: 'כלי אבחון רשת מקיף לבדיקת יציבות, מהירות ותקינות החיבור שלך.',
+    startDiagnostics: 'התחל אבחון מלא',
+    runningDiagnostics: 'מבצע אבחון...',
+    
+    // Test Names
+    testConnection: 'חיבור לאינטרנט',
+    testISP: 'ספק ומיקום (ISP)',
+    testTime: 'סנכרון שעון',
+    testPing: 'זמן תגובה (Ping)',
+    testIPv6: 'תמיכה ב-IPv6',
+    testSpeed: 'מהירות הורדה',
+
+    // Test Statuses
+    statusWaiting: 'ממתין לבדיקה...',
+    statusChecking: 'בודק...',
+    statusSuccess: 'תקין',
+    statusWarning: 'אזהרה',
+    statusError: 'שגיאה',
+    
+    // Test Results
+    resConnected: 'מחובר לרשת',
+    resNoConnection: 'אין חיבור לאינטרנט',
+    resTimeSynced: 'מסונכרן מול השרת',
+    resTimeError: 'סטייה של {diff} דקות',
+    resTimeFetchError: 'שגיאה בבדיקת שעון',
+    resPingSlow: 'איטי מעט',
+    resPingVerySlow: 'איטי מאוד',
+    resPingError: 'נכשל',
+    resIPv6Supported: 'נתמך ופעיל',
+    resIPv6NotSupported: 'לא פעיל (לרוב תקין)',
+    resSpeedExcellent: 'מהירות מעולה',
+    resSpeedGood: 'מהירות טובה',
+    resSpeedFair: 'מהירות בינונית (וידאו עשוי להיתקע)',
+    resSpeedPoor: 'אינטרנט איטי מאוד',
+    resSpeedError: 'נכשל (נחסם/נותק)',
 
     // Live Music Tool
     liveMusic: 'לייב מיוזיק',
@@ -240,7 +279,7 @@ export const translations = {
     notiForumName: 'NotiForum',
     notiForumDesc: 'תוסף כרום מתקדם המיועד לפורומים מבוססי NodeBB ו-XenForo, המספק התראות בזמן אמת ישירות לדפדפן שלך.',
     yaminaName: 'ימינה',
-    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדפות שלך. עם ממשק נוח ותכונות מתקדמות, "ימינה" מאפשר לך להתאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
+    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
     netSkinName: 'NetSkin',
     netSkinDesc: 'הפכו כל חסימה לחוויה ויזואלית! NetSkin מחליף את דף החסימה האפור והסטנדרטי של נטפרי בעולם שלם של עיצובים מרהיבים ודינמיים. במקום דף סטנדרטי, תיהנו מעשרות עיצובים המותאמים אישית לסוג החסימה, בין אם מדובר באתר חסום, קובץ לבדיקה או אתר בפיתוח. התוסף אף מזהה באופן חכם מדוע אתר נחסם לפי תגית אישית ומציג לכם את שמה! עם אפשרויות התאמה אישיות מתקדמות, שליטה מלאה ובחירה בין מצבים אקראיים או קבועים, גלישה בטוחה מעולם לא נראתה טוב יותר.',
     hebrewDateName: 'מציג תאריך עברי',
@@ -457,10 +496,7 @@ export const translations = {
 תודה שבחרתם ב-NotiForum`,
     yaminaPrivacyPolicy: `עודכן לאחרונה: 26 במרץ 2025
 
-התוסף ימינה ("אנחנו") נועד לשנות באופן אוטומטי את כיווניות דפי אינטרנט ל-RTL (מימין לשמאל) כדי לשפר את חוויית הקריאה בעברית. מדיניות פרטיות זו מסבירה כיצד אנו מטפלים בנתוני משתמשים, תוך הבטחת שקיפות ועמידה בתקני פרטיות.
-
-1. נתונים שאנו אוספים
-התוסף ימינה אוסף את הנתונים הבאים:
+התוסף ימינה ("אנחנו") נועד לשנות באופן אוטומטי את כיווניות דפי אינטרנט ל-RTL (מימין לשמאל) כדי לשפר את חוויית הקריאה בעברית. מדיניות פרטיות זו מסבירה כיצד אנו מטפלים בנתוני משתמשים, תוך הבטחת שקיxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxתוסף ימינה אוסף את הנתונים הבאים:
 - כתובות URL של אתרים: כאשר אתה מוסיף אתר או דף לרשימה השחורה (דרך תפריט ההקשר או דף ההגדרות), כתובת ה-URL של הכרטיסייה הפעילה נשמרת באופן מקומי במכשיר שלך באמצעות chrome.storage.local. זה נחוץ כדי לקבוע האם התוסף צריך ליישר את הכיווניות ל-RTL עבור אתרים או דפים מסוימים.
 
 2. כיצד אנו משתמשים בנתונים שלך
@@ -606,7 +642,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     privacyUsageTitle: 'שימוש במידע',
     privacyUsageDesc: 'אנו משתמשים במידע המסופק על ידך אך ורק למטרות הבאות: מתן שירות ותמיכה, שיפור האתר והשירותים שלנו, ויצירת קשר במקרה הצורך.',
     privacyCookiesTitle: 'עוגיות (Cookies) וטכנולוגיות מעקב',
-    privacyCookiesDesc: 'האתר עשוי להשתמש בעוגיות (Cookies) כדי לשפר את חוויית המשתמש, לזכור העדפות (כגון שפה וערכת נושא) ולנתח תנועה באתר באמצעות שירותים כמו Vercel Analytics. עוגיות אלו אינן מכילות מידע אישי מזהה.',
+    privacyCookiesDesc: 'האתר עשוי להשתמש בעוגיות (Cookies) כדי לשפר את חוויית המשתמש, לזכור העדxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx כמו Vercel Analytics. עוגיות אלו אינן מכילות מידע אישי מזהה.',
     privacyThirdPartyTitle: 'שיתוף מידע עם צד שלישי',
     privacyThirdPartyDesc: 'אנו לא מוכרים, סוחרים או מעבירים את המידע האישי שלך לצדדים שלישיים ללא הסכמתך, למעט ספקים אמינים המסייעים לנו בתפעול האתר (כגון Vercel לאחסון האתר), ובלבד שספקים אלו מחויבים לשמור על סודיות המידע.',
     privacyHostingTitle: 'אחסון האתר',
@@ -731,6 +767,46 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     fileTooLarge: (size: number) => `The file is too large. The maximum size is ${size}MB.`,
     serverError: (status: number, text: string) => `Server error (${status}): ${text}`,
     processingError: 'Oops, something went wrong. Please try again later.',
+    
+    // Fix Checker Tool
+    fixChecker: 'Fix Checker',
+    fixCheckerDescription: 'Comprehensive network diagnostics: speed, ISP, clock, and more.',
+    fixCheckerPageTitle: 'Fix Checker',
+    fixCheckerPageSubtitle: 'Comprehensive network diagnostic tool to check the stability, speed, and health of your connection.',
+    startDiagnostics: 'Start Full Diagnostics',
+    runningDiagnostics: 'Running diagnostics...',
+
+    // Test Names
+    testConnection: 'Internet Connection',
+    testISP: 'ISP & Location',
+    testTime: 'Time Synchronization',
+    testPing: 'Response Time (Ping)',
+    testIPv6: 'IPv6 Support',
+    testSpeed: 'Download Speed',
+
+    // Test Statuses
+    statusWaiting: 'Waiting...',
+    statusChecking: 'Checking...',
+    statusSuccess: 'Healthy',
+    statusWarning: 'Warning',
+    statusError: 'Error',
+    
+    // Test Results
+    resConnected: 'Connected to Internet',
+    resNoConnection: 'No Internet Connection',
+    resTimeSynced: 'Synced with Server',
+    resTimeError: 'Deviation of {diff} mins',
+    resTimeFetchError: 'Time Check Failed',
+    resPingSlow: 'Slightly Slow',
+    resPingVerySlow: 'Very Slow',
+    resPingError: 'Failed',
+    resIPv6Supported: 'Supported & Active',
+    resIPv6NotSupported: 'Not Active (Usually OK)',
+    resSpeedExcellent: 'Excellent Speed',
+    resSpeedGood: 'Good Speed',
+    resSpeedFair: 'Fair Speed (Video may buffer)',
+    resSpeedPoor: 'Very Slow Internet',
+    resSpeedError: 'Failed (Blocked/Disconnected)',
 
     // Live Music Tool
     liveMusic: 'Live Music',
