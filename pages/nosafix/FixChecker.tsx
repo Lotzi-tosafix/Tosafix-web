@@ -301,8 +301,8 @@ const FixChecker = () => {
   const networkTests: TestResult[] = [
     { id: 'connect', labelKey: 'testConnection', status: results.connect.status, result: results.connect.result, icon: Wifi },
     { id: 'ipv6', labelKey: 'testIPv6', status: results.ipv6.status, result: results.ipv6.result, icon: Network },
-    { id: 'isp', labelKey: 'testISP', status: results.isp.status, result: results.isp.result, icon: Layers, fullWidth: true },
-    { id: 'time', labelKey: 'testTime', status: results.time.status, result: results.time.result, icon: Clock, fullWidth: true },
+    { id: 'isp', labelKey: 'testISP', status: results.isp.status, result: results.isp.result, icon: Layers },
+    { id: 'time', labelKey: 'testTime', status: results.time.status, result: results.time.result, icon: Clock },
   ];
 
   const perfTests: TestResult[] = [
