@@ -110,7 +110,7 @@ const FixChecker = () => {
       else if(userAgent.includes("Firefox")) browserName = "Mozilla Firefox";
       else if(userAgent.includes("Safari")) browserName = "Apple Safari";
       
-      updateResult('browser', 'idle', <LtrText>{browserName}</LtrText>);
+      updateResult('browser', 'success', <LtrText>{browserName}</LtrText>);
 
       // OS
       let os = "Unknown";
@@ -120,12 +120,12 @@ const FixChecker = () => {
       if (userAgent.indexOf("Android") !== -1) os = "Android";
       if (userAgent.indexOf("like Mac") !== -1) os = "iOS";
       
-      updateResult('os', 'idle', os);
+      updateResult('os', 'success', os);
 
       // Screen
       const width = window.screen.width;
       const height = window.screen.height;
-      updateResult('screen', 'idle', <LtrText>{width} x {height}</LtrText>);
+      updateResult('screen', 'success', <LtrText>{width} x {height}</LtrText>);
 
       // Hardware
       const cores = navigator.hardwareConcurrency || "?";
@@ -137,7 +137,7 @@ const FixChecker = () => {
           hwStatus = <span className="block text-xs text-amber-500 font-bold mt-1">{t.resLowRam}</span>;
       }
       
-      updateResult('hardware', 'idle', (
+      updateResult('hardware', 'success', (
           <div className="flex flex-col">
             <LtrText>{cores} Cores, ~{ram}GB RAM</LtrText>
             {hwStatus}
@@ -204,9 +204,9 @@ const FixChecker = () => {
 
     // 4. Time Sync Check
     try {
-        const r = await fetch('https://worldtimeapi.org/api/ip');
+        const r = await fetch('/api/time');
         const d = await r.json();
-        const diff = Math.abs(Date.now() - new Date(d.datetime).getTime());
+        const diff = Math.abs(Date.now() - d.serverTime);
         if (diff < 60000) {
             updateResult('time', 'success', t.resTimeSynced);
         } else {
