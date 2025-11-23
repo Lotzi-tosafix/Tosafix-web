@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
-import { Wifi, Globe, Clock, Activity, Network, Zap, Play, CheckCircle, AlertTriangle, XCircle, RotateCw } from 'lucide-react';
+import { Wifi, Globe, Clock, Activity, Network, Zap, Play, CheckCircle, AlertTriangle, XCircle, RotateCw, Monitor, Cpu, Laptop, Layers } from 'lucide-react';
 
 type TestStatus = 'idle' | 'running' | 'success' | 'warning' | 'error';
 
@@ -13,7 +13,60 @@ interface TestResult {
   status: TestStatus;
   result?: React.ReactNode;
   icon: React.ElementType;
+  fullWidth?: boolean;
 }
+
+const getStatusColor = (status: TestStatus) => {
+    switch(status) {
+        case 'success': return 'text-green-600 dark:text-green-400 bg-green-500/10 border-green-500/20';
+        case 'warning': return 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20';
+        case 'error': return 'text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20';
+        case 'running': return 'text-primary bg-primary/10 border-primary/20 animate-pulse';
+        default: return 'text-gray-500 dark:text-gray-400 bg-gray-500/5 border-gray-500/10';
+    }
+};
+
+const getStatusIcon = (status: TestStatus) => {
+    switch(status) {
+        case 'success': return <CheckCircle size={18} />;
+        case 'warning': return <AlertTriangle size={18} />;
+        case 'error': return <XCircle size={18} />;
+        case 'running': return <RotateCw size={18} className="animate-spin" />;
+        default: return null;
+    }
+};
+
+const TestCard = ({ test, t }: { test: TestResult, t: any }) => {
+    const Icon = test.icon;
+    const statusClass = getStatusColor(test.status);
+    
+    return (
+      <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-300 ${statusClass} backdrop-blur-md ${test.fullWidth ? 'col-span-1 sm:col-span-2' : ''}`}
+      >
+          <div className="flex items-center gap-3">
+              <div className="p-2 rounded-full bg-white/40 dark:bg-black/20">
+                  <Icon size={20} />
+              </div>
+              <div className="flex flex-col text-start">
+                   <h3 className="font-bold text-sm text-text-dark dark:text-text-light">{t[test.labelKey as keyof typeof t] as string}</h3>
+                   {test.status === 'idle' && test.id.startsWith('browser') ? null : (
+                       <div className="font-medium text-sm mt-0.5">
+                           {test.result}
+                       </div>
+                   )}
+              </div>
+          </div>
+           {test.status !== 'idle' && (
+               <div className="flex-shrink-0">
+                   {getStatusIcon(test.status)}
+               </div>
+           )}
+      </motion.div>
+    );
+};
 
 const FixChecker = () => {
   const { language } = useLanguage();
@@ -21,12 +74,17 @@ const FixChecker = () => {
   const [isRunning, setIsRunning] = useState(false);
   
   const [results, setResults] = useState<{ [key: string]: { status: TestStatus, result?: React.ReactNode } }>({
-    connect: { status: 'idle' },
-    isp: { status: 'idle' },
-    time: { status: 'idle' },
-    ping: { status: 'idle' },
-    ipv6: { status: 'idle' },
-    speed: { status: 'idle' },
+    browser: { status: 'idle', result: '-' },
+    os: { status: 'idle', result: '-' },
+    screen: { status: 'idle', result: '-' },
+    hardware: { status: 'idle', result: '-' },
+    connect: { status: 'idle', result: t.statusWaiting },
+    isp: { status: 'idle', result: t.statusWaiting },
+    time: { status: 'idle', result: t.statusWaiting },
+    ping: { status: 'idle', result: t.statusWaiting },
+    jitter: { status: 'idle', result: t.statusWaiting },
+    ipv6: { status: 'idle', result: t.statusWaiting },
+    speed: { status: 'idle', result: t.statusWaiting },
   });
 
   const updateResult = (id: string, status: TestStatus, result?: React.ReactNode) => {
@@ -36,11 +94,73 @@ const FixChecker = () => {
     }));
   };
 
+  const getPing = async (): Promise<number | null> => {
+      const start = performance.now();
+      try {
+          await fetch('https://www.cloudflare.com/cdn-cgi/trace', { cache: "no-store" });
+          return performance.now() - start;
+      } catch(e) {
+          return null;
+      }
+  };
+
+  const checkSystemInfo = () => {
+      // Browser
+      const userAgent = navigator.userAgent;
+      let browserName = "Unknown";
+      if(userAgent.includes("Edg")) browserName = "Microsoft Edge";
+      else if(userAgent.includes("Chrome")) browserName = "Google Chrome";
+      else if(userAgent.includes("Firefox")) browserName = "Mozilla Firefox";
+      else if(userAgent.includes("Safari")) browserName = "Apple Safari";
+      
+      updateResult('browser', 'idle', <span className="ltr:text-left rtl:text-right" dir="ltr">{browserName}</span>);
+
+      // OS
+      let os = "Unknown";
+      if (userAgent.indexOf("Win") !== -1) os = "Windows";
+      else if (userAgent.indexOf("Mac") !== -1) os = "MacOS";
+      else if (userAgent.indexOf("Linux") !== -1) os = "Linux";
+      else if (userAgent.indexOf("Android") !== -1) os = "Android";
+      else if (userAgent.indexOf("like Mac") !== -1) os = "iOS";
+      
+      updateResult('os', 'idle', os);
+
+      // Screen
+      const width = window.screen.width;
+      const height = window.screen.height;
+      updateResult('screen', 'idle', <span className="ltr:text-left rtl:text-right" dir="ltr">{width} x {height}</span>);
+
+      // Hardware
+      const cores = navigator.hardwareConcurrency || "?";
+      // Explicitly cast to any because deviceMemory is non-standard but supported in Chrome-based browsers
+      const ram = (navigator as any).deviceMemory || "?";
+      
+      let ramDisplay = ram;
+      if (ram === 8) ramDisplay = "8GB+";
+      else if (ram !== "?") ramDisplay = `${ram}GB`;
+      
+      let hwStatus: React.ReactNode = "";
+      if (typeof ram === 'number' && ram < 4) {
+          hwStatus = <span className="block text-xs text-amber-500 font-bold mt-1">{t.resLowRam}</span>;
+      }
+      
+      updateResult('hardware', 'idle', (
+          <div className="flex flex-col">
+            <span className="ltr:text-left rtl:text-right" dir="ltr">{cores} Cores, ~{ramDisplay} RAM</span>
+            {hwStatus}
+          </div>
+      ));
+  };
+
   const runDiagnostics = async () => {
     setIsRunning(true);
     
-    // Reset all
-    Object.keys(results).forEach(key => updateResult(key, 'running', t.statusChecking));
+    // Reset network tests
+    const networkTests = ['connect', 'isp', 'time', 'ping', 'jitter', 'ipv6', 'speed'];
+    networkTests.forEach(key => updateResult(key, 'running', t.statusChecking));
+
+    // Run System Info immediately
+    checkSystemInfo();
 
     // 1. Connection Check
     try {
@@ -78,7 +198,7 @@ const FixChecker = () => {
         }
     }
 
-    // 3. Time Sync Check (Using Vercel Server)
+    // 3. Time Sync Check
     try {
         const clientTime = Date.now();
         const res = await fetch('/api/time');
@@ -86,16 +206,12 @@ const FixChecker = () => {
         const data = await res.json();
         const serverTime = data.serverTime;
         
-        // Calculate diff accounting for network latency (roughly)
-        // We assume request took X ms, so server time was captured X/2 ms ago
-        // But for simple sync check, just raw diff is usually enough if latency is low.
         const diff = Math.abs(clientTime - serverTime);
 
         if (diff < 90000) { // 1.5 minutes tolerance
             updateResult('time', 'success', t.resTimeSynced);
         } else {
             const diffMin = Math.round(diff / 60000);
-             // Replace placeholder {diff} manually since simple templating isn't set up
             const msg = t.resTimeError.replace('{diff}', diffMin.toString());
             updateResult('time', 'error', msg);
         }
@@ -103,29 +219,44 @@ const FixChecker = () => {
         updateResult('time', 'warning', t.resTimeFetchError);
     }
 
+    // 4. Ping & Jitter Check
+    let pings: number[] = [];
+    for(let i=0; i<5; i++) {
+        const p = await getPing();
+        if(p) pings.push(p);
+        await new Promise(r => setTimeout(r, 200)); 
+    }
 
-    // 4. Ping Check
-    try {
-        const start = performance.now();
-        await fetch('https://www.cloudflare.com/cdn-cgi/trace', { cache: "no-store" });
-        const end = performance.now();
-        const ping = Math.round(end - start);
+    if (pings.length > 0) {
+        const avgPing = pings.reduce((a,b) => a+b, 0) / pings.length;
         
-        let status: TestStatus = 'success';
-        let text = `${ping} ms`;
-
-        if (ping > 150) { 
-            status = 'warning'; 
-            text += ` (${t.resPingSlow})`; 
+        let jitterSum = 0;
+        for(let i=0; i < pings.length - 1; i++) {
+            jitterSum += Math.abs(pings[i] - pings[i+1]);
         }
-        if (ping > 500) { 
-            status = 'error'; 
-            text += ` (${t.resPingVerySlow})`; 
-        }
-        updateResult('ping', status, <span dir="ltr">{text}</span>);
+        const jitter = jitterSum / (pings.length - 1);
 
-    } catch (e) {
+        // Ping Result
+        let pStatus: TestStatus = 'success';
+        let pText = `${Math.round(avgPing)} ms`;
+        if (avgPing > 100) { pStatus = 'warning'; pText += ` (${t.resPingSlow})`; }
+        if (avgPing > 300) { pStatus = 'error'; pText += ` (${t.resPingVerySlow})`; }
+        updateResult('ping', pStatus, <span dir="ltr">{pText}</span>);
+
+        // Jitter Result
+        let jStatus: TestStatus = 'success';
+        let jText = t.resJitterStable;
+        if(jitter > 30) { jStatus = 'warning'; jText = t.resJitterMedium; }
+        if(jitter > 100) { jStatus = 'error'; jText = t.resJitterUnstable; }
+        updateResult('jitter', jStatus, (
+            <span>
+                <span dir="ltr">{Math.round(jitter)} ms</span> <span className="text-xs opacity-75">({jText})</span>
+            </span>
+        ));
+
+    } else {
         updateResult('ping', 'error', t.resPingError);
+        updateResult('jitter', 'error', t.resPingError);
     }
 
     // 5. IPv6 Check
@@ -158,7 +289,7 @@ const FixChecker = () => {
         let diagnosis = "";
         let status: TestStatus = "success";
 
-        if (speedMbps > 40) diagnosis = t.resSpeedExcellent;
+        if (speedMbps > 50) diagnosis = t.resSpeedExcellent;
         else if (speedMbps > 15) diagnosis = t.resSpeedGood;
         else if (speedMbps > 5) { diagnosis = t.resSpeedFair; status = "warning"; }
         else { diagnosis = t.resSpeedPoor; status = "error"; }
@@ -177,39 +308,35 @@ const FixChecker = () => {
     setIsRunning(false);
   };
 
-  const testList: TestResult[] = [
-    { id: 'connect', labelKey: 'testConnection', status: results.connect.status, result: results.connect.result, icon: Wifi },
-    { id: 'isp', labelKey: 'testISP', status: results.isp.status, result: results.isp.result, icon: Globe },
-    { id: 'time', labelKey: 'testTime', status: results.time.status, result: results.time.result, icon: Clock },
-    { id: 'ping', labelKey: 'testPing', status: results.ping.status, result: results.ping.result, icon: Activity },
-    { id: 'ipv6', labelKey: 'testIPv6', status: results.ipv6.status, result: results.ipv6.result, icon: Network },
-    { id: 'speed', labelKey: 'testSpeed', status: results.speed.status, result: results.speed.result, icon: Zap },
+  const systemTests: TestResult[] = [
+      { id: 'browser', labelKey: 'testBrowser', status: results.browser.status, result: results.browser.result, icon: Globe },
+      { id: 'os', labelKey: 'testOS', status: results.os.status, result: results.os.result, icon: Laptop },
+      { id: 'screen', labelKey: 'testScreen', status: results.screen.status, result: results.screen.result, icon: Monitor },
+      { id: 'hardware', labelKey: 'testHardware', status: results.hardware.status, result: results.hardware.result, icon: Cpu },
   ];
 
-  const getStatusColor = (status: TestStatus) => {
-      switch(status) {
-          case 'success': return 'text-green-500 bg-green-500/10 border-green-500/20';
-          case 'warning': return 'text-amber-500 bg-amber-500/10 border-amber-500/20';
-          case 'error': return 'text-red-500 bg-red-500/10 border-red-500/20';
-          case 'running': return 'text-primary bg-primary/10 border-primary/20 animate-pulse';
-          default: return 'text-gray-400 bg-gray-500/5 border-gray-500/10';
-      }
-  };
-  
-  const getStatusIcon = (status: TestStatus) => {
-       switch(status) {
-          case 'success': return <CheckCircle size={20} />;
-          case 'warning': return <AlertTriangle size={20} />;
-          case 'error': return <XCircle size={20} />;
-          case 'running': return <RotateCw size={20} className="animate-spin" />;
-          default: return null;
-      }
-  };
+  const networkTests: TestResult[] = [
+    { id: 'connect', labelKey: 'testConnection', status: results.connect.status, result: results.connect.result, icon: Wifi },
+    { id: 'ipv6', labelKey: 'testIPv6', status: results.ipv6.status, result: results.ipv6.result, icon: Network },
+    { id: 'isp', labelKey: 'testISP', status: results.isp.status, result: results.isp.result, icon: Layers, fullWidth: true },
+    { id: 'time', labelKey: 'testTime', status: results.time.status, result: results.time.result, icon: Clock, fullWidth: true },
+  ];
+
+  const perfTests: TestResult[] = [
+    { id: 'ping', labelKey: 'testPing', status: results.ping.status, result: results.ping.result, icon: Activity, fullWidth: true },
+    { id: 'jitter', labelKey: 'testJitter', status: results.jitter.status, result: results.jitter.result, icon: Activity, fullWidth: true },
+    { id: 'speed', labelKey: 'testSpeed', status: results.speed.status, result: results.speed.result, icon: Zap, fullWidth: true },
+  ];
+
+  // Run system info on mount
+  React.useEffect(() => {
+      checkSystemInfo();
+  }, []);
 
   return (
     <div className="min-h-screen py-20 px-4">
-      <div className="max-w-5xl mx-auto">
-        <header className="text-center mb-16">
+      <div className="max-w-4xl mx-auto">
+        <header className="text-center mb-12">
             <div className="inline-block p-4 rounded-[2rem] glass-card mb-6">
                  <Activity className="w-12 h-12 text-accent mx-auto" />
             </div>
@@ -219,32 +346,35 @@ const FixChecker = () => {
             <p className="mt-4 text-xl text-text-dark/70 dark:text-text-light/70 font-light max-w-2xl mx-auto">{t.fixCheckerPageSubtitle}</p>
         </header>
 
-        <main className="glass-card rounded-[3rem] p-6 md:p-12 border border-white/40 dark:border-white/10 relative overflow-hidden">
+        <main className="glass-card rounded-[2.5rem] p-6 md:p-10 border border-white/40 dark:border-white/10 relative overflow-hidden">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none"></div>
              
-             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testList.map((test) => {
-                    const Icon = test.icon;
-                    const statusClass = getStatusColor(test.status);
-                    
-                    return (
-                        <motion.div 
-                            key={test.id}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className={`p-6 rounded-2xl border flex flex-col items-center text-center justify-between min-h-[160px] transition-all duration-300 ${statusClass} backdrop-blur-md`}
-                        >
-                            <div className="mb-3 p-3 rounded-full bg-white/20 dark:bg-black/10">
-                                <Icon size={24} />
-                            </div>
-                            <h3 className="font-bold text-text-dark dark:text-text-light mb-2">{t[test.labelKey as keyof typeof t] as string}</h3>
-                            <div className="font-medium text-sm flex items-center justify-center gap-2">
-                                {test.status !== 'idle' && getStatusIcon(test.status)}
-                                <span>{test.result || (test.status === 'idle' ? t.statusWaiting : '')}</span>
-                            </div>
-                        </motion.div>
-                    );
-                })}
+             <div className="relative z-10 space-y-8">
+                
+                {/* 1. System Info */}
+                <div>
+                    <h2 className="text-lg font-bold text-text-dark dark:text-text-light mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">{t.sysInfoTitle}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {systemTests.map(test => <TestCard key={test.id} test={test} t={t} />)}
+                    </div>
+                </div>
+
+                {/* 2. Network Tests */}
+                <div>
+                    <h2 className="text-lg font-bold text-text-dark dark:text-text-light mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">{t.networkTitle}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {networkTests.map(test => <TestCard key={test.id} test={test} t={t} />)}
+                    </div>
+                </div>
+
+                 {/* 3. Performance Tests */}
+                 <div>
+                    <h2 className="text-lg font-bold text-text-dark dark:text-text-light mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">{t.performanceTitle}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {perfTests.map(test => <TestCard key={test.id} test={test} t={t} />)}
+                    </div>
+                </div>
+
              </div>
 
              <div className="mt-12 text-center relative z-10">

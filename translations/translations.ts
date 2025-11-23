@@ -57,7 +57,7 @@ export const translations = {
 
     // About Section
     aboutTitle: 'אודותינו',
-    aboutText: "ברוכים הבאים ל'תוספיקס' – המקום שבו הטכנולוגיה פוגשת את הנוחות היומיומית! האתר מרכז מגוון רחב של תוספי כרום ייחודיים וכלים מתקדמים שנועדו לשדרג את חווית הגלישה והעבודה שלכם. בין הפיתוחים שלנו תמצאו את 'NotiForum' לריכוז התראות מפורומים, 'NetSkin' לעיצוב דפי חסימה בנטפרי, 'Yamina' ליישור דפי אינטרנט, 'My Emoji' ליצירת אימוג'ים אישיים, 'מציג תאריך עברי', ו'פותחן Edge'. בנוסף, האתר מציע כלים שימושיים כמו 'Fix Remover' להסרת רקעים מתמונות, נגן 'Live Music' לתחנות רדיו יהודיות, ועוד. ב'תוספיקס' אנו שמים דגש על פשטות, יעילות והתאמה אישית, כדי לספק לכם פתרונות חכמים לצרכים אמיתיים.",
+    aboutText: "ברוכים הבאים ל'תוספיקס' – המקום שבו הטכנולוגיה פוגשת את הנוחות היומיומית! האתר מרכז מגוון רחב של תוספי כרום ייחודיים וכלים מתקדמים שנועדו לשדרג את חווית הגלישה והעבודה שלכם. בין הפיתוחים שלנו תמצאו את 'NotiForum' לריכוז התראות מפורומים, 'NetSkin' לעיצוב דפי חסימה בנטפרי, 'Yamina' ליישור דפי אינטרנט, 'My Emoji' ליxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxחן Edge'. בנוסף, האתר מציע כלים שימושיים כמו 'Fix Remover' להסרת רקעים מתמונות, נגן 'Live Music' לתחנות רדיו יהודיות, ועוד. ב'תוספיקס' אנו שמים דגש על פשטות, יעילות והתאמה אישית, כדי לספק לכם פתרונות חכמים לצרכים אמיתיים.",
     userFocused: 'מותאם למשתמש',
     userFocusedDesc: 'תוספים שנבנו בהתאם לצרכים האמיתיים של המשתמשים',
     timeSaving: 'חיסכון בזמן',
@@ -107,15 +107,25 @@ export const translations = {
     fixChecker: 'Fix Checker',
     fixCheckerDescription: 'כלי אבחון רשת מקיף: מהירות, ספק, שעון ועוד.',
     fixCheckerPageTitle: 'Fix Checker',
-    fixCheckerPageSubtitle: 'כלי אבחון רשת מקיף לבדיקת יציבות, מהירות ותקינות החיבור שלך.',
+    fixCheckerPageSubtitle: 'כלי אבחון מערכת ורשת לבדיקת יציבות, מהירות ותקינות.',
     startDiagnostics: 'התחל אבחון מלא',
     runningDiagnostics: 'מבצע אבחון...',
     
+    // Test Headers
+    sysInfoTitle: '1. בדיקת סביבת עבודה',
+    networkTitle: '2. בדיקות רשת',
+    performanceTitle: '3. ביצועים ויציבות',
+
     // Test Names
-    testConnection: 'חיבור לאינטרנט',
+    testBrowser: 'דפדפן',
+    testOS: 'מערכת הפעלה',
+    testScreen: 'רזולוציית מסך',
+    testHardware: 'זיכרון ומעבד',
+    testConnection: 'חיבור לרשת',
     testISP: 'ספק ומיקום (ISP)',
     testTime: 'סנכרון שעון',
     testPing: 'זמן תגובה (Ping)',
+    testJitter: 'יציבות קו (Jitter)',
     testIPv6: 'תמיכה ב-IPv6',
     testSpeed: 'מהירות הורדה',
 
@@ -135,13 +145,17 @@ export const translations = {
     resPingSlow: 'איטי מעט',
     resPingVerySlow: 'איטי מאוד',
     resPingError: 'נכשל',
+    resJitterStable: 'יציב מאוד',
+    resJitterMedium: 'בינוני',
+    resJitterUnstable: 'לא יציב (קפיצות)',
     resIPv6Supported: 'נתמך ופעיל',
     resIPv6NotSupported: 'לא פעיל (לרוב תקין)',
-    resSpeedExcellent: 'מהירות מעולה',
-    resSpeedGood: 'מהירות טובה',
-    resSpeedFair: 'מהירות בינונית (וידאו עשוי להיתקע)',
-    resSpeedPoor: 'אינטרנט איטי מאוד',
+    resSpeedExcellent: 'מהירות מצוינת',
+    resSpeedGood: 'מהירות תקינה לגלישה',
+    resSpeedFair: 'גלישה בסיסית בלבד',
+    resSpeedPoor: 'איטי מאוד, יתכנו תקיעות',
     resSpeedError: 'נכשל (נחסם/נותק)',
+    resLowRam: 'זיכרון נמוך! עלול להאט',
 
     // Live Music Tool
     liveMusic: 'לייב מיוזיק',
@@ -776,11 +790,21 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     startDiagnostics: 'Start Full Diagnostics',
     runningDiagnostics: 'Running diagnostics...',
 
+    // Test Headers
+    sysInfoTitle: '1. Work Environment',
+    networkTitle: '2. Network Tests',
+    performanceTitle: '3. Performance & Stability',
+
     // Test Names
+    testBrowser: 'Browser',
+    testOS: 'Operating System',
+    testScreen: 'Screen Resolution',
+    testHardware: 'Memory & CPU',
     testConnection: 'Internet Connection',
     testISP: 'ISP & Location',
     testTime: 'Time Synchronization',
     testPing: 'Response Time (Ping)',
+    testJitter: 'Line Stability (Jitter)',
     testIPv6: 'IPv6 Support',
     testSpeed: 'Download Speed',
 
@@ -800,6 +824,9 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     resPingSlow: 'Slightly Slow',
     resPingVerySlow: 'Very Slow',
     resPingError: 'Failed',
+    resJitterStable: 'Very Stable',
+    resJitterMedium: 'Medium',
+    resJitterUnstable: 'Unstable (Jumps)',
     resIPv6Supported: 'Supported & Active',
     resIPv6NotSupported: 'Not Active (Usually OK)',
     resSpeedExcellent: 'Excellent Speed',
@@ -807,6 +834,7 @@ NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נט�
     resSpeedFair: 'Fair Speed (Video may buffer)',
     resSpeedPoor: 'Very Slow Internet',
     resSpeedError: 'Failed (Blocked/Disconnected)',
+    resLowRam: 'Low Memory! May slow down',
 
     // Live Music Tool
     liveMusic: 'Live Music',
