@@ -1072,13 +1072,13 @@ Thank you for using "Edge Opener"!`,
     hebrewDateFeature5Title: 'Smooth & Clean Experience',
     hebrewDateFeature5Desc: 'The slight delay before the tooltip appears prevents it from "jumping" unnecessarily. It is positioned close to the mouse cursor and designed not to disturb or hide important content.',
     hebrewDateFeature6Title: 'Common Standards Support',
-    hebrewDateFeature6Desc: 'To ensure reliable detection, the extension focuses on dates clearly marked in the site\'s HTML code (datetime or data-numeric-value attributes).'
+    hebrewDateFeature6Desc: 'To ensure reliable detection, the extension focuses on dates clearly marked in the site\'s HTML code (datetime or data-numeric-value attributes).',
 
     // NetSkin Features
     netSkinGalleryTitle: "Designs Gallery",
     netSkinGalleryDesc: "Some of the designs available in the extension",
     netSkinFeature1Title: 'Rich Design Gallery',
-    netSkinFeature1Desc: 'Choose from over 60 unique designs, divided into smart categories by block type (blocked, in development, site check, files, and tags).'
+    netSkinFeature1Desc: 'Choose from over 60 unique designs, divided into smart categories by block type (blocked, in development, site check, files, and tags).',
     netSkinFeature2Title: 'Smart Tag Recognition',
     netSkinFeature2Desc: "For the first time, know exactly why a site was blocked! NetSkin identifies the custom tag that caused the block and shows you its full name, straight from NetFree servers.",
     netSkinFeature3Title: 'Full Control & Customization',
