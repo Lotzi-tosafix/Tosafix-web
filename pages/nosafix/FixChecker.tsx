@@ -163,6 +163,17 @@ const FixChecker = () => {
         updateResult(key, 'running', t.statusChecking);
     });
 
+    // --- Network Refresh / Warm-up ---
+    // Make a dummy request to wake up the network adapter and clear potential stale states
+    try {
+        await fetch('https://www.gstatic.com/generate_204', { mode: 'no-cors', cache: 'no-store' });
+        // Brief pause to allow connection to stabilize
+        await new Promise(r => setTimeout(r, 500)); 
+    } catch (e) {
+        // Continue even if warm-up fails, the main tests will catch issues
+    }
+    // ---------------------------------
+
     // Run System Info immediately
     checkSystemInfo();
 

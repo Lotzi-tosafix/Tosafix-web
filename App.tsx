@@ -35,6 +35,13 @@ function AppContent() {
     const html = document.documentElement;
     html.lang = language;
     html.dir = isHebrew ? 'rtl' : 'ltr';
+
+    // Dynamic Title Update
+    if (isHebrew) {
+        document.title = 'תוספיקס - תוספי כרום שימושיים';
+    } else {
+        document.title = 'Tosafix - Useful Chrome Extensions';
+    }
   }, [language, isHebrew]);
   
   // Scroll to top or to anchor on route change
