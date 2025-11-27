@@ -1,8 +1,9 @@
 
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Scissors, Music, Activity } from 'lucide-react';
+import { Scissors, Music, Activity, QrCode } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
@@ -30,6 +31,14 @@ const nosafixTools = [
     icon: Activity,
     gradient: 'from-blue-500 to-cyan-500',
     shadow: 'shadow-blue-500/20'
+  },
+  {
+    nameKey: 'qrFix',
+    descKey: 'qrFixDescription',
+    path: '/nosafix/qr-fix',
+    icon: QrCode,
+    gradient: 'from-violet-500 to-purple-600',
+    shadow: 'shadow-violet-500/20'
   }
 ];
 
@@ -77,7 +86,7 @@ export default function NosafixGrid() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto relative z-10"
             >
             {nosafixTools.map((tool) => {
                 const Icon = tool.icon;

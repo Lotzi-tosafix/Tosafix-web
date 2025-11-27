@@ -1,8 +1,9 @@
 
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Scissors, Music, Activity } from 'lucide-react';
+import { Scissors, Music, Activity, QrCode } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 
@@ -27,6 +28,13 @@ const tools = [
     path: '/nosafix/fix-checker',
     icon: Activity,
     gradient: 'from-blue-500 to-cyan-500'
+  },
+  {
+    nameKey: 'qrFix',
+    descKey: 'qrFixDescription',
+    path: '/nosafix/qr-fix',
+    icon: QrCode,
+    gradient: 'from-violet-500 to-purple-600'
   }
 ];
 
@@ -71,8 +79,9 @@ export default function Nosafix() {
               const Icon = tool.icon;
               const isCutfix = tool.nameKey === 'cutfix';
               const isMusic = tool.nameKey === 'liveMusic';
+              const isQr = tool.nameKey === 'qrFix';
               
-              const iconColor = isCutfix ? 'text-secondary' : isMusic ? 'text-rose-500' : 'text-blue-500';
+              const iconColor = isCutfix ? 'text-secondary' : isMusic ? 'text-rose-500' : isQr ? 'text-violet-500' : 'text-blue-500';
 
               return (
                 <motion.div key={tool.nameKey} variants={itemVariants} className="flex">

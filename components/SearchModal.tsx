@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight, Command, ExternalLink } from 'lucide-react';
@@ -46,6 +47,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     { title: t.cutfix, description: t.cutfixDescription, path: '/nosafix/fix-remover', category: t.nosafix },
     { title: t.liveMusic, description: t.liveMusicDescription, path: '/nosafix/live-music', category: t.nosafix },
     { title: t.fixChecker, description: t.fixCheckerDescription, path: '/nosafix/fix-checker', category: t.nosafix },
+    { title: t.qrFix, description: t.qrFixDescription, path: '/nosafix/qr-fix', category: t.nosafix },
   ];
 
   // Filter logic
