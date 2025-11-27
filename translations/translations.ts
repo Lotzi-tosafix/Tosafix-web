@@ -44,8 +44,8 @@ export const translations = {
     chromeExtensionsHub: 'המרכז לתוספי כרום',
 
     // About Section
-    aboutTitle: 'קצת עלינו',
-    aboutText: 'אנחנו צוות של מפתחים שאוהבים לבנות כלים שהופכים את האינטרנט למקום נוח יותר. הפרויקט "תוספיקס" נולד מתוך צורך אישי לכלים ספציפיים, וגדל לפלטפורמה המשרתת אלפי משתמשים. אנו מאמינים בקוד פתוח, פרטיות המשתמש ועיצוב נקי.',
+    aboutTitle: 'אודותינו',
+    aboutText: 'תוספיקס הוא הבית שלכם לכלים דיגיטליים חכמים ותוספי כרום שימושיים. האתר פותח במטרה להנגיש פתרונות טכנולוגיים מתקדמים לכל משתמש, ולשפר את חווית הגלישה והעבודה היומיומית. אנו מציעים מגוון רחב של כלים - החל מעיצוב וגרפיקה, דרך שמע ומוזיקה, ועד לפתרונות נגישות ופרודוקטיביות. הכל במקום אחד, מעוצב, נוח וחינמי.',
     userFocused: 'ממוקד משתמש',
     userFocusedDesc: 'כלים שנבנו מתוך מחשבה על הצרכים האמיתיים של הגולשים.',
     timeSaving: 'חיסכון בזמן',
@@ -253,7 +253,7 @@ export const translations = {
     termsModificationsDesc: 'אנו שומרים לעצמנו את הזכות לעדכן את תנאי השימוש מעת לעת. באחריות המשתמש להתעדכן בשינויים.',
     
     // Developers Page
-    cutfixApiTitle: 'CutFix API',
+    cutfixApiTitle: 'Fix Remover API',
     cutfixApiDesc: 'API חינמי ופשוט להסרת רקע מתמונות. שלח תמונה, קבל PNG שקוף.',
     devIntro: 'ברוכים הבאים לאזור המפתחים. כאן תמצאו דוקומנטציה ל-API שלנו, ספריות קוד פתוח וכלים שיעזרו לכם לבנות דברים מדהימים.',
     endpoint: 'נקודת קצה (Endpoint)',
@@ -443,7 +443,7 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
 התוסף לא אוסף מידע על הקישורים שאתם פותחים.`,
 
     // Nosafix Tools
-    cutfix: 'CutFix',
+    cutfix: 'Fix Remover',
     cutfixDescription: 'הסרת רקע מתמונות אונליין בחינם. מופעל ע"י AI, מהיר ומדויק.',
     liveMusic: 'מוזיקה לייב',
     liveMusicDescription: 'נגן רדיו אינטרנטי מתקדם עם עשרות תחנות חרדיות ויהודיות, כולל ערוצי מוזיקה ללא הפסקה.',
@@ -458,7 +458,7 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     noStationsFound: 'לא נמצאו תחנות תואמות.',
 
     // CutFix Page
-    cutfixPageTitle: 'הסרת רקע קסומה',
+    cutfixPageTitle: 'Fix Remover',
     cutfixPageSubtitle: 'העלו תמונה וקבלו גרסה שקופה תוך שניות',
     removeBgAndTrim: 'הסר רקע + חתוך',
     removeBgAndTrimDesc: 'מסיר את הרקע וחותך שטחים ריקים מסביב',
@@ -599,7 +599,7 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
   en: {
     // About Section
     aboutTitle: 'About Us',
-    aboutText: 'We are a team of developers who love building tools that make the web a more comfortable place. The "Tosafix" project was born out of a personal need for specific tools and grew into a platform serving thousands of users. We believe in open source, user privacy, and clean design.',
+    aboutText: 'Tosafix is your home for smart digital tools and useful Chrome extensions. The site was developed with the aim of making advanced technological solutions accessible to every user, improving the daily browsing and working experience. We offer a wide range of tools - from design and graphics, through audio and music, to accessibility and productivity solutions. Everything in one place, designed, convenient, and free.',
     userFocused: 'User Focused',
     userFocusedDesc: 'Tools built with the real needs of users in mind.',
     timeSaving: 'Time Saving',
@@ -609,6 +609,29 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     easyToUse: 'Easy to Use',
     easyToUseDesc: 'Intuitive interfaces that do not require complicated manuals.',
     activeExtensions: 'Active Extensions',
+
+    // Fix Remover API
+    cutfix: 'Fix Remover',
+    cutfixApiTitle: 'Fix Remover API',
+    
+    // Fix Remover Page
+    cutfixPageTitle: 'Fix Remover',
+    cutfixPageSubtitle: 'Remove backgrounds instantly',
+    removeBgAndTrim: 'Remove BG + Trim',
+    removeBgAndTrimDesc: 'Removes background and trims empty space',
+    trimOnly: 'Trim Transparent Only',
+    trimOnlyDesc: 'Keeps image, only trims transparent edges',
+    selectImage: 'Select Image',
+    supportedFiles: 'PNG, JPG, WEBP up to 10MB',
+    processingImage: 'Processing image...',
+    trimmingEdges: 'Trimming edges...',
+    processedImage: 'Result',
+    downloadImage: 'Download Image',
+    uploadAnotherImage: 'Upload Another Image',
+    unsupportedFileType: 'Unsupported file type. Please upload an image.',
+    fileTooLarge: (size: number) => `File too large. Max ${size}MB.`,
+    processingError: 'An error occurred while processing the image. Try again.',
+    serverError: (status: number, text: string) => `Server Error (${status}): ${text}`,
 
     // QR Fix
     qrFixPageTitle: 'Ultimate QR Generator',
@@ -666,6 +689,48 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrDownload: 'Download PNG',
     qrDownloadHighQuality: 'Download High Quality PNG',
     qrScanHint: 'Scan to test before using!',
+    
+    // Fix Checker
+    fixCheckerPageTitle: 'System & Network Diagnostics',
+    fixCheckerPageSubtitle: 'Check your connection quality, line stability, and system data.',
+    sysInfoTitle: '1. Work Environment Check',
+    networkTitle: '2. Network Checks',
+    performanceTitle: '3. Performance & Stability',
+    testBrowser: 'Browser',
+    testOS: 'Operating System',
+    testScreen: 'Screen Resolution',
+    testHardware: 'Memory & CPU',
+    testConnection: 'Network Connection',
+    testIPv6: 'IPv6 Support',
+    testISP: 'ISP & IP',
+    testTime: 'Time Sync',
+    testPing: 'Latency (Ping)',
+    testJitter: 'Line Stability (Jitter)',
+    testSpeed: 'Download Speed',
+    startDiagnostics: 'Start Diagnostics',
+    runningDiagnostics: 'Running tests...',
+    statusWaiting: 'Waiting...',
+    statusChecking: 'Checking...',
+    resConnected: 'Connected',
+    resNoConnection: 'No Connection!',
+    resIPv6Supported: 'Active',
+    resIPv6NotSupported: 'Unavailable',
+    resTimeSynced: 'Correct',
+    resTimeError: 'Incorrect ({diff} min)',
+    resTimeFetchError: 'Not Checked',
+    resPingSlow: 'Slow',
+    resPingVerySlow: 'Very Slow',
+    resPingError: 'Failed',
+    resJitterStable: 'Very Stable',
+    resJitterMedium: 'Medium',
+    resJitterUnstable: 'Unstable',
+    resSpeedExcellent: 'Excellent Speed',
+    resSpeedGood: 'Good Speed',
+    resSpeedFair: 'Basic Browsing Only',
+    resSpeedPoor: 'Very Slow',
+    resSpeedError: 'Test Failed',
+    resLowRam: 'Low Memory! May slow down browsing',
+
     // Fallbacks for other keys
     home: 'Home',
     nosafix: 'Nosafix',
