@@ -1,5 +1,3 @@
-
-
 export const translations = {
   he: {
     // Header & Navigation
@@ -43,489 +41,643 @@ export const translations = {
     scrollDown: 'גלול מטה',
     chromeExtensionsHub: 'המרכז לתוספי כרום',
 
-    // About Section
-    aboutTitle: 'אודותינו',
-    aboutText: 'תוספיקס הוא הבית שלכם לכלים דיגיטליים חכמים ותוספי כרום שימושיים. האתר פותח במטרה להנגיש פתרונות טכנולוגיים מתקדמים לכל משתמש, ולשפר את חווית הגלישה והעבודה היומיומית. אנו מציעים מגוון רחב של כלים - החל מעיצוב וגרפיקה, דרך שמע ומוזיקה, ועד לפתרונות נגישות ופרודוקטיביות. הכל במקום אחד, מעוצב, נוח וחינמי.',
-    userFocused: 'ממוקד משתמש',
-    userFocusedDesc: 'כלים שנבנו מתוך מחשבה על הצרכים האמיתיים של הגולשים.',
-    timeSaving: 'חיסכון בזמן',
-    timeSavingDesc: 'אוטומציה של פעולות חזרתיות ושיפור יעילות העבודה.',
-    secureReliable: 'בטוח ואמין',
-    secureReliableDesc: 'קוד נקי, ללא מעקבים וללא הפתעות. הפרטיות שלכם מעל הכל.',
-    easyToUse: 'קל לשימוש',
-    easyToUseDesc: 'ממשקים אינטואיטיביים שלא דורשים מדריכים מסובכים.',
-    activeExtensions: 'תוספים פעילים',
-
     // General UI
     tryNow: 'נסה את זה',
     openTool: 'פתח כלי',
-    readMore: 'קרא עוד',
-    ourExtensions: 'הקולקציה שלנו',
-    ourExtensionsDesc: 'כל התוספים שלנו פותחו במטרה לשפר את הפרודוקטיביות וחווית הגלישה שלך.',
     ready: 'מוכן',
     selectStation: 'בחר תחנה לניגון',
     stayUpdated: 'הישאר מעודכן',
     newToolsUpdate: 'כלים חדשים ועדכונים יוצאים באופן קבוע.',
-    
-    // Footer
-    madeForCommunity: 'נבנה באהבה לקהילה',
-    allRightsReserved: 'כל הזכויות שמורות',
+    madeForCommunity: 'נבנה עבור הקהילה',
     privacyPolicyFooter: 'מדיניות פרטיות',
     termsOfService: 'תנאי שימוש',
-    
-    // Extensions Page
-    heroTagline: 'שדרג את הדפדפן שלך',
-    keyFeatures: 'תכונות עיקריות',
-    supportedForums: 'פורומים נתמכים',
-    andMore: 'ועוד רבים אחרים...',
-    installation: 'התקנה',
-    chromeWebStore: 'חנות כרום',
-    privacyPolicy: 'מדיניות פרטיות',
-    copy: 'העתק',
-    copied: 'הועתק!',
-    copyError: 'שגיאה',
-    download: 'הורד',
-    copyPolicyTooltip: 'העתק מדיניות ללוח',
-    downloadPolicyTooltip: 'הורד כקובץ טקסט',
+    allRightsReserved: 'כל הזכויות שמורות.',
 
-    // NotiForum
-    notiForumName: 'NotiForum',
-    notiForumGridDesc: 'מערכת התראות חכמה ומרכזית לפורומים - כל העדכונים במקום אחד.',
-    notiPageTitle: 'NotiForum',
-    notiPageSubtitle: 'כל הפורומים, תוסף אחד.',
-    notiPageDescription: 'הפסיקו לעבור בין עשרות טאבים. NotiForum מרכז עבורכם את כל ההתראות מהפורומים המובילים בממשק אחד נקי, חכם ונוח.',
-    notiFeaturesSectionTitle: 'למה לבחור ב-NotiForum?',
-    notiFeaturesSectionSubtitle: 'הכלי האולטימטיבי למשתמשי פורומים',
-    notiSupportSectionTitle: 'תמיכה רחבה',
-    notiSupportSectionSubtitle: 'עובד עם הפורומים שאתם אוהבים',
-    notiInstallSectionTitle: 'התחילו להשתמש היום',
-    notiInstallSectionDesc: 'הצטרפו לאלפי משתמשים שכבר שיפרו את חווית הגלישה שלהם. ההורדה והשימוש בחינם לחלוטין.',
-    notiPrivacySectionTitle: 'פרטיות ושקיפות',
-    
-    notiFeatureUnifiedInboxTitle: 'תיבת דואר מאוחדת',
-    notiFeatureUnifiedInboxDesc: 'כל ההתראות מכל הפורומים מרוכזות במקום אחד מסודר.',
-    notiFeatureCustomizationTitle: 'התאמה אישית',
-    notiFeatureCustomizationDesc: 'בחרו מאילו פורומים לקבל התראות ואיך הן יראו.',
-    notiFeatureFlexibleUITitle: 'ממשק גמיש',
-    notiFeatureFlexibleUIDesc: 'חלון קופץ צף, סרגל צד, או עמוד מלא - לבחירתכם.',
-    notiFeatureWideSupportTitle: 'תמיכה רחבה',
-    notiFeatureWideSupportDesc: 'תומך בעשרות פורומים פופולריים מבוססי NodeBB, Discourse, XenForo ועוד.',
-    notiFeaturePerformanceTitle: 'קל ומהיר',
-    notiFeaturePerformanceDesc: 'תוכנן ליעילות מירבית ללא האטת הדפדפן.',
-    notiFeaturePrivacyTitle: 'פרטיות מלאה',
-    notiFeaturePrivacyDesc: 'אנו לא אוספים מידע אישי. הנתונים נשמרים מקומית אצלכם.',
+    // About Section
+    aboutTitle: 'אודותינו',
+    aboutText: "ברוכים הבאים ל'תוספיקס' – המקום שבו הטכנולוגיה פוגשת את הנוחות היומיומית! האתר מרכז מגוון רחב של תוספי כרום ייחודיים וכלים מתקדמים שנועדו לשדרג את חווית הגלישה והעבודה שלכם. בין הפיתוחים שלנו תמצאו את 'NotiForum' לריכוז התראות מפורומים, 'NetSkin' לעיצוב דפי חסימה בנטפרי, 'Yamina' ליישור דפי אינטרנט, 'My Emoji' ליצירת אימוג'ים אישיים, ו'פותחן Edge'. בנוסף, האתר מציע כלים שימושיים כמו 'Fix Remover' להסרת רקעים מתמונות, נגן 'Live Music' לתחנות רדיו יהודיות, ועוד. ב'תוספיקס' אנו שמים דגש על פשטות, יעילות והתאמה אישית, כדי לספק לכם פתרונות חכמים לצרכים אמיתיים.",
+    userFocused: 'מותאם למשתמש',
+    userFocusedDesc: 'תוספים שנבנו בהתאם לצרכים האמיתיים של המשתמשים',
+    timeSaving: 'חיסכון בזמן',
+    timeSavingDesc: 'כלים שמייעלים משימות יומיומיות וחוסכים זמן יקר',
+    secureReliable: 'בטוח ואמין',
+    secureReliableDesc: 'תוספים בטוחים עם שמירה מלאה על פרטיות המשתמש',
+    easyToUse: 'קל לשימוש',
+    easyToUseDesc: 'ממשק פשוט ואינטואיטיבי שכל אחד יכול להשתמש בו',
+    activeExtensions: 'תוספים פעילים',
 
-    // Yamina
-    yaminaName: 'ימינה',
-    yaminaGridDesc: 'תיקון כיוון טקסט (RTL) אוטומטי וחכם בכל אתר אינטרנט בלחיצת כפתור.',
-    yaminaDesc: 'התוסף "ימינה" מאפשר לכם להפוך את כיוון הטקסט והממשק (RTL/LTR) בכל אתר אינטרנט בקלות. אידיאלי למפתחים, בודקי תוכנה ומשתמשים הגולשים באתרים שלא הותאמו לעברית.',
-    yaminaHowItWorksTitle: 'איך זה עובד?',
-    yaminaFeature1Title: 'היפוך מלא',
-    yaminaFeature1Desc: 'הופך את כל האלמנטים בדף מימין לשמאל ולהפך.',
-    yaminaFeature2Title: 'קיצור מקלדת',
-    yaminaFeature2Desc: 'השתמשו ב-Alt+Shift+Y לשינוי מהיר ללא עכבר.',
-    yaminaFeature3Title: 'זכרון אתרים',
-    yaminaFeature3Desc: 'זוכר את ההגדרות שלכם לכל דומיין בנפרד.',
-    yaminaFeature4Title: 'מצב אוטומטי',
-    yaminaFeature4Desc: 'מזהה שפות RTL ומחיל שינויים אוטומטית (אופציונלי).',
-    yaminaFeature5Title: 'ללא השפעה על הביצועים',
-    yaminaFeature5Desc: 'קוד קליל שעובד רק כשצריך.',
-    yaminaFeature6Title: 'תמיכה בפריסות מורכבות',
-    yaminaFeature6Desc: 'מטפל נכון ב-Grid ו-Flexbox.',
+    // Extensions Grid
+    ourExtensions: 'הקולקציה שלנו',
+    ourExtensionsDesc: 'גלה את קולקציית התוספים החכמים שלנו, כל אחד מתמחה בפתרון בעיה ספציפית',
+    readMore: 'קרא עוד',
 
-    // NetSkin
-    netSkinName: 'NetSkin',
-    netSkinGridDesc: 'עיצוב מחדש ומודרני לדפי "נטפרי" (חסימה) - הפוך את חווית החסימה לנעימה יותר.',
-    netSkinDesc: 'NetSkin הוא תוסף המיועד למשתמשי סינון האינטרנט "נטפרי". הוא מחליף את דף החסימה הרגיל בעיצובים מרהיבים, מודרניים וניתנים להתאמה אישית, כולל אפשרות לרקעים מתחלפים, משחטים ועוד.',
-    netSkinGalleryTitle: 'גלריית עיצובים',
-    netSkinGalleryDesc: 'חלק מהעיצובים הזמינים בתוסף',
-    netSkinFeature1Title: 'גלריה עשירה',
-    netSkinFeature1Desc: 'מגוון רחב של רקעים ונושאים לבחירה.',
-    netSkinFeature2Title: 'רקע יומי',
-    netSkinFeature2Desc: 'אפשרות לתמונה מתחלפת אוטומטית כל יום (Bing).',
-    netSkinFeature3Title: 'התאמה אישית',
-    netSkinFeature3Desc: 'העלאת תמונות רקע משלכם.',
-    netSkinFeature4Title: 'אפקטים ויזואליים',
-    netSkinFeature4Desc: 'טשטוש, הצללה ושינויי צבע לטקסט החסימה.',
-    netSkinFeature5Title: 'הסתרת פרטים',
-    netSkinFeature5Desc: 'אפשרות להסתיר את המזהה הטכני של החסימה.',
-    netSkinFeature6Title: 'ממשק נקי',
-    netSkinFeature6Desc: 'מסדר את המידע בדף בצורה ברורה ונעימה לעין.',
+    // Grid Descriptions
+    notiForumGridName: 'Noti',
+    notiForumGridDesc: 'תוסף למעקב אחר התראות בפורומים – חוסך זמן בכך שהוא מרכז עבורך התראות ממגוון פורומים, כך שלא תצטרך לבדוק כל אחד בנפרד.',
+    yaminaGridDesc: 'תוסף ליישור דפי LTR ל-RTL – הופך אוטומטית עמודים באנגלית לקריאים ונוחים לדוברי עברית.',
+    netSkinGridDesc: 'NetSkin מחליף את דף החסימה הסטנדרטי של נטפרי בעשרות עיצובים מרהיבים, דינמיים וניתנים להתאמה אישית מלאה.',
+    hebrewDateGridDesc: 'מציג תאריך עברי בחלונית קופצת (tooltip) בעת ריחוף מעל תאריך לועזי.',
+    myEmojiGridDesc: "העלה, נהל, חפש, והוסף אימוג'ים מותאמים אישית משלך לצ'אטים, מיילים, רשתות חברתיות ועוד. כולל אפשרות להסרת רקע!",
+    edgeOpenerGridDesc: "פותח את הטאב הנוכחי בדפדפן Microsoft Edge או מעתיק את הכתובת.",
 
-    // Hebrew Date
-    hebrewDateName: 'תאריך עברי',
-    hebrewDateGridDesc: 'הצגת התאריך העברי הנוכחי, פרשת השבוע וזמני היום בסרגל הכלים.',
-    hebrewDateDesc: 'תוסף פשוט ויעיל המציג את התאריך העברי של היום, פרשת השבוע, ואירועים מיוחדים (חגים ומועדים) ישירות בסרגל הכלים של הכרום ובחלון קופץ נוח.',
-    hebrewDateFeature1Title: 'תצוגה מהירה',
-    hebrewDateFeature1Desc: 'התאריך מופיע בטולטיפ (בועה) במעבר עכבר על האייקון.',
-    hebrewDateFeature2Title: 'זמני היום',
-    hebrewDateFeature2Desc: 'הצגת זמני כניסת/יציאת שבת וחג לפי מיקום.',
-    hebrewDateFeature3Title: 'פרשת שבוע',
-    hebrewDateFeature3Desc: 'מציג את פרשת השבוע הנוכחית.',
-    hebrewDateFeature4Title: 'המרת תאריכים',
-    hebrewDateFeature4Desc: 'כלי עזר להמרת תאריך לועזי לעברי ולהפך.',
-    hebrewDateFeature5Title: 'חגים ומועדים',
-    hebrewDateFeature5Desc: 'התראות על חגים מתקרבים.',
-    hebrewDateFeature6Title: 'הגדרות מיקום',
-    hebrewDateFeature6Desc: 'אפשרות להגדיר מיקום מדויק לחישוב זמנים.',
-
-    // My Emoji
-    myEmojiName: 'My Emoji',
-    myEmojiGridDesc: 'הוספת אימוג\'ים אישיים ומותאמים לשימוש בוואטסאפ ווב ובאתרים אחרים.',
-    myEmojiDesc: 'My Emoji מאפשר לכם ליצור מאגר אימוג\'ים וסטיקרים אישיים, ולהשתמש בהם בקלות בכל מקום ברשת - כולל וואטסאפ ווב, פייסבוק, ופורומים. שתפו את הרגשות שלכם בדיוק כמו שאתם רוצים.',
-    myEmojiFeature1Title: 'ספרייה אישית',
-    myEmojiFeature1Desc: 'שמרו כל תמונה מהרשת כאימוג\'י.',
-    myEmojiFeature2Title: 'גישה מהירה',
-    myEmojiFeature2Desc: 'תפריט צף או קבוע להוספה מהירה של אימוג\'ים.',
-    myEmojiFeature3Title: 'אינטגרציה',
-    myEmojiFeature3Desc: 'עובד מעולה עם WhatsApp Web.',
-    myEmojiFeature4Title: 'גודל מותאם',
-    myEmojiFeature4Desc: 'שינוי גודל אוטומטי לתמונות להתאמה כסטיקר.',
-    myEmojiFeature5Title: 'גיבוי וסנכרון',
-    myEmojiFeature5Desc: 'שמרו את האוסף שלכם וסנכרנו בין מחשבים.',
-    myEmojiFeature6Title: 'קטגוריות',
-    myEmojiFeature6Desc: 'ארגנו את האימוג\'ים שלכם בתיקיות.',
-    myEmojiBonusSectionTitle: 'בונוס למעצבים!',
-    myEmojiBonusCardTitle: 'חבילת אימוג\'ים במתנה',
-    myEmojiBonusCardDesc: 'הכנו עבורכם חבילת אימוג\'ים בלעדית בסגנון "פרוג" (Prog) להורדה בחינם. שדרגו את השיחות שלכם עם עיצובים מקצועיים.',
-    myEmojiBonusCardCredit: 'קרדיט ליוצר:',
-    myEmojiBonusDownloadBtn: 'הורדת החבילה',
-
-    // Edge Opener
-    edgeOpenerName: 'פותחן Edge',
-    edgeOpenerGridDesc: 'פתיחת קישורים בדפדפן Edge ישירות מכרום, שימושי לאתרים הדורשים תאימות ספציפית.',
-    edgeOpenerDesc: 'תוסף עזר המאפשר לפתוח את הטאב הנוכחי או קישורים ספציפיים בדפדפן Microsoft Edge בלחיצת כפתור אחת. פתרון מצוין לאתרי ממשל או מערכות ארגוניות ישנות שעובדות טוב יותר ב-Edge.',
-    edgeOpenerFeature1Title: 'לחיצה אחת',
-    edgeOpenerFeature1Desc: 'כפתור בסרגל הכלים לפתיחה מיידית ב-Edge.',
-    edgeOpenerFeature2Title: 'תפריט ימני',
-    edgeOpenerFeature2Desc: 'אפשרות "פתח ב-Edge" בתפריט הקליק הימני על קישורים.',
-    edgeOpenerFeature3Title: 'קל ופשוט',
-    edgeOpenerFeature3Desc: 'ללא הגדרות מסובכות. התקן והשתמש.',
-
-    // Contact Page
-    contactTitle: 'צור קשר',
-    contactSubtitle: 'יש לכם שאלה? הצעה? מצאתם באג? אנחנו כאן לשמוע.',
-    contactFormTitle: 'שלחו לנו הודעה',
-    contactFormSubtitle: 'נחזור אליכם בהקדם האפשרי',
-    nameLabel: 'שם מלא',
-    namePlaceholder: 'ישראל ישראלי',
-    phoneLabel: 'טלפון',
-    phonePlaceholder: '050-1234567',
-    emailLabel: 'אימייל',
-    emailPlaceholder: 'your@email.com',
-    messageLabel: 'הודעה',
-    messagePlaceholder: 'כתבו את הודעתכם כאן...',
-    submitButton: 'שלח הודעה',
-    submittingButton: 'שולח...',
-    successMessage: 'ההודעה נשלחה בהצלחה! תודה שפנית אלינו.',
-
-    // Privacy Page
-    privacyPageTitle: 'מדיניות פרטיות',
-    privacyPageLastUpdated: 'עודכן לאחרונה',
-    privacyIntro: 'ב-Tosafix, אנו מחויבים להגן על הפרטיות שלך. מסמך זה מסביר כיצד אנו אוספים, משתמשים ושומרים על המידע שלך בעת השימוש באתר ובתוספים שלנו.',
-    privacyCollectionTitle: 'איסוף מידע',
-    privacyCollectionDesc: 'אנו לא אוספים מידע אישי מזהה (PII) כגון שמות, כתובות או מספרי טלפון, אלא אם כן תספקו אותם מרצונכם (למשל, בטופס יצירת קשר). המידע הנאסף בתוספים נשמר ברובו מקומית על המכשיר שלכם.',
-    privacyUsageTitle: 'שימוש במידע',
-    privacyUsageDesc: 'כל מידע שנאסף משמש אך ורק לצורך תפעול, שיפור ותחזוקת השירותים שלנו. אנו לא מוכרים את המידע שלכם לצדדים שלישיים.',
-    privacyCookiesTitle: 'עוגיות (Cookies)',
-    privacyCookiesDesc: 'האתר עשוי להשתמש בעוגיות לצורך שיפור חווית המשתמש וניתוח תנועה אנונימי. באפשרותכם לחסום עוגיות דרך הגדרות הדפדפן.',
-    privacyThirdPartyTitle: 'שירותי צד שלישי',
-    privacyThirdPartyDesc: 'חלק מהשירותים שלנו עשויים להסתמך על ספקים חיצוניים (כגון שירותי סטטיסטיקה). מדיניות הפרטיות שלהם חלה על המידע שנאסף על ידם.',
-    privacyHostingTitle: 'אחסון',
-    privacyHostingDesc: 'האתר מאוחסן על גבי פלטפורמת Vercel. ניתן לעיין במדיניות הפרטיות שלהם באתר הבית שלהם.',
-    privacyContactTitle: 'צור קשר',
-    privacyContactDesc: 'אם יש לכם שאלות בנוגע למדיניות זו, אנא צרו עמנו קשר דרך עמוד יצירת הקשר באתר.',
-
-    // Terms Page
-    termsPageTitle: 'תנאי שימוש',
-    termsPageLastUpdated: 'עודכן לאחרונה',
-    termsAcceptanceTitle: 'הסכמה לתנאים',
-    termsAcceptanceDesc: 'השימוש באתר Tosafix ובתוספים הנלווים מהווה הסכמה מלאה לתנאים אלו. אם אינכם מסכימים, אנא הימנעו משימוש בשירותים.',
-    termsLicenseTitle: 'רישיון שימוש',
-    termsLicenseDesc: 'התוספים והתכנים באתר מוגנים בזכויות יוצרים. השימוש בהם מותר לצרכים אישיים בלבד, אלא אם צוין אחרת.',
-    termsDisclaimerTitle: 'הסרת אחריות',
-    termsDisclaimerDesc: 'השירותים ניתנים "כמות שהם" (As Is). צוות Tosafix לא יישא באחריות לכל נזק, ישיר או עקיף, שייגרם כתוצאה משימוש באתר או בתוספים.',
-    termsLimitationsTitle: 'הגבלות',
-    termsLimitationsDesc: 'אין להשתמש באתר או בתוספים למטרות לא חוקיות, פוגעניות או המפרות זכויות של אחרים.',
-    termsLinksTitle: 'קישורים חיצוניים',
-    termsLinksDesc: 'האתר מכיל קישורים לאתרים חיצוניים. איננו אחראים לתוכן או למדיניות הפרטיות של אתרים אלו.',
-    termsModificationsTitle: 'שינויים בתנאים',
-    termsModificationsDesc: 'אנו שומרים לעצמנו את הזכות לעדכן את תנאי השימוש מעת לעת. באחריות המשתמש להתעדכן בשינויים.',
-    
-    // Developers Page
-    cutfixApiTitle: 'Fix Remover API',
-    cutfixApiDesc: 'API חינמי ופשוט להסרת רקע מתמונות. שלח תמונה, קבל PNG שקוף.',
-    devIntro: 'ברוכים הבאים לאזור המפתחים. כאן תמצאו דוקומנטציה ל-API שלנו, ספריות קוד פתוח וכלים שיעזרו לכם לבנות דברים מדהימים.',
-    endpoint: 'נקודת קצה (Endpoint)',
-    method: 'שיטה (Method)',
-    body: 'גוף הבקשה (Body)',
-    bodyDesc: 'multipart/form-data',
-    fieldName: 'שם שדה',
-    fieldDesc: 'קובץ התמונה להעלאה',
-    file: 'file',
-    supportedFormats: 'פורמטים נתמכים',
-    fileSizeLimit: 'גודל מקסימלי',
-    successResponse: 'תגובת הצלחה',
-    successResponseDesc: 'השרת יחזיר את התמונה המעובדת כקובץ בינארי.',
-    statusCode: 'סטטוס',
-    contentType: 'סוג תוכן',
-    responseBody: 'גוף התגובה',
-    responseBodyDesc: 'קובץ התמונה (PNG)',
-    errorResponse: 'תגובות שגיאה',
-    error400: 'לא נשלח קובץ או פורמט לא נתמך.',
-    error500: 'שגיאה בעיבוד התמונה בשרת.',
-    codeExamples: 'דוגמאות קוד',
-    jsExample: 'JavaScript (Fetch)',
-    curlExample: 'cURL',
-    templeTimerTitle: 'טיימר המקדש',
-    templeTimerDesc: 'ווידג\'ט ספירה לאחור (או קדימה) לחורבן בית המקדש, זמין להטמעה באתרים.',
-    livePreview: 'תצוגה מקדימה',
-    embedCode: 'קוד להטמעה',
-    embedInstructions: 'ניתן להטמיע את הטיימר בשתי דרכים: אוטומטית (זיהוי שפה) או ידנית.',
-    embedAutoTitle: 'אפשרות א\': הטמעה חכמה (מומלץ)',
-    embedAutoStep1: '1. הוסיפו את האלמנט הבא במקום בו תרצו שהטיימר יופיע:',
-    embedAutoStep2: '2. הוסיפו את הסקריפט הבא בתחתית הדף:',
-    embedManualTitle: 'אפשרות ב\': הטמעה ידנית (Iframe)',
-    embedManualDesc: 'בחרו את השפה הרצויה והעתיקו את הקוד.',
-    embedManualHe: 'עברית',
-    embedManualEn: 'אנגלית',
-    customization: 'התאמה אישית',
-    customizationDesc: 'הטיימר מעוצב להיות רספונסיבי ומתאים את עצמו לגודל הקונטיינר. הרקע שקוף למחצה כדי להשתלב בכל עיצוב.',
-    viewOnGitHub: 'צפה ב-GitHub',
-    credits: 'קרדיטים',
-    creditsDesc_part1: 'הספרייה מבוססת על ',
-    creditsDesc_link: 'SecondTempleTimerLibrary',
-    creditsDesc_part2: ' בקוד פתוח. תודה לקהילת המפתחים על התרומה.',
-    license: 'רישיון',
-    licenseDesc: 'השימוש בווידג\'ט וב-API חופשי לחלוטין (MIT License). נשמח לקרדיט אך זה לא חובה.',
-    
-    // Radio Stations
-    kolChaiMusic: 'קול חי מיוזיק',
-    kolPlay: 'קול פליי',
-    tokerFm: 'טוקר FM',
-    jewishRadioNetwork: 'ג\'ואיש רדיו נטוורק',
-    jewishMusicStream: 'ג\'ואיש מיוזיק סטרים',
-    kcm_2: 'קול חי מיוזיק',
-    kcm_3: 'ערוץ הילדים',
-    kcm_4: 'ערוץ שיעורי תורה',
-    kcm_5: 'ערוץ השמחה',
-    kcm_6: 'ערוץ הנוסטלגיה',
-    kcm_7: 'ערוץ הווקאלי',
-    kcm_8: 'ערוץ השקט',
-    kcm_9: 'ערוץ הדעות',
-    kcm_10: 'ערוץ אמונה וביטחון',
-    kcm_11: 'ערוץ הניגונים',
-    kcm_12: 'שיעורי הרב יגאל כהן',
-    kcm_13: 'ערוץ סטים',
-    kcm_14: 'ערוץ ים תיכוני',
-    kcm_15: 'ערוץ אידיש',
-    kcm_16: 'ערוץ חסידי',
-    kcm_17: 'ערוץ הלכה',
-    kcm_19: 'ערוץ פרשת השבוע',
-    kcm_20: 'ערוץ תנ"ך',
-    kcm_21: 'ערוץ חיזוק',
-    kcm_22: 'ערוץ התפילה',
-    kcm_25: 'ערוץ המוסר',
-    kcm_26: 'ערוץ שבת',
-    kcm_27: 'שיעורי הרב זמיר כהן',
-    kcm_28: 'ערוץ החינוך',
-    kcm_29: 'ערוץ הסיפורים',
-    kcm_30: 'ערוץ הילולות',
-    kcm_31: 'ערוץ נשים',
-    kcm_32: 'שיעורי הדף היומי',
-    kcm_33: 'שיעורי הרב אדלשטיין',
-    kcm_34: 'שיעורי הרב פנגר',
-    kcm_35: 'שיעורי הרב ארוש',
-    kcm_39: 'ערוץ קורונה',
-    kcm_40: 'ערוץ מירון',
-    kcm_41: 'ערוץ חגים',
-    kcm_42: 'ערוץ ל"ג בעומר',
-    kcm_46: 'ערוץ אלול',
-    kcm_49: 'ערוץ סליחות',
-    kcm_51: 'ערוץ ראש השנה',
-    kcm_52: 'ערוץ יום כיפור',
-    kcm_53: 'ערוץ סוכות',
-    kcm_54: 'ערוץ שמחת תורה',
-    kcm_55: 'ערוץ חנוכה',
-    kcm_58: 'ערוץ פורים',
-    kcm_59: 'ערוץ פסח',
-    kcm_60: 'ערוץ שבועות',
-    kcm_61: 'ערוץ יום העצמאות',
-    kcm_62: 'ערוץ יום ירושלים',
-    kcm_63: 'ערוץ תשעה באב',
-    kcm_64: 'ערוץ בין הזמנים',
-    kcm_65: 'שיעורי הרב קניבסקי',
-    kcm_66: 'שיעורי הרב עובדיה',
-    kcm_67: 'שיעורי הרב שך',
-    kcm_68: 'שיעורי הרב אלישיב',
-    kcm_69: 'שיעורי הרב שטיינמן',
-    kcm_70: 'שיעורי הרב כדורי',
-    kcm_72: 'שיעורי הרב מאזוז',
-    kcm_73: 'שיעורי הרב בעדני',
-    kcm_74: 'שיעורי הרב גרוסמן',
-    kcm_75: 'שיעורי הרב לאו',
-    kcm_76: 'שיעורי הרב עמאר',
-    kcm_77: 'שיעורי הרב דוד יוסף',
-    kcm_78: 'שיעורי הרב יצחק יוסף',
-    kcm_79: 'שיעורי הרב בניהו שמואלי',
-    kcm_80: 'שיעורי הרב מוצפי',
-    kcm_82: 'שיעורי הרב לסרי',
-    kcm_85: 'שיעורי הרב יאשיהו פינטו',
-    kcm_106: 'חדשות המוזיקה',
-    kcm_107: 'קול חי',
-
-    // Privacy Policies Content (Long Text)
-    notiForumPrivacyPolicy: `מדיניות פרטיות עבור תוסף NotiForum
-    
-עודכן לאחרונה: יולי 2024
-
-1. מבוא
-תוסף NotiForum ("התוסף") פותח כדי לשפר את חווית השימוש בפורומים שונים. אנו מכבדים את פרטיות המשתמשים שלנו. מסמך זה מסביר איזה מידע נאסף וכיצד אנו משתמשים בו.
-
-2. איסוף מידע
-התוסף אינו אוסף, שומר או משדר מידע אישי מזהה (PII) לשרתים שלנו או לצדדים שלישיים.
-כל המידע הקשור להתראות, הגדרות המשתמש והנתונים מהפורומים נשמר ומעובד מקומית על הדפדפן של המשתמש בלבד (Local Storage / Chrome Storage).
-
-3. הרשאות
-התוסף מבקש הרשאות גישה לדומיינים ספציפיים של פורומים בלבד לצורך:
-- בדיקת התראות חדשות.
-- הצגת מונה ההתראות על האייקון.
-- גישה מהירה לקישורים בפורום.
-
-4. תקשורת רשת
-התוסף מבצע תקשורת רשת ישירה אך ורק מול שרתי הפורומים שהמשתמש בחר להוסיף, וזאת כדי למשוך מידע על התראות. לא מתבצעת תקשורת עם שרתי מעקב או אנליטיקה.
-
-5. שינויים במדיניות
-אנו שומרים לעצמנו את הזכות לעדכן מדיניות זו. שינויים מהותיים ילוו בהודעה למשתמשים דרך עדכון התוסף.
-
-6. יצירת קשר
-לשאלות בנושא פרטיות, ניתן לפנות אלינו דרך עמוד יצירת הקשר באתר Tosafix.`,
-
-    yaminaPrivacyPolicy: `מדיניות פרטיות עבור תוסף Yamina
-
-1. כללי
-התוסף "ימינה" נועד אך ורק לשינוי כיוון התצוגה (CSS/HTML) של אתרי אינטרנט לנוחות המשתמש.
-
-2. מידע אישי
-התוסף אינו אוסף שום מידע אישי.
-
-3. נתוני גלישה
-התוסף עשוי לשמור מקומית (על המחשב שלכם) את רשימת האתרים שבהם הפעלתם את מצב RTL, כדי לזכור את ההעדפה לביקורים חוזרים. רשימה זו אינה יוצאת מהמחשב שלכם.
-
-4. הרשאות
-התוסף דורש הרשאת גישה לתוכן הדף (activeTab או host permissions) אך ורק כדי להזריק את קוד ה-CSS ההופך את הכיוון.`,
-
-    netSkinPrivacyPolicy: `מדיניות פרטיות עבור תוסף NetSkin
-
-1. מידע
-NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע על הרגלי הגלישה שלכם ואינו עוקב אחרי האתרים שנחסמו.
-
-2. תמונות רקע
-במידה ותבחרו להשתמש בתמונת "היום" (Bing), התוסף יבצע פנייה לשרתי מיקרוסופט למשיכת התמונה. במידה ותעלו תמונה אישית, היא נשמרת מקומית בדפדפן.
-
-3. נתונים טכניים
-התוסף קורא את קוד דף החסימה של נטפרי כדי לחלץ את סיבת החסימה ולהציגה בצורה מעוצבת.`,
-
-    hebrewDatePrivacyPolicy: `מדיניות פרטיות - תאריך עברי
-
-1. מיקום
-התוסף עשוי לבקש גישה למיקום המכשיר (Geolocation) אך ורק לצורך חישוב זמני היום (זריחה, שקיעה, כניסת שבת) המדויקים לאזורכם. המיקום אינו נשמר בשרתים שלנו.
-
-2. שימוש בנתונים
-חישובי התאריך והזמנים מתבצעים באמצעות ספריות קוד מקומיות או APIs ציבוריים שאינם דורשים זיהוי משתמש.`,
-
-    edgeOpenerPrivacyPolicy: `מדיניות פרטיות - פותחן Edge
-
-1. פעולה
-התוסף משתמש ביכולות Native Messaging של הדפדפן כדי לשלוח פקודה למערכת ההפעלה לפתוח את דפדפן Edge.
-
-2. מידע
-התוסף לא אוסף מידע על הקישורים שאתם פותחים.`,
-
-    // Nosafix Tools
-    cutfix: 'Fix Remover',
-    cutfixDescription: 'הסרת רקע מתמונות אונליין בחינם. מופעל ע"י AI, מהיר ומדויק.',
-    liveMusic: 'מוזיקה לייב',
-    liveMusicDescription: 'נגן רדיו אינטרנטי מתקדם עם עשרות תחנות חרדיות ויהודיות, כולל ערוצי מוזיקה ללא הפסקה.',
-    fixChecker: 'Fix Checker',
-    fixCheckerDescription: 'כלי אבחון מהיר לבעיות רשת, סינון וסביבת עבודה. בדיקת פינג, מהירות ופרטי מערכת.',
-    qrFix: 'QR Fix',
-    qrFixDescription: 'מחולל קודי QR מקצועי ומתקדם עם אפשרויות עיצוב, לוגו, צבעים ומסגרות.',
-    
-    // Live Music
-    nowPlaying: 'מתנגן כעת',
-    searchStations: 'חפש תחנה...',
-    noStationsFound: 'לא נמצאו תחנות תואמות.',
-
-    // CutFix Page
-    cutfixPageTitle: 'Fix Remover',
-    cutfixPageSubtitle: 'העלו תמונה וקבלו גרסה שקופה תוך שניות',
-    removeBgAndTrim: 'הסר רקע + חתוך',
-    removeBgAndTrimDesc: 'מסיר את הרקע וחותך שטחים ריקים מסביב',
-    trimOnly: 'חתוך שקוף בלבד',
-    trimOnlyDesc: 'משאיר את התמונה, חותך רק שוליים שקופים',
+    // Cutfix Tool
+    cutfix: 'Fix remover',
+    cutfixDescription: 'מסיר רקעים חכם וחיתוך אוטומטי של שוליים שקופים.',
+    cutfixPageTitle: 'Fix remover - מסיר רקעים חכם',
+    cutfixPageSubtitle: 'העלה תמונה, והקסם יקרה. הסרת רקע וחיתוך שוליים שקופים - אוטומטית.',
     selectImage: 'בחר תמונה',
-    supportedFiles: 'PNG, JPG, WEBP עד 10MB',
-    processingImage: 'מעבד תמונה...',
-    trimmingEdges: 'חותך שוליים...',
-    processedImage: 'תוצאה',
+    supportedFiles: 'קבצי PNG, JPG, WEBP נתמכים',
+    removeBgAndTrim: 'הסר רקע וחתוך שוליים',
+    trimOnly: 'חתוך שוליים שקופים בלבד',
+    removeBgAndTrimDesc: 'הסרת רקע מבוססת AI וחיתוך חכם של שוליים.',
+    trimOnlyDesc: 'חיתוך שוליים שקופים מקובץ PNG קיים.',
+    processingImage: 'מעבד את התמונה, נא להמתין...',
+    trimmingEdges: 'חותך שוליים שקופים...',
+    originalImage: 'תמונה מקורית',
+    processedImage: 'תמונה מעובדת',
     downloadImage: 'הורד תמונה',
-    uploadAnotherImage: 'העלה תמונה חדשה',
-    unsupportedFileType: 'קובץ לא נתמך. אנא העלה תמונה.',
-    fileTooLarge: (size: number) => `הקובץ גדול מדי. מקסימום ${size}MB.`,
-    processingError: 'אירעה שגיאה בעיבוד התמונה. נסה שוב.',
+    uploadAnotherImage: 'העלה תמונה אחרת',
+    unsupportedFileType: 'סוג קובץ לא נתמך. נא לבחור קובץ PNG, JPG או WEBP.',
+    fileTooLarge: (size: number) => `הקובץ גדול מדי. הגודל המקסימלי הוא ${size}MB.`,
     serverError: (status: number, text: string) => `שגיאת שרת (${status}): ${text}`,
+    processingError: 'אופס, משהו השתבש. נסה שוב מאוחר יותר.',
     
-    // Fix Checker
-    fixCheckerPageTitle: 'אבחון מערכת ורשת',
-    fixCheckerPageSubtitle: 'כלי זה יבדוק את איכות החיבור שלך, יציבות הקו ונתוני המחשב.',
-    sysInfoTitle: '1. בדיקת סביבת עבודה (המחשב שלך)',
+    // Fix Checker Tool
+    fixChecker: 'Fix Checker',
+    fixCheckerDescription: 'כלי אבחון רשת מקיף: מהירות, ספק, שעון ועוד.',
+    fixCheckerPageTitle: 'Fix Checker',
+    fixCheckerPageSubtitle: 'כלי אבחון מערכת ורשת לבדיקת יציבות, מהירות ותקינות.',
+    startDiagnostics: 'התחל אבחון מלא',
+    runningDiagnostics: 'מבצע אבחון...',
+    
+    // Test Headers
+    sysInfoTitle: '1. בדיקת סביבת עבודה',
     networkTitle: '2. בדיקות רשת',
     performanceTitle: '3. ביצועים ויציבות',
+
+    // Test Names
     testBrowser: 'דפדפן',
     testOS: 'מערכת הפעלה',
     testScreen: 'רזולוציית מסך',
     testHardware: 'זיכרון ומעבד',
     testConnection: 'חיבור לרשת',
-    testIPv6: 'תמיכה ב-IPv6',
-    testISP: 'ספק ו-IP',
+    testISP: 'ספק ומיקום (ISP)',
     testTime: 'סנכרון שעון',
     testPing: 'זמן תגובה (Ping)',
     testJitter: 'יציבות קו (Jitter)',
+    testIPv6: 'תמיכה ב-IPv6',
     testSpeed: 'מהירות הורדה',
-    startDiagnostics: 'התחל אבחון',
-    runningDiagnostics: 'מבצע בדיקות...',
-    statusWaiting: 'ממתין...',
+
+    // Test Statuses
+    statusWaiting: 'ממתין לבדיקה...',
     statusChecking: 'בודק...',
-    resConnected: 'מחובר',
-    resNoConnection: 'אין חיבור!',
-    resIPv6Supported: 'פעיל',
-    resIPv6NotSupported: 'לא זמין',
-    resTimeSynced: 'תקין',
-    resTimeError: 'לא מכוון ({diff} דק\')',
-    resTimeFetchError: 'לא נבדק',
-    resPingSlow: 'איטי',
+    statusSuccess: 'תקין',
+    statusWarning: 'אזהרה',
+    statusError: 'שגיאה',
+    
+    // Test Results
+    resConnected: 'מחובר לרשת',
+    resNoConnection: 'אין חיבור לאינטרנט',
+    resTimeSynced: 'מסונכרן מול השרת',
+    resTimeError: 'סטייה של {diff} דקות',
+    resTimeFetchError: 'שגיאה בבדיקת שעון',
+    resPingSlow: 'איטי מעט',
     resPingVerySlow: 'איטי מאוד',
     resPingError: 'נכשל',
     resJitterStable: 'יציב מאוד',
     resJitterMedium: 'בינוני',
     resJitterUnstable: 'לא יציב (קפיצות)',
+    resIPv6Supported: 'נתמך ופעיל',
+    resIPv6NotSupported: 'לא פעיל (לרוב תקין)',
     resSpeedExcellent: 'מהירות מצוינת',
     resSpeedGood: 'מהירות תקינה לגלישה',
     resSpeedFair: 'גלישה בסיסית בלבד',
     resSpeedPoor: 'איטי מאוד, יתכנו תקיעות',
-    resSpeedError: 'הבדיקה נכשלה',
-    resLowRam: 'זיכרון נמוך! עלול להאט גלישה',
+    resSpeedError: 'נכשל (נחסם/נותק)',
+    resLowRam: 'זיכרון נמוך! עלול להאט',
+
+    // Live Music Tool
+    liveMusic: 'לייב מיוזיק',
+    liveMusicDescription: 'האזן לתחנות רדיו מוזיקה יהודית בשידור חי.',
+    searchStations: 'חפש תחנה או ערוץ...',
+    noStationsFound: 'לא נמצאו תחנות תואמות לחיפוש.',
+    kolChaiMusic: 'קול חי מיוזיק',
+    kolPlay: 'קול פליי',
+    tokerFm: 'טוקר FM',
+    jewishRadioNetwork: 'Jewish Radio Network',
+    jewishMusicStream: 'Jewish Music Stream',
+    nowPlaying: 'מנגן כעת',
+    musicVolume: 'מיוזיק ווליום',
+    kcm_107: "פלייליסט השמחות של פריגת",
+    kcm_106: "הפלייליסט של סימילאק",
+    kcm_27: "מנגינה של תקווה",
+    kcm_14: "ווקאלי",
+    kcm_2: "נכנסים לקצב",
+    kcm_10: "נעימות",
+    kcm_69: "שירים שילדים אוהבים",
+    kcm_5: "בטעם של פעם",
+    kcm_30: "שוואקי",
+    kcm_26: "חיים ישראל",
+    kcm_19: "קומזיץ",
+    kcm_15: "אברהם פריד",
+    kcm_16: "מרדכי בן דוד",
+    kcm_4: "ים תיכוני",
+    kcm_58: "נפתלי קמפה",
+    kcm_40: "עם הקפה של הבוקר",
+    kcm_12: "חזנות",
+    kcm_33: "ליפא שמלצר",
+    kcm_21: "גרין",
+    kcm_35: "הפלייליסט",
+    kcm_17: "תענוג לשבת",
+    kcm_11: "בין הערביים",
+    kcm_42: "להתרגש",
+    kcm_3: "ישראלי אלטרנטיבי",
+    kcm_77: "עם הצ'ולנט בליל שישי",
+    kcm_39: "ישי ריבו",
+    kcm_54: "ברוך לוין",
+    kcm_9: "770",
+    kcm_25: "לרקוד בחתונה",
+    kcm_63: "בני פרידמן",
+    kcm_65: "מרדכי שפירא",
+    kcm_80: "הלב בוכה",
+    kcm_8: "על הפארנצע'ס",
+    kcm_32: "בעלז",
+    kcm_49: "מתחת לחופה",
+    kcm_67: "שמילי אונגר",
+    kcm_46: "צועדים לשמחה",
+    kcm_41: "תודה לאבא",
+    kcm_6: "רק ילדים",
+    kcm_28: "מוזיקה אלקטרונית",
+    kcm_7: "קרליבך",
+    kcm_79: "סעודה שלישית",
+    kcm_20: "צעד תימני",
+    kcm_31: "מיאמי",
+    kcm_22: "english classics",
+    kcm_73: "משה גולדמן",
+    kcm_78: "להתכונן לשבת באווירה מזרחית",
+    kcm_53: "אידיש",
+    kcm_82: "רבי אלתר",
+    kcm_34: "הופעות",
+    kcm_13: "פיוטים",
+    kcm_62: "בערי וועבר",
+    kcm_60: "שנות התש\"נ",
+    kcm_51: "האסק",
+    kcm_72: "שלמה כהן",
+    kcm_85: "שאבעס שוק",
+    kcm_61: "גד אלבז",
+    kcm_29: "משה לאופר",
+    kcm_76: "מזרחית של פעם",
+    kcm_52: "הדואטים הגדולים",
+    kcm_55: "דדי גראוכר",
+    kcm_74: "אייבי רוטנברג",
+    kcm_66: "שלומי גרטנר",
+    kcm_59: "שנות התש\"מ",
+    kcm_64: "אוהד מושקוביץ",
+    kcm_68: "מיכאל שניצלער",
+    kcm_70: "איציק אשל",
+    kcm_75: "אהרן רזאל",
+
+
+    // Developers Page
+    devIntro: 'ברוכים הבאים למרכז המפתחים של תוספיקס. כאן תמצאו תיעוד עבור ממשקי API וכלים שונים שאנו מציעים.',
+    cutfixApiTitle: 'Fix remover - API להסרת רקע',
+    cutfixApiDesc: 'API פשוט ונוח להסרת רקע מתמונות באופן פרוגרמטי. מושלם לשילוב באפליקציות, אתרים או סקריפטים אישיים.',
+    endpoint: 'כתובת (Endpoint)',
+    method: 'שיטה (Method)',
+    body: 'גוף הבקשה (Body)',
+    bodyDesc: `הבקשה חייבת להיות מסוג 'multipart/form-data' ולהכיל שדה בודד:`,
+    fieldName: 'שם השדה',
+    file: 'קובץ',
+    fieldDesc: 'קובץ התמונה שברצונך לעבד.',
+    supportedFormats: 'פורמטים נתמכים',
+    fileSizeLimit: 'מגבלת גודל קובץ',
+    successResponse: 'תשובה מוצלחת (Success Response)',
+    successResponseDesc: 'כאשר העיבוד מצליח, ה-API יחזיר:',
+    statusCode: 'קוד סטטוס',
+    contentType: 'סוג תוכן',
+    responseBody: 'גוף התשובה',
+    responseBodyDesc: 'המידע הבינארי של קובץ התמונה המעובד בפורמט PNG.',
+    errorResponse: 'תשובות שגיאה (Error Responses)',
+    error400: 'בקשה שגויה (לדוגמה, סוג קובץ לא נתמך או קובץ חסר).',
+    error500: 'שגיאת שרת פנימית במהלך עיבוד התמונה.',
+    codeExamples: 'דוגמאות קוד',
+    jsExample: 'דוגמה ב-JavaScript (Fetch API)',
+    curlExample: 'דוגמה ב-cURL',
+    templeTimerTitle: 'טיימר בית המקדש',
+    templeTimerDesc: 'ווידג\'ט פשוט המציג טיימר דינמי הסופר את הזמן שחלף מאז חורבן בית המקדש השני, זמין בעברית ובאנגלית, וקל להטמעה.',
+    livePreview: 'תצוגה מקדימה חיה',
+    embedCode: 'קוד להטמעה',
+    embedInstructions: 'אנו מציעים שתי דרכים להטמיע את הטיימר באתרכם. הדרך האוטומטית מומלצת לחווית המשתמש הטובה ביותר.',
+    customization: 'התאמה אישית',
+    customizationDesc: 'ניתן לשנות את הגודל של חלונית הטיימר על ידי שינוי הערכים `width` (רוחב) ו-`height` (גובה) בקוד ה-iframe, כדי להתאים אותו באופן מושלם לעיצוב האתר שלכם.',
+    credits: 'קרדיטים',
+    creditsDesc_part1: 'הטיימר משתמש בספריית ה-JavaScript ',
+    creditsDesc_link: 'SecondTempleTimerLibrary',
+    creditsDesc_part2: ' לחישוב הזמן.',
+    viewOnGitHub: 'צפה ב-GitHub',
+    liveDemos: 'הדגמה חיה',
+    liveDemoHe: 'קישור לגרסה בעברית',
+    liveDemoEn: 'קישור לגרסה באנגלית',
+    embedAutoTitle: '1. הטמעה אוטומטית (מומלץ)',
+    embedAutoStep1: 'שלב 1: הדביקו את ה-`<div>` הבא במקום בו תרצו שהטיימר יופיע:',
+    embedAutoStep2: 'שלב 2: הדביקו את קטע ה-`<script>` הבא לפני תגית הסגירה `</body>`:',
+    embedManualTitle: '2. הטמעה ידנית (גרסה יחידה)',
+    embedManualDesc: 'אם אתם מעדיפים לקבוע גרסה ספציפית שתמיד תוצג, השתמשו באחד מהקודים הבאים.',
+    embedManualHe: 'גרסה בעברית',
+    embedManualEn: 'גרסה באנגלית',
+    license: 'רישיון',
+    licenseDesc: 'פרויקט זה מופץ תחת רישיון MIT.',
     
-    // QR Fix - New Translations
-    qrFixPageTitle: 'מחולל QR אולטימטיבי',
-    qrFixPageSubtitle: 'צור קודי QR מקצועיים עם לוגו, צבעים ומסגרות מעוצבות',
+    // Extension Names & Descriptions
+    notiForumName: 'NotiForum',
+    notiForumDesc: 'תוסף כרום מתקדם המיועד לפורומים מבוססי NodeBB ו-XenForo, המספק התראות בזמן אמת ישירות לדפדפן שלך.',
+    yaminaName: 'ימינה',
+    yaminaDesc: '"ימינה" הוא תוסף דפדפן חכם שפותח כדי לשפר את חוויית הקריאה בעברית באינטרנט. התוסף משנה באופן אוטומטי את כיווניות הדפים ל-RTL (מימין לשמאל) בדפים שאינם מוגדרים כך מראש, תוך התחשבות בהעדפות המשתמש. עם ממשק נוח ויכולות מתקדמות, "ימינה" מאפשר לך להתאים אישית את חוויית הגלישה שלך בקלות וביעילות.',
+    netSkinName: 'NetSkin',
+    netSkinDesc: 'הפכו כל חסימה לחוויה ויזואלית! NetSkin מחליף את דף החסימה האפור והסטנדרטי של נטפרי בעולם שלם של עיצובים מרהיבים ודינמיים. במקום דף סטנדרטי, תיהנו מעשרות עיצובים המותאמים אישית לסוג החסימה, בין אם מדובר באתר חסום, קובץ לבדיקה או אתר בפיתוח. התוסף אף מזהה באופן חכם מדוע אתר נחסם לפי תגית אישית ומציג לכם את שמה! עם אפשרויות התאמה אישיות מתקדמות, שליטה מלאה ובחירה בין מצבים אקראיים או קבועים, גלישה בטוחה מעולם לא נראתה טוב יותר.',
+    hebrewDateName: 'מציג תאריך עברי',
+    hebrewDateDesc: 'האם אי פעם גלשתם ברשת, נתקלתם בתאריך לועזי חשוב – בין אם בכתבה, ביומן, בפורום או ברשת חברתית – ותהיתם מהו התאריך העברי המדויק? התוסף \'Hebrew Date converter\' נועד לענות בדיוק על הצורך הזה! הוא משמש כממיר תאריכים אישי וזמין, המאפשר לכם לראות את התאריך העברי המקביל בלחיצת-ריחוף פשוטה, בלי לעזוב את הדף או להשתמש בכלים חיצוניים. הפכו את חווית הגלישה שלכם ליעילה ואינפורמטיבית יותר עם ההמרה המיידית הזו.',
+    myEmojiName: 'אימוג\'י אישי',
+    myEmojiDesc: "הפוך את התקשורת הדיגיטלית שלך לאישית ויצירתית יותר עם 'My emoji'! תוסף כרום זה מאפשר לך לשבור את השגרה של האימוג'ים המוכרים וליצור אוסף פרטי משלך, המבוסס על התמונות וקבצי ה-SVG האהובים עליך. העלה בקלות קבצי PNG, JPG, GIF, WEBP ו-SVG משלך ונהל אותם בממשק נוח וידידותי בעברית. בלחיצת כפתור, העתק את האימוג'י שבחרת ישירות ללוח שלך, מוכן להדבקה בצ'אטים, מיילים, רשתות חברתיות, מסמכים, ובכל מקום אחר שבו תרצה להוסיף טאץ' ייחודי. עם אפשרויות לחיפוש, מיון, עריכת שמות, הגדרת גודל מועדף, גיבוי באמצעות ייצוא/ייבוא, ואפילו הסרת רקע מתקדמת (באמצעות API חיצוני לבחירתך), 'My emoji' נותן לך את כל הכלים ליצור ולהשתמש באוסף האימוג'ים המושלם עבורך. כל האימוג'ים שלך נשמרים באופן מאובטח ומקומי על המחשב שלך, תוך שמירה מלאה על פרטיותך. התקן עכשיו והתחל להביע את עצמך בדרך חדשה ומרגשת!",
+    edgeOpenerName: 'פותחן Edge',
+    edgeOpenerDesc: "מעבר מהיר מכרום לאדג'! פתחו את הדף הנוכחי בלחיצה אחת ב-Microsoft Edge. כולל העתקה אוטומטית ללוח אם הפתיחה הישירה נכשלת.",
+
+    // Contact Page
+    contactTitle: 'צור קשר',
+    contactSubtitle: 'יש לך שאלה, הערה או רעיון? נשמח לשמוע ממך!',
+    contactFormTitle: 'שלחו לנו הודעה',
+    contactFormSubtitle: 'אנו נענה בהקדם האפשרי',
+    nameLabel: 'שם מלא',
+    phoneLabel: 'טלפון (אופציונלי)',
+    emailLabel: 'כתובת דואר אלקטרוני',
+    messageLabel: 'הודעה',
+    namePlaceholder: "הכנס את שמך המלא",
+    phonePlaceholder: "05X-XXX-XXXX",
+    emailPlaceholder: "your.email@example.com",
+    messagePlaceholder: "כתבו כאן את הודעתכם...",
+    submitButton: 'שלח הודעה',
+    submittingButton: 'שולח...',
+    successMessage: 'ההודעה נשלחה בהצלחה!',
+    errorMessage: 'אירעה שגיאה. נסה שוב מאוחר יותר.',
+    contactInfo: 'פרטי התקשרות',
+
+    // Extension Layout
+    heroTagline: 'תוסף כרום',
+    keyFeatures: 'תכונות עיקריות',
+    installation: 'התקנה',
+    privacyPolicy: 'מדיניות פרטיות',
+    chromeWebStore: 'חנות הכרום',
+    supportedForums: 'פורומים נתמכים',
+    notiInstallDesc: 'להורדה מחנות האינטרנט של Chrome.',
+    copy: 'העתק',
+    copied: 'הועתק!',
+    copyError: 'שגיאה',
+    download: 'הורדה',
+    copyPolicyTooltip: 'העתק מדיניות',
+    downloadPolicyTooltip: 'הורד מדיניות כקובץ txt.',
+
+    // NotiForum Page (New design)
+    notiPageTitle: 'נוטיפורום',
+    notiPageSubtitle: 'כל הפורומים שלך. תיבת התראות אחת.',
+    notiPageDescription: 'NotiForum הוא הפתרון המושלם שנועד לחסוך לכם זמן ולרכז עבורכם את כל ההתראות וההודעות הפרטיות במקום אחד, נגיש ומעוצב, ישירות מהדפדפן.',
+    notiFeaturesSectionTitle: 'תכונות',
+    notiFeaturesSectionSubtitle: 'כל מה שצריך כדי להישאר מעודכן, בלי מאמץ',
+    notiFeatureUnifiedInboxTitle: 'תיבת דואר נכנס מאוחדת',
+    notiFeatureUnifiedInboxDesc: 'קבלו את כל ההתראות וההודעות הפרטיות מכל הפורומים שלכם בפיד אחד מסודר. סוף סוף לא צריך לקפוץ בין טאבים!',
+    notiFeatureCustomizationTitle: 'התאמה אישית מלאה',
+    notiFeatureCustomizationDesc: 'בחרו מבין ערכות נושא מרהיבות, עברו למצב כהה, הגדירו צליל ייחודי לכל פורום או אפילו העלו קבצי סאונד משלכם!',
+    notiFeatureFlexibleUITitle: 'ממשק גמיש: Popup או סרגל צד',
+    notiFeatureFlexibleUIDesc: 'בחרו להציג את התוסף בחלון קופץ קלאסי, או קבעו אותו בסרגל הצד של הדפדפן לגישה מהירה ונוחה שעובדת תמיד.',
+    notiFeatureWideSupportTitle: 'תמיכה רחבה והוספה קלה',
+    notiFeatureWideSupportDesc: 'התוסף מגיע עם רשימת פורומים מוכנה, ומאפשר לכם להוסיף בקלות כל פורום מבוסס NodeBB או XenForo. הוא אפילו יזהה את סוג הפורום אוטומטית!',
+    notiFeaturePerformanceTitle: 'יעילות וביצועים',
+    notiFeaturePerformanceDesc: 'עם מנגנון בדיקות מהיר שרץ ברקע וצריכת משאבים נמוכה, NotiForum שומר אתכם מעודכנים מבלי להאט את חווית הגלישה.',
+    notiFeaturePrivacyTitle: 'פרטיות מעל הכל',
+    notiFeaturePrivacyDesc: 'כל המידע שלכם, כולל הגדרות וקבצים שהעליתם, נשמר באופן מקומי לחלוטין על המחשב שלכם. שום מידע אינו נשלח לשרתים חיצוניים.',
+    notiSupportSectionTitle: 'תמיכה רחבה וגמישות מלאה',
+    notiSupportSectionSubtitle: 'מרשימת ברירת המחדל ועד כל פורום שתוסיפו בעצמכם',
+    andMore: 'ועוד...',
+    notiInstallSectionTitle: 'התקנה',
+    notiInstallSectionDesc: 'להתקנה מחנות התוספים Chrome',
+    notiPrivacySectionTitle: 'מדיניות פרטיות',
     
-    // Sidebar Sections
-    qrSectionContent: '1. בחר סוג תוכן',
-    qrSectionDesign: '3. עיצוב מתקדם',
+    // MyEmoji Features
+    myEmojiFeature1Title: 'העלאה וניהול אישיים',
+    myEmojiFeature1Desc: 'העלה בקלות קבצי PNG, JPG, GIF, WEBP ו-SVG משלך ונהל אותם במקום אחד.',
+    myEmojiFeature2Title: 'גודל מותאם אישית',
+    myEmojiFeature2Desc: 'בחר את הגודל המדויק (בפיקסלים) שבו האימוג\'י יועתק ללוח, כולל אפשרות לגודל מותאם אישית.',
+    myEmojiFeature3Title: 'חיפוש ומיון מתקדמים',
+    myEmojiFeature3Desc: "מצא בקלות את האימוג'י הרצוי באמצעות חיפוש טקסט ומיין את האוסף שלך לפי שם או תאריך הוספה.",
+    myEmojiFeature4Title: 'גישה מהירה לאחרונים',
+    myEmojiFeature4Desc: "האימוג'ים שהשתמשת בהם לאחרונה מופיעים בראש הפופאפ לגישה מיידית ונוחה.",
+    myEmojiFeature5Title: 'ייבוא וייצוא קלים',
+    myEmojiFeature5Desc: 'גבה את כל אוסף האימוג\'ים שלך לקובץ Zip פשוט, וייבא אותו בקלות למחשב אחר או אחרי התקנה מחדש.',
+    myEmojiFeature6Title: 'הסרת רקע בקליק',
+    myEmojiFeature6Desc: 'חבר את חשבון ה-remove.bg שלך (דורש API Key מהמשתמש) והסר רקעים מתמונות בלחיצת כפתור ליצירת אימוג\'ים נקיים. (אופציונלי)',
+    myEmojiBonusSectionTitle: 'קבצי בונוס',
+    myEmojiBonusCardTitle: 'אימוג\'ים חרדיים',
+    myEmojiBonusCardDesc: 'להורדה קובץ בונוס המכיל אימוג\'ים חרדיים בקובץ zip לייבוא לתוסף.',
+    myEmojiBonusCardCredit: 'קרדיט: האימוג\'ים נוצרו ע"י משתמשי פורום פרוג.',
+    myEmojiBonusDownloadBtn: 'הורד אימוג\'ים חרדיים',
+
+    // HebrewDate Features
+    hebrewDateFeature1Title: 'המרה אוטומטית בריחוף',
+    hebrewDateFeature1Desc: 'פשוט רחפו עם העכבר מעל תאריך לועזי נתמך, והמתינו כחצי שנייה. חלונית מידע קטנה (tooltip) תופיע באופן אוטומטי ליד הסמן עם התאריך העברי המלא.',
+    hebrewDateFeature2Title: 'המרה מדויקת',
+    hebrewDateFeature2Desc: 'התוסף משתמש באלגוריתמים אמינים (המבוססים על ספריית Hebcal) כדי להבטיח שהתאריך העברי המוצג יהיה הנכון והמדויק ביותר, כולל התחשבות בשנים מעוברות.',
+    hebrewDateFeature3Title: 'תאריך עברי מלא',
+    hebrewDateFeature3Desc: 'התוסף מציג את התאריך העברי המלא בפורמט המוכר והקריא: יום בחודש (באותיות גימטריה), שם החודש העברי, ושנת היצירה העברית.',
+    hebrewDateFeature4Title: 'נוחות ומהירות',
+    hebrewDateFeature4Desc: 'חסכו זמן יקר! אין צורך להעתיק תאריכים, לפתוח אתרים חיצוניים או להשתמש במחשבונים. ההמרה מתבצעת מיידית בדף שאתם נמצאים בו.',
+    hebrewDateFeature5Title: 'חוויה חלקה ונקייה',
+    hebrewDateFeature5Desc: 'ההשהייה הקלה לפני הופעת הטולטיפ מונעת ממנו "לקפוץ" שלא לצורך. הוא ממוקם קרוב לסמן העכבר ונועד לא להפריע או להסתיר תוכן חשוב.',
+    hebrewDateFeature6Title: 'תמיכה בתקנים נפוצים',
+    hebrewDateFeature6Desc: 'כדי להבטיח זיהוי אמין, התוסף מתמקד בתאריכים המסומנים בצורה ברורה בקוד ה-HTML של האתרים (מאפיין datetime או data-numeric-value).',
+
+    // NetSkin Features
+    netSkinGalleryTitle: "גלריית עיצובים",
+    netSkinGalleryDesc: "חלק מהעיצובים הזמינים בתוסף",
+    netSkinFeature1Title: 'גלריה עשירה של עיצובים',
+    netSkinFeature1Desc: 'בחרו מתוך למעלה מ-60 עיצובים ייחודיים, המחולקים לקטגוריות חכמות לפי סוג החסימה (חסום, בפיתוח, בדיקת אתר, קבצים ותגיות).',
+    netSkinFeature2Title: 'זיהוי תגיות חכם',
+    netSkinFeature2Desc: "לראשונה, דעו בדיוק למה אתר נחסם! NetSkin מזהה את התגית האישית שגרמה לחסימה ומציג לכם את שמה המלא, היישר משרתי נטפרי.",
+    netSkinFeature3Title: 'שליטה מלאה והתאמה אישית',
+    netSkinFeature3Desc: 'בחרו כיצד יוצגו העיצובים: במצב אקראי, אקראי מתוזמן (החלפה יומית/שעתית) או בחירה ספציפית של העיצוב האהוב עליך לכל קטגוריה בנפרד.',
+    netSkinFeature4Title: 'בריכת עיצובים אישית',
+    netSkinFeature4Desc: 'אוהבים רק חלק מהעיצובים? סמנו אילו עיצובים ייכללו במצבים האקראיים, וצרו לעצמכם גלריה פרטית ומותאמת אישית.',
+    netSkinFeature5Title: "התאמה קונטקסטואלית",
+    netSkinFeature5Desc: "התוסף מזהה את סיבת החסימה ומאפשר לכם להגדיר סגנון עיצוב שונה לכל תרחיש, בין אם מדובר בבדיקת קובץ או באתר בפיתוח.",
+    netSkinFeature6Title: "חווית משתמש מתקדמת",
+    netSkinFeature6Desc: "ממשק הגדרות נוח ואינטואיטיבי, תמיכה מלאה במצב כהה (Dark Mode) ואפשרות לתצוגה מקדימה של כל עיצוב בלחיצת כפתור.",
+
+    // Yamina Features
+    yaminaHowItWorksTitle: 'כך זה עובד',
+    yaminaHowItWorksDesc: 'הדגמה של יישור דף משמאל לימין (לפני) ומימין לשמאל (אחרי)',
+    yaminaFeature1Title: 'יישור אוטומטי ל-RTL',
+    yaminaFeature1Desc: 'משנה את כיווניות הדפים למימין לשמאל בדפים שאינם RTL, תוך התעלמות מדפים שכבר מוגדרים כ-RTL.',
+    yaminaFeature2Title: 'בחירת מצב יישור',
+    yaminaFeature2Desc: 'מאפשר לבחור בין יישור מלא (כולל אלמנטים) לבין יישור טקסט בלבד, כדי לשמור על מבנה הדף המקורי.',
+    yaminaFeature3Title: 'רשימה שחורה מותאמת אישית',
+    yaminaFeature3Desc: 'ניתן להוסיף אתרים או דפים ספציפיים לרשימה שחורה שבה התוסף לא יפעל, דרך דף ההגדרות או תפריט ההקשר.',
+    yaminaFeature4Title: 'תפריט הקשר נוח',
+    yaminaFeature4Desc: 'לחיצה ימנית על אייקון התוסף מאפשרת הוספה או הסרה מהירה של אתרים ודפים מהרשימה השחורה.',
+    yaminaFeature5Title: 'ממשק ידידותי',
+    yaminaFeature5Desc: 'דף הגדרות מעוצב ופשוט לשימוש, עם אפשרויות התאמה אישית מלאה.',
+    yaminaFeature6Title: 'פרטיות מובטחת',
+    yaminaFeature6Desc: 'התוסף פועל באופן מקומי, שומר נתונים רק במכשיר שלך, ולא משתף מידע עם צד שלישי.',
+
+
+    // EdgeOpener Features
+    edgeOpenerHowItWorksTitle: 'איך זה עובד',
+    edgeOpenerHowItWorksDesc: 'מעבר קל ומהיר מכרום לאדג\' בלחיצה אחת',
+    edgeOpenerFeature1Title: "פתיחה מיידית באדג'",
+    edgeOpenerFeature1Desc: 'בלחיצת כפתור אחת, התוסף מנסה לפתוח את הכתובת של הטאב הנוכחי ישירות בדפדפן Microsoft Edge באמצעות הפרוטוקול הייעודי (microsoft-edge:).',
+    edgeOpenerFeature2Title: "גיבוי חכם: העתקה ללוח",
+    edgeOpenerFeature2Desc: 'במקרה שהפתיחה האוטומטית באדג\' אינה אפשרית (למשל, הפרוטוקול לא מוגדר במערכת), הכתובת המלאה של הדף הנוכחי תועתק אוטומטית ללוח ההעתקה שלכם.',
+    edgeOpenerFeature3Title: 'תאימות לדפי אינטרנט סטנדרטיים',
+    edgeOpenerFeature3Desc: 'התוסף מיועד לעבוד על כתובות אינטרנט רגילות המתחילות ב-http: או https:. הוא מזהה מתי מדובר בכתובת פנימית של הדפדפן (כמו chrome://extensions) ומודיע שאינו יכול לפעול.',
+
+    // Privacy Policies
+    notiForumPrivacyPolicy: `מדיניות הפרטיות של תוסף "NotiForum"
+תאריך עדכון אחרון: 26 באוקטובר 2025
+
+אנו, מפתחי "NotiForum" (להלן: "התוסף"), מחויבים לשמור על פרטיות המשתמשים שלנו. מדיניות פרטיות זו מסבירה כיצד אנו אוספים, משתמשים, מאחסנים ומגנים על המידע שלכם בעת שימוש בתוסף, המיועד לרכז, להציג ולנהל התראות מפורומים מבוססי NodeBB ו-XenForo.
+
+השימוש בתוסף מהווה הסכמה למדיניות זו. העיקרון המנחה שלנו הוא פשוט: כל המידע שלכם נשאר באופן מקומי לחלוטין על המחשב שלכם. אנו לעולם לא אוספים או מעבירים מידע אישי לשרתים חיצוניים.
+
+1. המידע שאנו אוספים
+
+התוסף אוסף ומאחסן את סוגי המידע הבאים, אך ורק בדפדפן המקומי שלכם:
+
+1.1. הגדרות המשתמש:
+
+רשימת הפורומים למעקב: הכתובות והשמות של הפורומים שהוספתם, בין אם מרשימת ברירת המחדל ובין אם באופן ידני.
+העדפות תפעוליות: תדירות בדיקת ההתראות, הגדרות צלילים (כולל עוצמת שמע ובחירת צליל לכל פורום), והעדפות התראות דפדפן.
+העדפות מראה: ערכת הנושא שנבחרה, מצב התצוגה (בהיר/כהה/אוטומטי) ואופן התצוגה (חלון קופץ/סרגל צד).
+מידע זה נשמר באמצעות chrome.storage.sync כדי לסנכרן את ההגדרות שלכם בין מכשירים המחוברים לאותו חשבון Google.
+
+1.2. תוכן שהועלה על ידי המשתמש:
+
+אייקונים מותאמים אישית: קבצי תמונה שהעליתם כדי לייצג פורומים שהוספתם.
+צלילים מותאמים אישית: קבצי שמע שהעליתם כדי שימשו כצלילי התראה.
+תוכן זה נשמר כטקסט (בפורמט Data URL) באמצעות chrome.storage.local והוא נשאר באופן בלעדי על המכשיר שלכם. אין לנו גישה לקבצים אלו והם לעולם אינם נשלחים מהמחשב שלכם.
+
+1.3. נתוני התראות וחיבור:
+
+תוכן ההתראות: טקסט, קישורים, ותאריכים של התראות והודעות פרטיות חדשות. מידע זה מאוחזר ישירות מהפורומים שהגדרתם.
+מצב החיבור: התוסף שומר באופן זמני את מצב החיבור לכל פורום (האם החיבור הצליח או נכשל) ואת תוכן ההתראות האחרון.
+מידע זה נשמר זמנית ב-chrome.storage.local כדי לנהל את תצוגת ההתראות ולזהות שינויים.
+
+1.4. עוגיות אימות (Authentication Cookies):
+
+התוסף ניגש לעוגיות (Cookies) השייכות לדומיינים של הפורומים שהגדרתם. גישה זו חיונית כדי לבצע בקשות מאומתות בשמכם ולקבל את ההתראות הרלוונטיות.
+התוסף אינו אוסף, שומר או מעביר את העוגיות שלכם. הוא משתמש בהן באופן מקומי בלבד כפי שהדפדפן מאפשר.
+
+2. כיצד אנו משתמשים במידע
+
+המידע שנאסף משמש אך ורק למטרות הבאות:
+
+תפעול מלא של התוסף: שליפת התראות, הצגתן בממשק, השמעת צלילים והצגת התראות דפדפן בהתאם להגדרות שבחרתם.
+התאמה אישית של החוויה: שמירת העדפות המראה וההתנהגות שלכם כדי לספק חוויה עקבית.
+שימוש בתוכן שהעליתם: הצגת האייקונים שהעליתם בממשק, ונגינת קבצי השמע שהעליתם בעת קבלת התראה.
+אנו לא משתמשים במידע שלכם למטרות פרסום, ניתוח סטטיסטי, מעקב, או כל פעילות אחרת שאינה קשורה ישירות לתפקוד הליבה של התוסף.
+
+3. שיתוף מידע עם צדדים שלישיים
+
+אנחנו לא משתפים את המידע שלכם עם אף צד שלישי. התקשורת היחידה שמתבצעת היא ישירות מהדפדפן שלכם אל שרתי הפורומים שהגדרתם למעקב.
+
+4. אחסון ואבטחת מידע
+
+כל המידע נשמר באופן מקומי על המחשב שלכם באמצעות המנגנונים המאובטחים של Google Chrome (chrome.storage).
+הגדרות מסונכרנות (chrome.storage.sync) מוגנות על ידי מנגנוני האבטחה של חשבון Google שלכם.
+מידע מקומי (chrome.storage.local), כגון קבצים שהעליתם ומצב ההתראות, נגיש רק על המכשיר הספציפי בו אתם משתמשים.
+
+5. זכויות המשתמש
+
+שליטה מלאה: אתם יכולים לערוך, להוסיף או למחוק את רשימת הפורומים, ההגדרות, והקבצים שהעליתם בכל עת דרך דף ההגדרות של התוסף.
+הסרה מלאה: הסרת התוסף מהדפדפן תמחק באופן מיידי ומוחלט את כל המידע שהתוסף שמר.
+
+6. שינויים במדיניות הפרטיות
+
+אנו עשויים לעדכן מדיניות זו בעתיד כדי לשקף שינויים בתוסף או בדרישות חנות Chrome. כל שינוי יפורסם בגרסה מעודכנת של התוסף.
+
+7. יצירת קשר
+
+לשאלות או הבהרות בנוגע למדיניות זו, אתם מוזמנים לפנות אלינו דרך אתר התוסף.
+
+תודה שבחרתם ב-NotiForum`,
+    yaminaPrivacyPolicy: `עודכן לאחרונה: 26 במרץ 2025
+
+התוסף ימינה ("אנחנו") נועד לשנות באופן אוטומטי את כיווניות דפי אינטרנט ל-RTL (מימין לשמאל) כדי לשפר את חוויית הקריאה בעברית. מדיניות פרטיות זו מסבירה כיצד אנו מטפלים בנתוני משתמשים, תוך הבטחת שקיפות מלאה. התוסף ימינה אוסף את הנתונים הבאים:
+- כתובות URL של אתרים: כאשר אתה מוסיף אתר או דף לרשימה השחורה (דרך תפריט ההקשר או דף ההגדרות), כתובת ה-URL של הכרטיסייה הפעילה נשמרת באופן מקומי במכשיר שלך באמצעות chrome.storage.local. זה נחוץ כדי לקבוע האם התוסף צריך ליישר את הכיווניות ל-RTL עבור אתרים או דפים מסוימים.
+
+2. כיצד אנו משתמשים בנתונים שלך
+כתובות ה-URL שנאספות משמשות אך ורק לניהול תכונת הרשימה השחורה, שמאפשרת לך לשלוט באילו אתרים או דפים התוסף לא ישנה את הכיווניות שלהם. הנתונים נשמרים באופן מקומי במכשיר שלך ואינם מועברים לשרתים חיצוניים או לצד שלישי.
+
+3. אחסון ואבטחת נתונים
+כל הנתונים שנאספים על ידי התוסף (כלומר, כתובות URL ברשימה השחורה) נשמרים באופן מקומי במכשיר שלך באמצעות chrome.storage.local. אין לנו גישה לנתונים אלה, והם אינם נשלחים לשרתים חיצוניים. הנתונים נשארים במכשיר שלך וניתנים לניהול או למחיקה על ידך דרך דף ההגדרות של התוסף.
+
+4. שיתוף נתונים
+אנו לא משתפים, מוכרים או חושפים נתונים שנאספים על ידי התוסף עם צד שלישי. התוסף פועל באופן מקומי לחלוטין בדפדפן שלך.
+
+5. הרשאות וגישה
+התוסף משתמש בהרשאות הבאות:
+- "tabs": כדי לגשת לכתובת ה-URL של הכרטיסייה הפעילה לצורך ניהול הרשימה השחורה ועדכוני תפריט ההקשר.
+- "content_scripts" עם "<all_urls>": כדי ליישר את הכיווניות ל-RTL בדפים שאינם RTL, תוך כיבוד הרשימה השחורה.
+- "storage": כדי לשמור את ההגדרות שלך, כגון הרשימה השחורה ומצב היישור (מלא/טקסט בלבד).
+- "contextMenus": כדי לספק תפריט הקשר להוספה/הסרה של אתרים מהרשימה השחורה.
+הרשאות אלה משמשות אך ורק לספק את הפונקציונליות המרכזית של התוסף ואינן משמשות לאיסוף או מעקב אחר נתוני משתמש מעבר למה שנחוץ לתכונת הרשימה השחורה.
+
+6. שליטת המשתמש
+יש לך שליטה מלאה על הנתונים שנשמרים על ידי התוסף. אתה יכול לצפות, לערוך או להסיר כתובות URL מהרשימה השחורה בכל עת דרך דף ההגדרות של התוסף.
+
+7. שינויים במדיניות הפרטיות
+אנו עשויים לעדכן את מדיניות הפרטיות הזו מעת לעת. כל שינוי יבוא לידי ביטוי בדף זה עם תאריך "עודכן לאחרונה" מעודכן. אנו ממליצים לך לעיין במדיניות זו מעת לעת.
+
+8. צור קשר
+אם יש לך שאלות או חששות לגבי מדיניות הפרטיות הזו או נוהלי הנתונים של התוסף, אנא צור איתנו קשר באתר.
+
+מדיניות פרטיות זו מסופקת כדי להבטיח שקיפות ועמידה בתקני פרטיות. אנו מחויבים להגן על פרטיותך ולספק חוויה בטוחה ושימושית.`,
+    netSkinPrivacyPolicy: `עודכן לאחרונה: 22 באוגוסט 2025
+
+מדיניות פרטיות זו מתארת את האופן שבו תוסף הדפדפן NetSkin ("התוסף") מטפל במידע. פרטיותך נמצאת בראש סדר העדיפויות שלנו, ומדיניות זו נועדה לספק לך שקיפות מלאה לגבי פעולת התוסף. אנו מתחייבים לצמצם את הגישה למידע למינימום ההכרחי לתפקודו התקין של התוסף.
+
+1. איזה מידע אנו מעבדים?
+התוסף NetSkin תוכנן מן היסוד תוך מחשבה על פרטיות. אנו איננו אוספים, שומרים או משדרים שום מידע אישי מזהה (PII - Personally Identifiable Information) כגון שמך, כתובת האימייל שלך, או היסטוריית הגלישה הכללית שלך. המידע היחיד שהתוסף מטפל בו מתחלק לשני סוגים:
+
+הגדרות משתמש: כל ההגדרות שאתה בוחר עבור התוסף (כגון העיצוב המועדף, מצב הפעולה, הפעלה/כיבוי של קטגוריות) נשמרות באופן מקומי במחשב שלך באמצעות מנגנון chrome.storage.sync. מידע זה מסונכרן לחשבון הגוגל שלך כדי לשמור על עקביות בין מכשירים, אך אינו נשלח או נגיש לנו בשום צורה.
+מידע תגיות אנונימי (לצורך תצוגה בלבד): אחת התכונות המרכזיות של התוסף היא היכולת להציג את שם התגית האישית שגרמה לחסימת אתר. כדי לממש זאת, וכאשר דף נחסם עקב תגית אישית שהגדרת בנטפרי (ורק במקרה זה), התוסף מבצע את הפעולות הבאות:
+- התוסף מזהה את מזהה התגית (קוד מספרי אנונימי) מתוך המידע שנטפרי מספקת בדף החסימה.
+- התוסף שולח אך ורק את המזהה המספרי הזה לשרת ה-API הרשמי של נטפרי (בכתובת https://netfree.link/api/tags/get-names).
+- שרת נטפרי משיב עם שמה המילולי של התגית (לדוגמה: "חדשות").
+- התוסף מציג לך את השם הזה בדף החסימה המעוצב.
+
+חשוב להדגיש:
+- המידע שנשלח (מזהה התגית) הוא אנונימי ואינו מקושר לחשבונך או לזהותך.
+- המידע אינו נשמר על ידי התוסף לאחר קבלת שם התגית.
+- הפעולה מתבצעת באופן מאובטח מול השרת הרשמי של נטפרי, למטרה זו בלבד.
+
+2. הסבר על הרשאות התוסף
+במהלך ההתקנה, התוסף מבקש את ההרשאות הבאות:
+
+"גישה לנתונים שלך בכל האתרים" (<all_urls>): אנו מבינים שהרשאה זו נשמעת רחבה, ולכן חשוב לנו להסביר מדוע היא הכרחית. דף החסימה של נטפרי יכול להופיע בכל כתובת אינטרנט שתנסה לגלוש אליה. הרשאה זו נדרשת אך ורק כדי לאפשר לתוסף לזהות את קיומו של דף החסימה של נטפרי בדף שבו אתה נמצא.
+אנו מתחייבים כי התוסף אינו קורא, אוסף, שומר, משנה או משדר תוכן של אף אתר אחר שבו אתה גולש. פעולתו מוגבלת אך ורק לזיהוי והחלפה של דף החסימה הספציפי של נטפרי.
+storage: הרשאה זו נדרשת כדי לשמור את ההגדרות האישיות שלך (כפי שהוסבר בסעיף 1).
+alarms: הרשאה זו משמשת לתזמון החלפת העיצוב האקראי במצב "אקראי מתוזמן", בהתאם להגדרותיך (למשל, פעם ביום).
+
+3. שירותי צד ג'
+NetFree API: כאמור, התוסף מתקשר עם ה-API הרשמי של נטפרי כדי לקבל שמות של תגיות.
+שרתי תמונות: חלק מתמונות הרקע המשמשות בעיצובים השונים מאוחסנים על שרתים חיצוניים (כגון lovepik.com, stockcake.com, etc.). טעינת תמונות אלו היא פעולה סטנדרטית של הדפדפן, בדומה לטעינת תמונות בכל אתר אינטרנט.
+
+4. שינויים במדיניות
+אנו עשויים לעדכן מדיניות זו מעת לעת. כל שינוי מהותי יפורסם בדף התוסף בחנות האינטרנט של Chrome.
+
+5. יצירת קשר
+אם יש לך שאלות כלשהן לגבי מדיניות פרטיות זו, אנא צור איתנו קשר דרך אתר התוסף.
+
+אנו מודים לך על השימוש ב-NetSkin!`,
+    hebrewDatePrivacyPolicy: `Privacy Policy - Hebrew Date Viewer
+Last Updated: October 26, 2025
+
+The "Hebrew Date Viewer" extension (hereinafter: "the Extension") was created with one purpose: to show you the Hebrew date corresponding to a Gregorian date that appears on web pages. Your privacy is very important to us, so the Extension was designed to be as simple and safe as possible.
+
+1. Information Collection
+The Extension does not collect, store, transmit, or share any personal information or browsing data. Its operation is performed entirely and locally in your browser.
+The Extension does not require special permissions beyond the ability to read the content of the current page to identify dates.
+
+2. Use of Information
+The Extension reads the page content temporarily to locate Gregorian dates. This information is processed immediately for conversion to a Hebrew date and is not stored anywhere after the page is closed.
+
+3. Third Parties
+The Extension does not communicate with any external servers or third-party services. All date calculations are performed locally.
+
+4. Policy Changes
+Any changes to this privacy policy will be updated in the extension's description in the Chrome Web Store.
+
+Thank you for using the extension!`,
+    myEmojiPrivacyPolicy: `Privacy Policy - My Emoji
+Last Updated: October 26, 2025
+
+We, the developers of "My Emoji" (hereinafter: "the Extension"), are committed to protecting the privacy of our users. This policy explains how we handle your information. Our guiding principle is that all your information is yours alone and stays on your computer.
+
+1. Information Collection and Storage
+The Extension allows you to upload and manage image files (emojis). All the files you upload, along with your settings (such as emoji names, preferred size, and sort order), are stored securely and locally on your computer using the chrome.storage.local mechanism.
+We never access, collect, transfer, or share your emojis or settings with any external servers or third parties.
+
+2. Backup and Restore (Export/Import)
+The Extension offers an option to export your emoji collection to a Zip file. This action is initiated by you only, and the file is saved to a location of your choice on your computer. The import process is similar and allows you to restore your collection from a local backup file.
+
+3. Integration with Third-Party Services (Optional)
+The Extension offers an optional integration with the remove.bg background removal service.
+- To use this feature, you must manually enter your personal API Key from your remove.bg account.
+- The API Key is stored securely and locally on your computer.
+- When you choose to remove a background from an image, the Extension sends the image directly to remove.bg's servers for processing, in accordance with their terms of service and privacy policy. We do not send any additional information.
+- The use of this feature is at your own risk. If you do not enter an API Key, the Extension will not communicate with this service.
+
+4. Permissions
+The Extension requires the "storage" permission to save your information locally, and the "clipboardWrite" permission to allow you to copy emojis to the clipboard.
+
+5. Uninstalling the Extension
+Uninstalling the Extension from the browser will permanently delete all the emojis and settings you have saved.
+
+Thank you for using "My Emoji"!`,
+    edgeOpenerPrivacyPolicy: `Privacy Policy - Edge Opener
+Last Updated: October 26, 2025
+
+The "Edge Opener" extension (hereinafter: "the Extension") is designed to operate with simplicity and full transparency. Your privacy is important to us, and this policy explains its operation.
+
+1. Information Collection
+The Extension does not collect, store, or transmit any personal information or browsing data.
+
+2. Extension Operation
+When you click on the extension icon, it performs only two actions:
+a. Reads the URL of the current active tab.
+b. Attempts to open that URL in the Microsoft Edge browser using the "microsoft-edge:".
+c. If the opening fails, the Extension copies the URL to your clipboard.
+The URL information is used immediately for these actions only and is not saved or sent anywhere.
+
+3. Permissions
+The Extension requires the following permissions:
+- "tabs": To read the URL of the active tab.
+- "clipboardWrite": To copy the URL to the clipboard if needed.
+
+The Extension does not communicate with external servers. All operations are performed entirely locally.
+
+Thank you for using "Edge Opener"!`,
+
+    // Privacy & Terms Pages
+    privacyPageTitle: 'Privacy Policy',
+    privacyPageLastUpdated: 'Last Updated',
+    privacyIntro: 'Welcome to Tosafix ("the Site"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your information when you use the Site.',
+    privacyCollectionTitle: 'Information Collection',
+    privacyCollectionDesc: 'The Site does not proactively collect personally identifiable information, except for information you choose to provide to us voluntarily through the contact form (such as name, email, phone, and message). This information is used solely for the purpose of responding to your inquiry.',
+    privacyUsageTitle: 'Use of Information',
+    privacyUsageDesc: 'We use the information provided by you solely for the following purposes: providing service and support, improving the Site and our services, and contacting you if necessary.',
+    privacyCookiesTitle: 'Cookies and Tracking Technologies',
+    privacyCookiesDesc: 'The Site may use cookies to improve user experience, remember preferences (such as language and theme), and analyze site traffic using services like Vercel Analytics. These cookies do not contain personally identifiable information.',
+    privacyThirdPartyTitle: 'Third-Party Information Sharing',
+    privacyThirdPartyDesc: 'We do not sell, trade, or transfer your personal information to third parties without your consent, except for trusted providers who assist us in operating the Site (such as Vercel for hosting), provided that these parties agree to keep this information confidential.',
+    privacyHostingTitle: 'Site Hosting',
+    privacyHostingDesc: 'The Site is hosted on Vercel servers. Use of the Site is also subject to Vercel\'s Privacy Policy.',
+    privacyContactTitle: 'Contact Us',
+    privacyContactDesc: 'If you have any questions regarding this Privacy Policy, please contact us via the "Contact Us" page on the Site.',
+
+    termsPageTitle: 'Terms of Service',
+    termsPageLastUpdated: 'Last Updated',
+    termsAcceptanceTitle: 'Acceptance of Terms',
+    termsAcceptanceDesc: 'Use of the Tosafix website ("the Site") and the services offered therein indicates your acceptance of these Terms of Service. If you do not agree to these terms, please refrain from using the Site.',
+    termsLicenseTitle: 'Use License',
+    termsLicenseDesc: 'The content on the Site, including text, graphics, logos, and images, is the intellectual property of Tosafix or third parties. We grant you a limited, non-exclusive, non-transferable license to view and use the Site for personal, non-commercial use.',
+    termsDisclaimerTitle: 'Disclaimer',
+    termsDisclaimerDesc: 'The information, extensions, and tools on the Site are provided "AS IS". We do not warrant that the service will be error-free or uninterrupted. Use of the tools and extensions presented on the Site is at the user\'s own risk.',
+    termsLimitationsTitle: 'Limitation of Liability',
+    termsLimitationsDesc: 'In no event shall Tosafix be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the Site or the extensions presented therein.',
+    termsLinksTitle: 'External Links',
+    termsLinksDesc: 'The Site may contain links to external websites (such as the Chrome Web Store, GitHub). We are not responsible for the content or privacy practices of these sites.',
+    termsModificationsTitle: 'Changes to Terms',
+    termsModificationsDesc: 'We reserve the right to update the Terms of Service from time to time. Continued use of the Site after changes are made constitutes acceptance of the updated terms.',
     
-    // QR Types
+    // QR Fix - Preserving these to prevent crash
     qrTypeUrl: 'קישור',
     qrTypeText: 'טקסט',
     qrTypeWifi: 'WiFi',
@@ -534,8 +686,6 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrTypeVcard: 'איש קשר',
     qrTypeSms: 'SMS',
     qrTypeCrypto: 'קריפטו',
-    
-    // Input Labels
     qrLabelUrl: 'הדבק כתובת אתר (URL)',
     qrPlaceUrl: 'https://www.example.com',
     qrLabelText: 'הזן טקסט חופשי',
@@ -555,8 +705,6 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrLabelOrg: 'חברה / ארגון',
     qrLabelCryptoType: 'סוג מטבע',
     qrLabelWallet: 'כתובת ארנק',
-    
-    // Design Controls
     qrSectionColors: '🎨 צבעים וגרדיאנטים',
     qrLabelUseGradient: 'הפעל גרדיאנט (צבע הדרגתי)',
     qrLabelColorStart: 'צבע ראשי / התחלה',
@@ -566,19 +714,15 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrLabelBgColor: 'צבע רקע',
     qrLabelLinear: 'ליניארי (קווי)',
     qrLabelRadial: 'רדיאלי (מעגלי)',
-    
     qrSectionShapes: '🔷 צורות ונקודות',
     qrLabelDotsStyle: 'גוף הקוד (Dots)',
     qrLabelCornerSq: 'מסגרת עין (Outer)',
     qrLabelCornerDot: 'אישון עין (Inner)',
-    
     qrSectionLogo: '🖼️ לוגו',
     qrLabelUploadLogo: 'העלה לוגו (מומלץ PNG)',
     qrLogoWarning: '* שים לב: לוגו גדול מדי עלול להפוך את הקוד ללא קריא.',
     qrLabelLogoSize: 'גודל לוגו',
     qrLabelHideDots: 'נקה נקודות מאחורי הלוגו',
-    
-    // Frames
     qrSectionFrames: '🖼️ מסגרת וטקסט (Scan Me)',
     qrLabelFrameStyle: 'בחר מסגרת',
     qrFrameNone: 'ללא מסגרת',
@@ -587,56 +731,695 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrFramePolite: 'מסגרת תחתונה פשוטה',
     qrLabelFrameText: 'טקסט המסגרת',
     qrLabelFrameColor: 'צבע מסגרת / טקסט',
-    
-    // Preview
     qrPreview: 'תצוגה מקדימה',
     qrDownload: 'הורד כקובץ תמונה (PNG)',
     qrDownloadHighQuality: 'הורד קובץ PNG איכותי',
     qrScanHint: 'נסה לסרוק עם הטלפון כדי לוודא שזה עובד!',
   },
-  
-  // English translations...
   en: {
+    // Header & Navigation
+    home: 'Home',
+    extensions: 'Extensions',
+    contact: 'Contact Us',
+    nosafix: 'Nosafix',
+    developers: 'Developers',
+    nosafixTitle: 'More Tools from Tosafix',
+    nosafixGridDesc: 'A variety of advanced and useful utility tools we developed for you, available for immediate use in the browser.',
+    developersTitle: 'Tools & Info for Developers',
+    comingSoon: 'Coming Soon...',
+    language: 'Language',
+    menu: 'Menu',
+    toggleTheme: 'Toggle Theme',
+    share: 'Share',
+    shareTitle: 'Tosafix - Useful Chrome Extensions',
+    shareText: 'Found a great site with smart and useful Chrome extensions. Check it out!',
+    linkCopied: 'Link Copied!',
+
+    // Search
+    search: 'Search',
+    searchPlaceholder: 'Search extensions, tools or pages...',
+    noResults: 'No results found for',
+    startTyping: 'Start typing to search...',
+    searchResults: 'Search Results',
+    quickAccess: 'Quick Access',
+
+    // Site
+    siteTitle: 'Tosafix',
+    backToTop: 'Back to Top',
+    quickLinks: 'Quick Links',
+
+    // Hero Section (Home)
+    heroTitle: 'Useful Chrome Extensions',
+    heroSubtitle: 'Must-have tools for every user!',
+    discoverExtensions: 'Discover Extensions',
+    topRated: 'Top Rated',
+    secure: 'Secure',
+    fast: 'Fast',
+    scrollDown: 'Scroll Down',
+    chromeExtensionsHub: 'Chrome Extensions Hub',
+
+    // General UI
+    tryNow: 'Try Now',
+    openTool: 'Open Tool',
+    ready: 'Ready',
+    selectStation: 'Select a station to play',
+    stayUpdated: 'Stay Updated',
+    newToolsUpdate: 'New tools and updates released regularly.',
+    madeForCommunity: 'Built for the Community',
+    privacyPolicyFooter: 'Privacy Policy',
+    termsOfService: 'Terms of Service',
+    allRightsReserved: 'All rights reserved.',
+
     // About Section
     aboutTitle: 'About Us',
-    aboutText: 'Tosafix is your home for smart digital tools and useful Chrome extensions. The site was developed with the aim of making advanced technological solutions accessible to every user, improving the daily browsing and working experience. We offer a wide range of tools - from design and graphics, through audio and music, to accessibility and productivity solutions. Everything in one place, designed, convenient, and free.',
+    aboutText: "Welcome to 'Tosafix' – where technology meets daily convenience! The site aggregates a wide range of unique Chrome extensions and advanced tools designed to upgrade your browsing and workflow experience. Among our developments, you'll find 'NotiForum' for centralizing forum notifications, 'NetSkin' for styling NetFree block pages, 'Yamina' for aligning web pages, 'My Emoji' for creating personal emojis, and 'Edge Opener'. Additionally, the site offers useful tools like 'Fix Remover' for removing image backgrounds, 'Live Music' player for Jewish radio stations, and more. At 'Tosafix', we emphasize simplicity, efficiency, and customization to provide smart solutions for real needs.",
     userFocused: 'User Focused',
-    userFocusedDesc: 'Tools built with the real needs of users in mind.',
+    userFocusedDesc: 'Extensions built according to real user needs',
     timeSaving: 'Time Saving',
-    timeSavingDesc: 'Automation of repetitive tasks and improved work efficiency.',
+    timeSavingDesc: 'Tools that streamline daily tasks and save precious time',
     secureReliable: 'Secure & Reliable',
-    secureReliableDesc: 'Clean code, no tracking, and no surprises. Your privacy comes first.',
+    secureReliableDesc: 'Safe extensions with full user privacy protection',
     easyToUse: 'Easy to Use',
-    easyToUseDesc: 'Intuitive interfaces that do not require complicated manuals.',
+    easyToUseDesc: 'Simple and intuitive interface that anyone can use',
     activeExtensions: 'Active Extensions',
 
-    // Fix Remover API
-    cutfix: 'Fix Remover',
-    cutfixApiTitle: 'Fix Remover API',
-    
-    // Fix Remover Page
-    cutfixPageTitle: 'Fix Remover',
-    cutfixPageSubtitle: 'Remove backgrounds instantly',
-    removeBgAndTrim: 'Remove BG + Trim',
-    removeBgAndTrimDesc: 'Removes background and trims empty space',
-    trimOnly: 'Trim Transparent Only',
-    trimOnlyDesc: 'Keeps image, only trims transparent edges',
+    // Extensions Grid
+    ourExtensions: 'Our Collection',
+    ourExtensionsDesc: 'Discover our collection of smart extensions, each specializing in solving a specific problem',
+    readMore: 'Read More',
+
+    // Grid Descriptions
+    notiForumGridName: 'Noti',
+    notiForumGridDesc: 'Extension for tracking forum notifications – saves time by centralizing notifications from various forums, so you don\'t have to check each one individually.',
+    yaminaGridDesc: 'Extension for aligning LTR pages to RTL – automatically makes English pages readable and comfortable for Hebrew speakers.',
+    netSkinGridDesc: 'NetSkin replaces the standard NetFree block page with dozens of stunning, dynamic, and fully customizable designs.',
+    hebrewDateGridDesc: 'Displays Hebrew date in a tooltip when hovering over a Gregorian date.',
+    myEmojiGridDesc: "Upload, manage, search, and add your own custom emojis to chats, emails, social networks, and more. Includes background removal option!",
+    edgeOpenerGridDesc: "Opens the current tab in Microsoft Edge browser or copies the address.",
+
+    // Cutfix Tool
+    cutfix: 'Fix remover',
+    cutfixDescription: 'Smart background remover and automatic transparent edge trimming.',
+    cutfixPageTitle: 'Fix remover - Smart Background Remover',
+    cutfixPageSubtitle: 'Upload an image, and the magic happens. Background removal and transparent edge trimming - automatically.',
     selectImage: 'Select Image',
-    supportedFiles: 'PNG, JPG, WEBP up to 10MB',
-    processingImage: 'Processing image...',
-    trimmingEdges: 'Trimming edges...',
-    processedImage: 'Result',
+    supportedFiles: 'PNG, JPG, WEBP files supported',
+    removeBgAndTrim: 'Remove BG & Trim',
+    trimOnly: 'Trim Transparent Edges Only',
+    removeBgAndTrimDesc: 'AI-based background removal and smart edge trimming.',
+    trimOnlyDesc: 'Trimming transparent edges from an existing PNG file.',
+    processingImage: 'Processing image, please wait...',
+    trimmingEdges: 'Trimming transparent edges...',
+    originalImage: 'Original Image',
+    processedImage: 'Processed Image',
     downloadImage: 'Download Image',
     uploadAnotherImage: 'Upload Another Image',
-    unsupportedFileType: 'Unsupported file type. Please upload an image.',
-    fileTooLarge: (size: number) => `File too large. Max ${size}MB.`,
-    processingError: 'An error occurred while processing the image. Try again.',
-    serverError: (status: number, text: string) => `Server Error (${status}): ${text}`,
+    unsupportedFileType: 'Unsupported file type. Please select PNG, JPG, or WEBP.',
+    fileTooLarge: (size: number) => `File too large. Maximum size is ${size}MB.`,
+    serverError: (status: number, text: string) => `Server error (${status}): ${text}`,
+    processingError: 'Oops, something went wrong. Try again later.',
 
-    // QR Fix
-    qrFixPageTitle: 'Ultimate QR Generator',
-    qrFixPageSubtitle: 'Create professional QR codes with logos, colors, and frames',
+    // Fix Checker Tool
+    fixChecker: 'Fix Checker',
+    fixCheckerDescription: 'Comprehensive network diagnostic tool: speed, ISP, clock, and more.',
+    fixCheckerPageTitle: 'Fix Checker',
+    fixCheckerPageSubtitle: 'System and network diagnostic tool for testing stability, speed, and health.',
+    startDiagnostics: 'Start Full Diagnostics',
+    runningDiagnostics: 'Running Diagnostics...',
+
+    // Test Headers
+    sysInfoTitle: '1. Work Environment Check',
+    networkTitle: '2. Network Checks',
+    performanceTitle: '3. Performance & Stability',
+
+    // Test Names
+    testBrowser: 'Browser',
+    testOS: 'Operating System',
+    testScreen: 'Screen Resolution',
+    testHardware: 'Memory & CPU',
+    testConnection: 'Network Connection',
+    testISP: 'ISP & Location',
+    testTime: 'Time Sync',
+    testPing: 'Response Time (Ping)',
+    testJitter: 'Line Stability (Jitter)',
+    testIPv6: 'IPv6 Support',
+    testSpeed: 'Download Speed',
+
+    // Test Statuses
+    statusWaiting: 'Waiting...',
+    statusChecking: 'Checking...',
+    statusSuccess: 'Good',
+    statusWarning: 'Warning',
+    statusError: 'Error',
+
+    // Test Results
+    resConnected: 'Connected',
+    resNoConnection: 'No Internet Connection',
+    resTimeSynced: 'Synced with Server',
+    resTimeError: 'Deviation of {diff} mins',
+    resTimeFetchError: 'Time Check Error',
+    resPingSlow: 'Slightly Slow',
+    resPingVerySlow: 'Very Slow',
+    resPingError: 'Failed',
+    resJitterStable: 'Very Stable',
+    resJitterMedium: 'Medium',
+    resJitterUnstable: 'Unstable (Jumps)',
+    resIPv6Supported: 'Supported & Active',
+    resIPv6NotSupported: 'Inactive (Usually fine)',
+    resSpeedExcellent: 'Excellent Speed',
+    resSpeedGood: 'Good Browsing Speed',
+    resSpeedFair: 'Basic Browsing Only',
+    resSpeedPoor: 'Very Slow, may lag',
+    resSpeedError: 'Failed (Blocked/Disconnected)',
+    resLowRam: 'Low Memory! May slow down',
+
+    // Live Music Tool
+    liveMusic: 'Live Music',
+    liveMusicDescription: 'Listen to Jewish music radio stations live.',
+    searchStations: 'Search station or channel...',
+    noStationsFound: 'No matching stations found.',
+    kolChaiMusic: 'Kol Chai Music',
+    kolPlay: 'Kol Play',
+    tokerFm: 'Toker FM',
+    jewishRadioNetwork: 'Jewish Radio Network',
+    jewishMusicStream: 'Jewish Music Stream',
+    nowPlaying: 'Now Playing',
+    musicVolume: 'Music Volume',
+    kcm_107: "Prigat's Joy Playlist",
+    kcm_106: "Similac Playlist",
+    kcm_27: "Melody of Hope",
+    kcm_14: "Vocal",
+    kcm_2: "Getting into Rhythm",
+    kcm_10: "Melodies",
+    kcm_69: "Songs Kids Love",
+    kcm_5: "Taste of the Past",
+    kcm_30: "Shwekey",
+    kcm_26: "Chaim Israel",
+    kcm_19: "Kumzitz",
+    kcm_15: "Avraham Fried",
+    kcm_16: "Mordechai Ben David",
+    kcm_4: "Mizrahi",
+    kcm_58: "Naftali Kempeh",
+    kcm_40: "With Morning Coffee",
+    kcm_12: "Cantorial",
+    kcm_33: "Lipa Schmeltzer",
+    kcm_21: "Green",
+    kcm_35: "The Playlist",
+    kcm_17: "Shabbos Delight",
+    kcm_11: "Twilight",
+    kcm_42: "Emotional",
+    kcm_3: "Alternative Israeli",
+    kcm_77: "With Cholent on Thursday Night",
+    kcm_39: "Ishay Ribo",
+    kcm_54: "Baruch Levine",
+    kcm_9: "770",
+    kcm_25: "Wedding Dance",
+    kcm_63: "Benny Friedman",
+    kcm_65: "Mordechai Shapiro",
+    kcm_80: "The Heart Cries",
+    kcm_8: "On the Paranvhes",
+    kcm_32: "Belz",
+    kcm_49: "Under the Chuppah",
+    kcm_67: "Shmueli Ungar",
+    kcm_46: "Marching to Joy",
+    kcm_41: "Thank You Father",
+    kcm_6: "Kids Only",
+    kcm_28: "Electronic Music",
+    kcm_7: "Carlebach",
+    kcm_79: "Seudah Shlishit",
+    kcm_20: "Yemenite Step",
+    kcm_31: "Miami",
+    kcm_22: "English Classics",
+    kcm_73: "Moshe Goldman",
+    kcm_78: "Pre-Shabbos Mizrahi Vibes",
+    kcm_53: "Yiddish",
+    kcm_82: "Rabbi Alter",
+    kcm_34: "Concerts",
+    kcm_13: "Piyutim",
+    kcm_62: "Beri Weber",
+    kcm_60: "90s Hits",
+    kcm_51: "HASC",
+    kcm_72: "Shlomo Cohen",
+    kcm_85: "Shabbos Shuk",
+    kcm_61: "Gad Elbaz",
+    kcm_29: "Moshe Laufer",
+    kcm_76: "Old School Mizrahi",
+    kcm_52: "Great Duets",
+    kcm_55: "Dedi Graucher",
+    kcm_74: "Abie Rotenberg",
+    kcm_66: "Shloime Gertner",
+    kcm_59: "80s Hits",
+    kcm_64: "Ohad Moskowitz",
+    kcm_68: "Michoel Schnitzler",
+    kcm_70: "Itzik Eshel",
+    kcm_75: "Aaron Razel",
+
+    // Developers Page
+    devIntro: 'Welcome to the Tosafix Developer Center. Here you will find documentation for APIs and various tools we offer.',
+    cutfixApiTitle: 'Fix remover - Background Removal API',
+    cutfixApiDesc: 'Simple and convenient API for programmatically removing backgrounds from images. Perfect for integration into apps, websites, or personal scripts.',
+    endpoint: 'Endpoint',
+    method: 'Method',
+    body: 'Body',
+    bodyDesc: `The request must be 'multipart/form-data' and contain a single field:`,
+    fieldName: 'Field Name',
+    file: 'File',
+    fieldDesc: 'The image file you want to process.',
+    supportedFormats: 'Supported Formats',
+    fileSizeLimit: 'File Size Limit',
+    successResponse: 'Success Response',
+    successResponseDesc: 'When processing succeeds, the API returns:',
+    statusCode: 'Status Code',
+    contentType: 'Content Type',
+    responseBody: 'Response Body',
+    responseBodyDesc: 'The binary data of the processed image in PNG format.',
+    errorResponse: 'Error Responses',
+    error400: 'Bad Request (e.g., unsupported file type or missing file).',
+    error500: 'Internal Server Error during image processing.',
+    codeExamples: 'Code Examples',
+    jsExample: 'JavaScript (Fetch API) Example',
+    curlExample: 'cURL Example',
+    templeTimerTitle: 'Temple Timer',
+    templeTimerDesc: 'A simple widget displaying a dynamic timer counting the time elapsed since the destruction of the Second Temple, available in Hebrew and English, and easy to embed.',
+    livePreview: 'Live Preview',
+    embedCode: 'Embed Code',
+    embedInstructions: 'We offer two ways to embed the timer on your site. The automatic way is recommended for the best user experience.',
+    customization: 'Customization',
+    customizationDesc: 'You can resize the timer window by changing the `width` and `height` values in the iframe code to fit your site design perfectly.',
+    credits: 'Credits',
+    creditsDesc_part1: 'The timer uses the JavaScript library ',
+    creditsDesc_link: 'SecondTempleTimerLibrary',
+    creditsDesc_part2: ' for time calculation.',
+    viewOnGitHub: 'View on GitHub',
+    liveDemos: 'Live Demo',
+    liveDemoHe: 'Hebrew Version Link',
+    liveDemoEn: 'English Version Link',
+    embedAutoTitle: '1. Automatic Embedding (Recommended)',
+    embedAutoStep1: 'Step 1: Paste the following `<div>` where you want the timer to appear:',
+    embedAutoStep2: 'Step 2: Paste the following `<script>` tag before the closing `</body>` tag:',
+    embedManualTitle: '2. Manual Embedding (Single Version)',
+    embedManualDesc: 'If you prefer to set a specific version that will always display, use one of the following codes.',
+    embedManualHe: 'Hebrew Version',
+    embedManualEn: 'English Version',
+    license: 'License',
+    licenseDesc: 'This project is distributed under the MIT License.',
+
+    // Extension Names & Descriptions
+    notiForumName: 'NotiForum',
+    notiForumDesc: 'Advanced Chrome extension for NodeBB and XenForo based forums, providing real-time notifications directly to your browser.',
+    yaminaName: 'Yamina',
+    yaminaDesc: '"Yamina" is a smart browser extension developed to improve the Hebrew reading experience on the web. The extension automatically changes page directionality to RTL (Right-to-Left) on pages not pre-configured as such, respecting user preferences. With a convenient interface and advanced capabilities, "Yamina" allows you to customize your browsing experience easily and efficiently.',
+    netSkinName: 'NetSkin',
+    netSkinDesc: 'Turn every block into a visual experience! NetSkin replaces the standard gray NetFree block page with a whole world of stunning and dynamic designs. Instead of a standard page, enjoy dozens of designs customized to the block type, whether it is a blocked site, file for review, or site under development. The extension even smartly identifies why a site was blocked by a custom tag and shows you its name! With advanced customization options, full control, and choice between random or fixed modes, safe browsing has never looked better.',
+    hebrewDateName: 'Hebrew Date Viewer',
+    hebrewDateDesc: 'Ever browsed the web, encountered an important Gregorian date – in an article, calendar, forum, or social network – and wondered what the exact Hebrew date is? The \'Hebrew Date converter\' extension is designed to answer exactly that need! It serves as a personal and accessible date converter, allowing you to see the corresponding Hebrew date with a simple hover, without leaving the page or using external tools. Make your browsing experience more efficient and informative with this instant conversion.',
+    myEmojiName: 'My Emoji',
+    myEmojiDesc: "Make your digital communication more personal and creative with 'My emoji'! This Chrome extension allows you to break the routine of familiar emojis and create your own private collection, based on your favorite images and SVG files. Easily upload PNG, JPG, GIF, WEBP, and SVG files and manage them in one place. Easily find the desired emoji using text search and sort your collection by name or date added. Recently used emojis appear at the top of the popup for immediate and convenient access. Backup your entire emoji collection to a simple Zip file, and import it easily to another computer or after reinstallation. Connect your remove.bg account (requires API Key) and remove backgrounds from images with a click to create clean emojis. (Optional) All your emojis are stored securely and locally on your computer, maintaining your full privacy. Install now and start expressing yourself in a new and exciting way!",
+    edgeOpenerName: 'Edge Opener',
+    edgeOpenerDesc: "Quick switch from Chrome to Edge! Open the current page with one click in Microsoft Edge. Includes automatic copy to clipboard if direct opening fails.",
+
+    // Contact Page
+    contactTitle: 'Contact Us',
+    contactSubtitle: 'Have a question, comment, or idea? We\'d love to hear from you!',
+    contactFormTitle: 'Send us a message',
+    contactFormSubtitle: 'We will reply as soon as possible',
+    nameLabel: 'Full Name',
+    phoneLabel: 'Phone (Optional)',
+    emailLabel: 'Email Address',
+    messageLabel: 'Message',
+    namePlaceholder: "Enter your full name",
+    phonePlaceholder: "05X-XXX-XXXX",
+    emailPlaceholder: "your.email@example.com",
+    messagePlaceholder: "Write your message here...",
+    submitButton: 'Send Message',
+    submittingButton: 'Sending...',
+    successMessage: 'Message sent successfully!',
+    errorMessage: 'An error occurred. Please try again later.',
+    contactInfo: 'Contact Info',
+
+    // Extension Layout
+    heroTagline: 'Chrome Extension',
+    keyFeatures: 'Key Features',
+    installation: 'Installation',
+    privacyPolicy: 'Privacy Policy',
+    chromeWebStore: 'Chrome Web Store',
+    supportedForums: 'Supported Forums',
+    notiInstallDesc: 'Download from the Chrome Web Store.',
+    copy: 'Copy',
+    copied: 'Copied!',
+    copyError: 'Error',
+    download: 'Download',
+    copyPolicyTooltip: 'Copy Policy',
+    downloadPolicyTooltip: 'Download Policy as .txt',
+
+    // NotiForum Page
+    notiPageTitle: 'NotiForum',
+    notiPageSubtitle: 'All your forums. One notification box.',
+    notiPageDescription: 'NotiForum is the perfect solution designed to save you time and centralize all your notifications and private messages in one place, accessible and designed, directly from the browser.',
+    notiFeaturesSectionTitle: 'Features',
+    notiFeaturesSectionSubtitle: 'Everything you need to stay updated, effortlessly',
+    notiFeatureUnifiedInboxTitle: 'Unified Inbox',
+    notiFeatureUnifiedInboxDesc: 'Get all notifications and private messages from all your forums in one organized feed. Finally, no need to jump between tabs!',
+    notiFeatureCustomizationTitle: 'Full Customization',
+    notiFeatureCustomizationDesc: 'Choose from stunning themes, switch to dark mode, set a unique sound for each forum, or even upload your own sound files!',
+    notiFeatureFlexibleUITitle: 'Flexible Interface: Popup or Sidebar',
+    notiFeatureFlexibleUIDesc: 'Choose to display the extension in a classic popup window, or pin it to the browser sidebar for quick and convenient access that always works.',
+    notiFeatureWideSupportTitle: 'Wide Support & Easy Addition',
+    notiFeatureWideSupportDesc: 'The extension comes with a ready-made list of forums, and allows you to easily add any NodeBB or XenForo based forum. It will even detect the forum type automatically!',
+    notiFeaturePerformanceTitle: 'Efficiency & Performance',
+    notiFeaturePerformanceDesc: 'With a fast background check mechanism and low resource consumption, NotiForum keeps you updated without slowing down your browsing experience.',
+    notiFeaturePrivacyTitle: 'Privacy First',
+    notiFeaturePrivacyDesc: 'All your data, including settings and uploaded files, is stored completely locally on your computer. No data is sent to external servers.',
+    notiSupportSectionTitle: 'Wide Support & Full Flexibility',
+    notiSupportSectionSubtitle: 'From the default list to any forum you add yourself',
+    andMore: 'And more...',
+    notiInstallSectionTitle: 'Installation',
+    notiInstallSectionDesc: 'Install from the Chrome Web Store',
+    notiPrivacySectionTitle: 'Privacy Policy',
+
+    // MyEmoji Features
+    myEmojiFeature1Title: 'Personal Upload & Management',
+    myEmojiFeature1Desc: 'Easily upload your own PNG, JPG, GIF, WEBP, and SVG files and manage them in one place.',
+    myEmojiFeature2Title: 'Custom Size',
+    myEmojiFeature2Desc: 'Choose the exact size (in pixels) the emoji will be copied to the clipboard, including a custom size option.',
+    myEmojiFeature3Title: 'Advanced Search & Sort',
+    myEmojiFeature3Desc: "Easily find the desired emoji using text search and sort your collection by name or date added.",
+    myEmojiFeature4Title: 'Quick Access to Recent',
+    myEmojiFeature4Desc: "Recently used emojis appear at the top of the popup for immediate and convenient access.",
+    myEmojiFeature5Title: 'Easy Import & Export',
+    myEmojiFeature5Desc: 'Backup your entire emoji collection to a simple Zip file, and import it easily to another computer or after reinstallation.',
+    myEmojiFeature6Title: 'One-Click Background Removal',
+    myEmojiFeature6Desc: 'Connect your remove.bg account (requires API Key) and remove backgrounds from images with a click to create clean emojis. (Optional)',
+    myEmojiBonusSectionTitle: 'Bonus Files',
+    myEmojiBonusCardTitle: 'Haredi Emojis',
+    myEmojiBonusCardDesc: 'Download a bonus file containing Haredi emojis in a zip file for import into the extension.',
+    myEmojiBonusCardCredit: 'Credit: Emojis created by Prog forum users.',
+    myEmojiBonusDownloadBtn: 'Download Haredi Emojis',
+
+    // HebrewDate Features
+    hebrewDateFeature1Title: 'Automatic Hover Conversion',
+    hebrewDateFeature1Desc: 'Simply hover with your mouse over a supported Gregorian date, and wait about half a second. A small info tooltip will appear automatically near the cursor with the full Hebrew date.',
+    hebrewDateFeature2Title: 'Accurate Conversion',
+    hebrewDateFeature2Desc: 'The extension uses reliable algorithms (based on the Hebcal library) to ensure the displayed Hebrew date is the most correct and accurate, including consideration for leap years.',
+    hebrewDateFeature3Title: 'Full Hebrew Date',
+    hebrewDateFeature3Desc: 'The extension displays the full Hebrew date in the familiar and readable format: Day of the month (in Gematria), Hebrew month name, and Hebrew creation year.',
+    hebrewDateFeature4Title: 'Convenience & Speed',
+    hebrewDateFeature4Desc: 'Save precious time! No need to copy dates, open external sites, or use calculators. Conversion happens instantly on the page you are on.',
+    hebrewDateFeature5Title: 'Smooth & Clean Experience',
+    hebrewDateFeature5Desc: 'The slight delay before the tooltip appears prevents it from "jumping" unnecessarily. It is positioned close to the mouse cursor and designed not to disturb or hide important content.',
+    hebrewDateFeature6Title: 'Common Standards Support',
+    hebrewDateFeature6Desc: 'To ensure reliable detection, the extension focuses on dates clearly marked in the site\'s HTML code (datetime or data-numeric-value attributes).',
+
+    // NetSkin Features
+    netSkinGalleryTitle: "Designs Gallery",
+    netSkinGalleryDesc: "Some of the designs available in the extension",
+    netSkinFeature1Title: 'Rich Design Gallery',
+    netSkinFeature1Desc: 'Choose from over 60 unique designs, divided into smart categories by block type (blocked, in development, site check, files, and tags).',
+    netSkinFeature2Title: 'Smart Tag Recognition',
+    netSkinFeature2Desc: "For the first time, know exactly why a site was blocked! NetSkin identifies the custom tag that caused the block and shows you its full name, straight from NetFree servers.",
+    netSkinFeature3Title: 'Full Control & Customization',
+    netSkinFeature3Desc: 'Choose how designs are displayed: Random, Scheduled Random (Daily/Hourly switch), or specific selection of your favorite design for each category separately.',
+    netSkinFeature4Title: 'Personal Design Pool',
+    netSkinFeature4Desc: 'Like only some of the designs? Mark which designs will be included in random modes, and create your own private and customized gallery.',
+    netSkinFeature5Title: "Contextual Adaptation",
+    netSkinFeature5Desc: "The extension identifies the block reason and allows you to define a different design style for each scenario, whether it's a file check or a site under development.",
+    netSkinFeature6Title: "Advanced User Experience",
+    netSkinFeature6Desc: "Comfortable and intuitive settings interface, full Dark Mode support, and preview option for every design with a button click.",
+
+    // Yamina Features
+    yaminaHowItWorksTitle: 'How It Works',
+    yaminaHowItWorksDesc: 'Demo of page alignment from Left-to-Right (Before) and Right-to-Left (After)',
+    yaminaFeature1Title: 'Automatic RTL Alignment',
+    yaminaFeature1Desc: 'Changes page directionality to Right-to-Left on pages that are not RTL, while ignoring pages already configured as RTL.',
+    yaminaFeature2Title: 'Alignment Mode Selection',
+    yaminaFeature2Desc: 'Allows choosing between full alignment (including elements) or text-only alignment, to preserve the original page structure.',
+    yaminaFeature3Title: 'Custom Blacklist',
+    yaminaFeature3Desc: 'You can add specific sites or pages to a blacklist where the extension will not act, via the settings page or context menu.',
+    yaminaFeature4Title: 'Convenient Context Menu',
+    yaminaFeature4Desc: 'Right-clicking the extension icon allows quick addition or removal of sites and pages from the blacklist.',
+    yaminaFeature5Title: 'Friendly Interface',
+    yaminaFeature5Desc: 'Designed and easy-to-use settings page, with full customization options.',
+    yaminaFeature6Title: 'Privacy Guaranteed',
+    yaminaFeature6Desc: 'The extension operates locally, saves data only on your device, and does not share info with third parties.',
+
+    // EdgeOpener Features
+    edgeOpenerHowItWorksTitle: 'How It Works',
+    edgeOpenerHowItWorksDesc: 'Easy and fast switch from Chrome to Edge in one click',
+    edgeOpenerFeature1Title: "Instant Open in Edge",
+    edgeOpenerFeature1Desc: 'With one button click, the extension tries to open the current tab\'s URL directly in Microsoft Edge browser using the dedicated protocol (microsoft-edge:).',
+    edgeOpenerFeature2Title: "Smart Backup: Copy to Clipboard",
+    edgeOpenerFeature2Desc: 'In case automatic opening in Edge is not possible (e.g., protocol not defined in system), the full address of the current page will be automatically copied to your clipboard.',
+    edgeOpenerFeature3Title: 'Standard Web Page Compatibility',
+    edgeOpenerFeature3Desc: 'The extension is designed to work on standard web addresses starting with http: or https:. It detects internal browser addresses (like chrome://extensions) and notifies that it cannot operate.',
+
+    // Privacy Policies
+    notiForumPrivacyPolicy: `NotiForum Extension Privacy Policy
+Last updated: October 26, 2025
+
+We, the developers of "NotiForum" (hereinafter: "the Extension"), are committed to maintaining the privacy of our users. This privacy policy explains how we collect, use, store and protect your information when using the extension, which is designed to centralize, display and manage notifications from NodeBB and XenForo based forums.
+
+The use of the extension constitutes consent to this policy. Our guiding principle is simple: all your information remains completely local on your computer. We never collect or transfer personal information to external servers.
+
+1. The information we collect
+
+The extension collects and stores the following types of information, only in your local browser:
+
+1.1. User Settings:
+
+List of forums to track: The addresses and names of the forums you have added, whether from the default list or manually.
+Operational preferences: Frequency of checking notifications, sound settings (including volume and sound selection for each forum), and browser notification preferences.
+Appearance preferences: The selected theme, display mode (light/dark/auto) and display mode (pop-up window/sidebar).
+This information is saved using chrome.storage.sync to sync your settings between devices connected to the same Google account.
+
+1.2. User Uploaded Content:
+
+Custom Icons: Image files you uploaded to represent forums you added.
+Custom Sounds: Audio files you uploaded to serve as notification sounds.
+This content is saved as text (in Data URL format) using chrome.storage.local and remains exclusively on your device. We do not have access to these files and they are never sent from your computer.
+
+1.3. Notification and connection data:
+
+Notification Content: Text, links, and dates of new notifications and private messages. This information is retrieved directly from the forums you have configured.
+Connection status: The extension temporarily saves the connection status for each forum (whether the connection succeeded or failed) and the latest notification content.
+This information is saved temporarily in chrome.storage.local to manage the notification display and detect changes.
+
+1.4. Authentication Cookies:
+
+The extension accesses cookies belonging to the domains of the forums you have configured. This access is essential to make authenticated requests on your behalf and receive the relevant notifications.
+The extension does not collect, save or transfer your cookies. It uses them locally only as the browser allows.
+
+2. How we use information
+
+The information collected is used solely for the following purposes:
+
+Full operation of the extension: retrieving notifications, displaying them in the interface, playing sounds and displaying browser notifications according to the settings you have chosen.
+Experience Personalization: Saving your appearance and behavior preferences to provide a consistent experience.
+Use of uploaded content: Displaying the icons you uploaded in the interface, and playing the audio files you uploaded when receiving a notification.
+We do not use your information for advertising, statistical analysis, tracking, or any other activity not directly related to the core functionality of the extension.
+
+3. Sharing information with third parties
+
+We do not share your information with any third party. The only communication that takes place is directly from your browser to the forum servers you have set up for tracking.
+
+4. Storage and Information Security
+
+All information is saved locally on your computer using Google Chrome's secure mechanisms (chrome.storage).
+Synced settings (chrome.storage.sync) are protected by your Google Account security mechanisms.
+Local information (chrome.storage.local), such as uploaded files and notification status, is accessible only on the specific device you are using.
+
+5. User Rights
+
+Full Control: You can edit, add or delete the forum list, settings, and uploaded files at any time via the extension settings page.
+Complete Removal: Removing the extension from the browser will immediately and completely delete all information saved by the extension.
+
+6. Changes to the Privacy Policy
+
+We may update this policy in the future to reflect changes to the extension or Chrome Store requirements. Any change will be published in an updated version of the extension.
+
+7. Contact
+
+For questions or clarifications regarding this policy, you are welcome to contact us via the extension website.
+
+Thank you for choosing NotiForum`,
+
+    yaminaPrivacyPolicy: `Last Updated: March 26, 2025
+
+The Yamina extension ("we") is designed to automatically change the directionality of web pages to RTL (Right-to-Left) to improve the Hebrew reading experience. This privacy policy explains how we handle user data, ensuring full transparency. The Yamina extension collects the following data:
+- Website URLs: When you add a site or page to the blacklist (via the context menu or settings page), the URL of the active tab is stored locally on your device using chrome.storage.local. This is necessary to determine whether the extension should align directionality to RTL for specific sites or pages.
+
+2. How we use your data
+The URLs collected are used solely to manage the blacklist feature, which allows you to control which sites or pages the extension will not change their directionality. The data is stored locally on your device and is not transferred to external servers or third parties.
+
+3. Data Storage and Security
+All data collected by the extension (i.e. blacklisted URLs) is saved locally on your device using chrome.storage.local. We do not have access to this data, and it is not sent to external servers. The data remains on your device and can be managed or deleted by you via the extension settings page.
+
+4. Data Sharing
+We do not share, sell or disclose data collected by the extension with any third party. The extension operates entirely locally in your browser.
+
+5. Permissions and Access
+The extension uses the following permissions:
+- "tabs": To access the URL of the active tab for blacklist management and context menu updates.
+- "content_scripts" with "<all_urls>": To align directionality to RTL on non-RTL pages, while respecting the blacklist.
+- "storage": To save your settings, such as the blacklist and alignment mode (full/text only).
+- "contextMenus": To provide a context menu for adding/removing sites from the blacklist.
+These permissions are used solely to provide the core functionality of the extension and are not used to collect or track user data beyond what is necessary for the blacklist feature.
+
+6. User Control
+You have full control over the data saved by the extension. You can view, edit or remove URLs from the blacklist at any time via the extension settings page.
+
+7. Changes to Privacy Policy
+We may update this privacy policy from time to time. Any change will be reflected on this page with an updated "Last Updated" date. We recommend that you review this policy periodically.
+
+8. Contact Us
+If you have any questions or concerns about this privacy policy or the extension's data practices, please contact us on the website.
+
+This privacy policy is provided to ensure transparency and compliance with privacy standards. We are committed to protecting your privacy and providing a safe and useful experience.`,
+
+    netSkinPrivacyPolicy: `Last updated: August 22, 2025
+
+This privacy policy describes how the NetSkin browser extension ("the Extension") handles information. Your privacy is our top priority, and this policy aims to provide you with full transparency regarding the extension's operation. We undertake to minimize access to information to the minimum necessary for the proper functioning of the extension.
+
+1. What information do we process?
+The NetSkin extension was designed from the ground up with privacy in mind. We do not collect, save or transmit any personally identifiable information (PII) such as your name, email address, or general browsing history. The only information the extension handles falls into two types:
+
+User Settings: All settings you choose for the extension (such as preferred design, operation mode, category on/off) are saved locally on your computer using the chrome.storage.sync mechanism. This information is synced to your Google account to maintain consistency across devices, but is not sent or accessible to us in any way.
+Anonymous Tag Information (Display Only): One of the key features of the extension is the ability to display the name of the custom tag that caused a site block. To realize this, and when a page is blocked due to a custom tag you defined in NetFree (and only in this case), the extension performs the following actions:
+- The extension identifies the tag ID (anonymous numeric code) from the information NetFree provides on the block page.
+- The extension sends only this numeric identifier to the official NetFree API server (at https://netfree.link/api/tags/get-names).
+- The NetFree server responds with the literal name of the tag (e.g., "News").
+- The extension displays this name to you on the designed block page.
+
+Important to emphasize:
+- The information sent (tag ID) is anonymous and is not linked to your account or identity.
+- The information is not saved by the extension after receiving the tag name.
+- The action is performed securely against the official NetFree server, for this purpose only.
+
+2. Explanation of Extension Permissions
+During installation, the extension requests the following permissions:
+
+"Access your data on all websites" (<all_urls>): We understand that this permission sounds broad, so it is important for us to explain why it is necessary. The NetFree block page can appear at any web address you try to browse to. This permission is required solely to allow the extension to detect the existence of the specific NetFree block page on the page you are on.
+We guarantee that the extension does not read, collect, save, modify or transmit the content of any other site you browse. Its operation is limited solely to detecting and replacing the specific NetFree block page.
+storage: This permission is required to save your personal settings (as explained in section 1).
+alarms: This permission is used to schedule the random design switch in "Scheduled Random" mode, according to your settings (e.g., once a day).
+
+3. Third Party Services
+NetFree API: As mentioned, the extension communicates with the official NetFree API to receive tag names.
+Image Servers: Some background images used in the various designs are stored on external servers (such as lovepik.com, stockcake.com, etc.). Loading these images is a standard browser operation, similar to loading images on any website.
+
+4. Policy Changes
+We may update this policy from time to time. Any material change will be published on the extension page in the Chrome Web Store.
+
+5. Contact
+If you have any questions regarding this privacy policy, please contact us via the extension website.
+
+We thank you for using NetSkin!`,
+
+    hebrewDatePrivacyPolicy: `Privacy Policy - Hebrew Date Viewer
+Last Updated: October 26, 2025
+
+The "Hebrew Date Viewer" extension (hereinafter: "the Extension") was created with one purpose: to show you the Hebrew date corresponding to a Gregorian date that appears on web pages. Your privacy is very important to us, so the Extension was designed to be as simple and safe as possible.
+
+1. Information Collection
+The Extension does not collect, store, transmit, or share any personal information or browsing data. Its operation is performed entirely and locally in your browser.
+The Extension does not require special permissions beyond the ability to read the content of the current page to identify dates.
+
+2. Use of Information
+The Extension reads the page content temporarily to locate Gregorian dates. This information is processed immediately for conversion to a Hebrew date and is not stored anywhere after the page is closed.
+
+3. Third Parties
+The Extension does not communicate with any external servers or third-party services. All date calculations are performed locally.
+
+4. Policy Changes
+Any changes to this privacy policy will be updated in the extension's description in the Chrome Web Store.
+
+Thank you for using the extension!`,
+
+    myEmojiPrivacyPolicy: `Privacy Policy - My Emoji
+Last Updated: October 26, 2025
+
+We, the developers of "My Emoji" (hereinafter: "the Extension"), are committed to protecting the privacy of our users. This policy explains how we handle your information. Our guiding principle is that all your information is yours alone and stays on your computer.
+
+1. Information Collection and Storage
+The Extension allows you to upload and manage image files (emojis). All the files you upload, along with your settings (such as emoji names, preferred size, and sort order), are stored securely and locally on your computer using the chrome.storage.local mechanism.
+We never access, collect, transfer, or share your emojis or settings with any external servers or third parties.
+
+2. Backup and Restore (Export/Import)
+The Extension offers an option to export your emoji collection to a Zip file. This action is initiated by you only, and the file is saved to a location of your choice on your computer. The import process is similar and allows you to restore your collection from a local backup file.
+
+3. Integration with Third-Party Services (Optional)
+The Extension offers an optional integration with the remove.bg background removal service.
+- To use this feature, you must manually enter your personal API Key from your remove.bg account.
+- The API Key is stored securely and locally on your computer.
+- When you choose to remove a background from an image, the Extension sends the image directly to remove.bg's servers for processing, in accordance with their terms of service and privacy policy. We do not send any additional information.
+- The use of this feature is at your own risk. If you do not enter an API Key, the Extension will not communicate with this service.
+
+4. Permissions
+The Extension requires the "storage" permission to save your information locally, and the "clipboardWrite" permission to allow you to copy emojis to the clipboard.
+
+5. Uninstalling the Extension
+Uninstalling the Extension from the browser will permanently delete all the emojis and settings you have saved.
+
+Thank you for using "My Emoji"!`,
+
+    edgeOpenerPrivacyPolicy: `Privacy Policy - Edge Opener
+Last Updated: October 26, 2025
+
+The "Edge Opener" extension (hereinafter: "the Extension") is designed to operate with simplicity and full transparency. Your privacy is important to us, and this policy explains its operation.
+
+1. Information Collection
+The Extension does not collect, store, or transmit any personal information or browsing data.
+
+2. Extension Operation
+When you click on the extension icon, it performs only two actions:
+a. Reads the URL of the current active tab.
+b. Attempts to open that URL in the Microsoft Edge browser using the "microsoft-edge:".
+c. If the opening fails, the Extension copies the URL to your clipboard.
+The URL information is used immediately for these actions only and is not saved or sent anywhere.
+
+3. Permissions
+The Extension requires the following permissions:
+- "tabs": To read the URL of the active tab.
+- "clipboardWrite": To copy the URL to the clipboard if needed.
+
+The Extension does not communicate with external servers. All operations are performed entirely locally.
+
+Thank you for using "Edge Opener"!`,
+
+    // Privacy & Terms Pages
+    privacyPageTitle: 'Privacy Policy',
+    privacyPageLastUpdated: 'Last Updated',
+    privacyIntro: 'Welcome to Tosafix ("the Site"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your information when you use the Site.',
+    privacyCollectionTitle: 'Information Collection',
+    privacyCollectionDesc: 'The Site does not proactively collect personally identifiable information, except for information you choose to provide to us voluntarily through the contact form (such as name, email, phone, and message). This information is used solely for the purpose of responding to your inquiry.',
+    privacyUsageTitle: 'Use of Information',
+    privacyUsageDesc: 'We use the information provided by you solely for the following purposes: providing service and support, improving the Site and our services, and contacting you if necessary.',
+    privacyCookiesTitle: 'Cookies and Tracking Technologies',
+    privacyCookiesDesc: 'The Site may use cookies to improve user experience, remember preferences (such as language and theme), and analyze site traffic using services like Vercel Analytics. These cookies do not contain personally identifiable information.',
+    privacyThirdPartyTitle: 'Third-Party Information Sharing',
+    privacyThirdPartyDesc: 'We do not sell, trade, or transfer your personal information to third parties without your consent, except for trusted providers who assist us in operating the Site (such as Vercel for hosting), provided that these parties agree to keep this information confidential.',
+    privacyHostingTitle: 'Site Hosting',
+    privacyHostingDesc: 'The Site is hosted on Vercel servers. Use of the Site is also subject to Vercel\'s Privacy Policy.',
+    privacyContactTitle: 'Contact Us',
+    privacyContactDesc: 'If you have any questions regarding this Privacy Policy, please contact us via the "Contact Us" page on the Site.',
+
+    termsPageTitle: 'Terms of Service',
+    termsPageLastUpdated: 'Last Updated',
+    termsAcceptanceTitle: 'Acceptance of Terms',
+    termsAcceptanceDesc: 'Use of the Tosafix website ("the Site") and the services offered therein indicates your acceptance of these Terms of Service. If you do not agree to these terms, please refrain from using the Site.',
+    termsLicenseTitle: 'Use License',
+    termsLicenseDesc: 'The content on the Site, including text, graphics, logos, and images, is the intellectual property of Tosafix or third parties. We grant you a limited, non-exclusive, non-transferable license to view and use the Site for personal, non-commercial use.',
+    termsDisclaimerTitle: 'Disclaimer',
+    termsDisclaimerDesc: 'The information, extensions, and tools on the Site are provided "AS IS". We do not warrant that the service will be error-free or uninterrupted. Use of the tools and extensions presented on the Site is at the user\'s own risk.',
+    termsLimitationsTitle: 'Limitation of Liability',
+    termsLimitationsDesc: 'In no event shall Tosafix be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the Site or the extensions presented therein.',
+    termsLinksTitle: 'External Links',
+    termsLinksDesc: 'The Site may contain links to external websites (such as the Chrome Web Store, GitHub). We are not responsible for the content or privacy practices of these sites.',
+    termsModificationsTitle: 'Changes to Terms',
+    termsModificationsDesc: 'We reserve the right to update the Terms of Service from time to time. Continued use of the Site after changes are made constitutes acceptance of the updated terms.',
+    
+    // QR Fix - Preserving these
     qrSectionContent: '1. Select Content Type',
+    qrSectionDesign: '3. Advanced Design',
     qrTypeUrl: 'URL',
     qrTypeText: 'Text',
     qrTypeWifi: 'WiFi',
@@ -648,11 +1431,14 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrLabelUrl: 'Website URL',
     qrPlaceUrl: 'https://www.example.com',
     qrLabelText: 'Free Text',
+    qrPlaceText: 'Enter text here...',
     qrLabelSsid: 'Network Name (SSID)',
     qrLabelPassword: 'Password',
     qrLabelEncryption: 'Encryption',
     qrLabelPhone: 'Phone Number',
+    qrPlacePhone: 'Include country code',
     qrLabelMessage: 'Message',
+    qrPlaceMessage: 'Enter message...',
     qrLabelEmailAddr: 'Email Address',
     qrLabelSubject: 'Subject',
     qrLabelBody: 'Body',
@@ -668,6 +1454,8 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrLabelGradientType: 'Gradient Type',
     qrLabelRotation: 'Rotation',
     qrLabelBgColor: 'Background Color',
+    qrLabelLinear: 'Linear',
+    qrLabelRadial: 'Radial',
     qrSectionShapes: 'Shapes & Dots',
     qrLabelDotsStyle: 'Dots Style',
     qrLabelCornerSq: 'Corner Frame',
@@ -689,61 +1477,5 @@ NetSkin הוא תוסף עיצובי בלבד. הוא אינו אוסף מידע
     qrDownload: 'Download PNG',
     qrDownloadHighQuality: 'Download High Quality PNG',
     qrScanHint: 'Scan to test before using!',
-    
-    // Fix Checker
-    fixCheckerPageTitle: 'System & Network Diagnostics',
-    fixCheckerPageSubtitle: 'Check your connection quality, line stability, and system data.',
-    sysInfoTitle: '1. Work Environment Check',
-    networkTitle: '2. Network Checks',
-    performanceTitle: '3. Performance & Stability',
-    testBrowser: 'Browser',
-    testOS: 'Operating System',
-    testScreen: 'Screen Resolution',
-    testHardware: 'Memory & CPU',
-    testConnection: 'Network Connection',
-    testIPv6: 'IPv6 Support',
-    testISP: 'ISP & IP',
-    testTime: 'Time Sync',
-    testPing: 'Latency (Ping)',
-    testJitter: 'Line Stability (Jitter)',
-    testSpeed: 'Download Speed',
-    startDiagnostics: 'Start Diagnostics',
-    runningDiagnostics: 'Running tests...',
-    statusWaiting: 'Waiting...',
-    statusChecking: 'Checking...',
-    resConnected: 'Connected',
-    resNoConnection: 'No Connection!',
-    resIPv6Supported: 'Active',
-    resIPv6NotSupported: 'Unavailable',
-    resTimeSynced: 'Correct',
-    resTimeError: 'Incorrect ({diff} min)',
-    resTimeFetchError: 'Not Checked',
-    resPingSlow: 'Slow',
-    resPingVerySlow: 'Very Slow',
-    resPingError: 'Failed',
-    resJitterStable: 'Very Stable',
-    resJitterMedium: 'Medium',
-    resJitterUnstable: 'Unstable',
-    resSpeedExcellent: 'Excellent Speed',
-    resSpeedGood: 'Good Speed',
-    resSpeedFair: 'Basic Browsing Only',
-    resSpeedPoor: 'Very Slow',
-    resSpeedError: 'Test Failed',
-    resLowRam: 'Low Memory! May slow down browsing',
-
-    // Fallbacks for other keys
-    home: 'Home',
-    nosafix: 'Nosafix',
-    contact: 'Contact',
-    developers: 'Developers',
-    extensions: 'Extensions',
-    menu: 'Menu',
-    
-    // Radio Stations
-    kolChaiMusic: 'Kol Chai Music',
-    kolPlay: 'Kol Play',
-    tokerFm: 'Toker FM',
-    jewishRadioNetwork: 'Jewish Radio Network',
-    jewishMusicStream: 'Jewish Music Stream',
   }
 };
