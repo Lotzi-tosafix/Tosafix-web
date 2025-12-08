@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -50,11 +51,6 @@ export default function Footer() {
             <p className="text-gray-400 leading-relaxed text-sm font-light">
               {t.aboutText.substring(0, 120)}...
             </p>
-            <div className="flex gap-4">
-                <a href="https://github.com/Lotzi-tosafix/Tosafix-web" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-gray-400 hover:text-white border border-white/5 hover:border-white/20">
-                    <Github size={20} />
-                </a>
-            </div>
              <div className="pt-4">
                 <div className="flex items-center gap-2 text-sm text-gray-400">
                     <Heart size={16} className="text-rose-500 fill-rose-500" />

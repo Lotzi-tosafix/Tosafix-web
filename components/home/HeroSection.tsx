@@ -1,4 +1,6 @@
 
+
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Star, Zap, Shield, Github } from 'lucide-react';
@@ -62,11 +64,6 @@ export default function HeroSection() {
                         </span>
                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                     </button>
-                    
-                    <a href="https://github.com/Lotzi-tosafix/Tosafix-web" target="_blank" rel="noopener noreferrer" className="group px-8 py-4 rounded-2xl glass text-text-dark dark:text-text-light font-bold text-lg hover:bg-white/40 dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto flex items-center justify-center gap-2">
-                        <Github size={20} className="group-hover:scale-110 transition-transform" />
-                        GitHub
-                    </a>
                 </div>
 
                 <div className="mt-12 flex items-center justify-center lg:justify-start gap-8 text-text-dark/50 dark:text-text-light/50 border-t border-gray-200/30 dark:border-gray-700/30 pt-8">
