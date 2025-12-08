@@ -64,7 +64,7 @@ function AppContent() {
   }, [location.pathname, location.hash]);
 
   return (
-    <div className="relative min-h-screen font-sans text-text-dark dark:text-text-light overflow-x-hidden selection:bg-primary/30">
+    <div className="relative min-h-screen font-sans text-text-dark dark:text-text-light selection:bg-primary/30">
       {/* Global Animated Background (Aurora) */}
       <div className="fixed inset-0 -z-10 bg-bg-light dark:bg-bg-dark transition-colors duration-500">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

@@ -167,31 +167,38 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
               <p className="text-xl text-text-dark/70 dark:text-text-light/70 max-w-3xl mx-auto leading-relaxed glass-card p-6 rounded-2xl">{t.devIntro}</p>
           </motion.div>
           
-          {/* Added items-start to prevent sidebar from stretching */}
-          <div className="flex flex-col md:flex-row gap-12 items-start">
+          <div className="flex flex-col md:flex-row gap-12 items-start relative">
             {/* Sidebar Navigation */}
-            <aside className="hidden md:block w-64 flex-shrink-0 sticky top-32">
-              <div className="space-y-2 glass-card p-4 rounded-2xl border border-white/30 dark:border-white/10">
-                {navItems.map(item => {
-                  const Icon = item.icon;
-                  const isActive = activeSection === item.id;
-                  return (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      onClick={(e) => handleNavClick(e, item.id)}
-                      className={`flex items-center gap-3 p-3 rounded-xl text-sm font-bold transition-all duration-200 ${
-                        isActive
-                          ? 'bg-primary/20 text-primary shadow-sm'
-                          : 'text-text-dark/70 dark:text-text-light/70 hover:bg-white/40 dark:hover:bg-white/10'
-                      }`}
-                    >
-                      <Icon size={18} />
-                      {/* FIX: Cast dynamic translation lookup to string to resolve type error. */}
-                      <span>{t[item.titleKey as keyof typeof t] as string}</span>
-                    </a>
-                  );
-                })}
+            <aside className="hidden md:block w-64 flex-shrink-0 sticky top-32 z-30 self-start transition-all duration-300 ease-in-out">
+              <div className="glass-card p-4 rounded-2xl border border-white/30 dark:border-white/10 shadow-xl backdrop-blur-xl bg-white/60 dark:bg-gray-900/60">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4 px-3">{t.menu}</h3>
+                <div className="space-y-1">
+                  {navItems.map(item => {
+                    const Icon = item.icon;
+                    const isActive = activeSection === item.id;
+                    return (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        onClick={(e) => handleNavClick(e, item.id)}
+                        className={`flex items-center gap-3 p-3 rounded-xl text-sm font-bold transition-all duration-300 group ${
+                          isActive
+                            ? 'bg-gradient-to-r from-primary/20 to-secondary/20 text-primary shadow-sm border border-primary/20 translate-x-1 rtl:-translate-x-1'
+                            : 'text-text-dark/70 dark:text-text-light/70 hover:bg-white/40 dark:hover:bg-white/10 hover:text-text-dark dark:hover:text-white'
+                        }`}
+                      >
+                        <Icon size={18} className={`transition-colors ${isActive ? 'text-primary' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'}`} />
+                        <span>{t[item.titleKey as keyof typeof t] as string}</span>
+                        {isActive && (
+                            <motion.div 
+                                layoutId="activeDot"
+                                className="w-1.5 h-1.5 rounded-full bg-primary ms-auto"
+                            />
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </aside>
 
