@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -11,14 +12,152 @@ import { QrCode, Link as LinkIcon, FileText, Wifi, Smartphone, Mail, User, Bitco
 type QrType = 'url' | 'text' | 'wifi' | 'whatsapp' | 'email' | 'vcard' | 'crypto' | 'sms';
 type FrameType = 'none' | 'phone' | 'bubble-top' | 'polite';
 
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    label: string;
+    icon?: React.ElementType;
+}
+
+const Input: React.FC<InputProps> = ({ label, icon: Icon, className, ...props }) => (
+    <div className={`space-y-2 ${className || ''}`}>
+        <label className="block text-sm font-bold text-text-dark dark:text-text-light">{label}</label>
+        <div className="relative">
+            {Icon && (
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <Icon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                </div>
+            )}
+            <input 
+                className={`block w-full p-4 ${Icon ? 'ps-10' : ''} text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary transition-all shadow-sm`} 
+                {...props} 
+            />
+        </div>
+    </div>
+);
+
+interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    label: string;
+}
+
+const TextArea: React.FC<TextAreaProps> = ({ label, className, ...props }) => (
+    <div className={`space-y-2 ${className || ''}`}>
+        <label className="block text-sm font-bold text-text-dark dark:text-text-light">{label}</label>
+        <textarea 
+            rows={4}
+            className={`block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary transition-all shadow-sm resize-none ${className || ''}`}
+            {...props} 
+        />
+    </div>
+);
+
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+    label: string;
+}
+
+const Select: React.FC<SelectProps> = ({ label, children, ...props }) => (
+    <div className="space-y-2">
+        <label className="block text-sm font-bold text-text-dark dark:text-text-light">{label}</label>
+        <select 
+            className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary transition-all shadow-sm appearance-none" 
+            {...props}
+        >
+            {children}
+        </select>
+    </div>
+);
+
+interface ColorPickerProps {
+    label: string;
+    name: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const ColorPicker: React.FC<ColorPickerProps> = ({ label, name, value, onChange }) => (
+    <div className="space-y-2">
+        <label className="block text-sm font-bold text-text-dark dark:text-text-light">{label}</label>
+        <div className="flex items-center gap-3 p-2 bg-white/50 dark:bg-black/20 rounded-xl border border-gray-200 dark:border-gray-700">
+            <input 
+                type="color" 
+                name={name}
+                value={value} 
+                onChange={onChange}
+                className="w-10 h-10 rounded-lg cursor-pointer border-0 p-0 bg-transparent" 
+            />
+            <span className="text-sm font-mono text-gray-500 uppercase">{value}</span>
+        </div>
+    </div>
+);
+
+interface AccordionItemProps {
+    title: string;
+    icon: React.ElementType;
+    isOpen: boolean;
+    onClick: () => void;
+    children: React.ReactNode;
+}
+
+const AccordionItem: React.FC<AccordionItemProps> = ({ title, icon: Icon, isOpen, onClick, children }) => (
+    <div className="border-b border-gray-200 dark:border-gray-700/50 last:border-0">
+        <button
+            onClick={onClick}
+            className={`w-full flex items-center justify-between p-6 transition-colors ${isOpen ? 'bg-primary/5' : 'hover:bg-gray-50 dark:hover:bg-white/5'}`}
+        >
+            <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-lg ${isOpen ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-500'}`}>
+                    <Icon size={20} />
+                </div>
+                <span className={`font-bold ${isOpen ? 'text-primary' : 'text-text-dark dark:text-text-light'}`}>{title}</span>
+            </div>
+            <ChevronDown size={20} className={`transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : 'text-gray-400'}`} />
+        </button>
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                >
+                    <div className="p-6 pt-0">
+                        {children}
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    </div>
+);
+
 const QrFix = () => {
     const { language, isHebrew } = useLanguage();
     const t = translations[language];
     const [qrType, setQrType] = useState<QrType>('url');
     
-    // Form State
-    const [formData, setFormData] = useState({
+    // Defaults for Placeholders & Fallback logic
+    const defaults = {
         url: 'https://www.google.com',
+        text: 'Hello World',
+        wifiSsid: 'MyWiFi',
+        wifiPass: 'password123',
+        waPhone: '972500000000',
+        waText: 'Hello!',
+        smsPhone: '972500000000',
+        smsBody: 'Hello!',
+        emailAddr: 'example@mail.com',
+        emailSub: 'Subject',
+        emailBody: 'Message...',
+        vFirst: 'Israel',
+        vLast: 'Israeli',
+        vPhone: '0500000000',
+        vEmail: 'israel@example.com',
+        vOrg: 'Tosafix',
+        cryptoAddr: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+        frameText: 'Scan Me!'
+    };
+
+    // Form State - Initialize as empty to show placeholders
+    const [formData, setFormData] = useState({
+        url: '',
         text: '',
         wifiSsid: '',
         wifiPass: '',
@@ -58,7 +197,7 @@ const QrFix = () => {
     // Frame State
     const [frame, setFrame] = useState({
         type: 'none' as FrameType,
-        text: 'Scan Me!',
+        labelText: '', // Empty to use placeholder default
         color: '#0d6efd'
     });
 
@@ -74,7 +213,7 @@ const QrFix = () => {
             width: 280,
             height: 280,
             type: "canvas", // Must be canvas for html2canvas to work properly
-            data: "https://www.google.com",
+            data: defaults.url,
             image: "",
             dotsOptions: { color: "#000000", type: "square" },
             backgroundOptions: { color: "#ffffff" },
@@ -90,23 +229,25 @@ const QrFix = () => {
     useEffect(() => {
         if (!qrCodeRef.current) return;
 
-        // 1. Build Data
-        let data = "https://www.google.com";
+        // 1. Build Data - Use State or Default if empty
+        let data = defaults.url;
         try {
             switch (qrType) {
-                case 'url': data = formData.url; break;
-                case 'text': data = formData.text || " "; break;
-                case 'wifi': data = `WIFI:S:${formData.wifiSsid};T:${formData.wifiType};P:${formData.wifiPass};;`; break;
-                case 'whatsapp': data = `https://wa.me/${formData.waPhone}?text=${encodeURIComponent(formData.waText)}`; break;
-                case 'sms': data = `sms:${formData.smsPhone}?body=${encodeURIComponent(formData.smsBody)}`; break;
-                case 'email': data = `mailto:${formData.emailAddr}?subject=${formData.emailSub}&body=${formData.emailBody}`; break;
-                case 'vcard': data = `BEGIN:VCARD\nVERSION:3.0\nN:${formData.vLast};${formData.vFirst}\nFN:${formData.vFirst} ${formData.vLast}\nORG:${formData.vOrg}\nTEL:${formData.vPhone}\nEMAIL:${formData.vEmail}\nEND:VCARD`; break;
-                case 'crypto': data = `${formData.cryptoType}:${formData.cryptoAddr}`; break;
+                case 'url': data = formData.url || defaults.url; break;
+                case 'text': data = formData.text || defaults.text; break;
+                case 'wifi': data = `WIFI:S:${formData.wifiSsid || defaults.wifiSsid};T:${formData.wifiType};P:${formData.wifiPass || defaults.wifiPass};;`; break;
+                case 'whatsapp': data = `https://wa.me/${formData.waPhone || defaults.waPhone}?text=${encodeURIComponent(formData.waText || defaults.waText)}`; break;
+                case 'sms': data = `sms:${formData.smsPhone || defaults.smsPhone}?body=${encodeURIComponent(formData.smsBody || defaults.smsBody)}`; break;
+                case 'email': data = `mailto:${formData.emailAddr || defaults.emailAddr}?subject=${formData.emailSub || defaults.emailSub}&body=${formData.emailBody || defaults.emailBody}`; break;
+                case 'vcard': data = `BEGIN:VCARD\nVERSION:3.0\nN:${formData.vLast || defaults.vLast};${formData.vFirst || defaults.vFirst}\nFN:${formData.vFirst || defaults.vFirst} ${formData.vLast || defaults.vLast}\nORG:${formData.vOrg || defaults.vOrg}\nTEL:${formData.vPhone || defaults.vPhone}\nEMAIL:${formData.vEmail || defaults.vEmail}\nEND:VCARD`; break;
+                case 'crypto': data = `${formData.cryptoType}:${formData.cryptoAddr || defaults.cryptoAddr}`; break;
             }
         } catch(e) { console.error("Data build error", e); }
 
         // 2. Build Dots Options (Color / Gradient)
         let dotsOptions: any = { type: design.dotsStyle };
+        
+        // FIX: Explicitly handle gradient removal
         if (design.useGradient) {
             dotsOptions.gradient = {
                 type: design.gradientType,
@@ -115,6 +256,7 @@ const QrFix = () => {
             };
         } else {
             dotsOptions.color = design.color1;
+            dotsOptions.gradient = null; // Explicitly nullify to remove gradient
         }
 
         // 3. Update
@@ -139,7 +281,10 @@ const QrFix = () => {
         // @ts-ignore
         const checked = e.target.checked;
 
-        if (name in formData) {
+        // Priority check for frame text (renamed to labelText)
+        if (name === 'labelText') {
+             setFrame(prev => ({ ...prev, labelText: value }));
+        } else if (name in formData) {
             setFormData({ ...formData, [name]: value });
         } else if (name in design) {
              setDesign(prev => ({
@@ -194,74 +339,108 @@ const QrFix = () => {
     ];
 
     // --- Frame Logic Styles ---
-    // In React, we inject these specific styles for the frames
+    // Updated to use Flexbox and avoid absolute positioning overlapping
     const frameStyles = `
         /* Wrapper */
         #final-render-area {
-            display: inline-block;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s;
             background: transparent;
-            padding: 10px;
+            padding: 20px;
         }
 
         /* Frame: Phone */
         .frame-phone {
-            border: 12px solid #333;
-            border-radius: 40px;
-            padding: 40px 20px 60px 20px;
-            background: #fff;
+            border: 12px solid var(--frame-color, #222);
+            border-radius: 45px;
+            padding: 60px 25px 70px 25px !important;
+            background: #fff !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .frame-phone::before { content: ''; width: 60px; height: 6px; background: #333; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); border-radius: 10px; }
-        .frame-phone::after { content: ''; width: 40px; height: 40px; border: 4px solid #333; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); border-radius: 50%; }
+        .frame-phone::before { 
+            content: ''; width: 60px; height: 6px; 
+            background: var(--frame-color, #222);
+            opacity: 0.4;
+            position: absolute; top: 25px; left: 50%; transform: translateX(-50%); 
+            border-radius: 10px; 
+        }
+        .frame-phone::after { 
+            content: ''; width: 40px; height: 40px; 
+            border: 4px solid var(--frame-color, #222);
+            opacity: 0.4;
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); 
+            border-radius: 50%; 
+        }
+        .frame-phone .frame-label {
+            color: var(--frame-color, #222);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            font-family: sans-serif;
+            margin-bottom: 20px;
+            max-width: 250px;
+            line-height: 1.2;
+        }
 
         /* Frame: Bubble Top */
         .frame-bubble-top {
-            background: var(--frame-color, #0d6efd);
-            padding: 15px;
-            border-radius: 20px;
-            padding-top: 50px;
-            position: relative;
+            background: var(--frame-color, #0d6efd) !important;
+            padding: 0 !important;
+            border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            min-width: 320px;
+        }
+        .frame-bubble-top .frame-label-container {
+            padding: 15px;
+            text-align: center;
         }
         .frame-bubble-top .frame-label {
-            position: absolute;
-            top: 15px;
-            left: 0; right: 0;
             color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 800;
+            font-size: 1.4rem;
             text-transform: uppercase;
-            text-align: center;
             font-family: sans-serif;
-            display: block;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .frame-bubble-top-inner {
             background: white;
-            padding: 10px;
-            border-radius: 15px;
+            margin: 0 10px 10px 10px;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         /* Frame: Polite */
         .frame-polite {
-            border: 4px solid var(--frame-color, #000);
-            border-radius: 15px;
-            padding: 15px;
-            padding-bottom: 45px;
-            position: relative;
-            background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: white !important;
+            border: 6px solid var(--frame-color, #000);
+            border-radius: 20px;
+            padding: 20px !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
         .frame-polite .frame-label {
-            position: absolute;
-            bottom: 10px;
-            left: 0; right: 0;
             color: var(--frame-color, #000);
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 800;
             text-align: center;
-            display: block;
+            font-family: sans-serif;
         }
     `;
 
@@ -321,15 +500,15 @@ const QrFix = () => {
                                     transition={{ duration: 0.2 }}
                                 >
                                     {qrType === 'url' && (
-                                        <Input label={t.qrLabelUrl} name="url" value={formData.url} onChange={handleInputChange} placeholder={t.qrPlaceUrl} icon={LinkIcon} />
+                                        <Input label={t.qrLabelUrl} name="url" value={formData.url} onChange={handleInputChange} placeholder={defaults.url} icon={LinkIcon} />
                                     )}
                                     {qrType === 'text' && (
-                                        <TextArea label={t.qrLabelText} name="text" value={formData.text} onChange={handleInputChange} placeholder={t.qrPlaceText} />
+                                        <TextArea label={t.qrLabelText} name="text" value={formData.text} onChange={handleInputChange} placeholder={defaults.text} />
                                     )}
                                     {qrType === 'wifi' && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <Input label={t.qrLabelSsid} name="wifiSsid" value={formData.wifiSsid} onChange={handleInputChange} />
-                                            <Input label={t.qrLabelPassword} name="wifiPass" value={formData.wifiPass} onChange={handleInputChange} type="password" />
+                                            <Input label={t.qrLabelSsid} name="wifiSsid" value={formData.wifiSsid} onChange={handleInputChange} placeholder={defaults.wifiSsid} />
+                                            <Input label={t.qrLabelPassword} name="wifiPass" value={formData.wifiPass} onChange={handleInputChange} type="password" placeholder={defaults.wifiPass} />
                                             <div className="md:col-span-2">
                                                 <Select label={t.qrLabelEncryption} name="wifiType" value={formData.wifiType} onChange={handleInputChange}>
                                                     <option value="WPA">WPA/WPA2</option>
@@ -341,31 +520,31 @@ const QrFix = () => {
                                     )}
                                     {qrType === 'whatsapp' && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <Input label={t.qrLabelPhone} name="waPhone" value={formData.waPhone} onChange={handleInputChange} placeholder={t.qrPlacePhone} />
-                                            <Input label={t.qrLabelMessage} name="waText" value={formData.waText} onChange={handleInputChange} placeholder={t.qrPlaceMessage} />
+                                            <Input label={t.qrLabelPhone} name="waPhone" value={formData.waPhone} onChange={handleInputChange} placeholder={defaults.waPhone} />
+                                            <Input label={t.qrLabelMessage} name="waText" value={formData.waText} onChange={handleInputChange} placeholder={defaults.waText} />
                                         </div>
                                     )}
                                     {qrType === 'sms' && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <Input label={t.qrLabelPhone} name="smsPhone" value={formData.smsPhone} onChange={handleInputChange} />
-                                            <TextArea label={t.qrLabelMessage} name="smsBody" value={formData.smsBody} onChange={handleInputChange} className="md:col-span-2" />
+                                            <Input label={t.qrLabelPhone} name="smsPhone" value={formData.smsPhone} onChange={handleInputChange} placeholder={defaults.smsPhone} />
+                                            <TextArea label={t.qrLabelMessage} name="smsBody" value={formData.smsBody} onChange={handleInputChange} className="md:col-span-2" placeholder={defaults.smsBody} />
                                         </div>
                                     )}
                                     {qrType === 'email' && (
                                         <div className="space-y-4">
-                                            <Input label={t.qrLabelEmailAddr} name="emailAddr" value={formData.emailAddr} onChange={handleInputChange} type="email" />
-                                            <Input label={t.qrLabelSubject} name="emailSub" value={formData.emailSub} onChange={handleInputChange} />
-                                            <TextArea label={t.qrLabelBody} name="emailBody" value={formData.emailBody} onChange={handleInputChange} />
+                                            <Input label={t.qrLabelEmailAddr} name="emailAddr" value={formData.emailAddr} onChange={handleInputChange} type="email" placeholder={defaults.emailAddr} />
+                                            <Input label={t.qrLabelSubject} name="emailSub" value={formData.emailSub} onChange={handleInputChange} placeholder={defaults.emailSub} />
+                                            <TextArea label={t.qrLabelBody} name="emailBody" value={formData.emailBody} onChange={handleInputChange} placeholder={defaults.emailBody} />
                                         </div>
                                     )}
                                     {qrType === 'vcard' && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <Input label={t.qrLabelFirstName} name="vFirst" value={formData.vFirst} onChange={handleInputChange} />
-                                            <Input label={t.qrLabelLastName} name="vLast" value={formData.vLast} onChange={handleInputChange} />
-                                            <Input label={t.qrLabelPhone} name="vPhone" value={formData.vPhone} onChange={handleInputChange} />
-                                            <Input label={t.qrLabelEmailAddr} name="vEmail" value={formData.vEmail} onChange={handleInputChange} type="email" />
+                                            <Input label={t.qrLabelFirstName} name="vFirst" value={formData.vFirst} onChange={handleInputChange} placeholder={defaults.vFirst} />
+                                            <Input label={t.qrLabelLastName} name="vLast" value={formData.vLast} onChange={handleInputChange} placeholder={defaults.vLast} />
+                                            <Input label={t.qrLabelPhone} name="vPhone" value={formData.vPhone} onChange={handleInputChange} placeholder={defaults.vPhone} />
+                                            <Input label={t.qrLabelEmailAddr} name="vEmail" value={formData.vEmail} onChange={handleInputChange} type="email" placeholder={defaults.vEmail} />
                                             <div className="md:col-span-2">
-                                                <Input label={t.qrLabelOrg} name="vOrg" value={formData.vOrg} onChange={handleInputChange} />
+                                                <Input label={t.qrLabelOrg} name="vOrg" value={formData.vOrg} onChange={handleInputChange} placeholder={defaults.vOrg} />
                                             </div>
                                         </div>
                                     )}
@@ -375,7 +554,7 @@ const QrFix = () => {
                                                 <option value="bitcoin">Bitcoin</option>
                                                 <option value="ethereum">Ethereum</option>
                                             </Select>
-                                            <Input label={t.qrLabelWallet} name="cryptoAddr" value={formData.cryptoAddr} onChange={handleInputChange} />
+                                            <Input label={t.qrLabelWallet} name="cryptoAddr" value={formData.cryptoAddr} onChange={handleInputChange} placeholder={defaults.cryptoAddr} />
                                         </div>
                                     )}
                                 </motion.div>
@@ -497,7 +676,8 @@ const QrFix = () => {
 
                                     {frame.type !== 'none' && (
                                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4 p-4 bg-primary/5 rounded-xl border border-primary/10">
-                                            <Input label={t.qrLabelFrameText} name="text" value={frame.text} onChange={handleInputChange} />
+                                            {/* Changed name to labelText to fix collision */}
+                                            <Input label={t.qrLabelFrameText} name="labelText" value={frame.labelText} onChange={handleInputChange} placeholder={defaults.frameText} />
                                             <ColorPicker label={t.qrLabelFrameColor} name="color" value={frame.color} onChange={handleInputChange} />
                                         </motion.div>
                                     )}
@@ -520,17 +700,26 @@ const QrFix = () => {
                                         className={frame.type !== 'none' ? `frame-${frame.type}` : ''}
                                         style={{ '--frame-color': frame.color } as React.CSSProperties}
                                     >
-                                        {/* Top Label for bubble */}
-                                        {frame.type === 'bubble-top' && <span className="frame-label">{frame.text}</span>}
+                                        {/* Frame: Bubble Top */}
+                                        {frame.type === 'bubble-top' && (
+                                            <div className="frame-label-container">
+                                                <span className="frame-label">{frame.labelText || defaults.frameText}</span>
+                                            </div>
+                                        )}
                                         
+                                        {/* Frame: Phone (New Label placement) */}
+                                        {frame.type === 'phone' && (
+                                            <span className="frame-label">{frame.labelText || defaults.frameText}</span>
+                                        )}
+
                                         {/* Wrapper for bg of bubble */}
                                         <div className={frame.type === 'bubble-top' ? 'frame-bubble-top-inner' : ''}>
-                                                <div ref={canvasRef} />
+                                            <div ref={canvasRef} />
                                         </div>
 
-                                        {/* Bottom Label for others */}
-                                        {(frame.type === 'phone' || frame.type === 'polite') && (
-                                            <span className={`frame-label ${frame.type === 'phone' ? 'hidden' : ''}`}>{frame.text}</span>
+                                        {/* Frame: Polite (Bottom Label) */}
+                                        {frame.type === 'polite' && (
+                                            <span className="frame-label">{frame.labelText || defaults.frameText}</span>
                                         )}
                                     </div>
                                 </div>
@@ -548,87 +737,6 @@ const QrFix = () => {
                     </div>
                 </div>
             </div>
-        </div>
-    );
-};
-
-// --- Helper Components ---
-
-const Input = ({ label, icon: Icon, className, ...props }: any) => (
-    <div className={`w-full ${className}`}>
-        <label className="block text-sm font-bold text-text-dark dark:text-text-light mb-2 ml-1">{label}</label>
-        <div className="relative">
-             {Icon && (
-                 <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
-                     <Icon size={18} />
-                 </div>
-             )}
-            <input className={`w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all text-text-dark dark:text-text-light ${Icon ? 'pl-11' : ''}`} {...props} />
-        </div>
-    </div>
-);
-
-const TextArea = ({ label, className, ...props }: any) => (
-    <div className={`w-full ${className}`}>
-        <label className="block text-sm font-bold text-text-dark dark:text-text-light mb-2 ml-1">{label}</label>
-        <textarea rows={4} className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all text-text-dark dark:text-text-light resize-none" {...props} />
-    </div>
-);
-
-const Select = ({ label, children, ...props }: any) => (
-    <div className="w-full">
-        <label className="block text-sm font-bold text-text-dark dark:text-text-light mb-2 ml-1">{label}</label>
-        <div className="relative">
-            <select className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all text-text-dark dark:text-text-light appearance-none cursor-pointer" {...props}>
-                {children}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
-                <ChevronDown size={18} />
-            </div>
-        </div>
-    </div>
-);
-
-const ColorPicker = ({ label, ...props }: any) => (
-    <div>
-        <label className="block text-sm font-bold text-text-dark dark:text-text-light mb-2 ml-1">{label}</label>
-        <div className="flex items-center gap-3 p-2 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700">
-            <input type="color" className="h-10 w-12 rounded-lg cursor-pointer border-none bg-transparent p-0" {...props} />
-            <span className="text-sm font-mono opacity-70 flex-grow">{props.value}</span>
-        </div>
-    </div>
-);
-
-const AccordionItem = ({ title, icon: Icon, children, isOpen, onClick }: any) => {
-    return (
-        <div className="border-b border-gray-200 dark:border-gray-700/50 last:border-0">
-            <button
-                onClick={onClick}
-                className={`w-full flex items-center justify-between p-6 text-left transition-colors ${isOpen ? 'bg-primary/5' : 'hover:bg-white/10'}`}
-            >
-                <div className="flex items-center gap-3 font-bold text-lg text-text-dark dark:text-text-light">
-                    <div className={`p-2 rounded-lg ${isOpen ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-500'}`}>
-                        <Icon size={20} />
-                    </div>
-                    {title}
-                </div>
-                <ChevronDown size={20} className={`transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : 'text-gray-400'}`} />
-            </button>
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                    >
-                        <div className="p-6 pt-0">
-                            {children}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </div>
     );
 };

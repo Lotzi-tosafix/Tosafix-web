@@ -1,8 +1,5 @@
-
-
-
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ChevronDown, Download, Star, Zap, Shield, Github } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
@@ -16,7 +13,7 @@ export default function HeroSection() {
   };
 
   // Floating animation variants
-  const floatingVariant = {
+  const floatingVariant: Variants = {
     initial: { y: 0 },
     animate: {
       y: [0, -20, 0],
