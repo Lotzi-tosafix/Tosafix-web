@@ -43,34 +43,47 @@ export default function Developers() {
   const t = translations[language];
   const [activeSection, setActiveSection] = useState('cutfix-api');
   const location = useLocation();
+  // State to ignore observer updates during smooth scroll
+  const [isManualScrolling, setIsManualScrolling] = useState(false);
 
   const navItems = [
     { id: 'cutfix-api', titleKey: 'cutfixApiTitle', icon: Scissors },
     { id: 'temple-timer', titleKey: 'templeTimerTitle', icon: Timer }
   ];
 
+  // Adjusted rootMargin to create a narrower "active" zone in the middle of the screen
   const observerOptions = {
-    threshold: 0.2,
-    rootMargin: "-80px 0px -50% 0px"
+    threshold: 0.1,
+    rootMargin: "-20% 0px -60% 0px"
   };
 
   const { ref: cutfixRef, inView: cutfixInView } = useInView(observerOptions);
   const { ref: timerRef, inView: timerInView } = useInView(observerOptions);
 
   useEffect(() => {
+    if (isManualScrolling) return;
+
     if (timerInView) {
       setActiveSection('temple-timer');
     } else if (cutfixInView) {
       setActiveSection('cutfix-api');
     }
-  }, [cutfixInView, timerInView]);
+  }, [cutfixInView, timerInView, isManualScrolling]);
 
   const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     event.preventDefault();
+    setIsManualScrolling(true);
+    setActiveSection(targetId); // Update immediately on click
+    
     const element = document.getElementById(targetId);
     element?.scrollIntoView({
       behavior: 'smooth',
     });
+
+    // Re-enable observer updates after scroll animation finishes (approx 1s)
+    setTimeout(() => {
+        setIsManualScrolling(false);
+    }, 1000);
   };
 
   const jsCode = `const imageFile = document.querySelector('input[type="file"]').files[0];
