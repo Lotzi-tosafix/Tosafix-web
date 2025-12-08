@@ -19,7 +19,6 @@ import HebrewDate from './pages/extensions/HebrewDate';
 import MyEmoji from './pages/extensions/MyEmoji';
 import EdgeOpener from './pages/extensions/EdgeOpener';
 import BackToTopButton from './components/BackToTopButton';
-import TempleTimerPopup from './components/TempleTimerPopup';
 import Cutfix from './pages/nosafix/Cutfix';
 import LiveMusic from './pages/nosafix/LiveMusic';
 import FixChecker from './pages/nosafix/FixChecker';
@@ -102,7 +101,6 @@ function AppContent() {
       <Footer />
       
       {location.pathname !== '/' && <BackToTopButton />}
-      <TempleTimerPopup />
       <MiniMusicPlayer />
       <Analytics />
       <SpeedInsights />

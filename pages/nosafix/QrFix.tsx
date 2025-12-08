@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -281,7 +279,9 @@ const QrFix = () => {
                     <p className="mt-4 text-xl text-text-dark/70 dark:text-text-light/70 font-light max-w-2xl mx-auto">{t.qrFixPageSubtitle}</p>
                 </header>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Main Grid: items-start removed to allow columns to stretch */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
                     {/* Left Sidebar: Settings (8 cols) */}
                     <div className="lg:col-span-8 space-y-6">
                         
@@ -507,14 +507,14 @@ const QrFix = () => {
                     </div>
 
                     {/* Right Sidebar: Preview (4 cols) */}
-                    <div className="lg:col-span-4">
-                        <div className="sticky top-28">
+                    <div className="lg:col-span-4 h-full relative">
+                        <div className="sticky top-32 z-20">
                             <div className="glass-card rounded-[2.5rem] p-8 text-center border border-white/40 dark:border-white/10 shadow-2xl relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary"></div>
                                 <h3 className="text-2xl font-bold mb-8 text-text-dark dark:text-text-light font-rubik">{t.qrPreview}</h3>
                                 
                                 <div className="flex justify-center mb-10 overflow-visible">
-                                     {/* Render Area for html2canvas */}
+                                        {/* Render Area for html2canvas */}
                                     <div 
                                         id="final-render-area" 
                                         className={frame.type !== 'none' ? `frame-${frame.type}` : ''}
@@ -525,7 +525,7 @@ const QrFix = () => {
                                         
                                         {/* Wrapper for bg of bubble */}
                                         <div className={frame.type === 'bubble-top' ? 'frame-bubble-top-inner' : ''}>
-                                             <div ref={canvasRef} />
+                                                <div ref={canvasRef} />
                                         </div>
 
                                         {/* Bottom Label for others */}
