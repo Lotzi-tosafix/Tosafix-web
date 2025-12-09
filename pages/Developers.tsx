@@ -7,6 +7,30 @@ import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, 
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 
+const CopyAction = ({ text, className = "", size = 16 }: { text: string, className?: string, size?: number }) => {
+  const [copied, setCopied] = useState(false);
+  
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button 
+      onClick={handleCopy}
+      className={`group/btn relative p-2 rounded-lg transition-all duration-300 active:scale-90 ${copied ? 'bg-green-500/10 text-green-500' : 'bg-white/5 hover:bg-primary/10 text-gray-400 hover:text-primary'} ${className}`}
+      aria-label="Copy to clipboard"
+    >
+      {copied ? <Check size={size} /> : <Copy size={size} />}
+      <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">
+        {copied ? 'Copied!' : 'Copy'}
+      </span>
+    </button>
+  );
+};
+
 const CodeBlock = ({ code, language }: { code: string; language: string }) => {
   const [copied, setCopied] = useState(false);
   const { language: currentLang } = useLanguage();
@@ -164,6 +188,50 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
   title="Beit HaMikdash Destruction Timer">
 </iframe>`;
 
+  // Structured strings for copy buttons
+  const endpointUrl = "https://lotzi-fix-remover.hf.space/api/remove-background";
+  const bodyText = `${t.fieldName}: ${t.file}\n${t.fieldDesc}\n${t.supportedFormats}: PNG, JPG/JPEG, WEBP\n${t.fileSizeLimit}: 10MB`;
+  const successText = `${t.statusCode}: 200 OK\n${t.contentType}: image/png\n${t.responseBody}: ${t.responseBodyDesc}`;
+  const errorText = `400 Bad Request: ${t.error400}\n500 Internal Server Error: ${t.error500}`;
+
+  // Full Documentation Strings
+  const cutfixFullDoc = `${t.cutfixApiTitle}
+${t.cutfixApiDesc}
+
+${t.endpoint}: ${endpointUrl}
+${t.method}: POST
+
+${t.body}:
+${bodyText}
+
+${t.successResponse}:
+${successText}
+
+${t.errorResponse}:
+${errorText}`;
+
+  const timerFullDoc = `${t.templeTimerTitle}
+${t.templeTimerDesc}
+
+${t.embedCode}
+${t.embedInstructions}
+
+${t.embedAutoTitle}
+${t.embedAutoStep1}
+<div id="temple-timer-container"></div>
+
+${t.embedAutoStep2}
+${autoEmbedScriptCode}
+
+${t.embedManualTitle}
+${t.embedManualDesc}
+
+${t.embedManualHe}
+${heIframeCode}
+
+${t.embedManualEn}
+${enIframeCode}`;
+
   return (
     <main className="flex-1">
       <div className="min-h-screen py-20">
@@ -225,29 +293,46 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="glass-card rounded-3xl p-8 md:p-12 border border-white/40 dark:border-white/10"
               >
-                <div className="flex items-center gap-6 mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center shadow-lg">
-                    <Scissors className="w-8 h-8 text-white" />
+                <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
+                  <div className="flex items-center gap-6 flex-grow">
+                    <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
+                      <Scissors className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-text-dark dark:text-text-light">{t.cutfixApiTitle}</h2>
+                      <p className="text-lg text-text-dark/70 dark:text-text-light/70 font-light">{t.cutfixApiDesc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h2 className="text-3xl font-bold text-text-dark dark:text-text-light">{t.cutfixApiTitle}</h2>
-                    <p className="text-lg text-text-dark/70 dark:text-text-light/70 font-light">{t.cutfixApiDesc}</p>
-                  </div>
+                  <CopyAction text={cutfixFullDoc} className="self-start sm:self-center bg-primary/10 text-primary hover:bg-primary/20 p-3" size={20} />
                 </div>
 
                 <div className="space-y-10">
                   <div>
-                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><Server size={22} className="text-primary" /> {t.endpoint}</h3>
-                    <code className="block text-sm bg-white/50 dark:bg-black/30 p-4 rounded-xl text-accent dark:text-primary break-all border border-white/20 font-mono">https://lotzi-fix-remover.hf.space/api/remove-background</code>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2">
+                        <Server size={22} className="text-primary" /> {t.endpoint}
+                    </h3>
+                    <div className="relative group">
+                        <code className="block text-sm bg-white/50 dark:bg-black/30 p-4 rounded-xl text-accent dark:text-primary break-all border border-white/20 font-mono pr-12 rtl:pl-12 rtl:pr-4">
+                            {endpointUrl}
+                        </code>
+                    </div>
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.method}</h3>
-                    <span className="inline-block px-4 py-1.5 text-sm font-bold text-green-800 bg-green-200 dark:bg-green-900/50 dark:text-green-300 rounded-full shadow-sm border border-green-300/50">POST</span>
+                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2">
+                        {t.method}
+                    </h3>
+                    <div className="flex items-center gap-3">
+                        <span className="inline-block px-4 py-1.5 text-sm font-bold text-green-800 bg-green-200 dark:bg-green-900/50 dark:text-green-300 rounded-full shadow-sm border border-green-300/50">POST</span>
+                    </div>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light flex items-center gap-2"><FileJson size={22} className="text-primary" /> {t.body}</h3>
+                    <div className="flex items-center gap-2 mb-4">
+                        <h3 className="text-xl font-bold text-text-dark dark:text-text-light flex items-center gap-2">
+                            <FileJson size={22} className="text-primary" /> {t.body}
+                        </h3>
+                    </div>
                     <p className="text-text-dark/80 dark:text-text-light/80 mb-4 font-light">{t.bodyDesc}</p>
                     <ul className="bg-white/40 dark:bg-black/20 p-6 rounded-2xl space-y-3 border border-white/20">
                       <li className="flex items-center gap-2"><span className="font-bold w-32">{t.fieldName}:</span> <code className="text-sm bg-white/50 dark:bg-white/10 px-2 py-0.5 rounded font-mono">{t.file}</code></li>
@@ -258,7 +343,9 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.successResponse}</h3>
+                    <div className="flex items-center gap-2 mb-4">
+                        <h3 className="text-xl font-bold text-text-dark dark:text-text-light">{t.successResponse}</h3>
+                    </div>
                     <p className="text-text-dark/80 dark:text-text-light/80 mb-4 font-light">{t.successResponseDesc}</p>
                     <ul className="bg-white/40 dark:bg-black/20 p-6 rounded-2xl space-y-3 border border-white/20">
                       <li className="flex items-center gap-2"><span className="font-bold w-32">{t.statusCode}:</span> <code className="text-sm bg-white/50 dark:bg-white/10 px-2 py-0.5 rounded font-mono">200 OK</code></li>
@@ -268,7 +355,9 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                   </div>
 
                    <div>
-                    <h3 className="text-xl font-bold mb-4 text-text-dark dark:text-text-light">{t.errorResponse}</h3>
+                    <div className="flex items-center gap-2 mb-4">
+                        <h3 className="text-xl font-bold text-text-dark dark:text-text-light">{t.errorResponse}</h3>
+                    </div>
                     <ul className="bg-red-50/50 dark:bg-red-900/10 p-6 rounded-2xl space-y-3 border border-red-200 dark:border-red-800/30 text-red-800 dark:text-red-200">
                       <li className="flex items-start gap-2"><code className="text-sm bg-red-100 dark:bg-red-900/40 px-2 py-0.5 rounded font-mono font-bold">400 Bad Request:</code> {t.error400}</li>
                       <li className="flex items-start gap-2"><code className="text-sm bg-red-100 dark:bg-red-900/40 px-2 py-0.5 rounded font-mono font-bold">500 Internal Server Error:</code> {t.error500}</li>
@@ -296,7 +385,7 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                 className="glass-card rounded-3xl p-8 md:p-12 border border-white/40 dark:border-white/10"
               >
                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-6 flex-grow">
                       <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
                         <Timer className="w-8 h-8 text-white" />
                       </div>
@@ -305,15 +394,18 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
                         <p className="text-lg text-text-dark/70 dark:text-text-light/70 font-light">{t.templeTimerDesc}</p>
                       </div>
                     </div>
-                    <a 
-                      href="https://github.com/Lotzi-tosafix/bezachrenu_es_zion" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-white/50 dark:hover:bg-white/10 transition-all font-bold text-text-dark dark:text-text-light self-start sm:self-center"
-                    >
-                      <Github size={20} />
-                      {t.viewOnGitHub}
-                    </a>
+                    <div className="flex items-center gap-4 self-start sm:self-center">
+                        <CopyAction text={timerFullDoc} className="bg-primary/10 text-primary hover:bg-primary/20 p-3" size={20} />
+                        <a 
+                        href="https://github.com/Lotzi-tosafix/bezachrenu_es_zion" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-white/50 dark:hover:bg-white/10 transition-all font-bold text-text-dark dark:text-text-light"
+                        >
+                        <Github size={20} />
+                        {t.viewOnGitHub}
+                        </a>
+                    </div>
                   </div>
 
 
