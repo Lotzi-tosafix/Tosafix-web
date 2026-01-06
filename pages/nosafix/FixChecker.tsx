@@ -44,21 +44,21 @@ const TestCard: React.FC<{ test: TestResult, t: any }> = ({ test, t }) => {
       <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-300 ${statusClass} backdrop-blur-md ${test.fullWidth ? 'col-span-1 sm:col-span-2' : ''}`}
+          className={`p-3 rounded-xl border flex items-center justify-between transition-all duration-300 ${statusClass} backdrop-blur-md ${test.fullWidth ? 'col-span-1 sm:col-span-2' : ''}`}
       >
-          <div className="flex items-center gap-3 overflow-hidden">
+          <div className="flex items-center gap-2 overflow-hidden">
               <div className="p-2 rounded-full bg-white/40 dark:bg-black/20 flex-shrink-0">
-                  <Icon size={20} />
+                  <Icon size={18} />
               </div>
               <div className="flex flex-col text-start overflow-hidden">
-                   <h3 className="font-bold text-sm text-text-dark dark:text-text-light whitespace-nowrap">{t[test.labelKey as keyof typeof t] as string}</h3>
+                   <h3 className="font-bold text-xs text-text-dark dark:text-text-light whitespace-nowrap">{t[test.labelKey as keyof typeof t] as string}</h3>
                    {test.status !== 'idle' && (
-                       <div className="font-medium text-sm mt-0.5 truncate">
+                       <div className="font-medium text-xs mt-0.5 truncate">
                            {test.result}
                        </div>
                    )}
                    {test.status === 'idle' && (
-                       <div className="font-medium text-sm mt-0.5 opacity-50">-</div>
+                       <div className="font-medium text-xs mt-0.5 opacity-50">-</div>
                    )}
               </div>
           </div>
@@ -134,7 +134,7 @@ const FixChecker = () => {
       
       let hwStatus: React.ReactNode = "";
       if (typeof ram === 'number' && ram < 4) {
-          hwStatus = <span className="block text-xs text-amber-500 font-bold mt-1">{t.resLowRam}</span>;
+          hwStatus = <span className="block text-[10px] text-amber-500 font-bold mt-0.5">{t.resLowRam}</span>;
       }
       
       updateResult('hardware', 'success', (
@@ -164,17 +164,11 @@ const FixChecker = () => {
     });
 
     // --- Network Refresh / Warm-up ---
-    // Make a dummy request to wake up the network adapter and clear potential stale states
     try {
         await fetch('https://www.gstatic.com/generate_204', { mode: 'no-cors', cache: 'no-store' });
-        // Brief pause to allow connection to stabilize
         await new Promise(r => setTimeout(r, 500)); 
-    } catch (e) {
-        // Continue even if warm-up fails, the main tests will catch issues
-    }
-    // ---------------------------------
+    } catch (e) {}
 
-    // Run System Info immediately
     checkSystemInfo();
 
     // 1. Connection Check
@@ -183,7 +177,7 @@ const FixChecker = () => {
       updateResult('connect', 'success', t.resConnected);
     } catch (e) {
       updateResult('connect', 'error', t.resNoConnection);
-      setIsRunning(false); // Stop if no internet
+      setIsRunning(false);
       return; 
     }
 
@@ -204,9 +198,9 @@ const FixChecker = () => {
       if(!res.ok) throw new Error();
       const data = await res.json();
       updateResult('isp', 'success', (
-        <span className="flex flex-col text-sm">
+        <span className="flex flex-col text-[11px]">
           <span className="font-bold"><LtrText>{data.org}</LtrText></span>
-          <span className="text-xs opacity-80"><LtrText>{data.ip} ({data.country_name})</LtrText></span>
+          <span className="opacity-80"><LtrText>{data.ip} ({data.country_name})</LtrText></span>
         </span>
       ));
     } catch (e) {
@@ -246,21 +240,19 @@ const FixChecker = () => {
         }
         const jitter = jitterSum / (pings.length - 1);
 
-        // Ping Result
         let pStatus: TestStatus = 'success';
         let pText = `${Math.round(avgPing)} ms`;
         if (avgPing > 100) { pStatus = 'warning'; pText += ` (${t.resPingSlow})`; }
         if (avgPing > 300) { pStatus = 'error'; pText += ` (${t.resPingVerySlow})`; }
         updateResult('ping', pStatus, <LtrText>{pText}</LtrText>);
 
-        // Jitter Result
         let jStatus: TestStatus = 'success';
         let jText = t.resJitterStable;
         if(jitter > 30) { jStatus = 'warning'; jText = t.resJitterMedium; }
         if(jitter > 100) { jStatus = 'error'; jText = t.resJitterUnstable; }
         updateResult('jitter', jStatus, (
             <span>
-                <LtrText>{Math.round(jitter)} ms</LtrText> <span className="text-xs opacity-75">({jText})</span>
+                <LtrText>{Math.round(jitter)} ms</LtrText> <span className="text-[10px] opacity-75">({jText})</span>
             </span>
         ));
 
@@ -290,8 +282,8 @@ const FixChecker = () => {
 
         updateResult('speed', status, (
             <div className="flex flex-col">
-                <span className="font-bold text-lg"><LtrText>{speed} Mbps</LtrText></span>
-                <span className="text-xs opacity-80">{diagnosis}</span>
+                <span className="font-bold text-base"><LtrText>{speed} Mbps</LtrText></span>
+                <span className="text-[10px] opacity-80">{diagnosis}</span>
             </div>
         ));
 
@@ -323,63 +315,60 @@ const FixChecker = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4">
+    <div className="py-10 px-4">
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-12">
-            <div className="inline-block p-4 rounded-[2rem] glass-card mb-6">
-                 <Activity className="w-12 h-12 text-accent mx-auto" />
+        <header className="text-center mb-6">
+            <div className="inline-block p-3 rounded-[1.5rem] glass-card mb-4 shadow-sm">
+                 <Activity className="w-10 h-10 text-accent mx-auto" />
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-text-dark dark:text-text-light font-rubik">
+            <h1 className="text-3xl md:text-5xl font-bold text-text-dark dark:text-text-light font-rubik">
                 <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">{t.fixCheckerPageTitle}</span>
             </h1>
-            <p className="mt-4 text-xl text-text-dark/70 dark:text-text-light/70 font-light max-w-2xl mx-auto">{t.fixCheckerPageSubtitle}</p>
+            <div className="max-w-xl mx-auto mt-4 glass-card p-3 rounded-2xl border border-white/40 shadow-sm">
+                <p className="text-sm md:text-base text-text-dark/70 dark:text-text-light/70 font-light">{t.fixCheckerPageSubtitle}</p>
+            </div>
         </header>
 
-        <main className="glass-card rounded-[2.5rem] p-6 md:p-10 border border-white/40 dark:border-white/10 relative overflow-hidden">
+        <main className="glass-card rounded-[2.5rem] p-6 md:p-8 border border-white/40 dark:border-white/10 relative overflow-hidden">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none"></div>
              
-             <div className="relative z-10 space-y-8">
-                
-                {/* 1. System Info */}
+             <div className="relative z-10 space-y-6">
                 <div>
-                    <h2 className="text-lg font-bold text-text-dark dark:text-text-light mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">{t.sysInfoTitle}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <h2 className="text-sm font-bold text-text-dark dark:text-text-light mb-3 border-b border-gray-200 dark:border-gray-700 pb-1.5">{t.sysInfoTitle}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {systemTests.map(test => <TestCard key={test.id} test={test} t={t} />)}
                     </div>
                 </div>
 
-                {/* 2. Network Tests */}
                 <div>
-                    <h2 className="text-lg font-bold text-text-dark dark:text-text-light mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">{t.networkTitle}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <h2 className="text-sm font-bold text-text-dark dark:text-text-light mb-3 border-b border-gray-200 dark:border-gray-700 pb-1.5">{t.networkTitle}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {networkTests.map(test => <TestCard key={test.id} test={test} t={t} />)}
                     </div>
                 </div>
 
-                 {/* 3. Performance Tests */}
                  <div>
-                    <h2 className="text-lg font-bold text-text-dark dark:text-text-light mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">{t.performanceTitle}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <h2 className="text-sm font-bold text-text-dark dark:text-text-light mb-3 border-b border-gray-200 dark:border-gray-700 pb-1.5">{t.performanceTitle}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {perfTests.map(test => <TestCard key={test.id} test={test} t={t} />)}
                     </div>
                 </div>
-
              </div>
 
-             <div className="mt-12 text-center relative z-10">
+             <div className="mt-8 text-center relative z-10">
                 <button
                     onClick={runDiagnostics}
                     disabled={isRunning}
-                    className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-base rounded-full shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                     {isRunning ? (
                          <>
-                            <RotateCw className="animate-spin w-5 h-5" />
+                            <RotateCw className="animate-spin w-4 h-4" />
                             {t.runningDiagnostics}
                          </>
                     ) : (
                         <>
-                            <Play className="w-5 h-5 fill-current" />
+                            <Play className="w-4 h-4 fill-current" />
                             {t.startDiagnostics}
                         </>
                     )}

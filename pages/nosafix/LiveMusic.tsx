@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
@@ -90,7 +90,7 @@ const musicVolumeStations = ([
 });
 
 
-const MainPlayer = () => {
+const MainPlayer = ({ isCompact = false, onSearchClick }: { isCompact?: boolean; onSearchClick?: () => void }) => {
     const { language } = useLanguage();
     const t = translations[language];
     const {
@@ -110,12 +110,44 @@ const MainPlayer = () => {
     const isLoading = !!loadingStation;
 
     const buttonIcon = isLoading ? (
-        <Loader className="w-8 h-8 text-white animate-spin" />
+        <Loader className={`${isCompact ? 'w-5 h-5' : 'w-8 h-8'} text-white animate-spin`} />
     ) : isPlaying ? (
-        <Pause className="w-8 h-8 text-white fill-current" />
+        <Pause className={`${isCompact ? 'w-5 h-5' : 'w-8 h-8'} text-white fill-current`} />
     ) : (
-        <Play className="w-8 h-8 text-white fill-current ml-1" />
+        <Play className={`${isCompact ? 'w-5 h-5' : 'w-8 h-8'} text-white fill-current ${!isCompact && 'ml-1'}`} />
     );
+
+    if (isCompact) {
+        return (
+            <div className="flex items-center justify-between gap-4 w-full h-12">
+                <div className="flex items-center gap-3 overflow-hidden">
+                    <img src={stationLogo} className="w-10 h-10 rounded-lg object-cover flex-shrink-0 shadow-sm border border-white/20" alt="" />
+                    <div className="min-w-0">
+                         <h4 className="text-sm font-bold text-text-dark dark:text-text-light truncate">{stationName}</h4>
+                         {nowPlayingInfo && (
+                             <p className="text-xs text-text-dark/60 dark:text-text-light/60 truncate">{nowPlayingInfo.song}</p>
+                         )}
+                    </div>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                    <button 
+                        onClick={onSearchClick}
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-white/50 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 text-text-dark dark:text-text-light transition-all"
+                    >
+                        <Search size={18} />
+                    </button>
+                    <button
+                        onClick={togglePlayPause}
+                        disabled={!currentlyPlaying || isLoading}
+                        className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center transition-all shadow-md active:scale-95 disabled:opacity-50"
+                    >
+                        {buttonIcon}
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="w-full max-w-4xl mx-auto flex flex-col sm:flex-row-reverse items-center justify-between gap-6">
@@ -123,7 +155,7 @@ const MainPlayer = () => {
                 <button
                     onClick={togglePlayPause}
                     disabled={!currentlyPlaying || isLoading}
-                    className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary/50 transform hover:scale-105"
+                    className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary/50 transform hover:scale-105"
                     aria-label={isPlaying ? "Pause" : "Play"}
                 >
                     {buttonIcon}
@@ -143,13 +175,13 @@ const MainPlayer = () => {
                         step="0.01"
                         value={isMuted ? 0 : volume}
                         onChange={(e) => setVolume(parseFloat(e.target.value))}
-                        className="w-32 h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                        className="w-24 h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
                         aria-label="Volume control"
                     />
                 </div>
             </div>
 
-            <div className="flex-grow min-w-0 text-center h-12 flex flex-col justify-center w-full sm:w-auto">
+            <div className="flex-grow min-w-0 text-center h-10 flex flex-col justify-center w-full sm:w-auto">
                 <AnimatePresence mode="wait">
                     {nowPlayingInfo ? (
                         <motion.div
@@ -159,10 +191,10 @@ const MainPlayer = () => {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <p className="text-lg text-text-dark dark:text-text-light font-bold truncate drop-shadow-sm" title={nowPlayingInfo.song}>
+                            <p className="text-base text-text-dark dark:text-text-light font-bold truncate drop-shadow-sm" title={nowPlayingInfo.song}>
                                 {nowPlayingInfo.song}
                             </p>
-                            <p className="text-sm text-text-dark/80 dark:text-text-light/80 truncate font-medium" title={nowPlayingInfo.artist}>
+                            <p className="text-xs text-text-dark/80 dark:text-text-light/80 truncate font-medium" title={nowPlayingInfo.artist}>
                                 {nowPlayingInfo.artist}
                             </p>
                         </motion.div>
@@ -172,14 +204,14 @@ const MainPlayer = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                         >
-                            <p className="text-sm text-text-dark/50 dark:text-text-light/50 font-medium">{t.selectStation}</p>
+                            <p className="text-xs text-text-dark/50 dark:text-text-light/50 font-medium">{t.selectStation}</p>
                         </motion.div>
                     )}
                 </AnimatePresence>
             </div>
 
-            <div className="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start flex-shrink-0" style={{ minWidth: '240px' }}>
-                <div className="relative w-16 h-16 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-white/20">
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start flex-shrink-0" style={{ minWidth: '200px' }}>
+                <div className="relative w-14 h-14 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-white/20">
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={stationLogo}
@@ -194,7 +226,7 @@ const MainPlayer = () => {
                     </AnimatePresence>
                 </div>
                 <div className="text-start min-w-0 flex-grow">
-                    <p className="text-xs text-primary font-bold uppercase tracking-wider mb-1">{currentlyPlaying ? t.nowPlaying : t.ready}</p>
+                    <p className="text-[10px] text-primary font-bold uppercase tracking-wider mb-0.5">{currentlyPlaying ? t.nowPlaying : t.ready}</p>
                     <AnimatePresence mode="wait">
                         <motion.h2
                             key={stationName}
@@ -202,7 +234,7 @@ const MainPlayer = () => {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 10 }}
                             transition={{ duration: 0.2 }}
-                            className="text-lg font-bold text-text-dark dark:text-text-light truncate"
+                            className="text-base font-bold text-text-dark dark:text-text-light truncate"
                         >
                             {stationName}
                         </motion.h2>
@@ -289,7 +321,32 @@ const LiveMusic: React.FC = () => {
     } = useMusicPlayer();
     const [isFolderOpen, setIsFolderOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isSticky, setIsSticky] = useState(false);
     
+    const searchInputRef = useRef<HTMLInputElement>(null);
+    const playerRef = useRef<HTMLDivElement>(null);
+
+    // Scroll Listener for Sticky State
+    useEffect(() => {
+        const handleScroll = () => {
+            if (playerRef.current) {
+                setIsSticky(window.scrollY > 150);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const scrollToSearch = () => {
+        if (searchInputRef.current) {
+            const yOffset = -150; 
+            const element = searchInputRef.current;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            setTimeout(() => searchInputRef.current?.focus(), 600);
+        }
+    };
+
     const handleStationSelect = (station: Station) => {
         if (currentlyPlaying?.streamUrl === station.streamUrl) {
             togglePlayPause();
@@ -305,64 +362,59 @@ const LiveMusic: React.FC = () => {
 
     const folderContainerVariants: Variants = {
         open: {
-            height: 'auto',
-            opacity: 1,
-            transition: {
-                type: 'spring',
-                duration: 0.7,
-                staggerChildren: 0.05,
-            }
+            height: 'auto', opacity: 1,
+            transition: { type: 'spring', duration: 0.7, staggerChildren: 0.05 }
         },
-        closed: {
-            height: 0,
-            opacity: 0,
-            transition: {
-                duration: 0.4,
-            }
-        }
+        closed: { height: 0, opacity: 0, transition: { duration: 0.4 } }
     };
 
     const stationCardVariants: Variants = {
-        open: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: { type: 'spring', stiffness: 300, damping: 24 }
-        },
-        closed: {
-            opacity: 0,
-            y: -20,
-            scale: 0.9,
-            transition: { duration: 0.2 }
-        }
+        open: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+        closed: { opacity: 0, y: -20, scale: 0.9, transition: { duration: 0.2 } }
     };
 
     return (
-        <div className="min-h-screen py-20 px-4">
+        <div className="py-10 px-4">
             <div className="max-w-7xl mx-auto">
-                <header className="text-center mb-16">
-                    <h1 className="text-5xl md:text-6xl font-bold text-text-dark dark:text-text-light font-rubik mb-6">
+                <header className="text-center mb-10">
+                    <h1 className="text-4xl md:text-5xl font-bold text-text-dark dark:text-text-light font-rubik mb-4">
                         <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">{t.liveMusic}</span>
                     </h1>
-                    <p className="text-xl text-text-dark/70 dark:text-text-light/70 font-light max-w-2xl mx-auto glass-card p-4 rounded-2xl">{t.liveMusicDescription}</p>
+                    <div className="max-w-xl mx-auto glass-card p-3 rounded-2xl border border-white/40 shadow-sm">
+                        <p className="text-base text-text-dark/70 dark:text-text-light/70 font-light">{t.liveMusicDescription}</p>
+                    </div>
                 </header>
                 
-                <div className="sticky top-24 z-30 -mx-4 px-4 pb-8">
+                {/* 1. Player Container (Sticky) */}
+                <div ref={playerRef} className="sticky top-20 z-40 -mx-4 px-4 pb-4">
                     <motion.div 
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="glass-card rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-white/40 dark:border-white/10 max-w-5xl mx-auto backdrop-blur-xl flex flex-col items-center gap-8"
+                        initial={false}
+                        animate={{ 
+                            padding: isSticky ? '10px 20px' : '24px',
+                            maxWidth: isSticky ? '700px' : '900px',
+                            borderRadius: '32px'
+                        }}
+                        className={`glass-card mx-auto shadow-2xl border border-white/40 dark:border-white/10 backdrop-blur-xl overflow-hidden`}
                     >
-                        <MainPlayer />
-                        
-                        <div className="relative w-full max-w-md mx-auto group">
+                        <MainPlayer isCompact={isSticky} onSearchClick={scrollToSearch} />
+                    </motion.div>
+                </div>
+
+                {/* 2. Search Container (Separated) */}
+                <div className="max-w-4xl mx-auto mt-2 px-4 mb-6">
+                     <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="glass-card p-4 rounded-[2rem] border border-white/30 dark:border-white/10 shadow-lg"
+                     >
+                        <div className="relative w-full max-w-sm mx-auto group">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
-                                <Search className="w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                                <Search className="w-4 h-4 text-gray-400 group-focus-within:text-primary transition-colors" />
                             </div>
                             <input 
+                                ref={searchInputRef}
                                 type="text" 
-                                className="block w-full p-4 ps-12 text-base text-gray-900 border border-gray-200/50 rounded-2xl bg-white/50 dark:bg-black/20 dark:border-gray-700/50 dark:placeholder-gray-400 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent backdrop-blur-md shadow-inner transition-all outline-none"
+                                className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-200/50 rounded-xl bg-white/50 dark:bg-black/20 dark:border-gray-700/50 dark:placeholder-gray-400 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent backdrop-blur-md shadow-inner transition-all outline-none"
                                 placeholder={t.searchStations}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -372,14 +424,14 @@ const LiveMusic: React.FC = () => {
                                     onClick={() => setSearchQuery('')}
                                     className="absolute inset-y-0 end-0 flex items-center pe-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
                                 >
-                                    <X className="w-5 h-5" />
+                                    <X className="w-4 h-4" />
                                 </button>
                             )}
                         </div>
-                    </motion.div>
+                     </motion.div>
                 </div>
 
-                <main className="mt-8">
+                <main className="mt-6">
                     <AnimatePresence mode="wait">
                         {searchQuery ? (
                             <motion.div 
@@ -388,7 +440,7 @@ const LiveMusic: React.FC = () => {
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3 }}
-                                className="flex flex-wrap justify-center gap-8"
+                                className="flex flex-wrap justify-center gap-6"
                             >
                                 {filteredStations.length > 0 ? (
                                     filteredStations.map(station => (
@@ -397,7 +449,7 @@ const LiveMusic: React.FC = () => {
                                             layout
                                             initial={{ opacity: 0, scale: 0.9 }} 
                                             animate={{ opacity: 1, scale: 1 }} 
-                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                            className="w-32 sm:w-40 md:w-44 aspect-square flex-shrink-0"
                                         >
                                             <StationCard
                                                 station={station}
@@ -408,8 +460,8 @@ const LiveMusic: React.FC = () => {
                                         </motion.div>
                                     ))
                                 ) : (
-                                    <div className="text-center py-20 w-full glass-card rounded-3xl">
-                                        <p className="text-2xl text-gray-500 dark:text-gray-400 font-light">{t.noStationsFound}</p>
+                                    <div className="text-center py-16 w-full glass-card rounded-3xl">
+                                        <p className="text-xl text-gray-500 dark:text-gray-400 font-light">{t.noStationsFound}</p>
                                     </div>
                                 )}
                             </motion.div>
@@ -423,7 +475,7 @@ const LiveMusic: React.FC = () => {
                              >
                                 <motion.div 
                                     layout
-                                    className="flex flex-wrap justify-center gap-8"
+                                    className="flex flex-wrap justify-center gap-6"
                                 >
                                     {baseStations.map(station => (
                                         <motion.div 
@@ -432,7 +484,7 @@ const LiveMusic: React.FC = () => {
                                             initial={{ opacity: 0 }} 
                                             animate={{ opacity: 1 }} 
                                             transition={{ duration: 0.5 }}
-                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                            className="w-32 sm:w-40 md:w-44 aspect-square flex-shrink-0"
                                         >
                                             <StationCard
                                                 station={station}
@@ -444,7 +496,7 @@ const LiveMusic: React.FC = () => {
                                     ))}
                                 </motion.div>
                                 
-                                <div className="mt-20">
+                                <div className="mt-16">
                                     <MusicVolumeFolder isOpen={isFolderOpen} onClick={() => setIsFolderOpen(!isFolderOpen)} />
                                     <AnimatePresence>
                                         {isFolderOpen && (
@@ -454,16 +506,16 @@ const LiveMusic: React.FC = () => {
                                                 animate="open"
                                                 exit="closed"
                                                 variants={folderContainerVariants}
-                                                className="overflow-hidden mt-10"
+                                                className="overflow-hidden mt-8"
                                             >
                                                 <motion.div
-                                                    className="flex flex-wrap justify-center gap-8"
+                                                    className="flex flex-wrap justify-center gap-6"
                                                 >
                                                     {musicVolumeStations.map((station) => (
                                                         <motion.div
                                                             key={station.streamUrl}
                                                             variants={stationCardVariants}
-                                                            className="w-36 sm:w-44 md:w-48 lg:w-52 aspect-square flex-shrink-0"
+                                                            className="w-32 sm:w-40 md:w-44 aspect-square flex-shrink-0"
                                                         >
                                                             <StationCard
                                                                 station={station}

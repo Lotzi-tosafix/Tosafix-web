@@ -112,7 +112,7 @@ export default function ExtensionLayout({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-10 md:py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -120,16 +120,18 @@ export default function ExtensionLayout({
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-             <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 rounded-[2rem] shadow-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-[2px]">
+             <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 rounded-[2rem] shadow-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-[2px]">
                 <div className="w-full h-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-[1.9rem] flex items-center justify-center">
-                    <img src={logo} alt={`${name} Logo`} className="w-16 h-16 md:w-24 md:h-24 object-contain drop-shadow-md" />
+                    <img src={logo} alt={`${name} Logo`} className="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md" />
                 </div>
             </div>
-            <h1 className="text-4xl md:text-6xl text-text-dark dark:text-text-light font-rubik font-bold tracking-tight mb-4">{name}</h1>
-            <div className="inline-block px-4 py-1 rounded-full bg-white/30 dark:bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
-               <p className="text-sm font-bold text-primary uppercase tracking-widest">{t.heroTagline}</p>
+            <h1 className="text-3xl md:text-5xl text-text-dark dark:text-text-light font-rubik font-bold tracking-tight mb-3">{name}</h1>
+            <div className="inline-block px-3 py-0.5 rounded-full bg-white/30 dark:bg-white/10 border border-white/20 backdrop-blur-sm mb-4">
+               <p className="text-xs font-bold text-primary uppercase tracking-widest">{t.heroTagline}</p>
             </div>
-            <p className="max-w-2xl mx-auto text-xl text-text-dark/80 dark:text-text-light/80 font-light leading-relaxed glass-card p-6 rounded-2xl border border-white/40">{description}</p>
+            <div className="max-w-2xl mx-auto glass-card p-4 rounded-2xl border border-white/40 shadow-sm">
+                <p className="text-base md:text-lg text-text-dark/80 dark:text-text-light/80 font-light leading-relaxed">{description}</p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -138,10 +140,10 @@ export default function ExtensionLayout({
       {beforeFeaturesContent}
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-text-light font-rubik">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-text-dark dark:text-text-light font-rubik">
                     <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         {t.keyFeatures}
                     </span>
@@ -152,7 +154,7 @@ export default function ExtensionLayout({
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-                className="flex flex-wrap justify-center gap-8"
+                className="flex flex-wrap justify-center gap-6"
             >
                 {features.map((feature, index) => (
                     <motion.div key={index} variants={itemVariants} className="w-full max-w-sm flex">
@@ -178,12 +180,12 @@ export default function ExtensionLayout({
 
       {/* Supported Forums Section */}
       {supportedForums && supportedForums.length > 0 && (
-          <section className="py-20">
+          <section className="py-12">
               <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="text-center mb-16">
-                      <h2 className="text-3xl text-text-dark dark:text-text-light sm:text-4xl font-rubik font-bold">{t.supportedForums}</h2>
+                  <div className="text-center mb-12">
+                      <h2 className="text-2xl text-text-dark dark:text-text-light sm:text-3xl font-rubik font-bold">{t.supportedForums}</h2>
                   </div>
-                  <div className="flex flex-wrap justify-center items-start gap-8">
+                  <div className="flex flex-wrap justify-center items-start gap-6">
                       {supportedForums.map((forum, index) => (
                           <motion.div 
                             key={index}
@@ -194,10 +196,10 @@ export default function ExtensionLayout({
                             className="flex flex-col items-center"
                           >
                             <a href={forum.url} target="_blank" rel="noopener noreferrer" className="group block">
-                               <div className="w-16 h-16 glass rounded-full shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 border border-white/40">
-                                  {forum.icon && <img src={forum.icon} alt={`${forum.name} icon`} className="w-10 h-10 object-contain" />}
+                               <div className="w-14 h-14 glass rounded-full shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 border border-white/40">
+                                  {forum.icon && <img src={forum.icon} alt={`${forum.name} icon`} className="w-9 h-9 object-contain" />}
                                </div>
-                               <p className="text-sm text-text-dark/70 dark:text-text-light/70 text-center mt-3 group-hover:text-primary transition-colors font-medium">{forum.name}</p>
+                               <p className="text-xs text-text-dark/70 dark:text-text-light/70 text-center mt-3 group-hover:text-primary transition-colors font-medium">{forum.name}</p>
                             </a>
                           </motion.div>
                       ))}
@@ -207,16 +209,16 @@ export default function ExtensionLayout({
       )}
 
       {/* Installation Section */}
-      <section id="installation" className="py-20">
+      <section id="installation" className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                <div className="glass-card p-10 rounded-[3rem] border border-white/50 dark:border-white/10">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8 text-text-dark dark:text-text-light font-rubik">
+                <div className="glass-card p-8 rounded-[2.5rem] border border-white/50 dark:border-white/10 shadow-sm">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-text-dark dark:text-text-light font-rubik">
                         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                             {t.installation}
                         </span>
                     </h2>
-                    <p className="text-lg mb-10 leading-relaxed text-text-dark/70 dark:text-text-light/70 max-w-2xl mx-auto">{installSection.description}</p>
+                    <p className="text-base mb-8 leading-relaxed text-text-dark/70 dark:text-text-light/70 max-w-2xl mx-auto">{installSection.description}</p>
                     <a href={installSection.chromeStoreUrl} target="_blank" rel="noopener noreferrer">
                         <style>
                             {`@keyframes chromeGradient {
@@ -224,8 +226,8 @@ export default function ExtensionLayout({
                                 100% { background-position: 200% 0%; }
                             }`}
                         </style>
-                        <button className="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-full text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto" style={{ background: 'linear-gradient(90deg, rgb(219, 68, 55) 0%, rgb(244, 180, 0) 25%, rgb(15, 157, 88) 50%, rgb(66, 133, 244) 75%, rgb(219, 68, 55) 100%) 0% 0% / 200% 100%', animation: '3s linear 0s infinite normal none running chromeGradient' }}>
-                            <Download className="me-2 -ms-1 h-6 w-6" />
+                        <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-full text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto" style={{ background: 'linear-gradient(90deg, rgb(219, 68, 55) 0%, rgb(244, 180, 0) 25%, rgb(15, 157, 88) 50%, rgb(66, 133, 244) 75%, rgb(219, 68, 55) 100%) 0% 0% / 200% 100%', animation: '3s linear 0s infinite normal none running chromeGradient' }}>
+                            <Download className="me-2 -ms-1 h-5 w-5" />
                             {t.chromeWebStore}
                         </button>
                     </a>
@@ -236,22 +238,22 @@ export default function ExtensionLayout({
 
       {/* Privacy Section */}
       {(privacyPolicyContent || privacyPolicyUrl) && (
-        <section id="privacy" className="py-20">
+        <section id="privacy" className="py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                     {privacyPolicyContent ? (
-                        <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border border-white/40 dark:border-white/10">
-                            <h2 className="text-3xl font-bold mb-8 text-text-dark dark:text-text-light text-center font-rubik">{t.privacyPolicy}</h2>
+                        <div className="glass-card p-6 md:p-8 rounded-[2rem] border border-white/40 dark:border-white/10">
+                            <h2 className="text-2xl font-bold mb-6 text-text-dark dark:text-text-light text-center font-rubik">{t.privacyPolicy}</h2>
                             <PrivacyPolicyDisplay content={privacyPolicyContent} />
                         </div>
                     ) : (
                         <div className="text-center">
-                            <div className="flex items-center justify-center text-gray-500 dark:text-gray-400 bg-white/50 dark:bg-gray-800/50 inline-flex px-6 py-3 rounded-full backdrop-blur-sm">
-                                <Lock className="h-5 w-5 me-2" />
-                                <a href={privacyPolicyUrl} target="_blank" rel="noopener noreferrer" className="hover:text-text-dark dark:hover:text-text-light transition-colors font-medium">
+                            <div className="flex items-center justify-center text-gray-500 dark:text-gray-400 bg-white/50 dark:bg-gray-800/50 inline-flex px-5 py-2 rounded-full backdrop-blur-sm shadow-sm">
+                                <Lock className="h-4 w-4 me-2" />
+                                <a href={privacyPolicyUrl} target="_blank" rel="noopener noreferrer" className="hover:text-text-dark dark:hover:text-text-light transition-colors font-medium text-sm">
                                     {t.privacyPolicy}
                                 </a>
-                                <ExternalLink className="h-4 w-4 ms-1" />
+                                <ExternalLink className="h-3 w-3 ms-1" />
                             </div>
                         </div>
                     )}

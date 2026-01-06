@@ -1,5 +1,4 @@
 
-
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useLanguage } from './contexts/LanguageContext';
@@ -77,7 +76,7 @@ function AppContent() {
 
       <Header />
       
-      <main className="relative z-0 pt-28 pb-10 min-h-[calc(100vh-200px)]">
+      <main className="relative z-0 pt-20 pb-10 min-h-[calc(100vh-200px)]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
