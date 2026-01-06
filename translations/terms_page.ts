@@ -1,0 +1,35 @@
+
+export const termsPageTranslations = {
+  he: {
+    termsPageTitle: 'תנאי שימוש',
+    termsPageLastUpdated: 'תאריך עדכון אחרון',
+    termsAcceptanceTitle: 'קבלת התנאים',
+    termsAcceptanceDesc: 'השימוש באתר תוספיקס ("האתר") ובשירותים המוצעים בו מעיד על הסכמתך לתנאי שימוש אלו. אם אינך מסכים לתנאים אלו, אנא הימנע מהשימוש באתר.',
+    termsLicenseTitle: 'רישיון שימוש',
+    termsLicenseDesc: 'התוכן באתר, לרבות טקסט, גרפיקה, לוגואים ותמונות, הוא רכושם הרוחני של תוספיקס או של צדדים שלישיים. אנו מעניקים לך רישיון מוגבל, לא בלעדי ובלתי ניתן להעברה לצפייה ושימוש באתר לצרכים אישיים ולא מסחריים.',
+    termsDisclaimerTitle: 'הסרת אחריות',
+    termsDisclaimerDesc: 'המידע, התוספים והכלים באתר ניתנים כפי שהם ("AS IS"). איננו מתחייבים שהשירות יהיה נטול שגיאות או ללא הפרעות. השימוש בכלים ובתוספים המוצגים באתר הוא על אחריות המשתמש בלבד.',
+    termsLimitationsTitle: 'הגבלת אחריות',
+    termsLimitationsDesc: 'בשום מקרה תוספיקס לא תהיה אחראית לכל נזק ישיר, עקיף, מקרי או תוצאתי הנובע מהשימוש או מאי היכולת להשתמש באתר או בתוספים המוצגים בו.',
+    termsLinksTitle: 'קישורים חיצוניים',
+    termsLinksDesc: 'האתר עשוי להכיל קישורים לאתרים חיצוניים (כגון חנות הכרום, GitHub). איננו אחראים לתוכן או לנוהלי הפרטיות של אתרים אלו.',
+    termsModificationsTitle: 'שינויים בתנאים',
+    termsModificationsDesc: 'אנו שומרים לעצמנו את הזכות לעדכן את תנאי השימוש מעת לעת. המשך השימוש באתר לאחר ביצוע שינויים מהווה הסכמה לתנאים המעודכנים.',
+  },
+  en: {
+    termsPageTitle: 'Terms of Service',
+    termsPageLastUpdated: 'Last Updated',
+    termsAcceptanceTitle: 'Acceptance of Terms',
+    termsAcceptanceDesc: 'Use of the Tosafix website ("the Site") and the services offered therein indicates your acceptance of these Terms of Service. If you do not agree to these terms, please refrain from using the Site.',
+    termsLicenseTitle: 'Use License',
+    termsLicenseDesc: 'The content on the Site, including text, graphics, logos, and images, is the intellectual property of Tosafix or third parties. We grant you a limited, non-exclusive, non-transferable license to view and use the Site for personal, non-commercial use.',
+    termsDisclaimerTitle: 'Disclaimer',
+    termsDisclaimerDesc: 'The information, extensions, and tools on the Site are provided "AS IS". We do not warrant that the service will be error-free or uninterrupted. Use of the tools and extensions presented on the Site is at the user\'s own risk.',
+    termsLimitationsTitle: 'Limitation of Liability',
+    termsLimitationsDesc: 'In no event shall Tosafix be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the Site or the extensions presented therein.',
+    termsLinksTitle: 'External Links',
+    termsLinksDesc: 'The Site may contain links to external websites (such as the Chrome Web Store, GitHub). We are not responsible for the content or privacy practices of these sites.',
+    termsModificationsTitle: 'Changes to Terms',
+    termsModificationsDesc: 'We reserve the right to update the Terms of Service from time to time. Continued use of the Site after changes are made constitutes acceptance of the updated terms.',
+  }
+};

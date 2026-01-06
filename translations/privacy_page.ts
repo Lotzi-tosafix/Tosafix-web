@@ -1,0 +1,37 @@
+
+export const privacyPageTranslations = {
+  he: {
+    privacyPageTitle: 'מדיניות פרטיות',
+    privacyPageLastUpdated: 'תאריך עדכון אחרון',
+    privacyIntro: 'ברוכים הבאים לתוספיקס ("האתר"). אנו מכבדים את פרטיותך ומחויבים להגן על המידע האישי שלך. מדיניות פרטיות זו מסבירה כיצד אנו אוספים, משתמשים ומגנים על המידע שלך בעת השימוש באתר.',
+    privacyCollectionTitle: 'איסוף מידע',
+    privacyCollectionDesc: 'האתר אינו אוסף באופן יזום מידע המזהה אותך אישית, למעט מידע שאתה בוחר לספק לנו מרצונך דרך טופס יצירת הקשר (כגון שם, אימייל, טלפון והודעה). מידע זה משמש אך ורק לצורך מענה לפנייתך.',
+    privacyUsageTitle: 'שימוש במידע',
+    privacyUsageDesc: 'אנו משתמשים במידע שנמסר על ידך אך ורק למטרות הבאות: מתן שירות ותמיכה, שיפור האתר והשירותים שלנו, ויצירת קשר במידת הצורך.',
+    privacyCookiesTitle: 'עוגיות וטכנולוגיות מעקב',
+    privacyCookiesDesc: 'האתר עשוי להשתמש בעוגיות (Cookies) כדי לשפר את חווית המשתמש, לזכור העדפות (כמו שפה וערכת נושא) ולנתח את התנועה באתר באמצעות שירותים כמו Vercel Analytics. עוגיות אלו אינן מכילות מידע המזהה אותך אישית.',
+    privacyThirdPartyTitle: 'שיתוף מידע עם צדדים שלישיים',
+    privacyThirdPartyDesc: 'איננו מוכרים, סוחרים או מעבירים את המידע האישי שלך לצדדים שלישיים ללא הסכמתך, למעט ספקים מהימנים המסייעים לנו בתפעול האתר (כגון Vercel לאירוח), ובלבד שצדדים אלו מסכימים לשמור על סודיות מידע זה.',
+    privacyHostingTitle: 'אירוח האתר',
+    privacyHostingDesc: 'האתר מאוחסן על שרתי Vercel. השימוש באתר כפוף גם למדיניות הפרטיות של Vercel.',
+    privacyContactTitle: 'צור קשר',
+    privacyContactDesc: 'בכל שאלה בנושא מדיניות פרטיות זו, ניתן לפנות אלינו דרך דף "צור קשר" באתר.',
+  },
+  en: {
+    privacyPageTitle: 'Privacy Policy',
+    privacyPageLastUpdated: 'Last Updated',
+    privacyIntro: 'Welcome to Tosafix ("the Site"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your information when you use the Site.',
+    privacyCollectionTitle: 'Information Collection',
+    privacyCollectionDesc: 'The Site does not proactively collect personally identifiable information, except for information you choose to provide to us voluntarily through the contact form (such as name, email, phone, and message). This information is used solely for the purpose of responding to your inquiry.',
+    privacyUsageTitle: 'Use of Information',
+    privacyUsageDesc: 'We use the information provided by you solely for the following purposes: providing service and support, improving the Site and our services, and contacting you if necessary.',
+    privacyCookiesTitle: 'Cookies and Tracking Technologies',
+    privacyCookiesDesc: 'The Site may use cookies to improve user experience, remember preferences (such as language and theme), and analyze site traffic using services like Vercel Analytics. These cookies do not contain personally identifiable information.',
+    privacyThirdPartyTitle: 'Third-Party Information Sharing',
+    privacyThirdPartyDesc: 'We do not sell, trade, or transfer your personal information to third parties without your consent, except for trusted providers who assist us in operating the Site (such as Vercel for hosting), provided that these parties agree to keep this information confidential.',
+    privacyHostingTitle: 'Site Hosting',
+    privacyHostingDesc: 'The Site is hosted on Vercel servers. Use of the Site is also subject to Vercel\'s Privacy Policy.',
+    privacyContactTitle: 'Contact Us',
+    privacyContactDesc: 'If you have any questions regarding this Privacy Policy, please contact us via the "Contact Us" page on the Site.',
+  }
+};
