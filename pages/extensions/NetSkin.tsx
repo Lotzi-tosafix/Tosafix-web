@@ -1,8 +1,66 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import ExtensionLayout from '../../components/extension/ExtensionLayout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
+
+// --- Custom Colorful SVG Icons for NetSkin ---
+
+const PaletteIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <path d="M85 50 C85 70 70 85 50 85 C30 85 15 70 15 50 C15 30 30 15 50 15 C65 15 85 25 85 50" fill="#F1F5F9" stroke="#3B82F6" strokeWidth="2" />
+    <circle cx="35" cy="40" r="6" fill="#EF4444" />
+    <circle cx="50" cy="30" r="6" fill="#F59E0B" />
+    <circle cx="65" cy="40" r="6" fill="#10B981" />
+    <circle cx="70" cy="60" r="6" fill="#8B5CF6" />
+    <circle cx="45" cy="70" r="8" fill="#3B82F6" opacity="0.4" />
+  </svg>
+);
+
+const UserSettingsIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <circle cx="50" cy="40" r="15" fill="#3B82F6" />
+    <path d="M25 80 C25 65 35 55 50 55 C65 55 75 65 75 80" fill="#3B82F6" />
+    <path d="M70 20 L85 35" stroke="#F59E0B" strokeWidth="6" strokeLinecap="round" />
+    <path d="M80 15 L95 30" stroke="#F59E0B" strokeWidth="2" opacity="0.5" />
+  </svg>
+);
+
+const SmartDetectionIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <rect x="25" y="25" width="50" height="50" rx="8" fill="#E2E8F0" />
+    <circle cx="55" cy="45" r="15" stroke="#3B82F6" strokeWidth="4" fill="white" />
+    <path d="M65 55 L80 70" stroke="#3B82F6" strokeWidth="6" strokeLinecap="round" />
+    <path d="M35 35 H45" stroke="#EF4444" strokeWidth="3" strokeLinecap="round" />
+  </svg>
+);
+
+const RandomModeIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <rect x="20" y="20" width="60" height="60" rx="12" fill="#8B5CF6" />
+    <circle cx="35" cy="35" r="5" fill="white" />
+    <circle cx="65" cy="65" r="5" fill="white" />
+    <circle cx="50" cy="50" r="5" fill="white" />
+    <circle cx="65" cy="35" r="5" fill="white" />
+    <circle cx="35" cy="65" r="5" fill="white" />
+  </svg>
+);
+
+const InstallIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <path d="M30 75 H70 V35 H55 L50 25 L45 35 H30 Z" fill="#10B981" opacity="0.2" />
+    <path d="M50 20 V60 M35 45 L50 60 L65 45" stroke="#10B981" strokeWidth="6" fill="none" strokeLinecap="round" strokeJoin="round" />
+    <rect x="20" y="70" width="60" height="10" rx="5" fill="#10B981" />
+  </svg>
+);
+
+const CloudLightIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <path d="M25 65 Q15 65 15 55 Q15 45 30 45 Q35 25 55 25 Q75 25 75 45 Q85 45 85 55 Q85 65 75 65 Z" fill="#79C9E8" opacity="0.6" />
+    <path d="M40 75 L60 75" stroke="#79C9E8" strokeWidth="4" strokeLinecap="round" strokeDasharray="1 8" />
+  </svg>
+);
 
 const DesignsGallerySection = () => {
     const { language } = useLanguage();
@@ -62,32 +120,32 @@ export default function NetSkin() {
     {
       title: t.netSkinFeature1Title,
       description: t.netSkinFeature1Desc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/145266/400_5ce9f80c55e42.jpg'
+      icon: PaletteIcon
     },
     {
       title: t.netSkinFeature2Title,
       description: t.netSkinFeature2Desc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/3558404/400_5f14a4d8dc3b4.jpg'
+      icon: UserSettingsIcon
     },
     {
       title: t.netSkinFeature3Title,
       description: t.netSkinFeature3Desc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/11718969/400_6453bc0c1fb52.jpg'
+      icon: SmartDetectionIcon
     },
     {
       title: t.netSkinFeature4Title,
       description: t.netSkinFeature4Desc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/9488413/400_637d82df6d944.jpg'
+      icon: RandomModeIcon
     },
     {
         title: t.netSkinFeature5Title,
         description: t.netSkinFeature5Desc,
-        image: 'https://files.cdn-files-a.com/ready_uploads/media/14878221/400_671a6ace1f64c.jpg'
+        icon: InstallIcon
     },
     {
         title: t.netSkinFeature6Title,
         description: t.netSkinFeature6Desc,
-        image: 'https://images.cdn-files-a.com/ready_uploads/media/24147/400_5cdcf4dfcd425.jpg'
+        icon: CloudLightIcon
     }
   ];
 

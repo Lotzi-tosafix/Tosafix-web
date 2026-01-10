@@ -4,6 +4,72 @@ import ExtensionLayout from '../../components/extension/ExtensionLayout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
+// --- Custom Colorful SVG Icons for NotiForum ---
+
+const UnifiedInboxIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <defs>
+      <linearGradient id="notiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{ stopColor: '#3B82F6', stopOpacity: 1 }} />
+        <stop offset="100%" style={{ stopColor: '#8B5CF6', stopOpacity: 1 }} />
+      </linearGradient>
+    </defs>
+    <rect x="20" y="25" width="60" height="50" rx="10" fill="url(#notiGrad1)" opacity="0.2" />
+    <path d="M15 35 L50 60 L85 35 V75 H15 Z" fill="url(#notiGrad1)" />
+    <circle cx="80" cy="30" r="12" fill="#EF4444" stroke="white" strokeWidth="3" />
+    <text x="80" y="34" fontSize="10" textAnchor="middle" fill="white" fontWeight="bold">3</text>
+  </svg>
+);
+
+const CustomizationIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <rect x="20" y="30" width="60" height="10" rx="5" fill="#E2E8F0" />
+    <circle cx="40" cy="35" r="10" fill="#3B82F6" shadow="lg" />
+    <rect x="20" y="55" width="60" height="10" rx="5" fill="#E2E8F0" />
+    <circle cx="70" cy="60" r="10" fill="#8B5CF6" />
+    <path d="M45 45 L55 45" stroke="#94A3B8" strokeWidth="4" strokeLinecap="round" />
+  </svg>
+);
+
+const FlexibleUIIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <rect x="15" y="20" width="70" height="60" rx="8" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2" />
+    <rect x="20" y="25" width="15" height="50" rx="4" fill="#3B82F6" opacity="0.8" />
+    <rect x="40" y="30" width="40" height="8" rx="2" fill="#E2E8F0" />
+    <rect x="40" y="45" width="30" height="8" rx="2" fill="#E2E8F0" />
+    <circle cx="75" cy="70" r="6" fill="#F59E0B" />
+  </svg>
+);
+
+const WideSupportIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <circle cx="50" cy="50" r="35" fill="none" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4" />
+    <circle cx="50" cy="50" r="12" fill="#3B82F6" />
+    <circle cx="50" cy="15" r="8" fill="#10B981" />
+    <circle cx="85" cy="50" r="8" fill="#F59E0B" />
+    <circle cx="50" cy="85" r="8" fill="#EF4444" />
+    <circle cx="15" cy="50" r="8" fill="#8B5CF6" />
+  </svg>
+);
+
+const PerformanceIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <path d="M20 80 Q50 10 80 80" fill="none" stroke="#E2E8F0" strokeWidth="8" strokeLinecap="round" />
+    <path d="M20 80 Q50 10 65 40" fill="none" stroke="#10B981" strokeWidth="8" strokeLinecap="round" />
+    <circle cx="50" cy="80" r="6" fill="#334155" />
+    <rect x="48" y="55" width="4" height="25" rx="2" fill="#334155" transform="rotate(-30 50 80)" />
+  </svg>
+);
+
+const PrivacyIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <path d="M50 15 L80 30 V50 C80 70 50 85 50 85 C50 85 20 70 20 50 V30 L50 15Z" fill="#3B82F6" opacity="0.2" />
+    <path d="M50 20 L75 32 V50 C75 65 50 78 50 78 C50 78 25 65 25 50 V32 L50 20Z" fill="#3B82F6" />
+    <rect x="42" y="45" width="16" height="12" rx="2" fill="white" />
+    <path d="M45 45 V40 A5 5 0 1 1 55 40 V45" stroke="white" strokeWidth="3" fill="none" />
+  </svg>
+);
+
 export default function NotiForum() {
   const { language } = useLanguage();
   const t = translations[language];
@@ -12,32 +78,33 @@ export default function NotiForum() {
     {
       title: t.notiFeatureUnifiedInboxTitle,
       description: t.notiFeatureUnifiedInboxDesc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/6676462/400_5f8bf3e6b777b.jpg'
+      // Fixed typo: Changed UnifiedInboxInboxIcon to UnifiedInboxIcon
+      icon: UnifiedInboxIcon
     },
     {
       title: t.notiFeatureCustomizationTitle,
       description: t.notiFeatureCustomizationDesc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/3330107/400_5e482f12bb43b.jpg'
+      icon: CustomizationIcon
     },
     {
       title: t.notiFeatureFlexibleUITitle,
       description: t.notiFeatureFlexibleUIDesc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/7269606/400_5fb7e4408bca4.jpg'
+      icon: FlexibleUIIcon
     },
     {
       title: t.notiFeatureWideSupportTitle,
       description: t.notiFeatureWideSupportDesc,
-      image: 'https://files.cdn-files-a.com/uploads/10483955/400_gi-67e461103c91c.jpg'
+      icon: WideSupportIcon
     },
     {
       title: t.notiFeaturePerformanceTitle,
       description: t.notiFeaturePerformanceDesc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/9906303/400_684c38ddb5a23.jpg'
+      icon: PerformanceIcon
     },
     {
       title: t.notiFeaturePrivacyTitle,
       description: t.notiFeaturePrivacyDesc,
-      image: 'https://images.cdn-files-a.com/ready_uploads/media/1940743/400_5dd206fbc03b8.jpg'
+      icon: PrivacyIcon
     }
   ];
 

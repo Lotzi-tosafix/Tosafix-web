@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight, Command, ExternalLink } from 'lucide-react';
@@ -38,6 +37,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     // Extensions
     { title: t.notiForumName, description: t.notiForumGridDesc, path: '/extensions/notiforum', category: t.extensions },
     { title: t.yaminaName, description: t.yaminaGridDesc, path: '/extensions/yamina', category: t.extensions },
+    { title: t.gfdName, description: t.gfdGridDesc, path: '/extensions/gfd', category: t.extensions },
     { title: t.netSkinName, description: t.netSkinGridDesc, path: '/extensions/netskin', category: t.extensions },
     { title: t.hebrewDateName, description: t.hebrewDateGridDesc, path: '/extensions/hebrewdate', category: t.extensions },
     { title: t.myEmojiName, description: t.myEmojiGridDesc, path: '/extensions/myemoji', category: t.extensions },

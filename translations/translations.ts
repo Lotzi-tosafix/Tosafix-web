@@ -16,6 +16,7 @@ import { myEmojiTranslations } from './my_emoji';
 import { edgeOpenerTranslations } from './edge_opener';
 import { privacyPageTranslations } from './privacy_page';
 import { termsPageTranslations } from './terms_page';
+import { gfdTranslations } from './gfd';
 
 export const translations = {
   he: {
@@ -36,6 +37,7 @@ export const translations = {
     ...edgeOpenerTranslations.he,
     ...privacyPageTranslations.he,
     ...termsPageTranslations.he,
+    ...gfdTranslations.he,
   },
   en: {
     ...commonTranslations.en,
@@ -55,5 +57,6 @@ export const translations = {
     ...edgeOpenerTranslations.en,
     ...privacyPageTranslations.en,
     ...termsPageTranslations.en,
+    ...gfdTranslations.en,
   }
 };

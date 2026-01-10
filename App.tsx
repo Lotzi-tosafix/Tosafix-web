@@ -13,6 +13,7 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import NotiForum from './pages/extensions/Noti';
 import Yamina from './pages/extensions/Yamina';
+import GFD from './pages/extensions/GFD';
 import NetSkin from './pages/extensions/NetSkin';
 import HebrewDate from './pages/extensions/HebrewDate';
 import MyEmoji from './pages/extensions/MyEmoji';
@@ -90,6 +91,7 @@ function AppContent() {
           <Route path="/nosafix/qr-fix" element={<QrFix />} />
           <Route path="/extensions/notiforum" element={<NotiForum />} />
           <Route path="/extensions/yamina" element={<Yamina />} />
+          <Route path="/extensions/gfd" element={<GFD />} />
           <Route path="/extensions/netskin" element={<NetSkin />} />
           <Route path="/extensions/hebrewdate" element={<HebrewDate />} />
           <Route path="/extensions/myemoji" element={<MyEmoji />} />

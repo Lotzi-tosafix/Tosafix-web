@@ -8,7 +8,8 @@ import { translations } from '../../translations/translations';
 interface Feature {
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  icon?: React.ElementType;
 }
 
 interface InstallSection {
@@ -160,9 +161,13 @@ export default function ExtensionLayout({
                     <motion.div key={index} variants={itemVariants} className="w-full max-w-sm flex">
                         <div className="w-full rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 glass-card flex flex-col overflow-hidden">
                             <div className="p-8 flex flex-col flex-grow">
-                                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-primary to-secondary p-[2px] shadow-md">
-                                     <div className="w-full h-full rounded-[14px] overflow-hidden">
-                                         <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
+                                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary to-secondary p-[2px] shadow-md">
+                                     <div className="w-full h-full rounded-[14px] bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+                                         {feature.icon ? (
+                                             <feature.icon className="w-8 h-8 text-primary" />
+                                         ) : feature.image ? (
+                                             <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
+                                         ) : null}
                                      </div>
                                 </div>
                                 <h3 className="text-xl font-bold text-center mb-4 text-text-dark dark:text-text-light">{feature.title}</h3>
