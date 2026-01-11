@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle } from 'lucide-react';
 import ExtensionLayout from '../../components/extension/ExtensionLayout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
@@ -110,46 +109,9 @@ export default function GFD() {
   ];
 
   const installSection = {
-    description: t.gfdComingSoon,
-    chromeStoreUrl: 'https://chromewebstore.google.com/detail/apiieghcagbhlodhfijaepgaonmflhhp/preview?hl=iw&authuser=0',
+    description: t.notiInstallDesc,
+    chromeStoreUrl: 'https://chromewebstore.google.com/detail/github-friendly-downloads/apiieghcagbhlodhfijaepgaonmflhhp?utm_source=item-share-cb',
   };
-
-  const statusNotice = (
-    <section className="py-8 md:py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-card rounded-[2.5rem] p-6 md:p-8 border-2 border-amber-400/50 dark:border-amber-500/30 shadow-2xl relative overflow-hidden"
-        >
-          {/* Animated Top Border */}
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 animate-pulse"></div>
-          
-          <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
-            <div className="w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0 shadow-inner">
-              <AlertCircle size={40} className="animate-bounce" />
-            </div>
-            <div className="flex-grow text-center md:text-start">
-              <h3 className="text-xl md:text-2xl font-bold text-text-dark dark:text-text-light mb-2 font-rubik">
-                {language === 'he' ? 'שימו לב: התוסף בדרך!' : 'Important: Coming Soon!'}
-              </h3>
-              <p className="text-base md:text-lg text-text-dark/80 dark:text-text-light/80 leading-relaxed font-semibold">
-                {t.gfdComingSoon}
-              </p>
-            </div>
-            <div className="shrink-0 flex flex-col items-center gap-2">
-               <div className="px-5 py-2.5 rounded-full bg-amber-500 text-white text-xs font-black uppercase tracking-[0.2em] shadow-lg animate-pulse">
-                 {language === 'he' ? 'בקרוב מאוד' : 'COMING SOON'}
-               </div>
-               <span className="text-[10px] font-bold text-amber-600/60 dark:text-amber-400/40 italic">
-                 {language === 'he' ? '*בשלבי אישור סופיים' : '*Under final review'}
-               </span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
 
   return (
     <ExtensionLayout
@@ -158,7 +120,6 @@ export default function GFD() {
       logo="https://lh3.googleusercontent.com/r77r2zRyYLfTAWvBLy1zELxTgpCpRziU48cfEexOCC31KvdnettoQ1U58Amvgj6kCErQjX2GGIwe6DYV9SBAG-J03w=s120"
       features={features}
       installSection={installSection}
-      beforeFeaturesContent={statusNotice}
     />
   );
 }
