@@ -7,6 +7,8 @@ import { Code2, Server, FileJson, Check, Copy, Timer, BookUser, Wrench, Github, 
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 
+const BACKEND_API_URL = 'https://lotzi-fix-remover.hf.space/api/remove-background';
+
 const CopyAction = ({ text, className = "", size = 16 }: { text: string, className?: string, size?: number }) => {
   const [copied, setCopied] = useState(false);
   
@@ -114,7 +116,7 @@ export default function Developers() {
 const formData = new FormData();
 formData.append('file', imageFile);
 
-fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
+fetch('${BACKEND_API_URL}', {
   method: 'POST',
   body: formData,
 })
@@ -138,7 +140,7 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
 
   const curlCode = `curl -X POST \\
   -F "file=@/path/to/your/image.jpg" \\
-  https://lotzi-fix-remover.hf.space/api/remove-background \\
+  ${BACKEND_API_URL} \\
   --output processed_image.png`;
   
   const autoEmbedScriptCode = `<script>
@@ -189,7 +191,7 @@ fetch('https://lotzi-fix-remover.hf.space/api/remove-background', {
 </iframe>`;
 
   // Structured strings for copy buttons
-  const endpointUrl = "https://lotzi-fix-remover.hf.space/api/remove-background";
+  const endpointUrl = BACKEND_API_URL;
   const bodyText = `${t.fieldName}: ${t.file}\n${t.fieldDesc}\n${t.supportedFormats}: PNG, JPG/JPEG, WEBP\n${t.fileSizeLimit}: 10MB`;
   const successText = `${t.statusCode}: 200 OK\n${t.contentType}: image/png\n${t.responseBody}: ${t.responseBodyDesc}`;
   const errorText = `400 Bad Request: ${t.error400}\n500 Internal Server Error: ${t.error500}`;

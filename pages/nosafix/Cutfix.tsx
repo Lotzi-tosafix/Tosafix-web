@@ -8,6 +8,8 @@ import { UploadCloud, Scissors, Sparkles, Image as ImageIcon, Download, AlertCir
 type UiState = 'upload' | 'loading' | 'results' | 'error';
 type Action = 'remove-bg' | 'trim-only';
 
+const BACKEND_API_URL = 'https://lotzi-fix-remover.hf.space/api/remove-background';
+
 const Cutfix: React.FC = () => {
     const { language } = useLanguage();
     const t = translations[language];
@@ -46,27 +48,49 @@ const Cutfix: React.FC = () => {
     const trimTransparency = (canvas: HTMLCanvasElement): HTMLCanvasElement => {
         const ctx = canvas.getContext('2d', { willReadFrequently: true });
         if (!ctx) return canvas;
+
         const { width, height } = canvas;
-        const imageData = ctx.getImageData(0, 0, width, height);
-        const { data } = imageData;
+        let imageData;
+        try {
+            imageData = ctx.getImageData(0, 0, width, height);
+        } catch (e) {
+            console.error("Failed to getImageData:", e);
+            return canvas;
+        }
+
+        const data = imageData.data;
         let top = height, bottom = -1, left = width, right = -1;
         const alphaThreshold = 10;
-        for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
-            if (data[(y * width + x) * 4 + 3] > alphaThreshold) {
-                if (y < top) top = y; if (y > bottom) bottom = y;
-                if (x < left) left = x; if (x > right) right = x;
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                const alpha = data[(y * width + x) * 4 + 3];
+                if (alpha > alphaThreshold) {
+                    if (y < top) top = y;
+                    if (y > bottom) bottom = y;
+                    if (x < left) left = x;
+                    if (x > right) right = x;
+                }
             }
         }
+
         if (left > right || top > bottom) {
+            console.warn("trimTransparency: No opaque pixels found.");
             const emptyCanvas = document.createElement('canvas');
-            emptyCanvas.width = 1; emptyCanvas.height = 1;
+            emptyCanvas.width = 1;
+            emptyCanvas.height = 1;
             return emptyCanvas;
         }
-        const trimWidth = right - left + 1, trimHeight = bottom - top + 1;
+
+        const trimWidth = right - left + 1;
+        const trimHeight = bottom - top + 1;
+
         const trimmedCanvas = document.createElement('canvas');
-        trimmedCanvas.width = trimWidth; trimmedCanvas.height = trimHeight;
+        trimmedCanvas.width = trimWidth;
+        trimmedCanvas.height = trimHeight;
         const trimmedCtx = trimmedCanvas.getContext('2d');
         if (!trimmedCtx) return canvas;
+
         trimmedCtx.drawImage(canvas, left, top, trimWidth, trimHeight, 0, 0, trimWidth, trimHeight);
         return trimmedCanvas;
     };
@@ -96,7 +120,12 @@ const Cutfix: React.FC = () => {
                 setLoadingText(t.processingImage);
                 const formData = new FormData();
                 formData.append('file', file);
-                const response = await fetch('https://lotzi-fix-remover.hf.space/api/remove-background', { method: 'POST', body: formData });
+
+                const response = await fetch(BACKEND_API_URL, { 
+                    method: 'POST', 
+                    body: formData 
+                });
+
                 if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(t.serverError(response.status, errorText));
@@ -107,15 +136,22 @@ const Cutfix: React.FC = () => {
             const imageElement = await new Promise<HTMLImageElement>((resolve, reject) => {
                 const img = new Image();
                 img.onload = () => resolve(img);
-                img.onerror = reject;
+                img.onerror = () => reject(new Error("Failed to load image element"));
                 img.src = URL.createObjectURL(imageBlobToProcess);
             });
+
             const canvas = document.createElement('canvas');
-            canvas.width = imageElement.width; canvas.height = imageElement.height;
-            canvas.getContext('2d')?.drawImage(imageElement, 0, 0);
+            canvas.width = imageElement.width;
+            canvas.height = imageElement.height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) throw new Error("Could not get canvas context");
+            ctx.drawImage(imageElement, 0, 0);
+
             const trimmedCanvas = trimTransparency(canvas);
+
             const finalImageBlob = await new Promise<Blob | null>(resolve => trimmedCanvas.toBlob(resolve, 'image/png'));
             if (!finalImageBlob) throw new Error("Canvas to Blob conversion failed");
+            
             setProcessedImageUrl(URL.createObjectURL(finalImageBlob));
             setUiState('results');
         } catch (error) {
