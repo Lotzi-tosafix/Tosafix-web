@@ -29,9 +29,7 @@ export default async function handler(req: any, res: any) {
       body: JSON.stringify({
         from: 'Tosafix Contact <onboarding@resend.dev>',
         to: [CONTACT_EMAIL],
-        // The requested subject format
         subject: `תוספיקס - ${subject}`,
-        // Reply-To allows you to click "Reply" in your email client and respond directly to the user
         reply_to: email,
         html: `
           <div dir="rtl" style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-width: 600px;">
@@ -57,7 +55,9 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({ success: true });
     } else {
       console.error('Resend error:', data);
-      return res.status(response.status).json({ error: 'כשל בשליחת המייל' });
+      // Return the actual error message from Resend for easier debugging
+      const errorMsg = data.message || 'כשל בשליחת המייל';
+      return res.status(response.status).json({ error: errorMsg });
     }
   } catch (error) {
     console.error('Server error:', error);
