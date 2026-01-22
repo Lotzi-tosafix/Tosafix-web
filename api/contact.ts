@@ -11,12 +11,13 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ error: 'נא למלא את כל שדות החובה' });
   }
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
+  // Normalizing variables to prevent case-sensitivity issues with Resend
+  const RESEND_API_KEY = process.env.RESEND_API_KEY?.trim();
+  const CONTACT_EMAIL = process.env.CONTACT_EMAIL?.trim().toLowerCase();
 
   if (!RESEND_API_KEY || !CONTACT_EMAIL) {
     console.error('Missing Resend configuration environment variables');
-    return res.status(500).json({ error: 'שגיאת תצורה בשרת' });
+    return res.status(500).json({ error: 'שגיאת תצורה בשרת - וודא שמשתני הסביבה מוגדרים' });
   }
 
   try {
@@ -54,8 +55,8 @@ export default async function handler(req: any, res: any) {
     if (response.ok) {
       return res.status(200).json({ success: true });
     } else {
-      console.error('Resend error:', data);
-      // Return the actual error message from Resend for easier debugging
+      console.error('Resend error details:', data);
+      // We pass the detailed message from Resend so the user knows exactly why it failed
       const errorMsg = data.message || 'כשל בשליחת המייל';
       return res.status(response.status).json({ error: errorMsg });
     }
