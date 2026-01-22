@@ -32,13 +32,30 @@ export default function Contact() {
     setError(null);
     setShowSuccessMessage(false);
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setShowSuccessMessage(true);
-    setFormData({ name: '', phone: '', email: '', message: '' });
-    setTimeout(() => setShowSuccessMessage(false), 5000);
-    
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || t.errorMessage || 'שגיאה בשליחה');
+      }
+      
+      setShowSuccessMessage(true);
+      setFormData({ name: '', phone: '', email: '', message: '' });
+      setTimeout(() => setShowSuccessMessage(false), 7000);
+    } catch (err: any) {
+      console.error('Contact form submission error:', err);
+      setError(err.message || t.errorMessage || 'אירעה שגיאה בשליחה. אנא נסה שנית.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
