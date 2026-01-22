@@ -4,10 +4,10 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, phone, message } = req.body;
+  const { name, email, phone, subject, message } = req.body;
 
   // Basic validation
-  if (!name || !email || !message) {
+  if (!name || !email || !subject || !message) {
     return res.status(400).json({ error: 'נא למלא את כל שדות החובה' });
   }
 
@@ -29,20 +29,23 @@ export default async function handler(req: any, res: any) {
       body: JSON.stringify({
         from: 'Tosafix Contact <onboarding@resend.dev>',
         to: [CONTACT_EMAIL],
-        subject: `פנייה חדשה מאתר תוספיקס: ${name}`,
+        // The requested subject format
+        subject: `תוספיקס - ${subject}`,
+        // Reply-To allows you to click "Reply" in your email client and respond directly to the user
         reply_to: email,
         html: `
           <div dir="rtl" style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-width: 600px;">
             <h2 style="color: #3B82F6; border-bottom: 2px solid #3B82F6; padding-bottom: 10px;">פנייה חדשה מהאתר</h2>
-            <p><strong>שם:</strong> ${name}</p>
-            <p><strong>אימייל:</strong> ${email}</p>
+            <p><strong>שם השולח:</strong> ${name}</p>
+            <p><strong>אימייל לחזרה:</strong> ${email}</p>
             <p><strong>טלפון:</strong> ${phone || 'לא צוין'}</p>
-            <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px;">
-              <p><strong>הודעה:</strong></p>
+            <p><strong>נושא:</strong> ${subject}</p>
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px; border: 1px solid #ddd;">
+              <p><strong>תוכן ההודעה:</strong></p>
               <p style="white-space: pre-wrap;">${message}</p>
             </div>
             <hr style="margin-top: 30px; border: 0; border-top: 1px solid #eee;" />
-            <p style="font-size: 12px; color: #999;">הודעה זו נשלחה אוטומטית ממערכת תוספיקס.</p>
+            <p style="font-size: 12px; color: #999; text-align: center;">הודעה זו נשלחה אוטומטית ממערכת תוספיקס. לחיצה על "השב" בג'ימייל תפתח מענה ישיר למשתמש.</p>
           </div>
         `,
       }),

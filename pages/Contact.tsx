@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Send, CheckCircle, User, MessageSquare, AlertCircle, Phone } from 'lucide-react';
+import { Mail, Send, CheckCircle, User, MessageSquare, AlertCircle, Phone, Info } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 
@@ -13,6 +13,7 @@ export default function Contact() {
     name: '',
     phone: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +49,7 @@ export default function Contact() {
       }
       
       setShowSuccessMessage(true);
-      setFormData({ name: '', phone: '', email: '', message: '' });
+      setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
       setTimeout(() => setShowSuccessMessage(false), 7000);
     } catch (err: any) {
       console.error('Contact form submission error:', err);
@@ -113,6 +114,12 @@ export default function Contact() {
                       <Mail className="w-3.5 h-3.5 text-primary" />{t.emailLabel}
                     </label>
                     <input type="email" id="email" name="email" required value={formData.email} onChange={handleInputChange} placeholder={t.emailPlaceholder} className="flex h-11 w-full rounded-xl border bg-white/40 dark:bg-black/20 border-gray-200 dark:border-gray-700 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all backdrop-blur-sm" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold leading-none text-text-dark dark:text-text-light flex items-center gap-2" htmlFor="subject">
+                      <Info className="w-3.5 h-3.5 text-primary" />{t.subjectLabel}
+                    </label>
+                    <input type="text" id="subject" name="subject" required value={formData.subject} onChange={handleInputChange} placeholder={t.subjectPlaceholder} className="flex h-11 w-full rounded-xl border bg-white/40 dark:bg-black/20 border-gray-200 dark:border-gray-700 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all backdrop-blur-sm" />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold leading-none text-text-dark dark:text-text-light flex items-center gap-2" htmlFor="message">
