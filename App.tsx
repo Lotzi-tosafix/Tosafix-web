@@ -27,6 +27,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { MusicPlayerProvider } from './contexts/MusicPlayerContext';
 import MiniMusicPlayer from './components/MiniMusicPlayer';
+import KofiWidget from './components/KofiWidget';
 
 function AppContent() {
   const { language, isHebrew } = useLanguage();
@@ -103,6 +104,7 @@ function AppContent() {
       
       {location.pathname !== '/' && <BackToTopButton />}
       <MiniMusicPlayer />
+      <KofiWidget />
       <Analytics />
       <SpeedInsights />
     </div>
