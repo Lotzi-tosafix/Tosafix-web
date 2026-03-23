@@ -18,6 +18,7 @@ import NetSkin from './pages/extensions/NetSkin';
 import HebrewDate from './pages/extensions/HebrewDate';
 import MyEmoji from './pages/extensions/MyEmoji';
 import EdgeOpener from './pages/extensions/EdgeOpener';
+import NodeBBPlus from './pages/extensions/NodeBBPlus';
 import BackToTopButton from './components/BackToTopButton';
 import Cutfix from './pages/nosafix/Cutfix';
 import LiveMusic from './pages/nosafix/LiveMusic';
@@ -97,6 +98,7 @@ function AppContent() {
           <Route path="/extensions/hebrewdate" element={<HebrewDate />} />
           <Route path="/extensions/myemoji" element={<MyEmoji />} />
           <Route path="/extensions/edgeopener" element={<EdgeOpener />} />
+          <Route path="/extensions/nodebbplus" element={<NodeBBPlus />} />
         </Routes>
       </main>
 
