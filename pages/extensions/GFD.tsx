@@ -43,21 +43,22 @@ const FolderTreeIcon = () => (
   </svg>
 );
 
+const DownloadDataIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <path d="M25 60 A20 20 0 0 1 40 25 A25 25 0 0 1 80 40 A15 15 0 0 1 75 70 H25 Z" fill="#10B981" opacity="0.2" />
+    <path d="M30 65 A15 15 0 0 1 45 35 A20 20 0 0 1 75 45 A10 10 0 0 1 70 65 H30 Z" fill="#34D399" />
+    <path d="M50 45 V75 M40 65 L50 75 L60 65" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <circle cx="70" cy="30" r="4" fill="#6EE7B7" />
+    <circle cx="20" cy="40" r="3" fill="#6EE7B7" />
+  </svg>
+);
+
 const FilterIcon = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full">
     <path d="M15 25 Q50 25 85 25 L55 60 V85 L45 85 V60 Z" fill="#EF4444" opacity="0.2" />
     <path d="M20 20 H80 L55 55 V80 L45 80 V55 Z" fill="#F87171" />
     <circle cx="75" cy="25" r="8" fill="#FCA5A5" />
     <path d="M35 35 H65" stroke="white" strokeWidth="4" strokeLinecap="round" opacity="0.6" />
-  </svg>
-);
-
-const PuzzleIcon = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full">
-    <path d="M30 30 H45 A10 10 0 1 1 55 30 H70 V45 A10 10 0 1 1 70 55 V70 H55 A10 10 0 1 0 45 70 H30 V55 A10 10 0 1 0 30 45 Z" fill="#8B5CF6" />
-    <circle cx="50" cy="50" r="15" fill="white" opacity="0.2" />
-    <rect x="48" y="42" width="4" height="16" rx="2" fill="white" />
-    <rect x="42" y="48" width="16" height="4" rx="2" fill="white" />
   </svg>
 );
 
@@ -94,12 +95,12 @@ export default function GFD() {
     {
       title: t.gfdFeature4Title,
       description: t.gfdFeature4Desc,
-      icon: FilterIcon
+      icon: DownloadDataIcon
     },
     {
       title: t.gfdFeature5Title,
       description: t.gfdFeature5Desc,
-      icon: PuzzleIcon
+      icon: FilterIcon
     },
     {
       title: t.gfdFeature6Title,
@@ -120,6 +121,7 @@ export default function GFD() {
       logo="https://lh3.googleusercontent.com/r77r2zRyYLfTAWvBLy1zELxTgpCpRziU48cfEexOCC31KvdnettoQ1U58Amvgj6kCErQjX2GGIwe6DYV9SBAG-J03w=s120"
       features={features}
       installSection={installSection}
+      privacyPolicyContent={t.gfdPrivacyPolicy}
     />
   );
 }

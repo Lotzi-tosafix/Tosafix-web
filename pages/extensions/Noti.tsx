@@ -21,6 +21,18 @@ const UnifiedInboxIcon = () => (
   </svg>
 );
 
+const InlineContentIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <rect x="20" y="15" width="60" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="2" />
+    <rect x="30" y="30" width="40" height="6" rx="3" fill="#CBD5E1" />
+    <rect x="30" y="45" width="30" height="6" rx="3" fill="#CBD5E1" />
+    <rect x="30" y="60" width="35" height="6" rx="3" fill="#CBD5E1" />
+    <circle cx="65" cy="65" r="14" fill="#3B82F6" opacity="0.9" />
+    <circle cx="63" cy="63" r="5" fill="none" stroke="white" strokeWidth="2" />
+    <line x1="67" y1="67" x2="72" y2="72" stroke="white" strokeWidth="3" strokeLinecap="round" />
+  </svg>
+);
+
 const CustomizationIcon = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full">
     <rect x="20" y="30" width="60" height="10" rx="5" fill="#E2E8F0" />
@@ -41,23 +53,14 @@ const FlexibleUIIcon = () => (
   </svg>
 );
 
-const WideSupportIcon = () => (
+const SmartAdditionIcon = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full">
-    <circle cx="50" cy="50" r="35" fill="none" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4" />
-    <circle cx="50" cy="50" r="12" fill="#3B82F6" />
-    <circle cx="50" cy="15" r="8" fill="#10B981" />
-    <circle cx="85" cy="50" r="8" fill="#F59E0B" />
-    <circle cx="50" cy="85" r="8" fill="#EF4444" />
-    <circle cx="15" cy="50" r="8" fill="#8B5CF6" />
-  </svg>
-);
-
-const PerformanceIcon = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full">
-    <path d="M20 80 Q50 10 80 80" fill="none" stroke="#E2E8F0" strokeWidth="8" strokeLinecap="round" />
-    <path d="M20 80 Q50 10 65 40" fill="none" stroke="#10B981" strokeWidth="8" strokeLinecap="round" />
-    <circle cx="50" cy="80" r="6" fill="#334155" />
-    <rect x="48" y="55" width="4" height="25" rx="2" fill="#334155" transform="rotate(-30 50 80)" />
+    <path d="M25 30 C25 15 40 15 50 15 C60 15 75 15 75 30 C75 45 60 45 50 45 C45 45 35 50 30 55 C32 50 30 45 25 40 C20 35 25 30 25 30 Z" fill="#E2E8F0" />
+    <path d="M35 50 C35 35 50 35 60 35 C70 35 85 35 85 50 C85 65 70 65 60 65 C55 65 45 70 40 75 C42 70 40 65 35 60 C30 55 35 50 35 50 Z" fill="#3B82F6" />
+    <rect x="58" y="44" width="4" height="12" rx="1" fill="white" />
+    <rect x="54" y="48" width="12" height="4" rx="1" fill="white" />
+    <path d="M75 20 L77 25 L82 27 L77 29 L75 34 L73 29 L68 27 L73 25 Z" fill="#F59E0B" />
+    <path d="M25 60 L26 63 L29 64 L26 65 L25 68 L24 65 L21 64 L24 63 Z" fill="#8B5CF6" />
   </svg>
 );
 
@@ -84,22 +87,22 @@ export default function NotiForum() {
     {
       title: t.notiFeatureCustomizationTitle,
       description: t.notiFeatureCustomizationDesc,
-      icon: CustomizationIcon
+      icon: InlineContentIcon
     },
     {
       title: t.notiFeatureFlexibleUITitle,
       description: t.notiFeatureFlexibleUIDesc,
-      icon: FlexibleUIIcon
+      icon: CustomizationIcon
     },
     {
       title: t.notiFeatureWideSupportTitle,
       description: t.notiFeatureWideSupportDesc,
-      icon: WideSupportIcon
+      icon: FlexibleUIIcon
     },
     {
       title: t.notiFeaturePerformanceTitle,
       description: t.notiFeaturePerformanceDesc,
-      icon: PerformanceIcon
+      icon: SmartAdditionIcon
     },
     {
       title: t.notiFeaturePrivacyTitle,

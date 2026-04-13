@@ -52,11 +52,11 @@ const RecentIcon = () => (
   </svg>
 );
 
-const AutoDetectIcon = () => (
+const DraftSyncIcon = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full">
-    <circle cx="50" cy="50" r="30" fill="#E2E8F0" />
-    <circle cx="50" cy="50" r="15" fill="#10B981" className="animate-pulse" />
-    <path d="M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50" stroke="#94A3B8" strokeWidth="4" strokeLinecap="round" />
+    <path d="M25 40 C 25 20, 75 20, 75 40 C 90 40, 90 70, 70 70 L 30 70 C 10 70, 10 40, 25 40 Z" fill="#E2E8F0" />
+    <path d="M40 55 L50 65 L60 55 M50 35 L50 65" stroke="#3B82F6" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M30 45 L20 35 M70 45 L80 35" stroke="#94A3B8" strokeWidth="4" strokeLinecap="round" />
   </svg>
 );
 
@@ -93,13 +93,13 @@ export default function NodeBBPlus() {
     {
       title: t.nodebbPlusFeature6Title,
       description: t.nodebbPlusFeature6Desc,
-      icon: AutoDetectIcon
+      icon: DraftSyncIcon
     }
   ];
 
   const installSection = {
-    description: t.nodebbPlusComingSoon,
-    chromeStoreUrl: '#', // Coming soon
+    description: t.notiInstallDesc,
+    chromeStoreUrl: 'https://chromewebstore.google.com/detail/pbmkhndepaehcbajogcbdfghmkeepphn?utm_source=item-share-cb',
   };
 
   return (

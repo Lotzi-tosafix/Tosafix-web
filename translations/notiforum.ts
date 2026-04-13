@@ -2,34 +2,34 @@
 export const notiforumTranslations = {
   he: {
     notiForumGridName: 'Noti',
-    notiForumGridDesc: 'תוסף למעקב אחר התראות בפורומים – חוסך זמן בכך שהוא מרכז עבורך התראות ממגוון פורומים, כך שלא תצטרך לבדוק כל אחד בנפרד.',
+    notiForumGridDesc: 'תוסף למעקב אחר התראות בפורומים – מרכז עבורכם התראות ממגוון פורומים, מאפשר צפייה מהירה בתוכן ישירות מהדפדפן וחוסך לכם זמן יקר.',
     notiForumName: 'NotiForum',
-    notiForumDesc: 'תוסף כרום מתקדם המיועד לפורומים מבוססי NodeBB ו-XenForo, המספק התראות בזמן אמת ישירות לדפדפן שלך.',
+    notiForumDesc: 'תוסף כרום מתקדם לפורומים מבוססי NodeBB ו-XenForo. קבלו התראות בזמן אמת, קראו פוסטים ישירות מהתוסף, והתאימו אישית את החוויה שלכם.',
     notiPageTitle: 'NotiForum',
-    notiPageSubtitle: 'כל ההתראות במקום אחד',
-    notiPageDescription: 'התוסף המהפכני שמרכז עבורך את כל ההתראות, ההודעות והעדכונים מכל הפורומים החרדיים במקום אחד נגיש ונוח. אל תפספס שום עדכון חשוב!',
-    notiFeaturesSectionTitle: 'תכונות מתקדמות',
-    notiFeaturesSectionSubtitle: 'כל מה שצריך לחווית גלישה מושלמת',
-    notiFeatureUnifiedInboxTitle: 'תיבת דואר מאוחדת',
-    notiFeatureUnifiedInboxDesc: 'צפייה בכל ההתראות מכל הפורומים במקום אחד מסודר.',
-    notiFeatureCustomizationTitle: 'התאמה אישית',
-    notiFeatureCustomizationDesc: 'בחר אילו פורומים להציג וקבל התראות רק על מה שמעניין אותך.',
-    notiFeatureFlexibleUITitle: 'ממשק גמיש',
-    notiFeatureFlexibleUIDesc: 'עיצוב מודרני ונוח עם אפשרות למצב כהה ובהיר.',
-    notiFeatureWideSupportTitle: 'תמיכה רחבה',
-    notiFeatureWideSupportDesc: 'תומך במגוון רחב של פורומים פופולריים.',
-    notiFeaturePerformanceTitle: 'ביצועים מעולים',
-    notiFeaturePerformanceDesc: 'קל משקל ומהיר, לא מעמיס על הדפדפן.',
-    notiFeaturePrivacyTitle: 'פרטיות מלאה',
-    notiFeaturePrivacyDesc: 'המידע שלך נשמר מקומית על המחשב בלבד.',
-    notiSupportSectionTitle: 'פורומים נתמכים',
-    notiSupportSectionSubtitle: 'אנו תומכים במגוון רחב של קהילות',
+    notiPageSubtitle: 'כל הפורומים שלך. תיבת התראות אחת.',
+    notiPageDescription: 'NotiForum הוא הפתרון המושלם שנועד לחסוך לכם זמן ולרכז עבורכם את כל ההתראות וההודעות הפרטיות במקום אחד, נגיש ומעוצב, ישירות מהדפדפן.',
+    notiFeaturesSectionTitle: 'תכונות',
+    notiFeaturesSectionSubtitle: 'כל מה שצריך כדי להישאר מעודכן, בלי מאמץ',
+    notiFeatureUnifiedInboxTitle: 'תיבת דואר נכנס מאוחדת',
+    notiFeatureUnifiedInboxDesc: 'קבלו את כל ההתראות וההודעות הפרטיות מכל הפורומים שלכם בפיד אחד מסודר. סוף סוף לא צריך לקפוץ בין טאבים!',
+    notiFeatureCustomizationTitle: 'צפייה מהירה בתוכן',
+    notiFeatureCustomizationDesc: 'קראו את תוכן הפוסטים וההודעות ישירות מתוך התוסף, בלי לפתוח כרטיסיות חדשות! כולל תמיכה בספוילרים ועיצוב מקורי.',
+    notiFeatureFlexibleUITitle: 'התאמה אישית מלאה',
+    notiFeatureFlexibleUIDesc: 'בחרו מבין ערכות נושא מרהיבות, עברו למצב כהה, והגדירו צליל ייחודי לכל פורום (כולל העלאת צלילים משלכם).',
+    notiFeatureWideSupportTitle: 'ממשק גמיש: Popup או סרגל צד',
+    notiFeatureWideSupportDesc: 'בחרו להציג את התוסף בחלון קופץ קלאסי, או קבעו אותו בסרגל הצד של הדפדפן לגישה מהירה ונוחה שעובדת תמיד.',
+    notiFeaturePerformanceTitle: 'הוספת פורומים חכמה',
+    notiFeaturePerformanceDesc: 'הוסיפו בקלות כל פורום מבוסס NodeBB או XenForo. התוסף יזהה אוטומטית את סוג הפורום וימשוך את הסמליל (Favicon) שלו!',
+    notiFeaturePrivacyTitle: 'פרטיות ואבטחה',
+    notiFeaturePrivacyDesc: 'כל המידע שלכם, כולל הגדרות וקבצים שהעליתם, נשמר באופן מקומי לחלוטין על המחשב שלכם. שום מידע אינו נשלח לשרתים חיצוניים.',
+    notiSupportSectionTitle: 'תמיכה רחבה וגמישות מלאה',
+    notiSupportSectionSubtitle: 'מרשימת ברירת המחדל ועד כל פורום שתוסיפו בעצמכם',
     andMore: 'ועוד...',
-    notiInstallSectionTitle: 'התקן עכשיו',
-    notiInstallSectionDesc: 'הצטרף לאלפי משתמשים שכבר נהנים מחווית גלישה משופרת.',
+    notiInstallSectionTitle: 'התקנה',
+    notiInstallSectionDesc: 'להתקנה מחנות התוספים Chrome',
     notiPrivacySectionTitle: 'מדיניות פרטיות',
     notiForumPrivacyPolicy: `מדיניות הפרטיות של תוסף "NotiForum"
-תאריך עדכון אחרון: 26 באוקטובר 2025
+תאריך עדכון אחרון: 13 באפריל 2026
 
 אנו, מפתחי "NotiForum" (להלן: "התוסף"), מחויבים לשמור על פרטיות המשתמשים שלנו. מדיניות פרטיות זו מסבירה כיצד אנו אוספים, משתמשים, מאחסנים ומגנים על המידע שלכם בעת שימוש בתוסף, המיועד לרכז, להציג ולנהל התראות מפורומים מבוססי NodeBB ו-XenForo.
 
@@ -49,10 +49,10 @@ export const notiforumTranslations = {
 צלילים מותאמים אישית: קבצי שמע שהעליתם כדי שישמשו כצלילי התראה.
 תוכן זה נשמר כטקסט (בפורמט Data URL) באמצעות chrome.storage.local והוא נשאר באופן בלעדי על המכשיר שלכם. אין לנו גישה לקבצים אלו והם לעולם אינם נשלחים מהמחשב שלכם.
 
-1.3. נתוני התראות וחיבור:
-תוכן ההתראות: טקסט, קישורים, ותאריכים של התראות והודעות פרטיות חדשות. מידע זה מאוחזר ישירות מהפורומים שהגדרתם.
+1.3. נתוני התראות, תוכן וחיבור:
+תוכן ההתראות והפוסטים: טקסט, קישורים, ותאריכים של התראות והודעות פרטיות חדשות. בעת שימוש בתכונת "צפייה מהירה בתוכן", התוסף שולף את תוכן הפוסט או ההודעה המלאים. מידע זה מאוחזר ישירות מהפורומים שהגדרתם.
 מצב החיבור: התוסף שומר באופן זמני את מצב החיבור לכל פורום (האם החיבור הצליח או נכשל) ואת תוכן ההתראות האחרון.
-מידע זה נשמר זמנית ב-chrome.storage.local כדי לנהל את תצוגת ההתראות ולזהות שינויים.
+מידע זה נשמר זמנית ב-chrome.storage.local וב-chrome.storage.session (למטמון קצר מועד) כדי לנהל את תצוגת ההתראות, לזהות שינויים ולשפר ביצועים.
 
 1.4. עוגיות אימות (Authentication Cookies):
 התוסף ניגש לעוגיות (Cookies) השייכות לדומיינים של הפורומים שהגדרתם. גישה זו חיונית כדי לבצע בקשות מאומתות בשמכם ולקבל את ההתראות הרלוונטיות.
@@ -87,34 +87,34 @@ export const notiforumTranslations = {
   },
   en: {
     notiForumGridName: 'Noti',
-    notiForumGridDesc: 'Extension for tracking forum notifications – saves time by centralizing notifications from various forums, so you don\'t have to check each one individually.',
+    notiForumGridDesc: 'A forum notification tracking extension – centralizes notifications from various forums, allows quick inline content viewing, and saves you precious time.',
     notiForumName: 'NotiForum',
-    notiForumDesc: 'Advanced Chrome extension for NodeBB and XenForo based forums, providing real-time notifications directly to your browser.',
+    notiForumDesc: 'Advanced Chrome extension for NodeBB and XenForo forums. Get real-time notifications, read posts directly from the extension, and customize your experience.',
     notiPageTitle: 'NotiForum',
-    notiPageSubtitle: 'All notifications in one place',
-    notiPageDescription: 'The revolutionary extension that centralizes all your notifications, messages, and updates from Haredi forums into one accessible and convenient window. Never miss an important update!',
-    notiFeaturesSectionTitle: 'Advanced Features',
-    notiFeaturesSectionSubtitle: 'Everything you need for a perfect browsing experience',
+    notiPageSubtitle: 'All your forums. One notification box.',
+    notiPageDescription: 'NotiForum is the perfect solution designed to save you time and centralize all your notifications and private messages in one place, accessible and designed, directly from the browser.',
+    notiFeaturesSectionTitle: 'Features',
+    notiFeaturesSectionSubtitle: 'Everything you need to stay updated, effortlessly',
     notiFeatureUnifiedInboxTitle: 'Unified Inbox',
-    notiFeatureUnifiedInboxDesc: 'View all notifications from all forums in one organized place.',
-    notiFeatureCustomizationTitle: 'Customization',
-    notiFeatureCustomizationDesc: 'Choose which forums to display and get notifications only for what interests you.',
-    notiFeatureFlexibleUITitle: 'Flexible UI',
-    notiFeatureFlexibleUIDesc: 'Modern and convenient design with dark and light mode options.',
-    notiFeatureWideSupportTitle: 'Wide Support',
-    notiFeatureWideSupportDesc: 'Supports a wide range of popular forums.',
-    notiFeaturePerformanceTitle: 'Excellent Performance',
-    notiFeaturePerformanceDesc: 'Lightweight and fast, does not burden the browser.',
-    notiFeaturePrivacyTitle: 'Full Privacy',
-    notiFeaturePrivacyDesc: 'Your data is stored locally on your computer only.',
-    notiSupportSectionTitle: 'Supported Forums',
-    notiSupportSectionSubtitle: 'We support a wide range of communities',
+    notiFeatureUnifiedInboxDesc: 'Get all notifications and private messages from all your forums in one organized feed. Finally, no need to jump between tabs!',
+    notiFeatureCustomizationTitle: 'Inline Content Viewer',
+    notiFeatureCustomizationDesc: 'Read post and message content directly from the extension, without opening new tabs! Includes support for spoilers and original formatting.',
+    notiFeatureFlexibleUITitle: 'Full Customization',
+    notiFeatureFlexibleUIDesc: 'Choose from stunning themes, switch to dark mode, and set a unique sound for each forum (including uploading your own sounds).',
+    notiFeatureWideSupportTitle: 'Flexible Interface: Popup or Sidebar',
+    notiFeatureWideSupportDesc: 'Choose to display the extension in a classic popup window, or pin it to the browser sidebar for quick and convenient access that always works.',
+    notiFeaturePerformanceTitle: 'Smart Forum Addition',
+    notiFeaturePerformanceDesc: 'Easily add any NodeBB or XenForo based forum. The extension will automatically detect the forum type and fetch its Favicon!',
+    notiFeaturePrivacyTitle: 'Privacy & Security',
+    notiFeaturePrivacyDesc: 'All your data, including settings and uploaded files, is stored completely locally on your computer. No data is sent to external servers.',
+    notiSupportSectionTitle: 'Wide Support & Full Flexibility',
+    notiSupportSectionSubtitle: 'From the default list to any forum you add yourself',
     andMore: 'And more...',
-    notiInstallSectionTitle: 'Install Now',
-    notiInstallSectionDesc: 'Join thousands of users who are already enjoying an improved browsing experience.',
+    notiInstallSectionTitle: 'Installation',
+    notiInstallSectionDesc: 'Install from the Chrome Web Store',
     notiPrivacySectionTitle: 'Privacy Policy',
     notiForumPrivacyPolicy: `NotiForum Extension Privacy Policy
-Last Updated: October 26, 2025
+Last Updated: April 13, 2026
 
 We, the developers of "NotiForum" (hereinafter: "the Extension"), are committed to maintaining the privacy of our users. This privacy policy explains how we collect, use, store, and protect your information when using the Extension, which is designed to centralize, display, and manage notifications from NodeBB and XenForo based forums.
 
@@ -134,10 +134,10 @@ Custom icons: Image files you uploaded to represent added forums.
 Custom sounds: Audio files you uploaded to be used as notification sounds.
 This content is saved as text (in Data URL format) using chrome.storage.local and remains exclusively on your device. We do not have access to these files, and they are never sent from your computer.
 
-1.3. Notification and Connection Data:
-Notification content: Text, links, and dates of new notifications and private messages. This information is retrieved directly from the forums you have configured.
+1.3. Notification, Content, and Connection Data:
+Notification and post content: Text, links, and dates of new notifications and private messages. When using the "Inline Content Viewer" feature, the extension fetches the full post or message content. This information is retrieved directly from the forums you have configured.
 Connection status: The extension temporarily saves the connection status for each forum (success/failure) and the last notification content.
-This information is stored temporarily in chrome.storage.local to manage the notification display and identify changes.
+This information is stored temporarily in chrome.storage.local and chrome.storage.session (for short-term caching) to manage the notification display, identify changes, and improve performance.
 
 1.4. Authentication Cookies:
 The extension accesses cookies belonging to the domains of the forums you have configured. This access is essential to perform authenticated requests on your behalf and receive relevant notifications.
