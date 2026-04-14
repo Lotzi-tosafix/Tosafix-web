@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Lock, ExternalLink, Copy, FileDown } from 'lucide-react';
+import { Download, Lock, ExternalLink, Copy, FileDown, Star, Users } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
@@ -35,6 +35,11 @@ interface ExtensionLayoutProps {
   beforeFeaturesContent?: React.ReactNode;
   children?: React.ReactNode;
 }
+
+const extractExtensionId = (url: string) => {
+  const match = url.match(/\/([a-z]{32})(?:\?|$|\/)/);
+  return match ? match[1] : null;
+};
 
 const PrivacyPolicyDisplay = ({ content }: { content: string }) => {
     const { language, isHebrew } = useLanguage();
@@ -95,6 +100,25 @@ export default function ExtensionLayout({
 }: ExtensionLayoutProps) {
   const { language } = useLanguage();
   const t = translations[language];
+  const [stats, setStats] = useState<{ rating: string | null, users: string | null }>({ rating: null, users: null });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      const id = extractExtensionId(installSection.chromeStoreUrl);
+      if (id) {
+        try {
+          const res = await fetch(`/api/chrome-store?id=${id}`);
+          if (res.ok) {
+            const data = await res.json();
+            setStats({ rating: data.rating, users: data.users });
+          }
+        } catch (error) {
+          console.error('Failed to fetch extension stats:', error);
+        }
+      }
+    };
+    fetchStats();
+  }, [installSection.chromeStoreUrl]);
 
   const containerVariants = {
     hidden: {},
@@ -130,8 +154,36 @@ export default function ExtensionLayout({
             <div className="inline-block px-3 py-0.5 rounded-full bg-white/30 dark:bg-white/10 border border-white/20 backdrop-blur-sm mb-4">
                <p className="text-xs font-bold text-primary uppercase tracking-widest">{t.heroTagline}</p>
             </div>
-            <div className="max-w-2xl mx-auto glass-card p-4 rounded-2xl border border-white/40 shadow-sm">
+            <div className="max-w-2xl mx-auto glass-card p-4 rounded-2xl border border-white/40 shadow-sm mb-8">
                 <p className="text-base md:text-lg text-text-dark/80 dark:text-text-light/80 font-light leading-relaxed">{description}</p>
+            </div>
+            
+            <div className="flex flex-col items-center justify-center gap-4">
+                <button 
+                    onClick={scrollToInstallation}
+                    className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full shadow-lg hover:shadow-primary/30 transition-all transform hover:-translate-y-1"
+                >
+                    <Download className="me-2 h-5 w-5" />
+                    {t.installNow || 'התקן עכשיו'}
+                </button>
+                
+                {(stats.rating || stats.users) && (
+                    <div className="flex items-center gap-4 text-sm font-medium text-text-dark/70 dark:text-text-light/70 bg-white/40 dark:bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/20">
+                        {stats.rating && (
+                            <div className="flex items-center gap-1">
+                                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                                <span>{stats.rating}</span>
+                            </div>
+                        )}
+                        {stats.rating && stats.users && <span className="w-1 h-1 rounded-full bg-current opacity-50"></span>}
+                        {stats.users && (
+                            <div className="flex items-center gap-1">
+                                <Users className="w-4 h-4" />
+                                <span>{stats.users}</span>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
           </motion.div>
         </div>

@@ -47,6 +47,7 @@ export const commonTranslations = {
     copyPolicyTooltip: 'העתק מדיניות',
     downloadPolicyTooltip: 'הורד מדיניות כקובץ txt.',
     supportMe: 'תמכו בי',
+    installNow: 'התקן עכשיו',
   },
   en: {
     home: 'Home',
@@ -95,5 +96,6 @@ export const commonTranslations = {
     copyPolicyTooltip: 'Copy Policy',
     downloadPolicyTooltip: 'Download Policy as .txt',
     supportMe: 'Support Me',
+    installNow: 'Install Now',
   }
 };

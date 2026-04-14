@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star, Users } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
@@ -11,15 +11,40 @@ export default function ExtensionsGrid() {
   const t = translations[language];
 
   const extensionList = [
-    { nameKey: 'notiForumName', descKey: 'notiForumGridDesc', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png', gradient: 'from-primary to-secondary' },
-    { nameKey: 'nodebbPlusName', descKey: 'nodebbPlusGridDesc', path: '/extensions/nodebbplus', icon: 'https://lh3.googleusercontent.com/PA9OHC7cPkSpqzJXazStpEvOTHmHLt8Nq3EtZ-1LKbaTZoPset5M3NRizV7VwJKTJ4jtZmCVdfn6425RNUR08dkmSw=s120', gradient: 'from-emerald-500 to-teal-500' },
-    { nameKey: 'yaminaName', descKey: 'yaminaGridDesc', path: '/extensions/yamina', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_67e4106bd03f6.png', gradient: 'from-secondary to-accent' },
-    { nameKey: 'gfdName', descKey: 'gfdGridDesc', path: '/extensions/gfd', icon: 'https://lh3.googleusercontent.com/r77r2zRyYLfTAWvBLy1zELxTgpCpRziU48cfEexOCC31KvdnettoQ1U58Amvgj6kCErQjX2GGIwe6DYV9SBAG-J03w=s120', gradient: 'from-blue-600 to-indigo-600' },
-    { nameKey: 'netSkinName', descKey: 'netSkinGridDesc', path: '/extensions/netskin', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_68ab2c12bf824.png', gradient: 'from-accent to-primary' },
-    { nameKey: 'hebrewDateName', descKey: 'hebrewDateGridDesc', path: '/extensions/hebrewdate', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806ed720e298.png', gradient: 'from-primary to-secondary' },
-    { nameKey: 'myEmojiName', descKey: 'myEmojiGridDesc', path: '/extensions/myemoji', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6810cd042475f.png', gradient: 'from-secondary to-accent' },
-    { nameKey: 'edgeOpenerName', descKey: 'edgeOpenerGridDesc', path: '/extensions/edgeopener', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806edcc12daa.png', gradient: 'from-accent to-primary' },
+    { nameKey: 'notiForumName', descKey: 'notiForumGridDesc', path: '/extensions/notiforum', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_690c9b1f6bd80.png', gradient: 'from-primary to-secondary', chromeStoreId: 'hgceibdlnoiclpkmgccijjgdkocflkfj' },
+    { nameKey: 'nodebbPlusName', descKey: 'nodebbPlusGridDesc', path: '/extensions/nodebbplus', icon: 'https://lh3.googleusercontent.com/PA9OHC7cPkSpqzJXazStpEvOTHmHLt8Nq3EtZ-1LKbaTZoPset5M3NRizV7VwJKTJ4jtZmCVdfn6425RNUR08dkmSw=s120', gradient: 'from-emerald-500 to-teal-500', chromeStoreId: 'pbmkhndepaehcbajogcbdfghmkeepphn' },
+    { nameKey: 'yaminaName', descKey: 'yaminaGridDesc', path: '/extensions/yamina', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_67e4106bd03f6.png', gradient: 'from-secondary to-accent', chromeStoreId: 'llijnocckifjnjnjkndeabebncjgnlmi' },
+    { nameKey: 'gfdName', descKey: 'gfdGridDesc', path: '/extensions/gfd', icon: 'https://lh3.googleusercontent.com/r77r2zRyYLfTAWvBLy1zELxTgpCpRziU48cfEexOCC31KvdnettoQ1U58Amvgj6kCErQjX2GGIwe6DYV9SBAG-J03w=s120', gradient: 'from-blue-600 to-indigo-600', chromeStoreId: 'apiieghcagbhlodhfijaepgaonmflhhp' },
+    { nameKey: 'netSkinName', descKey: 'netSkinGridDesc', path: '/extensions/netskin', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_68ab2c12bf824.png', gradient: 'from-accent to-primary', chromeStoreId: 'kkpdhfojmlegbgddnigfehpmnjogaail' },
+    { nameKey: 'hebrewDateName', descKey: 'hebrewDateGridDesc', path: '/extensions/hebrewdate', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806ed720e298.png', gradient: 'from-primary to-secondary', chromeStoreId: 'hbpdljfncgnolomebnkannnaijhndamm' },
+    { nameKey: 'myEmojiName', descKey: 'myEmojiGridDesc', path: '/extensions/myemoji', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6810cd042475f.png', gradient: 'from-secondary to-accent', chromeStoreId: 'haipomfdalnimjgfkkmoekednmlgcieh' },
+    { nameKey: 'edgeOpenerName', descKey: 'edgeOpenerGridDesc', path: '/extensions/edgeopener', icon: 'https://files.cdn-files-a.com/uploads/10483955/400_6806edcc12daa.png', gradient: 'from-accent to-primary', chromeStoreId: 'lapacahlnhgpkkjjpfcfklopgcdaedhh' },
   ];
+
+  const [stats, setStats] = useState<Record<string, { rating: string | null, users: string | null }>>({});
+
+  useEffect(() => {
+    const fetchAllStats = async () => {
+      const newStats: Record<string, { rating: string | null, users: string | null }> = {};
+      await Promise.all(
+        extensionList.map(async (ext) => {
+          if (ext.chromeStoreId) {
+            try {
+              const res = await fetch(`/api/chrome-store?id=${ext.chromeStoreId}`);
+              if (res.ok) {
+                const data = await res.json();
+                newStats[ext.chromeStoreId] = { rating: data.rating, users: data.users };
+              }
+            } catch (error) {
+              console.error(`Failed to fetch stats for ${ext.chromeStoreId}:`, error);
+            }
+          }
+        })
+      );
+      setStats(newStats);
+    };
+    fetchAllStats();
+  }, []);
 
   const containerVariants: Variants = {
     hidden: {},
@@ -80,6 +105,24 @@ export default function ExtensionsGrid() {
                     <h3 className="text-2xl font-bold mb-3 text-text-dark dark:text-text-light group-hover:text-primary transition-colors font-rubik">
                         {t[ext.nameKey as keyof typeof t] as string}
                     </h3>
+                    
+                    {stats[ext.chromeStoreId] && (stats[ext.chromeStoreId].rating || stats[ext.chromeStoreId].users) && (
+                        <div className="flex items-center gap-3 text-xs font-medium text-text-dark/60 dark:text-text-light/60 mb-4">
+                            {stats[ext.chromeStoreId].rating && (
+                                <div className="flex items-center gap-1">
+                                    <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                                    <span>{stats[ext.chromeStoreId].rating}</span>
+                                </div>
+                            )}
+                            {stats[ext.chromeStoreId].rating && stats[ext.chromeStoreId].users && <span className="w-1 h-1 rounded-full bg-current opacity-30"></span>}
+                            {stats[ext.chromeStoreId].users && (
+                                <div className="flex items-center gap-1">
+                                    <Users className="w-3.5 h-3.5" />
+                                    <span>{stats[ext.chromeStoreId].users}</span>
+                                </div>
+                            )}
+                        </div>
+                    )}
                     
                     <p className="text-text-dark/70 dark:text-text-light/70 mb-8 leading-relaxed flex-grow font-light">
                         {t[ext.descKey as keyof typeof t] as string}
