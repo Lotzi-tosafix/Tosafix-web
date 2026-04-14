@@ -1,12 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ChevronDown, Download, Star, Zap, Shield, Github } from 'lucide-react';
+import { ChevronDown, Download, Star, Zap, Shield, Github, Users } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 
 export default function HeroSection() {
   const { language } = useLanguage();
   const t = translations[language];
+  const [totalUsers, setTotalUsers] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchTotalUsers = async () => {
+      const extensionIds = [
+        'hgceibdlnoiclpkmgccijjgdkocflkfj', // Noti
+        'pbmkhndepaehcbajogcbdfghmkeepphn', // NodeBB Plus
+        'llijnocckifjnjnjkndeabebncjgnlmi', // Yamina
+        'apiieghcagbhlodhfijaepgaonmflhhp', // GFD
+        'kkpdhfojmlegbgddnigfehpmnjogaail', // NetSkin
+        'hbpdljfncgnolomebnkannnaijhndamm', // Hebrew Date
+        'haipomfdalnimjgfkkmoekednmlgcieh', // MyEmoji
+        'lapacahlnhgpkkjjpfcfklopgcdaedhh', // Edge Opener
+      ];
+
+      let sum = 0;
+      await Promise.all(
+        extensionIds.map(async (id) => {
+          try {
+            const res = await fetch(`/api/chrome-store?id=${id}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.users) {
+                // Parse the users string (e.g., "89", "1,000+", "10,000+")
+                const numStr = data.users.replace(/[^0-9]/g, '');
+                if (numStr) {
+                  sum += parseInt(numStr, 10);
+                }
+              }
+            }
+          } catch (error) {
+            console.error(`Failed to fetch stats for ${id}:`, error);
+          }
+        })
+      );
+      if (sum > 0) {
+        setTotalUsers(sum);
+      }
+    };
+
+    fetchTotalUsers();
+  }, []);
 
   const scrollToExtensions = () => {
     document.getElementById('extensions-grid')?.scrollIntoView({ behavior: 'smooth' });
@@ -105,6 +147,20 @@ export default function HeroSection() {
                         <h3 className="text-3xl font-bold text-text-dark dark:text-white mb-2">{t.siteTitle}</h3>
                         <div className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
                         <p className="text-primary font-medium mt-4">{t.chromeExtensionsHub}</p>
+                        
+                        {totalUsers && (
+                            <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="mt-6 flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 dark:border-white/5 shadow-lg"
+                            >
+                                <Users className="w-4 h-4 text-primary" />
+                                <span className="text-sm font-bold text-text-dark dark:text-text-light">
+                                    {language === 'he' ? `מעל ${totalUsers.toLocaleString()} משתמשים מרוצים` : `Over ${totalUsers.toLocaleString()} satisfied users`}
+                                </span>
+                            </motion.div>
+                        )}
                     </div>
 
                     {/* Floating Elements */}

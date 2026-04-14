@@ -38,8 +38,8 @@ export default async function handler(request, response) {
       }
     }
 
-    // Cache the result for 1 hour to avoid rate limits
-    response.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+    // Cache the result for 24 hours to avoid rate limits
+    response.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
 
     return response.status(200).json({
       rating,

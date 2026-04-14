@@ -93,36 +93,35 @@ export default function ExtensionsGrid() {
                     {/* Decorative Circle */}
                     <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-2xl pointer-events-none"></div>
 
-                    {/* Icon Container */}
-                    <div className="mb-8 relative">
+                    {/* Icon Container & Stats */}
+                    <div className="mb-8 relative flex items-start justify-between">
                         <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${ext.gradient} p-[2px] shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all duration-500`}>
                              <div className="w-full h-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-[14px] flex items-center justify-center">
                                  <img src={ext.icon} alt={t[ext.nameKey as keyof typeof t] as string} className="w-12 h-12 object-contain drop-shadow-md" />
                              </div>
                         </div>
+                        
+                        {stats[ext.chromeStoreId] && (stats[ext.chromeStoreId].rating || stats[ext.chromeStoreId].users) && (
+                            <div className="flex flex-col items-end gap-1.5 text-xs font-medium text-text-dark/60 dark:text-text-light/60 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 dark:border-white/5">
+                                {stats[ext.chromeStoreId].rating && (
+                                    <div className="flex items-center gap-1.5">
+                                        <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                                        <span>{stats[ext.chromeStoreId].rating}</span>
+                                    </div>
+                                )}
+                                {stats[ext.chromeStoreId].users && (
+                                    <div className="flex items-center gap-1.5">
+                                        <Users className="w-3.5 h-3.5 text-primary" />
+                                        <span>{stats[ext.chromeStoreId].users}</span>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     <h3 className="text-2xl font-bold mb-3 text-text-dark dark:text-text-light group-hover:text-primary transition-colors font-rubik">
                         {t[ext.nameKey as keyof typeof t] as string}
                     </h3>
-                    
-                    {stats[ext.chromeStoreId] && (stats[ext.chromeStoreId].rating || stats[ext.chromeStoreId].users) && (
-                        <div className="flex items-center gap-3 text-xs font-medium text-text-dark/60 dark:text-text-light/60 mb-4">
-                            {stats[ext.chromeStoreId].rating && (
-                                <div className="flex items-center gap-1">
-                                    <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
-                                    <span>{stats[ext.chromeStoreId].rating}</span>
-                                </div>
-                            )}
-                            {stats[ext.chromeStoreId].rating && stats[ext.chromeStoreId].users && <span className="w-1 h-1 rounded-full bg-current opacity-30"></span>}
-                            {stats[ext.chromeStoreId].users && (
-                                <div className="flex items-center gap-1">
-                                    <Users className="w-3.5 h-3.5" />
-                                    <span>{stats[ext.chromeStoreId].users}</span>
-                                </div>
-                            )}
-                        </div>
-                    )}
                     
                     <p className="text-text-dark/70 dark:text-text-light/70 mb-8 leading-relaxed flex-grow font-light">
                         {t[ext.descKey as keyof typeof t] as string}

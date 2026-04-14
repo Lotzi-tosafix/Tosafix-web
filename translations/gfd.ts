@@ -2,7 +2,7 @@
 export const gfdTranslations = {
   he: {
     gfdGridDesc: 'הופך את דפי ההורדה ב-GitHub לממשק כרטיסיות נקי, מעוצב וידידותי. מזהה את המכשיר שלך ומסדר את הקבצים בהתאם.',
-    gfdName: 'GitHub Friendly Downloads',
+    gfdName: 'GFD',
     gfdShortName: 'GFD',
     gfdDesc: 'חווית הורדה חדשה ב-GitHub! התוסף משדרג את רשימת הקבצים המבולגנת בדפי ה-Releases של גיטהאב לממשק כרטיסיות מודרני, מאורגן ונוח להפליא. הוא מזהה אוטומטית את מערכת ההפעלה שלך, מסווג קבצים (התקנה, נייד, קוד מקור) ומציג רק את מה שחשוב לך באמת.',
     gfdFeature1Title: 'ממשק כרטיסיות מודרני',
@@ -45,7 +45,7 @@ export const gfdTranslations = {
   },
   en: {
     gfdGridDesc: 'Transforms GitHub release pages into a clean, organized, and user-friendly card interface. Auto-detects your OS.',
-    gfdName: 'GitHub Friendly Downloads',
+    gfdName: 'GFD',
     gfdShortName: 'GFD',
     gfdDesc: 'A new download experience on GitHub! This extension upgrades the cluttered list of files on GitHub Release pages into a modern, organized, and incredibly convenient card interface. It automatically detects your operating system, categorizes files (installer, portable, source code), and shows you only what really matters.',
     gfdFeature1Title: 'Modern Card Interface',
