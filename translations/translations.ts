@@ -18,6 +18,7 @@ import { privacyPageTranslations } from './privacy_page';
 import { termsPageTranslations } from './terms_page';
 import { gfdTranslations } from './gfd';
 import { nodebbPlusTranslations } from './nodebb_plus';
+import { notFoundTranslations } from './not_found';
 
 export const translations = {
   he: {
@@ -40,6 +41,7 @@ export const translations = {
     ...termsPageTranslations.he,
     ...gfdTranslations.he,
     ...nodebbPlusTranslations.he,
+    ...notFoundTranslations.he,
   },
   en: {
     ...commonTranslations.en,
@@ -61,5 +63,6 @@ export const translations = {
     ...termsPageTranslations.en,
     ...gfdTranslations.en,
     ...nodebbPlusTranslations.en,
+    ...notFoundTranslations.en,
   }
 };
