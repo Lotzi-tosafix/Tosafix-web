@@ -105,7 +105,6 @@ export default function AboutSection() {
                    </div>
                    <div className="flex flex-col">
                        <span className="text-lg font-bold text-text-dark dark:text-text-light">{t.activeExtensions}</span>
-                       <span className="text-sm text-text-dark/60 dark:text-text-light/60">Chrome Web Store</span>
                    </div>
                 </div>
 
@@ -116,12 +115,17 @@ export default function AboutSection() {
                         transition={{ delay: 0.5 }}
                         className="inline-flex items-center gap-4 p-2 pr-6 rounded-full glass border border-white/40"
                     >
-                       <div className="w-16 h-16 rounded-full bg-gradient-to-r from-accent to-primary flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                       <div className="relative group w-16 h-16 rounded-full bg-gradient-to-r from-accent to-primary flex items-center justify-center text-white font-bold text-xl shadow-lg cursor-help">
                            {totalUsers >= 1000 ? `${(totalUsers / 1000).toFixed(1).replace('.0', '')}K+` : `${totalUsers}+`}
+                           
+                           {/* Tooltip */}
+                           <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-xl z-50">
+                               {totalUsers.toLocaleString()}
+                               <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 dark:bg-white rotate-45"></div>
+                           </div>
                        </div>
                        <div className="flex flex-col">
                            <span className="text-lg font-bold text-text-dark dark:text-text-light">{t.satisfiedUsers}</span>
-                           <span className="text-sm text-text-dark/60 dark:text-text-light/60">Chrome Web Store</span>
                        </div>
                     </motion.div>
                 )}
