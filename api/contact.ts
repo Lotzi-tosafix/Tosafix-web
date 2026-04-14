@@ -11,6 +11,22 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ error: 'נא למלא את כל שדות החובה' });
   }
 
+  // Escape HTML helper
+  const escapeHtml = (unsafe: string) => {
+    return (unsafe || '').toString()
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+  };
+
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safePhone = escapeHtml(phone);
+  const safeSubject = escapeHtml(subject);
+  const safeMessage = escapeHtml(message);
+
   // Normalizing variables to prevent case-sensitivity issues with Resend
   const RESEND_API_KEY = process.env.RESEND_API_KEY?.trim();
   const CONTACT_EMAIL = process.env.CONTACT_EMAIL?.trim().toLowerCase();
@@ -30,18 +46,18 @@ export default async function handler(req: any, res: any) {
       body: JSON.stringify({
         from: 'Tosafix Contact <onboarding@resend.dev>',
         to: [CONTACT_EMAIL],
-        subject: `תוספיקס - ${subject}`,
-        reply_to: email,
+        subject: `תוספיקס - ${safeSubject}`,
+        reply_to: safeEmail,
         html: `
           <div dir="rtl" style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-width: 600px;">
             <h2 style="color: #3B82F6; border-bottom: 2px solid #3B82F6; padding-bottom: 10px;">פנייה חדשה מהאתר</h2>
-            <p><strong>שם השולח:</strong> ${name}</p>
-            <p><strong>אימייל לחזרה:</strong> ${email}</p>
-            <p><strong>טלפון:</strong> ${phone || 'לא צוין'}</p>
-            <p><strong>נושא:</strong> ${subject}</p>
+            <p><strong>שם השולח:</strong> ${safeName}</p>
+            <p><strong>אימייל לחזרה:</strong> ${safeEmail}</p>
+            <p><strong>טלפון:</strong> ${safePhone || 'לא צוין'}</p>
+            <p><strong>נושא:</strong> ${safeSubject}</p>
             <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px; border: 1px solid #ddd;">
               <p><strong>תוכן ההודעה:</strong></p>
-              <p style="white-space: pre-wrap;">${message}</p>
+              <p style="white-space: pre-wrap;">${safeMessage}</p>
             </div>
             <hr style="margin-top: 30px; border: 0; border-top: 1px solid #eee;" />
             <p style="font-size: 12px; color: #999; text-align: center;">הודעה זו נשלחה אוטומטית ממערכת תוספיקס. לחיצה על "השב" בג'ימייל תפתח מענה ישיר למשתמש.</p>

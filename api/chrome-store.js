@@ -1,8 +1,8 @@
 export default async function handler(request, response) {
   const { id } = request.query;
 
-  if (!id) {
-    return response.status(400).json({ error: 'Extension ID is required' });
+  if (!id || typeof id !== 'string' || !/^[a-p]{32}$/.test(id)) {
+    return response.status(400).json({ error: 'Invalid Extension ID' });
   }
 
   try {
