@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Users, Clock, Shield, Zap } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -7,6 +7,47 @@ import { translations } from '../../translations/translations';
 export default function AboutSection() {
   const { language } = useLanguage();
   const t = translations[language];
+  const [totalUsers, setTotalUsers] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchTotalUsers = async () => {
+      const extensionIds = [
+        'hgceibdlnoiclpkmgccijjgdkocflkfj', // Noti
+        'pbmkhndepaehcbajogcbdfghmkeepphn', // NodeBB Plus
+        'llijnocckifjnjnjkndeabebncjgnlmi', // Yamina
+        'apiieghcagbhlodhfijaepgaonmflhhp', // GFD
+        'kkpdhfojmlegbgddnigfehpmnjogaail', // NetSkin
+        'hbpdljfncgnolomebnkannnaijhndamm', // Hebrew Date
+        'haipomfdalnimjgfkkmoekednmlgcieh', // MyEmoji
+        'lapacahlnhgpkkjjpfcfklopgcdaedhh', // Edge Opener
+      ];
+
+      let sum = 0;
+      await Promise.all(
+        extensionIds.map(async (id) => {
+          try {
+            const res = await fetch(`/api/chrome-store?id=${id}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.users) {
+                const numStr = data.users.replace(/[^0-9]/g, '');
+                if (numStr) {
+                  sum += parseInt(numStr, 10);
+                }
+              }
+            }
+          } catch (error) {
+            console.error(`Failed to fetch stats for ${id}:`, error);
+          }
+        })
+      );
+      if (sum > 0) {
+        setTotalUsers(sum);
+      }
+    };
+
+    fetchTotalUsers();
+  }, []);
 
   const features = [
     { icon: Users, title: t.userFocused, description: t.userFocusedDesc, color: 'text-blue-500', bg: 'bg-blue-500/10' },
@@ -57,14 +98,33 @@ export default function AboutSection() {
               {t.aboutText}
             </p>
             
-            <div className="inline-flex items-center gap-4 p-2 pr-6 rounded-full glass border border-white/40">
-               <div className="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-2xl shadow-lg">
-                   6+
-               </div>
-               <div className="flex flex-col">
-                   <span className="text-lg font-bold text-text-dark dark:text-text-light">{t.activeExtensions}</span>
-                   <span className="text-sm text-text-dark/60 dark:text-text-light/60">Chrome Web Store</span>
-               </div>
+            <div className="flex flex-wrap items-center gap-6">
+                <div className="inline-flex items-center gap-4 p-2 pr-6 rounded-full glass border border-white/40">
+                   <div className="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                       8+
+                   </div>
+                   <div className="flex flex-col">
+                       <span className="text-lg font-bold text-text-dark dark:text-text-light">{t.activeExtensions}</span>
+                       <span className="text-sm text-text-dark/60 dark:text-text-light/60">Chrome Web Store</span>
+                   </div>
+                </div>
+
+                {totalUsers && (
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="inline-flex items-center gap-4 p-2 pr-6 rounded-full glass border border-white/40"
+                    >
+                       <div className="w-16 h-16 rounded-full bg-gradient-to-r from-accent to-primary flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                           {totalUsers >= 1000 ? `${(totalUsers / 1000).toFixed(1).replace('.0', '')}K+` : `${totalUsers}+`}
+                       </div>
+                       <div className="flex flex-col">
+                           <span className="text-lg font-bold text-text-dark dark:text-text-light">{t.satisfiedUsers}</span>
+                           <span className="text-sm text-text-dark/60 dark:text-text-light/60">Chrome Web Store</span>
+                       </div>
+                    </motion.div>
+                )}
             </div>
           </motion.div>
 
