@@ -28,9 +28,10 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Construct search data based on current language
-  const searchData: SearchResult[] = [
+    const searchData: SearchResult[] = [
     { title: t.home, description: t.heroSubtitle, path: '/', category: t.menu },
     { title: t.nosafix, description: t.nosafixGridDesc, path: '/nosafix', category: t.menu },
+    { title: t.scripfixTitle, description: t.scripfixSubtitle, path: '/scripfix', category: t.menu },
     { title: t.contact, description: t.contactSubtitle, path: '/contact', category: t.menu },
     { title: t.developers, description: t.devIntro, path: '/developers', category: t.menu },
     

@@ -122,6 +122,7 @@ export default function GFD() {
       features={features}
       installSection={installSection}
       privacyPolicyContent={t.gfdPrivacyPolicy}
+      scriptPageUrl="/scripfix"
     />
   );
 }

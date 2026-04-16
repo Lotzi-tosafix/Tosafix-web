@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Lock, ExternalLink, Copy, FileDown, Star, Users } from 'lucide-react';
+import { Download, Lock, ExternalLink, Copy, FileDown, Star, Users, Terminal } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
+import { Link } from 'react-router-dom';
 
 interface Feature {
   title: string;
@@ -33,6 +34,7 @@ interface ExtensionLayoutProps {
   privacyPolicyContent?: string;
   supportedForums?: SupportedForum[];
   beforeFeaturesContent?: React.ReactNode;
+  scriptPageUrl?: string;
   children?: React.ReactNode;
 }
 
@@ -96,6 +98,7 @@ export default function ExtensionLayout({
   privacyPolicyContent,
   supportedForums,
   beforeFeaturesContent,
+  scriptPageUrl,
   children
 }: ExtensionLayoutProps) {
   const { language } = useLanguage();
@@ -158,7 +161,7 @@ export default function ExtensionLayout({
                 <p className="text-base md:text-lg text-text-dark/80 dark:text-text-light/80 font-light leading-relaxed">{description}</p>
             </div>
             
-            <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button 
                     onClick={scrollToInstallation}
                     className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full shadow-lg hover:shadow-primary/30 transition-all transform hover:-translate-y-1"
@@ -166,6 +169,16 @@ export default function ExtensionLayout({
                     <Download className="me-2 h-5 w-5" />
                     {t.installNow || 'התקן עכשיו'}
                 </button>
+                
+                {scriptPageUrl && (
+                    <Link 
+                        to={scriptPageUrl}
+                        className="inline-flex items-center justify-center px-8 py-3 bg-white/50 dark:bg-white/10 text-text-dark dark:text-text-light border border-white/20 dark:border-gray-700 font-bold rounded-full shadow-lg hover:bg-white/80 dark:hover:bg-white/20 transition-all transform hover:-translate-y-1"
+                    >
+                        <Terminal className="me-2 h-5 w-5" />
+                        {t.goToScriptPage || 'לדף הסקריפט'}
+                    </Link>
+                )}
                 
                 {(stats.rating || stats.users) && (
                     <div className="flex items-center gap-4 text-sm font-medium text-text-dark/70 dark:text-text-light/70 bg-white/40 dark:bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/20">

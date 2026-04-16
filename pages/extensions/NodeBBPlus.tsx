@@ -110,6 +110,7 @@ export default function NodeBBPlus() {
       features={features}
       installSection={installSection}
       privacyPolicyContent={t.nodebbPlusPrivacyPolicy}
+      scriptPageUrl="/scripfix"
     />
   );
 }

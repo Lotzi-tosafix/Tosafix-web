@@ -19,6 +19,7 @@ import { termsPageTranslations } from './terms_page';
 import { gfdTranslations } from './gfd';
 import { nodebbPlusTranslations } from './nodebb_plus';
 import { notFoundTranslations } from './not_found';
+import { scripfixTranslations } from './scripfix';
 
 export const translations = {
   he: {
@@ -42,6 +43,7 @@ export const translations = {
     ...gfdTranslations.he,
     ...nodebbPlusTranslations.he,
     ...notFoundTranslations.he,
+    ...scripfixTranslations.he,
   },
   en: {
     ...commonTranslations.en,
@@ -64,5 +66,6 @@ export const translations = {
     ...gfdTranslations.en,
     ...nodebbPlusTranslations.en,
     ...notFoundTranslations.en,
+    ...scripfixTranslations.en,
   }
 };

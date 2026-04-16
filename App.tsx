@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Nosafix from './pages/Nusafix';
 import Developers from './pages/Developers';
+import ScripFix from './pages/ScripFix';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import NotiForum from './pages/extensions/Noti';
@@ -85,6 +86,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/nosafix" element={<Nosafix />} />
+          <Route path="/scripfix" element={<ScripFix />} />
           <Route path="/developers" element={<Developers />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

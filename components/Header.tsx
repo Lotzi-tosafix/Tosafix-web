@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Languages, Home, Mail, Share2, Check, Sun, Moon, Plus, Code2, Search } from 'lucide-react';
+import { Menu, X, ChevronDown, Languages, Home, Mail, Share2, Check, Sun, Moon, Plus, Code2, Search, Terminal } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
 import { useTheme } from '../contexts/ThemeContext';
@@ -197,6 +197,7 @@ export default function Header() {
                             {[
                                 { to: '/', icon: Home, label: t.home },
                                 { to: '/nosafix', icon: Plus, label: t.nosafix },
+                                { to: '/scripfix', icon: Terminal, label: t.scripfixTitle },
                                 { to: '/contact', icon: Mail, label: t.contact },
                                 { to: '/developers', icon: Code2, label: t.developers },
                             ].map((item) => (
@@ -251,6 +252,7 @@ export default function Header() {
                  {[
                     { to: '/', icon: Home, label: t.home },
                     { to: '/nosafix', icon: Plus, label: t.nosafix },
+                    { to: '/scripfix', icon: Terminal, label: t.scripfixTitle },
                     { to: '/contact', icon: Mail, label: t.contact },
                     { to: '/developers', icon: Code2, label: t.developers },
                 ].map((item) => (
