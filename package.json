@@ -4,26 +4,35 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "tsx server.ts",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "NODE_ENV=production tsx server.ts"
   },
   "dependencies": {
-    "react-dom": "18.2.0",
-    "react": "18.2.0",
-    "react-router-dom": "6.23.0",
-    "lucide-react": "0.395.0",
-    "framer-motion": "11.2.10",
-    "react-intersection-observer": "9.10.2",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "firebase": "^12.12.0",
+    "firebase-admin": "^13.8.0",
+    "framer-motion": "11.2.10",
     "hls.js": "1.5.8",
+    "html2canvas": "1.4.1",
+    "lucide-react": "0.395.0",
+    "node-cron": "^4.2.1",
     "qr-code-styling": "1.5.0",
-    "html2canvas": "1.4.1"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-intersection-observer": "9.10.2",
+    "react-router-dom": "6.23.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^22.14.0",
+    "@types/node-cron": "^3.0.11",
     "@vitejs/plugin-react": "^5.0.0",
+    "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

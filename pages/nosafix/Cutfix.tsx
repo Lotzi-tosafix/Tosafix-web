@@ -4,6 +4,8 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UploadCloud, Scissors, Sparkles, Image as ImageIcon, Download, AlertCircle, RefreshCw } from 'lucide-react';
+import { useToolTracker } from '../../hooks/useToolTracker';
+import { ToolRating } from '../../components/ToolRating';
 
 type UiState = 'upload' | 'loading' | 'results' | 'error';
 type Action = 'remove-bg' | 'trim-only';
@@ -11,6 +13,8 @@ type Action = 'remove-bg' | 'trim-only';
 const BACKEND_API_URL = 'https://lotzi-fix-remover.hf.space/api/remove-background';
 
 const Cutfix: React.FC = () => {
+    useToolTracker('cutfix');
+    
     const { language } = useLanguage();
     const t = translations[language];
 
@@ -198,6 +202,9 @@ const Cutfix: React.FC = () => {
                     </h1>
                     <div className="max-w-xl mx-auto mt-4 glass-card p-3 rounded-2xl border border-white/40 shadow-sm">
                         <p className="text-base md:text-lg text-text-dark/70 dark:text-text-light/70 font-light">{t.cutfixPageSubtitle}</p>
+                    </div>
+                    <div className="flex justify-center w-full">
+                        <ToolRating toolId="cutfix" />
                     </div>
                 </header>
 

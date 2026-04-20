@@ -8,6 +8,8 @@ import QRCodeStyling from 'qr-code-styling';
 // @ts-ignore
 import html2canvas from 'html2canvas';
 import { QrCode, Link as LinkIcon, FileText, Wifi, Smartphone, Mail, User, Bitcoin, Download, Palette, Shapes, Image as ImageIcon, ChevronDown, MessageSquare } from 'lucide-react';
+import { useToolTracker } from '../../hooks/useToolTracker';
+import { ToolRating } from '../../components/ToolRating';
 
 type QrType = 'url' | 'text' | 'wifi' | 'whatsapp' | 'email' | 'vcard' | 'crypto' | 'sms';
 type FrameType = 'none' | 'phone' | 'bubble-top' | 'polite';
@@ -129,6 +131,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, icon: Icon, isOpen
 );
 
 const QrFix = () => {
+    useToolTracker('qrfix');
     const { language, isHebrew } = useLanguage();
     const t = translations[language];
     const [qrType, setQrType] = useState<QrType>('url');
@@ -422,6 +425,9 @@ const QrFix = () => {
                     </h1>
                     <div className="max-w-xl mx-auto mt-4 glass-card p-3 rounded-2xl border border-white/40 shadow-sm">
                         <p className="text-sm text-text-dark/70 dark:text-text-light/70 font-light">{t.qrFixPageSubtitle}</p>
+                    </div>
+                    <div className="flex justify-center w-full">
+                        <ToolRating toolId="qrfix" />
                     </div>
                 </header>
 

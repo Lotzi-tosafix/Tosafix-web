@@ -5,6 +5,8 @@ import { translations } from '../../translations/translations';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Play, Pause, Loader, Volume2, VolumeX, Music, ChevronDown, Search, X } from 'lucide-react';
 import { useMusicPlayer, Station } from '../../contexts/MusicPlayerContext';
+import { useToolTracker } from '../../hooks/useToolTracker';
+import { ToolRating } from '../../components/ToolRating';
 
 const baseStations = [
     { nameKey: 'kolChaiMusic', streamUrl: 'https://live.kcm.fm/livemusic', logoUrl: 'https://kcm.fm//static/images/fblogo.png', nowPlayingUrl: 'https://kcm.fm/Home/LiveJ/1' },
@@ -311,6 +313,7 @@ const MusicVolumeFolder: React.FC<{ isOpen: boolean, onClick: () => void }> = ({
 };
 
 const LiveMusic: React.FC = () => {
+    useToolTracker('livemusic');
     const { language } = useLanguage();
     const t = translations[language];
     const {
@@ -382,6 +385,9 @@ const LiveMusic: React.FC = () => {
                     </h1>
                     <div className="max-w-xl mx-auto glass-card p-3 rounded-2xl border border-white/40 shadow-sm">
                         <p className="text-base text-text-dark/70 dark:text-text-light/70 font-light">{t.liveMusicDescription}</p>
+                    </div>
+                    <div className="flex justify-center w-full">
+                        <ToolRating toolId="livemusic" />
                     </div>
                 </header>
                 

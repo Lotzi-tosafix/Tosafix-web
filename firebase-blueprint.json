@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "ToolStats": {
+      "title": "ToolStats",
+      "description": "Analytics and ratings for a Nosafix tool",
+      "type": "object",
+      "properties": {
+        "usageCount": { "type": "number" },
+        "ratingSum": { "type": "number" },
+        "ratingCount": { "type": "number" },
+        "averageRating": { "type": "number" }
+      }
+    },
+    "ToolRating": {
+      "title": "ToolRating",
+      "description": "A single user's rating for a tool",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "rating": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "rating", "timestamp"]
+    },
+    "ExtensionStats": {
+      "title": "ExtensionStats",
+      "description": "Chrome store stats for an extension",
+      "type": "object",
+      "properties": {
+        "users": { "type": "number" },
+        "rating": { "type": "number" },
+        "ratingCount": { "type": "number" },
+        "lastUpdated": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "nosafix_tools/{toolId}": {
+      "schema": { "$ref": "ToolStats" },
+      "description": "Global usage and rating stats for a given tool"
+    },
+    "nosafix_tools/{toolId}/ratings/{userId}": {
+      "schema": { "$ref": "ToolRating" },
+      "description": "Individual ratings left by authenticated users"
+    },
+    "extensions_stats/{extensionId}": {
+      "schema": { "$ref": "ExtensionStats" },
+      "description": "Chrome Web Store stats updated by server-side cron"
+    }
+  }
+}

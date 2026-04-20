@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
 import { Wifi, Globe, Clock, Activity, Network, Zap, Play, CheckCircle, AlertTriangle, XCircle, RotateCw, Monitor, Cpu, Laptop, Layers } from 'lucide-react';
+import { useToolTracker } from '../../hooks/useToolTracker';
+import { ToolRating } from '../../components/ToolRating';
 
 type TestStatus = 'idle' | 'running' | 'success' | 'warning' | 'error';
 
@@ -76,6 +78,7 @@ const LtrText: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
 );
 
 const FixChecker = () => {
+  useToolTracker('fixchecker');
   const { language } = useLanguage();
   const t = translations[language];
   const [isRunning, setIsRunning] = useState(false);
@@ -326,6 +329,9 @@ const FixChecker = () => {
             </h1>
             <div className="max-w-xl mx-auto mt-4 glass-card p-3 rounded-2xl border border-white/40 shadow-sm">
                 <p className="text-sm md:text-base text-text-dark/70 dark:text-text-light/70 font-light">{t.fixCheckerPageSubtitle}</p>
+            </div>
+            <div className="flex justify-center w-full">
+                <ToolRating toolId="fixchecker" />
             </div>
         </header>
 
