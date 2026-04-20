@@ -1,5 +1,7 @@
 import express from "express";
 import admin from "firebase-admin";
+import fs from "fs";
+import path from "path";
 
 // Initialize Firebase Admin (safe for both Cloud Run and Vercel)
 if (!admin.apps.length) {
@@ -8,7 +10,8 @@ if (!admin.apps.length) {
       // For Vercel / serverless: parse the injected env var JSON
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
       admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+        credential: admin.credential.cert(serviceAccount),
+        projectId: "gen-lang-client-0806244825"
       });
     } else {
       // For Cloud Run / AI Studio: uses Application Default Credentials
@@ -21,7 +24,10 @@ if (!admin.apps.length) {
   }
 }
 
-const db = admin.firestore();
+let firestoreDatabaseId = "ai-studio-87498fb8-9423-4db0-ba42-6447d69e9d5e";
+
+import { getFirestore } from "firebase-admin/firestore";
+const db = firestoreDatabaseId ? getFirestore(admin.app(), firestoreDatabaseId) : admin.firestore();
 const app = express();
 app.use(express.json());
 

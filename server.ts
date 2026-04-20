@@ -18,7 +18,7 @@ async function startServer() {
   });
   
   // Run once on startup asynchronously
-  syncExtensionsStats();
+  syncExtensionsStats().catch(err => console.error("Initial sync error:", err));
 
   
   // Vite middleware for development
