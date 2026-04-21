@@ -101,13 +101,35 @@ app.get("/api/chrome-store", async (req, res) => {
      res.status(400).json({ error: 'Missing ID' });
      return;
   }
-  const docRef = await db.collection('extensions_stats').doc(id).get();
-  if (docRef.exists) {
-    const data = docRef.data();
-    res.status(200).json({ rating: data?.rating, users: data?.users ? `${data?.users.toLocaleString()} משתמשים` : null });
-    return;
+  try {
+    const docRef = await db.collection('extensions_stats').doc(id).get();
+    if (docRef.exists) {
+      const data = docRef.data();
+      // If it's fresh enough (e.g. updated in the last 24h), return it.
+      if (data && data.lastUpdated && Date.now() - data.lastUpdated < 24 * 60 * 60 * 1000) {
+        res.status(200).json({ rating: data.rating, users: data.users ? `${data.users.toLocaleString()} משתמשים` : null });
+        return;
+      }
+    }
+    
+    // Fetch on the fly if missing or stale
+    const freshData = await fetchChromeStoreData(id);
+    if (freshData) {
+      await db.collection('extensions_stats').doc(id).set({
+        users: freshData.users,
+        rating: freshData.rating,
+        ratingCount: 0,
+        lastUpdated: Date.now()
+      }, { merge: true });
+      res.status(200).json({ rating: freshData.rating, users: freshData.users ? `${freshData.users.toLocaleString()} משתמשים` : null });
+      return;
+    }
+    
+    res.status(404).json({ error: 'Not found on store' });
+  } catch (e) {
+    console.error("Error fetching extension", id, e);
+    res.status(500).json({ error: 'Server error' });
   }
-  res.status(404).json({ error: 'Not found' });
 });
 
 app.post("/api/useTool", async (req, res) => {
