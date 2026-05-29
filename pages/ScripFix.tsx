@@ -93,6 +93,7 @@ export default function ScripFix() {
                 <li>{t.tampermonkeyGuideStep2}</li>
                 <li>{t.tampermonkeyGuideStep3}</li>
                 <li>{t.tampermonkeyGuideStep4}</li>
+                <li>{t.tampermonkeyGuideStep5}</li>
               </ol>
 
               <div className="mt-6 pt-4">
