@@ -29,6 +29,13 @@ const scripts = [
     descKey: 'scriptMarkdownNetfreeDesc',
     installUrl: 'https://github.com/Lotzi-tosafix/userscripts/raw/refs/heads/main/Markdown%20Editor%20in%20NetFree.user.js',
     icon: 'https://netfree.link/img/logo/icon.svg'
+  },
+  {
+    id: 'gemini-netfree',
+    titleKey: 'scriptGeminiNetfreeName',
+    descKey: 'scriptGeminiNetfreeDesc',
+    installUrl: 'https://github.com/Lotzi-tosafix/userscripts/raw/refs/heads/main/Gemini%20NetFree%20Image.user.js',
+    icon: 'https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg'
   }
 ];
 

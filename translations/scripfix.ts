@@ -18,6 +18,8 @@ export const scripfixTranslations = {
     scriptMarkdownNetfreeDesc: 'עורך טקסט מתקדם (Markdown) המותאם במיוחד למערכת הפניות של נטפרי. כולל תצוגה מקדימה חיה, סרגל כלים עשיר, תמיכה בטבלאות, רשימות, תמונות ועוד.',
     scriptNodebbPlusDesc: 'גרסת סקריפט של התוסף NodeBB Plus. מוסיפה מרכז פורומים, ייצוא שרשורים, קישורים חכמים בסרגל הצד ועוד לפורומים מבוססי NodeBB.',
     scriptGfdDesc: 'גרסת סקריפט של התוסף GitHub Friendly Downloads. מציגה את דפי ההורדות ב-GitHub בצורה נקייה, ידידותית וברורה יותר.',
+    scriptGeminiNetfreeName: 'Gemini NetFree Image',
+    scriptGeminiNetfreeDesc: 'מונע הורדת קבצי חסימה מג\'מיני בנטפרי, מפענח שרתי הפניה, משחרר את ה-UI של ג\'מיני מקיפאון בסיום יצירת תמונה, ומוסיף כפתורי הורדה והעתקה מעוצבים.',
     goToScriptPage: 'לגרסת הסקריפט',
   },
   en: {
@@ -39,6 +41,8 @@ export const scripfixTranslations = {
     scriptMarkdownNetfreeDesc: 'An advanced Markdown text editor specially adapted for the NetFree support ticket system. Includes live preview, rich toolbar, support for tables, lists, images, and more.',
     scriptNodebbPlusDesc: 'A script version of the NodeBB Plus extension. Adds a forums hub, thread exporter, smart sidebar links, and more to NodeBB-based forums.',
     scriptGfdDesc: 'A script version of the GitHub Friendly Downloads extension. Displays GitHub download pages in a cleaner, more friendly, and clearer way.',
+    scriptGeminiNetfreeName: 'Gemini NetFree Image',
+    scriptGeminiNetfreeDesc: 'Prevents downloading blocked images from Gemini in NetFree, resolves redirect servers, unblocks Gemini API UI, and adds professional download and copy buttons.',
     goToScriptPage: 'Script Version',
   }
 };
