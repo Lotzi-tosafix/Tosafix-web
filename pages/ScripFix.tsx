@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations/translations';
@@ -44,6 +45,9 @@ export default function ScripFix() {
   const t = translations[language];
   const [guideCopied, setGuideCopied] = React.useState(false);
 
+  const title = language === 'he' ? 'סקריפיקס - סקריפטים של תוספיקס' : 'Scripfix - Userscripts by Tosafix';
+  const description = language === 'he' ? 'אוסף סקריפטים שימושיים מבית תוספיקס, כולל מדריך התקנה של Tampermonkey פשוט וברור.' : 'A collection of useful userscripts by Tosafix, including a clear Tampermonkey installation guide.';
+
   const handleCopyGuide = () => {
     const isHeb = language === 'he';
     
@@ -82,6 +86,10 @@ Credit: [ScripFix](https://tosafix.vercel.app/scripfix)`;
 
   return (
     <main className="flex-1">
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
       <div className="py-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

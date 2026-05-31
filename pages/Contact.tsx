@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Send, CheckCircle, User, MessageSquare, AlertCircle, Phone, Info } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -8,6 +9,9 @@ import { translations } from '../translations/translations';
 export default function Contact() {
   const { language } = useLanguage();
   const t = translations[language];
+
+  const title = language === 'he' ? 'צור קשר - Tosafix' : 'Contact - Tosafix';
+  const description = language === 'he' ? 'צרו קשר עם תוספיקס לשאלות, הצעות או דיווח על בעיות. נשמח לשמוע מכם.' : 'Contact Tosafix for questions, suggestions, or to report issues. We would love to hear from you.';
 
   const [formData, setFormData] = useState({
     name: '',
@@ -61,6 +65,10 @@ export default function Contact() {
 
   return (
     <main className="flex-1">
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
       <div className="py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Download, Lock, ExternalLink, Copy, FileDown, Star, Users, Terminal } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -139,6 +140,10 @@ export default function ExtensionLayout({
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{name}</title>
+        <meta name="description" content={description} />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-10 md:py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

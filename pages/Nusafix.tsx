@@ -1,5 +1,6 @@
 
 import React, { scale } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Scissors, Music, Activity, QrCode } from 'lucide-react';
@@ -41,6 +42,9 @@ export default function Nosafix() {
   const { language, isHebrew } = useLanguage();
   const t = translations[language];
 
+  const title = language === 'he' ? 'נוספיקס - כלים מבית תוספיקס' : 'Nosafix - Tools by Tosafix';
+  const description = language === 'he' ? 'כלים מקוונים שימושיים מבית תוספיקס, כולל מסיר פורמט, מוזיקה חיה ועוד.' : 'Useful online tools by Tosafix, including format remover, live music, and more.';
+
   const containerVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.1 } }
@@ -53,6 +57,10 @@ export default function Nosafix() {
 
   return (
     <main className="flex-1">
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
       <div className="py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

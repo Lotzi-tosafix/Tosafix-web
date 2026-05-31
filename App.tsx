@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { useLanguage } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
@@ -41,9 +42,10 @@ function AppContent() {
     html.lang = language;
     html.dir = isHebrew ? 'rtl' : 'ltr';
 
+    // We will handle specific titles inside pages with Helmet, but keep a fallback
     // Dynamic Title Update
     if (isHebrew) {
-        document.title = 'תוספיקס - תוספי כרום שימושיים';
+        document.title = 'Tosafix (תוספיקס) - תוספי כרום שימושיים';
     } else {
         document.title = 'Tosafix - Useful Chrome Extensions';
     }
@@ -119,11 +121,13 @@ function AppContent() {
 
 function App() {
   return (
-    <HashRouter>
-      <MusicPlayerProvider>
-        <AppContent />
-      </MusicPlayerProvider>
-    </HashRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <MusicPlayerProvider>
+          <AppContent />
+        </MusicPlayerProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
