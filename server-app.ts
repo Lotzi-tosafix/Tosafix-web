@@ -8,11 +8,24 @@ if (!admin.apps.length) {
   try {
     if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
       // For Vercel / serverless: parse the injected env var JSON
-      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        projectId: serviceAccount.project_id || "gen-lang-client-0806244825"
-      });
+      let serviceAccount;
+      try {
+        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+      } catch (parseError) {
+        console.error("FIREBASE_SERVICE_ACCOUNT_KEY is not valid JSON. Please check Vercel environment variables.");
+        // Fallback to ADC if explicitly provided but malformed, so we don't crash
+      }
+      
+      if (serviceAccount) {
+        admin.initializeApp({
+          credential: admin.credential.cert(serviceAccount),
+          projectId: serviceAccount.project_id || "gen-lang-client-0806244825"
+        });
+      } else {
+        admin.initializeApp({
+          projectId: "gen-lang-client-0806244825"
+        });
+      }
     } else {
       // For Cloud Run / AI Studio: uses Application Default Credentials
       admin.initializeApp({
@@ -208,10 +221,10 @@ app.post("/api/contact", async (req, res) => {
   }
   const safeHtml = (str: string) => (str || '').toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   const RESEND_API_KEY = process.env.RESEND_API_KEY?.trim();
-  const CONTACT_EMAIL = process.env.CONTACT_EMAIL?.trim().toLowerCase();
+  const CONTACT_EMAIL = process.env.CONTACT_EMAIL?.trim()?.toLowerCase();
   
   if (!RESEND_API_KEY || !CONTACT_EMAIL) {
-    res.status(500).json({ error: 'שגיאת תצורה בשרת - וודא שמשתני הסביבה מוגדרים' });
+    res.status(500).json({ error: 'שגיאת תצורה בשרת - וודא שמשתני הסביבה RESEND_API_KEY ו-CONTACT_EMAIL מוגדרים בוורסל' });
     return;
   }
   
