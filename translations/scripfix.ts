@@ -20,7 +20,7 @@ export const scripfixTranslations = {
     scriptNodebbPlusDesc: 'גרסת סקריפט של התוסף NodeBB Plus. מוסיפה מרכז פורומים, ייצוא שרשורים, קישורים חכמים בסרגל הצד ועוד לפורומים מבוססי NodeBB.',
     scriptGfdDesc: 'גרסת סקריפט של התוסף GitHub Friendly Downloads. מציגה את דפי ההורדות ב-GitHub בצורה נקייה, ידידותית וברורה יותר.',
     scriptGeminiNetfreeName: 'Gemini NetFree Image',
-    scriptGeminiNetfreeDesc: 'מונע הורדת קבצי חסימה מג\'מיני בנטפרי, מפענח שרתי הפניה, משחרר את ה-UI של ג\'מיני מקיפאון בסיום יצירת תמונה, ומוסיף כפתורי הורדה והעתקה מעוצבים.',
+    scriptGeminiNetfreeDesc: 'מונע הורדת תמונות חסומות בנטפרי מג\'מיני, ופותח אותן בכרטיסיה חדשה במקום זאת, מפענח שרשראות הפניה ומוסיף כפתורי הורדה והעתקה בעיצוב מודרני מרהיב עם תמיכה דו-לשונית מלאה.',
     goToScriptPage: 'לגרסת הסקריפט',
   },
   en: {
@@ -44,7 +44,7 @@ export const scripfixTranslations = {
     scriptNodebbPlusDesc: 'A script version of the NodeBB Plus extension. Adds a forums hub, thread exporter, smart sidebar links, and more to NodeBB-based forums.',
     scriptGfdDesc: 'A script version of the GitHub Friendly Downloads extension. Displays GitHub download pages in a cleaner, more friendly, and clearer way.',
     scriptGeminiNetfreeName: 'Gemini NetFree Image',
-    scriptGeminiNetfreeDesc: 'Prevents downloading blocked images from Gemini in NetFree, resolves redirect servers, unblocks Gemini API UI, and adds professional download and copy buttons.',
+    scriptGeminiNetfreeDesc: 'Prevents downloading blocked images from Gemini in NetFree. Redesigns the error alert into a beautiful success message, unblocks the Gemini UI from freezing, resolves redirect chains, and adds stunning modern download and copy buttons with full bilingual support.',
     goToScriptPage: 'Script Version',
   }
 };
