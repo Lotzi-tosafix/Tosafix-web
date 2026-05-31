@@ -42,6 +42,43 @@ const scripts = [
 export default function ScripFix() {
   const { language } = useLanguage();
   const t = translations[language];
+  const [guideCopied, setGuideCopied] = React.useState(false);
+
+  const handleCopyGuide = () => {
+    const isHeb = language === 'he';
+    
+    const guideText = isHeb ? `# מדריך להתקנת סקריפטים
+
+כדי להשתמש בסקריפטים של משתמשים (Userscripts), עליכם להתקין תחילה תוסף מנהל סקריפטים בדפדפן שלכם. אנו ממליצים על **[Tampermonkey](https://www.tampermonkey.net/)** שהוא התוסף הפופולרי והאמין ביותר בתחום.
+
+## שלבי ההתקנה:
+1. **התקינו את התוסף [Tampermonkey](https://www.tampermonkey.net/)** מחנות התוספים של הדפדפן שלכם.
+2. **חשוב:** לאחר התקנת התוסף, היכנסו לדף ניהול התוספים (\`chrome://extensions/\`), מצאו את Tampermonkey, לחצו על "פרטים" (Details) והפעילו את האפשרות "אפשר סקריפטים של משתמשים" (Allow user scripts). ללא שלב זה הסקריפטים לא יעבדו! (לחלופין ניתן ללחוץ מקש ימני על סמל התוסף ולבחור ב"ניהול תוספים").
+3. **עיברו לטאב הסקריפטים** בדף זה ולחצו על כפתור "התקן סקריפט" תחת הסקריפט הרצוי.
+4. **יפתח חלון של Tampermonkey** המציג את קוד הסקריפט. לחצו על "התקן" (Install).
+5. **זהו!** הסקריפט מותקן ויפעל אוטומטית באתרים המוגדרים לו. עדכונים לסקריפט יתבצעו באופן אוטומטי דרך התוסף.
+
+---
+קרדיט: [סקריפיקס](https://tosafix.vercel.app/scripfix)` 
+: `# Userscript Installation Guide
+
+To use userscripts, you first need to install a userscript manager extension in your browser. We recommend **[Tampermonkey](https://www.tampermonkey.net/)**, which is the most popular and reliable extension in this field.
+
+## Installation Steps:
+1. **Install the [Tampermonkey](https://www.tampermonkey.net/) extension** from your browser's extension store.
+2. **Important:** After installing, go to your browser's extensions management page (\`chrome://extensions/\`), find Tampermonkey, click "Details", and enable the "Allow user scripts" option. Scripts will not work without it! (Alternatively, you can right-click the extension icon and select "Manage extensions").
+3. **Return to this page** and click the "Install Script" button under the desired script.
+4. **A Tampermonkey window will open** showing the script code. Click "Install".
+5. **That's it!** The script is installed and will run automatically on its designated sites. Updates to the script will be handled automatically by the extension.
+
+---
+Credit: [ScripFix](https://tosafix.vercel.app/scripfix)`;
+
+    navigator.clipboard.writeText(guideText).then(() => {
+      setGuideCopied(true);
+      setTimeout(() => setGuideCopied(false), 2000);
+    });
+  };
 
   return (
     <main className="flex-1">
@@ -96,7 +133,7 @@ export default function ScripFix() {
                 <li>{t.tampermonkeyGuideStep5}</li>
               </ol>
 
-              <div className="mt-6 pt-4">
+              <div className="mt-8 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border-t border-white/20">
                 <a 
                   href="https://www.tampermonkey.net/" 
                   target="_blank" 
@@ -106,6 +143,52 @@ export default function ScripFix() {
                   {t.installTampermonkey}
                   <ExternalLink size={18} />
                 </a>
+
+                <div className="flex items-center gap-1.5 mt-2 sm:mt-0">
+                  <span className="text-sm font-medium text-text-dark/60 dark:text-text-light/60">
+                    {t.loveGuideText}
+                  </span>
+                  <div className="relative group flex items-center">
+                    <button
+                      onClick={handleCopyGuide}
+                      aria-label={t.copyAsMarkdown}
+                      className={`relative flex items-center justify-center p-2 focus:outline-none transition-all duration-300 ${
+                        guideCopied 
+                          ? 'text-rose-500 scale-110' 
+                          : 'text-text-dark/50 dark:text-text-light/50 hover:text-rose-500 hover:scale-110 active:scale-95'
+                      }`}
+                    >
+                      <div className="relative w-6 h-6 flex items-center justify-center">
+                        {/* Copy state - Two overlapping hearts */}
+                        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${guideCopied ? 'scale-50 opacity-0' : 'scale-100 opacity-100'}`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="overflow-visible">
+                            <path 
+                              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" 
+                              className="origin-center translate-x-[-3px] translate-y-[-3px] scale-[0.85] opacity-50 stroke-[2px]" 
+                            />
+                            <path 
+                              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" 
+                              className="origin-center translate-x-[2px] translate-y-[2px] scale-[0.85] stroke-[2.5px]" 
+                              style={{ fill: 'var(--tw-bg-opacity, #f3f4f6)' }} // Roughly approximate bg in light mode, but let's just make it background color context aware
+                            />
+                          </svg>
+                        </div>
+                        
+                        {/* Copied state - solid filled heart */}
+                        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${guideCopied ? 'scale-110 opacity-100' : 'scale-50 opacity-0'}`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </button>
+                    {/* Tooltip */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 bg-gray-900/95 dark:bg-white/95 text-white dark:text-gray-900 border border-white/10 dark:border-gray-200 text-[11px] font-semibold py-1 px-3 rounded-lg shadow-xl whitespace-nowrap z-50">
+                      {guideCopied ? t.copiedSuccess : t.copyAsMarkdown}
+                      <div className="absolute top-full left-1/2 -translate-x-[50%] border-[4px] border-transparent border-t-gray-900/95 dark:border-t-white/95" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>

@@ -22,6 +22,9 @@ export const scripfixTranslations = {
     scriptGeminiNetfreeName: 'Gemini NetFree Image',
     scriptGeminiNetfreeDesc: 'מונע הורדת תמונות חסומות בנטפרי מג\'מיני, ופותח אותן בכרטיסיה חדשה במקום זאת, מפענח שרשראות הפניה ומוסיף כפתורי הורדה והעתקה בעיצוב מודרני מרהיב עם תמיכה דו-לשונית מלאה.',
     goToScriptPage: 'לגרסת הסקריפט',
+    loveGuideText: 'אהבת את המדריך? מוזמן לשתף אותו',
+    copiedSuccess: 'הועתק בהצלחה!',
+    copyAsMarkdown: 'העתק כמארקדאון',
   },
   en: {
     scripfixTitle: 'ScripFix',
@@ -46,5 +49,8 @@ export const scripfixTranslations = {
     scriptGeminiNetfreeName: 'Gemini NetFree Image',
     scriptGeminiNetfreeDesc: 'Prevents downloading blocked images from Gemini in NetFree. Redesigns the error alert into a beautiful success message, unblocks the Gemini UI from freezing, resolves redirect chains, and adds stunning modern download and copy buttons with full bilingual support.',
     goToScriptPage: 'Script Version',
+    loveGuideText: 'Liked the guide? Feel free to share it',
+    copiedSuccess: 'Copied successfully!',
+    copyAsMarkdown: 'Copy as Markdown',
   }
 };
