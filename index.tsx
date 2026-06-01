@@ -5,6 +5,11 @@ import App from './App';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 
+// Handle legacy HashRouter links before rendering
+if (window.location.hash.startsWith('#/')) {
+  window.history.replaceState(null, '', window.location.hash.substring(1));
+}
+
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error("Could not find root element to mount to");
