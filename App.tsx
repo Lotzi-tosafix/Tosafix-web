@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { useLanguage } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -36,6 +36,15 @@ import KofiWidget from './components/KofiWidget';
 function AppContent() {
   const { language, isHebrew } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Legacy hash router fallback mapping
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash && location.hash.startsWith('#/')) {
+      const newPath = location.hash.substring(1);
+      navigate(newPath, { replace: true });
+    }
+  }, [location.pathname, location.hash, navigate]);
 
   useEffect(() => {
     const html = document.documentElement;

@@ -1,53 +1,12 @@
 import express from "express";
-import admin from "firebase-admin";
 import fs from "fs";
 import path from "path";
 
-// Initialize Firebase Admin (safe for both Cloud Run and Vercel)
-if (!admin.apps.length) {
-  try {
-    if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
-      // For Vercel / serverless: parse the injected env var JSON
-      let serviceAccount;
-      try {
-        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-      } catch (parseError) {
-        console.error("FIREBASE_SERVICE_ACCOUNT_KEY is not valid JSON. Please check Vercel environment variables.");
-        // Fallback to ADC if explicitly provided but malformed, so we don't crash
-      }
-      
-      if (serviceAccount) {
-        admin.initializeApp({
-          credential: admin.credential.cert(serviceAccount),
-          projectId: serviceAccount.project_id || "gen-lang-client-0806244825"
-        });
-      } else {
-        admin.initializeApp({
-          projectId: "gen-lang-client-0806244825"
-        });
-      }
-    } else {
-      // For Cloud Run / AI Studio: uses Application Default Credentials
-      admin.initializeApp({
-        projectId: "gen-lang-client-0806244825"
-      });
-    }
-  } catch (err) {
-    console.error("Firebase Admin initialization error", err);
-  }
-}
-
-let firestoreDatabaseId = "ai-studio-87498fb8-9423-4db0-ba42-6447d69e9d5e";
-
-import { getFirestore } from "firebase-admin/firestore";
-let db: any = null;
-try {
-  db = firestoreDatabaseId ? getFirestore(admin.app(), firestoreDatabaseId) : admin.firestore();
-} catch (e) {
-  console.log("Firestore db initialization skipped or failed");
-}
 const app = express();
 app.use(express.json());
+
+// In-memory cache for Chrome Store data
+const extensionsCache: Record<string, { rating: number, users: number, lastUpdated: number }> = {};
 
 // Helper to fetch from Chrome Store
 const fetchChromeStoreData = async (id: string) => {
@@ -79,7 +38,7 @@ const fetchChromeStoreData = async (id: string) => {
   }
 };
 
-// Extracted sync logic
+// Extracted sync logic (now memory-based)
 const syncExtensionsStats = async () => {
   const defaultIds = [
     'fpebdkfpncadlnknmhcobmgldchkjnbg', // Yamina
@@ -91,12 +50,11 @@ const syncExtensionsStats = async () => {
   for (const id of defaultIds) {
     const data = await fetchChromeStoreData(id);
     if (data) {
-      await db.collection('extensions_stats').doc(id).set({
+      extensionsCache[id] = {
         users: data.users,
         rating: data.rating,
-        ratingCount: 0, 
         lastUpdated: Date.now()
-      }, { merge: true });
+      };
     }
   }
 };
@@ -120,25 +78,21 @@ app.get("/api/chrome-store", async (req, res) => {
      return;
   }
   try {
-    const docRef = await db.collection('extensions_stats').doc(id).get();
-    if (docRef.exists) {
-      const data = docRef.data();
-      // If it's fresh enough (e.g. updated in the last 24h), return it.
-      if (data && data.lastUpdated && Date.now() - data.lastUpdated < 24 * 60 * 60 * 1000) {
-        res.status(200).json({ rating: data.rating, users: data.users ? `${data.users.toLocaleString()} משתמשים` : null });
-        return;
-      }
+    const cachedData = extensionsCache[id];
+    // If it's fresh enough (e.g. updated in the last 24h), return it.
+    if (cachedData && Date.now() - cachedData.lastUpdated < 24 * 60 * 60 * 1000) {
+      res.status(200).json({ rating: cachedData.rating, users: cachedData.users ? `${cachedData.users.toLocaleString()} משתמשים` : null });
+      return;
     }
     
     // Fetch on the fly if missing or stale
     const freshData = await fetchChromeStoreData(id);
     if (freshData) {
-      await db.collection('extensions_stats').doc(id).set({
+      extensionsCache[id] = {
         users: freshData.users,
         rating: freshData.rating,
-        ratingCount: 0,
         lastUpdated: Date.now()
-      }, { merge: true });
+      };
       res.status(200).json({ rating: freshData.rating, users: freshData.users ? `${freshData.users.toLocaleString()} משתמשים` : null });
       return;
     }
@@ -151,66 +105,11 @@ app.get("/api/chrome-store", async (req, res) => {
 });
 
 app.post("/api/useTool", async (req, res) => {
-  const { toolId } = req.body;
-  if (!toolId) {
-    res.status(400).json({ error: 'Missing toolId' });
-    return;
-  }
-  try {
-    const toolRef = db.collection('nosafix_tools').doc(toolId);
-    await toolRef.set({
-      usageCount: admin.firestore.FieldValue.increment(1)
-    }, { merge: true });
-    res.status(200).json({ success: true });
-  } catch(e) {
-    res.status(500).json({ error: 'Server error' });
-  }
+  res.status(200).json({ success: true });
 });
 
 app.post("/api/rateTool", async (req, res) => {
-  const { idToken, toolId, rating } = req.body;
-  if (!idToken || !toolId || typeof rating !== 'number') {
-    res.status(400).json({ error: 'Missing parameters' });
-    return;
-  }
-  try {
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
-    const uid = decodedToken.uid;
-    
-    const toolRef = db.collection('nosafix_tools').doc(toolId);
-    const ratingRef = toolRef.collection('ratings').doc(uid);
-    
-    await db.runTransaction(async (transaction) => {
-      const ratingDoc = await transaction.get(ratingRef);
-      let oldRating = 0;
-      let isUpdate = false;
-      if (ratingDoc.exists) {
-        oldRating = ratingDoc.data()?.rating || 0;
-        isUpdate = true;
-      }
-
-      const toolDoc = await transaction.get(toolRef);
-      let ratingSum = toolDoc.data()?.ratingSum || 0;
-      let ratingCount = toolDoc.data()?.ratingCount || 0;
-
-      if (isUpdate) {
-        ratingSum = ratingSum - oldRating + rating;
-      } else {
-        ratingSum += rating;
-        ratingCount += 1;
-      }
-      
-      let avg = ratingSum / ratingCount;
-
-      transaction.set(ratingRef, { userId: uid, rating, timestamp: Date.now() });
-      transaction.set(toolRef, { ratingSum, ratingCount, averageRating: avg }, { merge: true });
-    });
-
-    res.status(200).json({ success: true });
-  } catch(e) {
-     console.error("error rating", e);
-     res.status(401).json({ error: 'Unauthorized or error' });
-  }
+  res.status(200).json({ success: true });
 });
 
 app.post("/api/contact", async (req, res) => {
