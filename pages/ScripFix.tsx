@@ -37,6 +37,13 @@ const scripts = [
     descKey: 'scriptGeminiNetfreeDesc',
     installUrl: 'https://github.com/Lotzi-tosafix/userscripts/raw/refs/heads/main/Gemini%20NetFree%20Image.user.js',
     icon: 'https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg'
+  },
+  {
+    id: 'aliexpress-color-link',
+    titleKey: 'scriptAliexpressColorLinkName',
+    descKey: 'scriptAliexpressColorLinkDesc',
+    installUrl: 'https://github.com/Lotzi-tosafix/userscripts/raw/refs/heads/main/AliExpress%20Color%20Link%20Copier.user.js',
+    icon: 'https://ae01.alicdn.com/kf/S8f9fa4fb0d624a9ebc574e442df08e90c.png'
   }
 ];
 
