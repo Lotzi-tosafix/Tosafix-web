@@ -43,7 +43,7 @@ const scripts = [
     titleKey: 'scriptAliexpressColorLinkName',
     descKey: 'scriptAliexpressColorLinkDesc',
     installUrl: 'https://github.com/Lotzi-tosafix/userscripts/raw/refs/heads/main/AliExpress%20Color%20Link%20Copier.user.js',
-    icon: 'https://ae01.alicdn.com/kf/S8f9fa4fb0d624a9ebc574e442df08e90c.png'
+    icon: 'https://www.google.com/s2/favicons?domain=aliexpress.com&sz=128'
   }
 ];
 
